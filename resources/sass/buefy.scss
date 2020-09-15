@@ -1,0 +1,30 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+
+.pagination-link{
+    height: 2rem !important;
+    width: 2rem !important;
+}
+.pagination-link.is-current {
+    background-color: #4099ff !important;
+    border-color: #4099ff !important;
+    color: #fff !important;
+}
+
+.table-footer th {
+    border-color: transparent !important;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:checked + .check {
+    background-color:#4099ff !important;
+    border-color: #4099ff !important;
+}
+
+.b-checkbox.checkbox:hover input[type=checkbox]:not(:disabled) + .check {
+    border-color: #4099ff !important;
+}

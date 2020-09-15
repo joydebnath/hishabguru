@@ -1,0 +1,16 @@
+{
+    "/js/index.js": "/js/index.js",
+    "/css/app.css": "/css/app.css",
+    "/css/buefy.css": "/css/buefy.css",
+    "/css/tailwind.css": "/css/tailwind.css",
+    "/js/clients.js": "/js/clients.js",
+    "/js/clients~js/invoices~js/orders~js/product-categories~js/products~js/promo-codes~js/quotations~js/suppliers.js": "/js/clients~js/invoices~js/orders~js/product-categories~js/products~js/promo-codes~js/quotations~js/suppliers.js",
+    "/js/examples.js": "/js/examples.js",
+    "/js/invoices.js": "/js/invoices.js",
+    "/js/orders.js": "/js/orders.js",
+    "/js/product-categories.js": "/js/product-categories.js",
+    "/js/products.js": "/js/products.js",
+    "/js/promo-codes.js": "/js/promo-codes.js",
+    "/js/quotations.js": "/js/quotations.js",
+    "/js/suppliers.js": "/js/suppliers.js"
+}
