@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "./components/products/ProductsComponent");
 const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "./components/product-categories/ProductsComponent");
+const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "./components/marketplace/MarketplaceComponent");
 const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "./components/ExampleComponent");
 const QuotationsComponent = () => import(/* webpackChunkName: "js/quotations" */  "./components/quotations/QuotationsComponent");
 const OrdersComponent = () => import(/* webpackChunkName: "js/orders" */  "./components/orders/OrdersComponent");
@@ -50,7 +51,7 @@ const router = new VueRouter({
             path: '/@/marketplace',
             name: 'marketplace',
             meta: {type: 'business'},
-            component: ExampleComponent,
+            component: MarketplaceComponent,
         },
         {
             path: '/@/promo-codes',

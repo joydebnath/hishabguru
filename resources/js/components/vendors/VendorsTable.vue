@@ -49,9 +49,9 @@
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Owe You" v-slot="props">
-                {{ props.row.they_owe_you }}
-            </b-table-column>
+<!--            <b-table-column label="Owe You" v-slot="props">-->
+<!--                {{ props.row.they_owe_you }}-->
+<!--            </b-table-column>-->
             <b-table-column label="You Owe" v-slot="props">
                 {{ props.row.you_owe_them }}
             </b-table-column>

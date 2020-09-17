@@ -36,8 +36,8 @@
 <script>
 import {mapMutations} from 'vuex';
 import SearchBox from '../global/SearchBox'
-import Table from "./ProductTable.vue";
-import Filters from "./ProductFilters";
+import Table from "./MarketplaceTable.vue";
+import Filters from "./MarketplaceFilters";
 import ItemCRUD from "./modals/ItemCRUD";
 import Profile from "./modals/Profile";
 

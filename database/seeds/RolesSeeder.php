@@ -20,10 +20,24 @@ class RolesSeeder extends Seeder
         ]);
 
         Role::firstOrCreate([
+            'name' => 'Lead Sales',
+            'slug' => 'lead-sales',
+        ], [
+            'permissions' => json_encode([])
+        ]);
+
+        Role::firstOrCreate([
             'name' => 'Sales',
             'slug' => 'sales',
         ], [
             'permissions' => json_encode([])
+        ]);
+
+        Role::firstOrCreate([
+            'name' => 'Payroll Only',
+            'slug' => 'payroll-only',
+        ], [
+            'permissions' => json_encode(['payroll','timesheet','leave-management'])
         ]);
     }
 }

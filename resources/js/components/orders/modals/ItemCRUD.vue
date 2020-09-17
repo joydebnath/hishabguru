@@ -1,66 +1,55 @@
 <template>
     <b-modal
         v-model="$props.show"
+        :on-cancel="() => $emit('on-close')"
+        :can-cancel="['x','escape']"
         has-modal-card
         trap-focus
         aria-role="dialog"
         aria-modal
+        width="1000"
     >
-        <div class="modal-card" style="width: 630px">
+        <div class="modal-card" style="width: 75rem">
             <header class="modal-card-head flex flex-row justify-between">
                 <p class="text-lg text-gray-700" v-text="title"></p>
-                <button type="button" class="delete" @click="$emit('close')" />
+                <button type="button" class="delete" @click="$emit('on-close')"/>
             </header>
             <section class="modal-card-body">
-                <b-field label="Item Name" custom-class="w-3/5">
-                    <b-input></b-input>
-                </b-field>
-                <b-field grouped>
-                    <b-field label="Item Code" custom-class="w2/5">
-                        <b-input></b-input>
-                    </b-field>
-                    <b-field label="Type">
-                        <b-input></b-input>
-                    </b-field>
-                </b-field>
-                <b-field grouped>
-                    <b-field label="Buying Unit Cost">
-                        <b-input></b-input>
-                    </b-field>
-                    <b-field label="Quantity">
-                        <b-input></b-input>
-                    </b-field>
-                </b-field>
-                <b-field grouped>
-                    <b-field label="Selling Unit Price">
-                        <b-input></b-input>
-                    </b-field>
-                    <b-field label="Tax rate">
-                        <b-input></b-input>
-                    </b-field>
-                </b-field>
-                <b-field label="Description">
-                    <b-input type="textarea"></b-input>
-                </b-field>
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="col-span-1">
+                        <OrderDetails/>
+                    </div>
+                    <div class="col-span-2 ml-4">
+                        <ProductsTable/>
+                    </div>
+                </div>
             </section>
             <footer class="modal-card-foot flex justify-content-end">
+                <button class="button">Draft</button>
                 <button class="button is-primary">Save</button>
-            </footer>   
+            </footer>
+
         </div>
     </b-modal>
 </template>
 
 <script>
+import OrderDetails from '../widgets/OrderDetails'
+import ProductsTable from '../widgets/ProductsTable'
+
 export default {
     props: {
         show: Boolean,
         action_type: String
     },
+    components: {
+        OrderDetails, ProductsTable
+    },
     computed: {
         title() {
             return this.$props.action_type == "edit"
-                ? "Edit Product"
-                : "Add new Product";
+                ? "Edit Order"
+                : "Create new Order";
         }
     }
 };

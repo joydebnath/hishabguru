@@ -16,7 +16,7 @@
             <div class="border-b my-4"></div>
             <Table />
         </div>
-        <ItemCRUD :show="show_modal" @close="handleToggleModal" />
+        <ItemCRUD :show="show_modal" @on-close="handleToggleModal" />
     </div>
 </template>
 
