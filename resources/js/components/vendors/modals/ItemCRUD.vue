@@ -204,8 +204,8 @@ export default {
         }),
         title() {
             return this.$props.action_type == "edit"
-                ? "Edit Client"
-                : "Add new Client";
+                ? "Edit Supplier"
+                : "Add new Supplier";
         },
         computed_item() {
             if (this.$props.item) {
