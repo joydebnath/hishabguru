@@ -124,7 +124,7 @@ export default {
                 .post('/products', this.computed_item)
                 .then(({data}) => {
                     this.loading_event(false);
-                    this.product = [];
+                    this.product = {};
                     this.$emit('on-close');
                     this.$buefy.notification.open({
                         message: 'Product is created',

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Contact;
 
+use App\Enums\Address\AddressType;
 use App\Enums\Contact\ContactType;
 use App\Filters\Contact\SupplierFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\SupplierRequest;
+use App\Http\Resources\Contact\Supplier;
 use App\Http\Resources\Contact\SupplierCollection;
 use App\Http\Resources\Contact\SupplierResource;
 use App\Models\Contact;
@@ -37,7 +39,7 @@ class SuppliersController extends Controller
         try {
             $storeable = $request->validated();
             $contact = $this->contactService->create($storeable, ContactType::SUPPLIER);
-            return new SupplierResource($contact->fresh('contact_details', 'addresses'));
+            return new Supplier($contact->fresh('contact_details', 'addresses'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -46,7 +48,7 @@ class SuppliersController extends Controller
     public function show($contactId)
     {
         try {
-            return new SupplierResource(Contact::find($contactId)->load('contact_details', 'addresses'));
+            return new SupplierResource(Contact::find($contactId)->load('contact_details', 'addresses', 'child_contacts.contact_details'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], $exception->getCode());
         }
@@ -56,10 +58,10 @@ class SuppliersController extends Controller
     {
         try {
             $updateable = $request->validated();
-            $contact = $this->contactService->update($contactId, $updateable);
-            return new SupplierResource($contact->fresh('contact_details', 'addresses'));
+            $contact = $this->contactService->update($contactId, $updateable, AddressType::HQ);
+            return new Supplier($contact->fresh('contact_details', 'addresses'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 

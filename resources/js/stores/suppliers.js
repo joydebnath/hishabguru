@@ -29,8 +29,15 @@ const store = {
         setCurrentPage: (state, {current_page}) => {
             state.current_page = current_page
         },
-        setFilters:(state, {filters})=>{
-            state.filters = {...state.filters,...filters}
+        setFilters: (state, {filters}) => {
+            state.filters = {...state.filters, ...filters}
+        },
+        update: (state, {supplier}) => {
+            const index = _.findIndex(state.suppliers, value => value.id == supplier.id)
+            if (index !== -1) {
+                state.suppliers[index] = supplier;
+                state.suppliers = [...state.suppliers]
+            }
         }
     },
     actions: {
@@ -44,7 +51,7 @@ const store = {
                     commit('setLoading', {loading: false})
                     commit('setSuppliers', {suppliers: data.data})
                     commit('setTotal', {total: data.meta.total})
-                    commit('setCurrentPage', {total: data.meta.current_page})
+                    commit('setCurrentPage', {current_page: data.meta.current_page})
                 })
                 .catch(err => {
                     console.log(err)

@@ -51,6 +51,7 @@ export default {
         }),
         handleToggleModal() {
             this.show_modal = !this.show_modal;
+            this.product_category = [];
         },
         handleSearch(value) {
             this.setFilters({
@@ -60,7 +61,6 @@ export default {
         },
         handleAdd() {
             this.action_type = 'add';
-            this.product_category = [];
             this.handleToggleModal()
         },
         handleEdit(category_id) {

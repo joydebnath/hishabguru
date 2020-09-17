@@ -112,7 +112,7 @@ export default {
                 .then(({data}) => {
                     this.loading_event(false);
                     this.$store.commit('clients/update', {client: data.data})
-                    this.product = data.data
+                    this.client = data.data
                     this.$emit('on-close')
                     this.$buefy.notification.open({
                         message: 'Client has been updated',
@@ -133,7 +133,7 @@ export default {
                 .post('/clients', {...this.computed_item, address_type: 'home'})
                 .then(({data}) => {
                     this.loading_event(false);
-                    this.product = [];
+                    this.client = {};
                     this.$emit('on-close');
                     this.$buefy.notification.open({
                         message: 'Client is created',

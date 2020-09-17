@@ -6,7 +6,7 @@ use App\Models\Address;
 
 class AddressService
 {
-    public function create($contactId, $addressableType, $storeable)
+    public function create($contactId, $addressableType, $storeable): Address
     {
         return
             Address::create([
@@ -22,7 +22,7 @@ class AddressService
             ]);
     }
 
-    public function update($addressId, $updateable)
+    public function update($addressId, $updateable): bool
     {
         return
             Address::find($addressId)->update([

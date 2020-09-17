@@ -91,9 +91,9 @@ export default {
         },
         handleDelete(client) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting Client: ' + client.name,
-                message: 'Are you sure you want to <b>delete</b> the client?',
-                confirmText: 'Delete client',
+                title: 'Deleting Client',
+                message: 'Are you sure you want to delete <b>' + client.name + '</b> the client?',
+                confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,
                 onConfirm: () => {

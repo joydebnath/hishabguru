@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class ContactDetailsService
 {
-    public function create($contactId, $storeable)
+    public function create($contactId, $storeable) : void
     {
         if (isset($storeable['mobile'])) {
             ContactDetail::create([
@@ -32,7 +32,7 @@ class ContactDetailsService
         }
     }
 
-    public function update($contactId, $updateable)
+    public function update($contactId, $updateable) : void
     {
         if (isset($updateable['mobile'])) {
             ContactDetail::updateOrCreate(

@@ -6,7 +6,7 @@
                     <b-field grouped>
                         <SearchBox placeholder="Search by name" @search="handleSearch"/>
                         &nbsp;&nbsp;&nbsp;
-                        <Filters />
+                        <Filters/>
                     </b-field>
                     <button class="button field is-info" @click="handleAdd">
                         <span>New Supplier</span>
@@ -64,8 +64,9 @@ export default {
         }),
         handleToggleModal() {
             this.show_modal = !this.show_modal;
+            this.supplier = [];
         },
-        handleToggleLoading(){
+        handleToggleLoading() {
             this.loading = !this.loading;
         },
         handleSearch(value) {
@@ -94,20 +95,38 @@ export default {
         },
         handleDelete(supplier) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting supplier: ' + supplier.name,
-                message: 'Are you sure you want to <b>delete</b> the supplier?',
-                confirmText: 'Delete supplier',
+                title: 'Deleting supplier',
+                message: 'Are you sure you want to delete <b>' + supplier.name + '</b>?',
+                confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,
                 onConfirm: () => {
-                    this.$buefy.toast.open('supplier deleted!')
+                    axios
+                        .delete('/suppliers/' + supplier.id)
+                        .then(({data}) => {
+                            this.$store.dispatch('suppliers/loadData', {
+                                page: this.$store.getters['suppliers/getCurrentPage']
+                            })
+                            this.$buefy.notification.open({
+                                message: data.message,
+                                type: 'is-success'
+                            })
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                this.$buefy.notification.open({
+                                    message: err.response.data.message,
+                                    type: 'is-danger'
+                                })
+                            }
+                        })
                 }
             })
         },
-        handleReadProfile(){
+        handleReadProfile() {
             this.handleToggleProfileModal()
         },
-        handleToggleProfileModal(){
+        handleToggleProfileModal() {
             this.show_profile_modal = !this.show_profile_modal
         }
     },

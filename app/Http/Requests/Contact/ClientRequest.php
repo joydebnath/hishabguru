@@ -26,7 +26,7 @@ class ClientRequest extends FormRequest
         $rules = [
             'tenant_id' => 'required|numeric',
             'name' => 'required|string',
-            'mobile' => 'string|required|',
+            'mobile' => 'string|required',
             'phone' => 'string|nullable',
             'email' => 'email|nullable',
             'address_line_1' => 'required|string',

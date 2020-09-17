@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Contact;
 
+use App\Enums\Address\AddressType;
 use App\Enums\Contact\ContactType;
 use App\Filters\Contact\ClientFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\ClientRequest;
+use App\Http\Resources\Contact\Client;
 use App\Http\Resources\Contact\ClientCollection;
 use App\Http\Resources\Contact\ClientResource;
 use App\Models\Contact;
@@ -41,7 +43,7 @@ class ClientsController extends Controller
         try {
             $storeable = $request->validated();
             $contact = $this->contactService->create($storeable,ContactType::CLIENT);
-            return new ClientResource($contact->fresh('contact_details', 'addresses'));
+            return new Client($contact->fresh('contact_details', 'addresses'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -60,8 +62,8 @@ class ClientsController extends Controller
     {
         try {
             $updateable = $request->validated();
-            $contact = $this->contactService->update($contactId, $updateable);
-            return new ClientResource($contact->fresh('contact_details', 'addresses'));
+            $contact = $this->contactService->update($contactId, $updateable, AddressType::HOME);
+            return new Client($contact->fresh('contact_details', 'addresses'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], $exception->getCode());
         }

@@ -3,7 +3,7 @@
 namespace App\Http\Resources\Contact;
 
 use App\Enums\Address\AddressType;
-use App\Models\Address;
+use App\Enums\Contact\ContactDetailsType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ClientResource extends JsonResource
@@ -48,21 +48,21 @@ class ClientResource extends JsonResource
     private function getMobileNumber()
     {
         return collect($this->contact_details)
-            ->where('key', '=', 'mobile')
+            ->where('key', '=', ContactDetailsType::MOBILE)
             ->first();
     }
 
     private function getPhoneNumber()
     {
         return collect($this->contact_details)
-            ->where('key', '=', 'phone')
+            ->where('key', '=', ContactDetailsType::PHONE)
             ->first();
     }
 
     private function getEmailAddress()
     {
         return collect($this->contact_details)
-            ->where('key', '=', 'email')
+            ->where('key', '=', ContactDetailsType::EMAIL)
             ->first();
     }
 }
