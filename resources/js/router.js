@@ -9,6 +9,7 @@ const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" 
 const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "./components/ExampleComponent");
 const QuotationsComponent = () => import(/* webpackChunkName: "js/quotations" */  "./components/quotations/QuotationsComponent");
 const OrdersComponent = () => import(/* webpackChunkName: "js/orders" */  "./components/orders/OrdersComponent");
+const PurchasesComponent = () => import(/* webpackChunkName: "js/purchases" */  "./components/purchases/PurchasesComponent");
 const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "./components/promo-codes/PromocodesComponent");
 const InvoicesComponent = () => import(/* webpackChunkName: "js/invoices" */  "./components/invoices/InvoicesComponent");
 const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "./components/clients/ClientsComponent");
@@ -46,6 +47,12 @@ const router = new VueRouter({
             name: 'orders',
             meta: {type: 'business'},
             component: OrdersComponent,
+        },
+        {
+            path: '/@/purchases',
+            name: 'purchases',
+            meta: {type: 'business'},
+            component: PurchasesComponent,
         },
         {
             path: '/@/marketplace',

@@ -26,4 +26,7 @@ Route::group(['middleware' => ['api']], function () {
 
     Route::get('/me','Auth\UserController@index');
     Route::get('/filters','FiltersController@index');
+    Route::get('/lookup/clients','Look\ClientLookupController@index');
+    Route::get('/lookup/suppliers','Look\SupplierLookupController@index');
+    Route::get('/lookup/products','Look\ProductLookupController@index');
 });
