@@ -1,24 +1,24 @@
-const store = {
+const products = {
     namespaced: true,
     state: {
-        total: '',
+        total: 0,
         url: '/marketplace',
-        clients: [],
+        products: [],
         loading: false,
         current_page: 1,
         filters: {}
     },
     getters: {
-        getClients: state => state.clients,
+        getProducts: state => state.products,
         getUrl: state => state.url,
         getTotal: state => state.total,
         getLoading: state => state.loading,
         getCurrentPage: state => state.current_page,
-        getFilters: state => state.filters
+        getFilters: state => state.filters,
     },
     mutations: {
-        setClients: (state, {clients}) => {
-            state.clients = clients
+        setProducts: (state, {products}) => {
+            state.products = products
         },
         setLoading: (state, {loading}) => {
             state.loading = loading
@@ -29,20 +29,29 @@ const store = {
         setCurrentPage: (state, {current_page}) => {
             state.current_page = current_page
         },
-        setFilters:(state, {filters})=>{
-            state.filters = {...state.filters,...filters}
+        setFilters: (state, {filters}) => {
+            state.filters = {...state.filters, ...filters}
+        },
+        update: (state, {product}) => {
+            const index = _.findIndex(state.products, value => value.id == product.id)
+            if (index !== -1) {
+                state.products[index] = product;
+                state.products = [...state.products]
+            }
         }
     },
     actions: {
         loadData({commit, getters}, {page}) {
             commit('setLoading', {loading: true})
             axios
-                .get(getters.getUrl + '?page=' + page)
+                .get(getters.getUrl + '?page=' + page, {
+                    params: {...getters.getFilters}
+                })
                 .then(({data}) => {
                     commit('setLoading', {loading: false})
-                    commit('setClients', {clients: data.data})
+                    commit('setProducts', {products: data.data})
                     commit('setTotal', {total: data.meta.total})
-                    commit('setCurrentPage', {total: data.meta.current_page})
+                    commit('setCurrentPage', {current_page: data.meta.current_page})
                 })
                 .catch(err => {
                     console.log(err)
@@ -52,4 +61,4 @@ const store = {
     }
 }
 
-export default store
+export default products;

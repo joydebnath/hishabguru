@@ -29,7 +29,7 @@ class ContactService
 
         $this->contactDetailsService->create($contact->id, $storeable);
 
-        if ($contactType === ContactType::SUPPLIER && $storeable['has_primary_contact']) {
+        if ($contactType === ContactType::SUPPLIER && isset($storeable['has_primary_contact'])) {
             $this->storePrimaryContactPerson($contact, $storeable);
         }
 
@@ -60,7 +60,7 @@ class ContactService
 
         $this->contactDetailsService->update($contact->id, $updateable);
 
-        if ($contact->type === ContactType::SUPPLIER && $updateable['has_primary_contact']) {
+        if ($contact->type === ContactType::SUPPLIER && isset($updateable['has_primary_contact'])) {
             $this->updateOrCreatePrimaryContactPerson($contact, $updateable);
         }
 

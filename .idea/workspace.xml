@@ -11,25 +11,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/marketplace/MarketplaceComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/marketplace/MarketplaceFilters.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/marketplace/MarketplaceTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/marketplace/modals/ItemCRUD.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/marketplace/modals/Profile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Contact/ClientRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Contact/ClientRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Contact/SupplierRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Contact/SupplierRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/SupplierResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/SupplierResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Contact/AddressService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Contact/AddressService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Contact/ContactDetailsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Contact/ContactDetailsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Contact/ContactService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Contact/ContactService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_06_013445_create_contacts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_06_013445_create_contacts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/clients/ClientsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/clients/ClientsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/clients/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/clients/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/product-categories/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/product-categories/ProductsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/products/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/vendors/VendorsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vendors/VendorsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/vendors/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vendors/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/suppliers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/suppliers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/marketplace.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/marketplace.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -538,7 +528,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -550,18 +540,18 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/vendors/modals" />
-      <recent name="$PROJECT_DIR$/resources/js/components/products/modals" />
-      <recent name="$PROJECT_DIR$/resources/js/stores" />
-      <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Console/Commands" />
       <recent name="$PROJECT_DIR$/app/Console/Stubs" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Contacts" />
       <recent name="$PROJECT_DIR$/app/Models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/resources/js/components/vendors/modals" />
+      <recent name="$PROJECT_DIR$/resources/js/components/products/modals" />
+      <recent name="$PROJECT_DIR$/resources/js/stores" />
+      <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
     </key>
   </component>
   <component name="RunManager">
@@ -693,6 +683,8 @@
       <workItem from="1600207838061" duration="2915000" />
       <workItem from="1600211150790" duration="26000" />
       <workItem from="1600254279954" duration="12074000" />
+      <workItem from="1600304850074" duration="5050000" />
+      <workItem from="1600315696045" duration="520000" />
     </task>
     <servers />
   </component>
@@ -734,11 +726,12 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2615" y="454" width="520" height="178" key="ComposerInitDialogKey/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600045698148" />
-    <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600211170648">
-      <screen x="72" y="27" width="1848" height="1053" />
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600315656834">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600140079457" />
     <state x="2930" y="132" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600155188061" />
+    <state x="2663" y="298" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600315656834" />
     <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1600211170648" />
     <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1599355486797">
       <screen x="0" y="27" width="1920" height="1053" />

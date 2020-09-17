@@ -94,6 +94,12 @@
                     />
                 </b-tooltip>
                 &nbsp; &nbsp;
+                <b-tooltip label="Add product image"
+                           type="is-dark"
+                           position="is-bottom">
+                    <b-button icon-right="camera-plus" class="text-lg h-8 w-8  p-4 text-gray-700"/>
+                </b-tooltip>
+                &nbsp; &nbsp;
                 <b-button
                     type="is-danger is-light"
                     class="text-lg h-8 w-8  p-4"
@@ -125,11 +131,11 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch('products/loadData', {page: 1})
+        this.$store.dispatch('marketplace/loadData', {page: 1})
     },
     methods: {
         onPageChange(page_no) {
-            this.$store.dispatch('products/loadData', {page: page_no})
+            this.$store.dispatch('marketplace/loadData', {page: page_no})
         },
         onSort(field_name, order) {
             console.log(field_name, order)
@@ -137,10 +143,10 @@ export default {
     },
     computed: {
         ...mapGetters({
-            loading: 'products/getLoading',
-            data: 'products/getProducts',
-            current_page: 'products/getCurrentPage',
-            total: 'products/getTotal',
+            loading: 'marketplace/getLoading',
+            data: 'marketplace/getProducts',
+            current_page: 'marketplace/getCurrentPage',
+            total: 'marketplace/getTotal',
             per_page:'getPerPage'
         })
     }
