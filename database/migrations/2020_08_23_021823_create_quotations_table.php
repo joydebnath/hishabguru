@@ -23,7 +23,7 @@ class CreateQuotationsTable extends Migration
             $table->dateTime('create_date');
             $table->dateTime('expiry_date')->nullable();
             $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('contact_id')->nullable()->comment('quotation is created for contact');
+            $table->unsignedBigInteger('contact_id')->nullable()->comment('quotation is created for a contact');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('approved_by')->nullable();
             $table->unsignedDecimal('total_sale_price')->nullable();

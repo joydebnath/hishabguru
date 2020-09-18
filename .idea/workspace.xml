@@ -14,24 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientLookupInput.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/products/ProductLookupInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/global/input/EditableInput.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ClientLookupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ClientLookupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ProductLookupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ProductLookupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Contact/ContactService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Contact/ContactService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_23_021823_create_quotations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_23_021823_create_quotations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/ProductTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/products/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/ProductsComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/QuotationDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/QuotationDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientDropdown.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientTile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientTile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/products/ProductDropdown.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/products/ProductTile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/products/ProductTile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -703,7 +689,7 @@
       <workItem from="1600381652320" duration="3441000" />
       <workItem from="1600385968448" duration="633000" />
       <workItem from="1600390327206" duration="1441000" />
-      <workItem from="1600415798316" duration="13793000" />
+      <workItem from="1600415798316" duration="18362000" />
     </task>
     <servers />
   </component>

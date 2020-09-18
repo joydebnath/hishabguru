@@ -29,7 +29,7 @@
             <ProductLookupInput/>
         </div>
         <b-table
-            :data="data"
+            :data="products"
         >
             <b-table-column
                 field="user.first_name"
@@ -40,8 +40,8 @@
                 {{ props.row.user.first_name }}
             </b-table-column>
 
-            <b-table-column label="Qty" centered v-slot="props">
-                2
+            <b-table-column label="Qty" centered v-slot="props" width="80">
+                <EditableInput placeholder="#" :editable="props.row.edit" @on-input="()=>{}"/>
             </b-table-column>
             <b-table-column
                 label="Unit Price"
@@ -54,23 +54,34 @@
                 label="Disc %"
                 centered
                 v-slot="props"
+                width="80"
             >
-
+                <EditableInput placeholder="0.0%" :editable="props.row.edit" @on-input="()=>{}"/>
             </b-table-column>
 
-            <b-table-column label="Tax" centered v-slot="props">
-
+            <b-table-column label="Tax" centered v-slot="props" width="80">
+                <EditableInput placeholder="0.0" :editable="props.row.edit" @on-input="()=>{}"/>
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props">
                 1200
             </b-table-column>
-            <b-table-column>
+            <b-table-column v-slot="props">
                 <div class="flex justify-end">
                     <b-button
+                        v-if="props.row.edit"
+                        type="is-success is-light "
+                        class="text-lg h-8 w-8  p-4"
+                        icon-right="check"
+                        @click="()=>handleSaveRecord(props.row)"
+                    />
+                    <b-button
+                        v-else
                         type="is-info is-light "
                         class="text-lg h-8 w-8  p-4"
                         icon-right="lead-pencil"
+                        @click="()=>handleEditRecord(props.row)"
                     />
+
                     &nbsp; &nbsp;
                     <b-button
                         type="is-danger is-light"
@@ -88,9 +99,10 @@
 
 <script>
 import ProductLookupInput from "./products/ProductLookupInput";
+import EditableInput from "../../global/input/EditableInput";
 
 export default {
-    components: {ProductLookupInput},
+    components: {EditableInput, ProductLookupInput},
     data() {
         return {
             data: [
@@ -98,7 +110,8 @@ export default {
                     id: 1,
                     user: {first_name: "Joy", last_name: "Debnath"},
                     date: "2020-03-28",
-                    gender: "male"
+                    gender: "male",
+                    edit: false
                 },
             ],
             create_date: new Date(),
@@ -106,6 +119,26 @@ export default {
             showWeekNumber: false,
             locale: undefined
         };
+    },
+    methods: {
+        handleEditRecord(product) {
+            this.modifyEditField(product, true)
+        },
+        handleSaveRecord(product) {
+            this.modifyEditField(product, false)
+        },
+        modifyEditField(product, editable) {
+            const index = _.findIndex(this.data, value => value.id == product.id)
+            if (index !== -1) {
+                this.data[index] = {...this.data[index], edit: editable}
+                this.data = [...this.data]
+            }
+        }
+    },
+    computed: {
+        products() {
+            return this.data
+        }
     }
 };
 </script>
