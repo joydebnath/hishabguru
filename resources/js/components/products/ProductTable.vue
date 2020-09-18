@@ -14,7 +14,7 @@
         default-sort-direction="asc"
         sort-icon="arrow-up"
         sort-icon-size="is-small"
-        :checked-rows.sync="checkedRows"
+        :checked-rows.sync="checked_products"
         checkable
         default-sort="code"
         backend-sorting
@@ -102,10 +102,10 @@
                 />
             </div>
         </b-table-column>
-        <template slot="footer" >
+        <template slot="footer">
             <EmptyTable v-if="!data.length"/>
             <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
-                Total products: {{total}}
+                Total products: {{ total }}
             </div>
         </template>
     </b-table>
@@ -118,11 +118,6 @@ import EmptyTable from '../global/table/EmptyTable'
 export default {
     components: {
         EmptyTable
-    },
-    data() {
-        return {
-            checkedRows: []
-        };
     },
     mounted() {
         this.$store.dispatch('products/loadData', {page: 1})
@@ -141,8 +136,16 @@ export default {
             data: 'products/getProducts',
             current_page: 'products/getCurrentPage',
             total: 'products/getTotal',
-            per_page:'getPerPage'
-        })
+            per_page: 'getPerPage'
+        }),
+        checked_products: {
+            get() {
+                return this.$store.getters['products/getCheckedProducts']
+            },
+            set(products) {
+                this.$store.commit('products/setCheckedProducts', {products: products})
+            }
+        }
     }
 };
 </script>

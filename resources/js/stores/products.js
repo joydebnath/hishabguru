@@ -6,10 +6,12 @@ const products = {
         products: [],
         loading: false,
         current_page: 1,
-        filters: {}
+        filters: {},
+        checked_products: []
     },
     getters: {
         getProducts: state => state.products,
+        getCheckedProducts: state => state.checked_products,
         getUrl: state => state.url,
         getTotal: state => state.total,
         getLoading: state => state.loading,
@@ -19,6 +21,9 @@ const products = {
     mutations: {
         setProducts: (state, {products}) => {
             state.products = products
+        },
+        setCheckedProducts: (state, {products}) => {
+            state.checked_products = products
         },
         setLoading: (state, {loading}) => {
             state.loading = loading

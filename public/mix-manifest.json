@@ -4,7 +4,7 @@
     "/css/buefy.css": "/css/buefy.css",
     "/css/tailwind.css": "/css/tailwind.css",
     "/js/clients.js": "/js/clients.js",
-    "/js/clients~js/invoices~js/marketplace~js/orders~js/product-categories~js/products~js/promo-codes~js/~dcdda660.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/product-categories~js/products~js/promo-codes~js/~dcdda660.js",
+    "/js/clients~js/invoices~js/marketplace~js/orders~js/product-categories~js/products~js/promo-codes~js/~f6567d20.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/product-categories~js/products~js/promo-codes~js/~f6567d20.js",
     "/js/examples.js": "/js/examples.js",
     "/js/invoices.js": "/js/invoices.js",
     "/js/marketplace.js": "/js/marketplace.js",
@@ -12,6 +12,7 @@
     "/js/product-categories.js": "/js/product-categories.js",
     "/js/products.js": "/js/products.js",
     "/js/promo-codes.js": "/js/promo-codes.js",
+    "/js/purchases.js": "/js/purchases.js",
     "/js/quotations.js": "/js/quotations.js",
     "/js/suppliers.js": "/js/suppliers.js"
 }

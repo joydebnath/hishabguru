@@ -25,7 +25,9 @@ class ContactService
             'type' => $contactType,
         ]);
 
-        $this->addressService->create($contact->id, Addressable::CONTACT, $storeable);
+        if(isset($storeable['addressable_type']) && $storeable['addressable_type']){
+            $this->addressService->create($contact->id, Addressable::CONTACT, $storeable);
+        }
 
         $this->contactDetailsService->create($contact->id, $storeable);
 
@@ -36,7 +38,7 @@ class ContactService
         return $contact;
     }
 
-    private function store($storeable): Contact
+    public function store($storeable): Contact
     {
         return Contact::create([
             'name' => $storeable['name'],

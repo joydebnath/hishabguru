@@ -2,12 +2,20 @@
     <div class="max-w-6xl m-auto w-full py-2">
         <div class="box pt-6">
             <b-field grouped group-multiline>
-                <div class="flex flex-row justify-between pb-4 w-full">
-                    <b-field grouped>
-                        <SearchBox placeholder="Search by name" @search="handleSearch"/>
-                        &nbsp;&nbsp;&nbsp;
-                        <Filters/>
-                    </b-field>
+                <div class="flex flex-row align-items-center justify-between pb-4 w-full">
+                    <transition v-if="show_bulk_actions" >
+                        <div>
+                            <b-button size="is-small" type="is-light" class="mr-2">Mark as Inactive</b-button>
+                            <b-button size="is-small" type="is-danger is-light">Delete</b-button>
+                        </div>
+                    </transition>
+                    <template v-else>
+                        <b-field grouped>
+                            <SearchBox placeholder="Search by name" @search="handleSearch"/>
+                            &nbsp;&nbsp;&nbsp;
+                            <Filters/>
+                        </b-field>
+                    </template>
                     <button class="button field is-info" @click="handleAdd">
                         <span>New Product</span>
                     </button>
@@ -34,7 +42,7 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 import SearchBox from '../global/SearchBox'
 import Table from "./ProductTable.vue";
 import Filters from "./ProductFilters";
@@ -131,6 +139,12 @@ export default {
         }
     },
     computed: {
+        ...mapGetters({
+            checked_products: 'products/getCheckedProducts'
+        }),
+        show_bulk_actions() {
+            return this.checked_products.length
+        },
         action_name() {
             return this.action_type
         },

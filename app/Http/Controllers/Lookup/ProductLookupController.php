@@ -13,7 +13,7 @@ class ProductLookupController extends Controller
     public function index(ProductsFilter $filters)
     {
         try {
-            return new ProductLookupCollection(Product::filter($filters)->limit(15));
+            return new ProductLookupCollection(Product::filter($filters)->limit(15)->get());
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], intval($exception->getCode()));
         }

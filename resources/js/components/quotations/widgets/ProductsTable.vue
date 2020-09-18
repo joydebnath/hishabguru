@@ -26,8 +26,7 @@
             </b-field>
         </div>
         <div class="pl-4 mb-4 relative">
-            <b-input style="width: 40.8%" placeholder="Search and Add Product"></b-input>
-            <ProductDropdown />
+            <ProductLookupInput/>
         </div>
         <b-table
             :data="data"
@@ -88,10 +87,10 @@
 </template>
 
 <script>
-import ProductDropdown from "./products/ProductDropdown";
+import ProductLookupInput from "./products/ProductLookupInput";
 
 export default {
-    components: {ProductDropdown},
+    components: {ProductLookupInput},
     data() {
         return {
             data: [

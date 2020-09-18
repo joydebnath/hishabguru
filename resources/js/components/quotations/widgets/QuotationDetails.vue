@@ -2,8 +2,7 @@
     <div class="mr-4">
         <div class="relative w-full c-name mb-2">
             <b-field label="Client Name" custom-class="w-full">
-                <b-input custom-class="w-full"></b-input>
-                <ClientDropdown/>
+                <ClientLookupInput/>
             </b-field>
         </div>
         <b-field label="Quotation Number">
@@ -21,17 +20,17 @@
             </b-select>
         </b-field>
         <b-field label="Extra Note">
-            <b-input type="textarea"></b-input>
+            <b-input type="textarea"/>
         </b-field>
     </div>
 </template>
 
 <script>
-import ClientDropdown from "./clients/ClientDropdown";
+import ClientLookupInput from "./clients/ClientLookupInput";
 
 export default {
     name: "QuotationDetails",
-    components: {ClientDropdown},
+    components: {ClientLookupInput},
     data() {
         return {}
     }
