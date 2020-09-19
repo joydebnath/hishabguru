@@ -4,6 +4,7 @@
             :data="search_results"
             placeholder="Search by name or mobile no"
             field="name"
+            required
             :loading="loading"
             @typing="searchClients"
             @select="handleClientSelected">
@@ -14,14 +15,17 @@
                 <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">+ Add Client</p>
             </template>
         </b-autocomplete>
-        <b-message v-model="show_add_new" title="New Client" class="mt-2 tracker-wider" size="is-small">
+        <b-message v-model="show_add_new" class="mt-2 tracker-wider">
             <div>
+                <p class="tracing-wider mb-2 uppercase text-sm">New Client</p>
                 <div class="flex flex-row justify-content-between">
                     <b-input placeholder="Name" v-model="name" class="mb-1 mr-1" size="is-small"/>
                     <b-input placeholder="Mobile" v-model="mobile" class="ml-1" size="is-small"/>
                 </div>
-                <div class="flex flex-row-reverse mt-1">
-                    <b-button size="is-small" @click="handleAddNewClient">Add</b-button>
+                <div class="flex flex-row-reverse mt-2">
+                    <b-button size="is-small" rounded type="is-link " @click="handleAddNewClient">Add</b-button>
+                    &nbsp;&nbsp;
+                    <b-button size="is-small" rounded @click="show_add_new = false">Close</b-button>
                 </div>
             </div>
         </b-message>
@@ -85,7 +89,9 @@ export default {
             this.show_add_new = false;
         },
         handleClientSelected(client) {
-
+            if (client) {
+                this.$emit('on-select', client)
+            }
         }
     },
 }

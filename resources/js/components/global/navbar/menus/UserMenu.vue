@@ -1,9 +1,9 @@
 <template>
     <b-dropdown aria-role="list">
-        <span class="navbar-item" slot="trigger" role="button">
-            <span>{{ username }}</span>
-            <b-icon icon="menu-down"/>
-        </span>
+            <span class="navbar-item" slot="trigger" role="button">
+                <span>{{ username }}</span>
+                <b-icon icon="menu-down"/>
+            </span>
         <small class="dropdown-header uppercase tracking-wider">Businesses</small>
         <b-dropdown-item class="py-3" aria-role="listitem">
             <div class="media">
@@ -13,7 +13,7 @@
             </div>
         </b-dropdown-item>
         <hr class="dropdown-divider ">
-        <router-link to="/@/settings" >
+        <router-link to="/@/settings">
             <b-dropdown-item class="py-2" aria-role="listitem">
                 Settings
             </b-dropdown-item>
@@ -50,6 +50,7 @@ export default {
 a {
     text-decoration: none !important;
 }
+
 .dropdown-menu {
     padding-bottom: 0
 }

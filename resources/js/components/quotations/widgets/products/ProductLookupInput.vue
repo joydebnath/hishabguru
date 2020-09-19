@@ -7,7 +7,8 @@
         clear-on-select
         :loading="loading"
         @typing="searchProducts"
-        @select="handleProductSelected">
+        @select="handleProductSelected"
+    >
         <template slot-scope="props">
             <ProductTile :product="props"/>
         </template>
@@ -29,33 +30,31 @@ export default {
         return {
             search_results: [],
             loading: false,
-            name: ''
         }
     },
     methods: {
         handleProductSelected(product) {
-            // this.search_results = [];
             if (product) {
-                console.log(product)
+                this.$emit('on-select', product)
             }
         },
         searchProducts(value) {
             this.loading = true;
-            axios.get('/lookup/products', {
-                params: {
-                    search: value,
-                    tenant_id: this.tenant_id
-                }
-            })
-                .then(({data}) => {
-                    this.name = value;
-                    this.loading = false;
-                    this.search_results = data.data;
-                })
-                .catch(err => {
-                    this.loading = false;
-                    console.log('searchProducts => ', err)
-                })
+            axios
+              .get('/lookup/products', {
+                  params: {
+                      search: value,
+                      tenant_id: this.tenant_id
+                  }
+              })
+              .then(({data}) => {
+                  this.loading = false;
+                  this.search_results = data.data;
+              })
+              .catch(err => {
+                  this.loading = false;
+                  console.log('searchProducts => ', err)
+              })
         }
     }
 }

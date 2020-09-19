@@ -14,10 +14,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/global/input/EditableInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/global/input/ProductEditableSelect.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/AddNewItemMenu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/UserMenu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/FooterActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/meghomitra.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meghomitra.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Product/ProductLookup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Product/ProductLookup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_23_021823_create_quotations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_23_021823_create_quotations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/input/EditableInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/input/ProductEditableInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/TopNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/TopNavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/UserMenu.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/table/EmptyTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/table/EmptyTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/products/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/modals/ItemCRUD.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/ProductsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/QuotationDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/QuotationDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/products/ProductLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/products/ProductLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/quotations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/quotations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -513,6 +535,18 @@
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
       <path value="$PROJECT_DIR$/vendor/hanneskod/classtools" />
       <path value="$PROJECT_DIR$/vendor/bensampo/laravel-enum" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/laravel/passport" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/league/event" />
     </include_path>
   </component>
   <component name="ProjectId" id="1gTrurrO9K1Pfs6lOvh6nyMtABi" />
@@ -526,7 +560,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/global/input" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -538,19 +572,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
-      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/products" />
-      <recent name="$PROJECT_DIR$/app/Console/Commands" />
-      <recent name="$PROJECT_DIR$/app/Console/Stubs" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Contacts" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/global/input" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/resources/js/components/orders" />
       <recent name="$PROJECT_DIR$/resources/js/components/orders/modals" />
       <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
-      <recent name="$PROJECT_DIR$/resources/js/components/vendors/modals" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
+      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
+      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/products" />
+      <recent name="$PROJECT_DIR$/app/Console/Commands" />
+      <recent name="$PROJECT_DIR$/app/Console/Stubs" />
     </key>
   </component>
   <component name="RunManager">
@@ -689,7 +723,8 @@
       <workItem from="1600381652320" duration="3441000" />
       <workItem from="1600385968448" duration="633000" />
       <workItem from="1600390327206" duration="1441000" />
-      <workItem from="1600415798316" duration="18362000" />
+      <workItem from="1600415798316" duration="18540000" />
+      <workItem from="1600471168494" duration="41438000" />
     </task>
     <servers />
   </component>
@@ -777,13 +812,13 @@
     <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600431661860" />
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1600430732750">
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1600527817868">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600172874492" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1599567006535" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600430732750" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600527817868" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600391066566" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1600417876827" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1600384846049" />

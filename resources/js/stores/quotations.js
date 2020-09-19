@@ -6,7 +6,7 @@ const store = {
         quotations: [],
         loading: false,
         current_page: 1,
-        filters: {}
+        filters: {},
     },
     getters: {
         getQuotations: state => state.quotations,
@@ -29,9 +29,9 @@ const store = {
         setCurrentPage: (state, {current_page}) => {
             state.current_page = current_page
         },
-        setFilters:(state, {filters})=>{
-            state.filters = {...state.filters,...filters}
-        }
+        setFilters: (state, {filters}) => {
+            state.filters = {...state.filters, ...filters}
+        },
     },
     actions: {
         loadData({commit, getters}, {page}) {
@@ -48,6 +48,20 @@ const store = {
                     console.log(err)
                     commit('setLoading', {loading: false})
                 })
+        },
+        create({commit, getters}) {
+            // axios
+            //     .post(getters.getUrl,)
+            //     .then(({data}) => {
+            //         commit('setLoading', {loading: false})
+            //         commit('setQuotations', {quotations: data.data})
+            //         commit('setTotal', {total: data.meta.total})
+            //         commit('setCurrentPage', {total: data.meta.current_page})
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //         commit('setLoading', {loading: false})
+            //     })
         }
     }
 }

@@ -16,9 +16,9 @@ class CreateQuotationsTable extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
             $table->string('quotation_number');
-            $table->string('reference_number');
+            $table->string('reference_number')->nullable();
             $table->string('status');
-            $table->string('payment_condition');
+            $table->string('payment_condition')->nullable();
             $table->text('note')->nullable();
             $table->dateTime('create_date');
             $table->dateTime('expiry_date')->nullable();
@@ -28,6 +28,7 @@ class CreateQuotationsTable extends Migration
             $table->unsignedBigInteger('approved_by')->nullable();
             $table->unsignedDecimal('total_sale_price')->nullable();
             $table->unsignedDecimal('total_cost_price')->nullable();
+            $table->unsignedDecimal('minimum_payment_amount')->nullable();
 
             $table->timestamps();
 

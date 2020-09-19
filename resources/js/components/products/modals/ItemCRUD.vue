@@ -45,7 +45,7 @@
                     <b-field label="Selling Unit Price">
                         <b-input v-model="computed_item.selling_price"></b-input>
                     </b-field>
-                    <b-field label="Tax rate">
+                    <b-field label="Tax rate %">
                         <b-input v-model="computed_item.tax"></b-input>
                     </b-field>
                 </b-field>

@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div :class="[!$props.editable ? 'mb-px' : null]">
         <template v-if="$props.editable">
             <input
                 v-model="input_value"
                 class="border-b py-0 outline-none w-12 text-center"
                 :placeholder="$props.placeholder"
-                @input="$emit('on-input', input_value)"
+                @input="handleInput"
             />
         </template>
         <template v-else>
@@ -20,11 +20,21 @@ export default {
     props: {
         placeholder: String,
         editable: Boolean,
-        value: Number
+        value: Number | null,
+        id: Number | null
     },
     data() {
         return {
-            input_value: null
+            input_value: this.$props.value
+        }
+    },
+    methods: {
+        handleInput() {
+            if (this.input_value !== '' && !Number(this.input_value)) {
+                this.input_value = this.$props.value;
+                return;
+            }
+            this.$emit('on-input', this.input_value, this.$props.id)
         }
     }
 }

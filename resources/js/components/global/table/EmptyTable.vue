@@ -1,4 +1,4 @@
-<template functional>
+<template>
     <div class="w-32 m-auto">
         <svg
             id="f20e0c25-d928-42cc-98d1-13cc230663ea"
@@ -252,11 +252,18 @@
             />
         </svg>
         <p class="text-center text-gray-600 text-sm uppercase tracking-wide">
-            No data
+            {{$props.message}}
         </p>
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+    props:{
+        message:{
+            type: String,
+            default: 'No data'
+        }
+    }
+};
 </script>
