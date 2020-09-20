@@ -189,7 +189,10 @@ export default {
             return {
                 data: {
                     ...this.new_quotation,
-                    products: this.data
+                    products: this.data,
+                    total_amount: this.total,
+                    total_tax: this.tax,
+                    sub_total: this.sub_total,
                 },
                 errors: this.errors
             }

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['api']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/invoices','Invoice\InvoicesController');
     Route::resource('/products','Product\ProductsController');
     Route::resource('/product-categories','Product\ProductCategoriesController');
@@ -31,3 +31,5 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('/lookup/suppliers','Lookup\SupplierLookupController@index');
     Route::get('/lookup/products','Lookup\ProductLookupController@index');
 });
+
+

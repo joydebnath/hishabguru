@@ -2,7 +2,7 @@
     <div :class="[!$props.editable ? 'mb-px' : null]">
         <template v-if="$props.editable">
             <input
-                v-model="input_value"
+                v-model.number="input_value"
                 class="border-b py-0 outline-none w-12 text-center"
                 :placeholder="$props.placeholder"
                 @input="handleInput"
@@ -34,7 +34,7 @@ export default {
                 this.input_value = this.$props.value;
                 return;
             }
-            this.$emit('on-input', this.input_value, this.$props.id)
+            this.$emit('on-input', Math.abs(this.input_value), this.$props.id)
         }
     }
 }

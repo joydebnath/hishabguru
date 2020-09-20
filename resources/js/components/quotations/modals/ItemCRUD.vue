@@ -45,9 +45,11 @@
 </template>
 
 <script>
-import QuotationDetails from '../widgets/QuotationDetails'
-import ProductsTable from '../widgets/ProductsTable'
+import {mapGetters} from 'vuex';
+import QuotationDetails from '../widgets/QuotationDetails';
+import ProductsTable from '../widgets/ProductsTable';
 import FooterActions from "../widgets/FooterActions";
+import {store, update} from '../repo/index';
 
 export default {
     props: {
@@ -62,10 +64,12 @@ export default {
         return {
             error_container: false,
             error_message: '',
-
         }
     },
     computed: {
+        ...mapGetters({
+            'tenant_id': 'tenancy/getCurrentTenant'
+        }),
         title() {
             return this.$props.action_type == "edit"
                 ? "Edit Quotation"
@@ -73,23 +77,25 @@ export default {
         }
     },
     methods: {
-        handleDraft() {
+        async handleDraft() {
             let quotation = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
                 quotation = {...quotation, ...data}
             });
 
-            if(quotation.quotation_number == null){
+            if (quotation.quotation_number == null) {
                 this.error_container = true;
                 this.error_message = 'Quotation number can not be empty!';
-                return ;
+                return;
             }
             //axios
-            quotation['status'] = 'draft'
-            console.log(quotation)
+            quotation['status'] = 'draft';
+            const response = await update(quotation);
+            console.log(response.data)
+
         },
-        handleSave() {
+        async handleSave() {
             let quotation = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
@@ -103,9 +109,10 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                //axios
-                quotation['status'] = 'complete'
-                console.log(quotation)
+                quotation['status'] = 'save';
+                quotation['tenant_id'] = this.tenant_id;
+                const response = await store(quotation);
+                console.log(response.data)
             }
         },
         handleSaveForApproval() {

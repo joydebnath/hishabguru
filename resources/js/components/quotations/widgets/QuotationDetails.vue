@@ -74,8 +74,7 @@ export default {
             required_fields: {
                 contact_id: true,
                 quotation_number: true,
-                payment_condition: true,
-                minimum_payment_amount: false
+                payment_condition: true
             },
             errors: {},
         }
@@ -112,7 +111,10 @@ export default {
                 this.required_fields = {...this.required_fields, minimum_payment_amount: true};
                 return
             }
-            this.required_fields = {...this.required_fields, minimum_payment_amount: false};
+            if (this.required_fields.minimum_payment_amount) {
+                delete this.required_fields.minimum_payment_amount;
+            }
+            this.required_fields = {...this.required_fields};
         }
     },
     computed: {

@@ -2,129 +2,144 @@
     <section class="w-full">
         <b-table
             :data="data"
-            :paginated="isPaginated"
-            :per-page="15"
-            :current-page="currentPage"
-            :pagination-position="paginationPosition"
-            :default-sort-direction="defaultSortDirection"
-            :sort-icon="sortIcon"
-            :sort-icon-size="sortIconSize"
-            :checked-rows.sync="checkedRows"
+            :paginated="true"
+            :per-page="per_page"
+            :loading="loading"
+            paginated
+            backend-pagination
+            :total="total"
+            @page-change="onPageChange"
+
+            :current-page="current_page"
+            pagination-position="bottom"
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            :checked-rows.sync="checked_rows"
             checkable
-            default-sort="user.first_name"
-            aria-next-label="Next page"
-            aria-previous-label="Previous page"
-            aria-page-label="Page"
-            aria-current-label="Current page"
+            default-sort="code"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
-                field="id"
-                label="Code"
-                width="40"
+                field="quotation_number"
+                label="Number"
                 sortable
-                numeric
                 v-slot="props"
+                cell-class="align-middle"
             >
-                {{ props.row.id }}
+                {{ props.row.quotation_number }}
             </b-table-column>
 
             <b-table-column
-                field="user.first_name"
-                label="Product Name"
+                field="reference_number"
+                label="Ref."
                 sortable
                 v-slot="props"
+                cell-class="align-middle"
             >
-                {{ props.row.user.first_name }}
+                {{ props.row.reference_number }}
             </b-table-column>
 
             <b-table-column
-                field="user.last_name"
-                label="Cost Price"
-                sortable
+                field="customer_name"
+                label="Client"
                 v-slot="props"
+                cell-class="align-middle"
             >
-                {{ props.row.user.last_name }}
+                {{ props.row.customer_name }}
             </b-table-column>
 
             <b-table-column
-                field="date"
-                label="Sale Price"
+                field="create_date"
+                label="Created"
                 sortable
-                centered
                 v-slot="props"
+                cell-class="align-middle"
             >
-                <span>
-                    {{ new Date(props.row.date).toLocaleDateString() }}
-                </span>
+                {{ props.row.create_date }}
             </b-table-column>
 
-            <b-table-column label="Quantity" v-slot="props">
-                <span>
-                    {{ props.row.gender }}
-                </span>
+            <b-table-column field="expiry_date" sortable label="Expiry" v-slot="props" cell-class="align-middle">
+                {{ props.row.expiry_date }}
             </b-table-column>
-            <b-table-column label="Type" v-slot="props">
-                <span>
-                    {{ props.row.gender }}
-                </span>
+            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
+                <b-tag class="is-light" type="is-success">{{ props.row.status }}</b-tag>
             </b-table-column>
-            <b-table-column>
+            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
+                            cell-class="align-middle">
+                {{ props.row.total_amount }}
+            </b-table-column>
+            <b-table-column v-slot="props" cell-class="align-middle">
                 <div class="flex justify-end">
-                    <b-button
-                        class="text-lg h-6 w-8 p-4 text-gray-700"
-                        icon-right="eye-outline"
-                    />
-                    &nbsp; &nbsp;
-                    <b-button
-                        type="is-info is-light "
-                        class="text-lg h-8 w-8  p-4"
-                        icon-right="lead-pencil"
-                    />
-                    &nbsp; &nbsp;
-                    <b-button
-                        type="is-danger is-light"
-                        class="text-lg h-8 w-8  p-4"
-                        icon-right="trash-can-outline"
-                    />
+                    <b-tooltip label="Actions" position="is-right" type="is-dark">
+                        <b-dropdown aria-role="list">
+                            <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
+                            <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">View
+                            </b-dropdown-item>
+                            <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit
+                            </b-dropdown-item>
+                            <!--                        <b-dropdown-item aria-role="listitem">Send to the client</b-dropdown-item>-->
+                            <b-dropdown-item aria-role="listitem">Share the link</b-dropdown-item>
+                            <hr class="dropdown-divider">
+                            <b-dropdown-item aria-role="listitem" class="text-red-600"
+                                             @click="$emit('on-delete', props.row)">Delete
+                            </b-dropdown-item>
+                        </b-dropdown>
+                    </b-tooltip>
                 </div>
             </b-table-column>
-            <template slot="footer" v-if="!data.length">
-                <EmptyTable />
+            <template slot="footer">
+                <EmptyTable v-if="!data.length"/>
+                <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
+                    Total quotations: {{ total }}
+                </div>
             </template>
         </b-table>
     </section>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import EmptyTable from '../global/table/EmptyTable'
+
 export default {
-    components:{
+    components: {
         EmptyTable
     },
-    data() {
-        return {
-            data: [
-                {
-                    id: 1,
-                    user: { first_name: "Joy", last_name: "Debnath" },
-                    date: "2020-03-28",
-                    gender: "male"
-                }
-            ],
-            isPaginated: true,
-            paginationPosition: "bottom",
-            defaultSortDirection: "asc",
-            sortIcon: "arrow-up",
-            sortIconSize: "is-small",
-            currentPage: 1,
-            checkedRows: []
-        };
+    mounted() {
+        this.$store.dispatch('quotations/loadData', {page: 1})
+    },
+    methods: {
+        onPageChange(page_no) {
+            this.$store.dispatch('quotations/loadData', {page: page_no})
+        },
+        onSort(field_name, order) {
+            console.log(field_name, order)
+        }
+    },
+    computed: {
+        ...mapGetters({
+            loading: 'quotations/getLoading',
+            data: 'quotations/getQuotations',
+            total: 'quotations/getTotal',
+            current_page: 'quotations/getCurrentPage',
+            per_page: 'getPerPage'
+        }),
+        checked_rows: {
+            get() {
+                return this.$store.getters['quotations/getCheckedQuotations']
+            },
+            set(value) {
+                this.$store.commit('quotations/setCheckedQuotations', {quotations: value})
+            }
+        }
     }
 };
 </script>
 
 <style>
-.table-footer th{
+.table-footer th {
     border-color: transparent !important;
 }
 </style>

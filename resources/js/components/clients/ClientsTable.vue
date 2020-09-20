@@ -52,37 +52,23 @@
             <b-table-column label="Owe You" v-slot="props">
                 {{ props.row.they_owe_you }}
             </b-table-column>
-            <b-table-column v-slot="props">
+            <b-table-column v-slot="props" >
                 <div class="flex justify-end">
-                    <b-tooltip label="View profile" type="is-dark" position="is-bottom">
-                        <b-button
-                            class="text-lg h-6 w-8 p-4 text-gray-700"
-                            icon-right="eye-outline"
-                            @click="$emit('on-read',props.row)"
-                        />
-                    </b-tooltip>
-                    &nbsp; &nbsp;
-                    <b-tooltip label="Edit client" type="is-dark" position="is-bottom">
-                        <b-button
-                            type="is-info is-light "
-                            class="text-lg h-8 w-8  p-4"
-                            icon-right="lead-pencil"
-                            @click="$emit('on-edit',props.row)"
-                        />
-                    </b-tooltip>
-                    &nbsp; &nbsp;
-                    <b-button
-                        type="is-danger is-light"
-                        class="text-lg h-8 w-8  p-4"
-                        icon-right="trash-can-outline"
-                        @click="$emit('on-delete', props.row)"
-                    />
+                    <b-dropdown aria-role="list">
+                        <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
+                        <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">Profile</b-dropdown-item>
+                        <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
+                        <hr class="dropdown-divider">
+                        <b-dropdown-item aria-role="listitem" class="text-red-600"
+                                         @click="$emit('on-delete', props.row)">Delete
+                        </b-dropdown-item>
+                    </b-dropdown>
                 </div>
             </b-table-column>
             <template slot="footer">
                 <EmptyTable v-if="!data.length"/>
                 <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
-                    Total products: {{ total }}
+                    Total clients: {{ total }}
                 </div>
             </template>
         </b-table>

@@ -72,34 +72,13 @@
         </b-table-column>
         <b-table-column v-slot="props">
             <div class="flex justify-end">
-                <b-tooltip label="Product statistics"
-                           type="is-dark"
-                           position="is-bottom">
-                    <b-button
-                        type="is-link is-light"
-                        class="text-lg h-6 w-8 p-4 "
-                        icon-right="chart-bar"
-                        @click="$emit('on-read',props.row)"
-                    />
-                </b-tooltip>
-                &nbsp; &nbsp;
-                <b-tooltip label="Edit product"
-                           type="is-dark"
-                           position="is-bottom">
-                    <b-button
-                        type="is-info is-light"
-                        class="text-lg h-8 w-8  p-4 "
-                        icon-right="lead-pencil"
-                        @click="$emit('on-edit',props.row)"
-                    />
-                </b-tooltip>
-                &nbsp; &nbsp;
-                <b-button
-                    type="is-danger is-light"
-                    class="text-lg h-8 w-8  p-4"
-                    icon-right="trash-can-outline"
-                    @click="$emit('on-delete', props.row)"
-                />
+                <b-dropdown aria-role="list">
+                    <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
+                    <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">Statistics</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
+                    <hr class="dropdown-divider">
+                    <b-dropdown-item aria-role="listitem" class="text-red-600" @click="$emit('on-delete', props.row)">Delete</b-dropdown-item>
+                </b-dropdown>
             </div>
         </b-table-column>
         <template slot="footer">
