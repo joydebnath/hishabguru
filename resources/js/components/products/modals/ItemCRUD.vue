@@ -73,15 +73,15 @@ export default {
     data() {
         return {
             product: {
-                id: '',
-                name: '',
-                code: '',
-                category_id: '',
-                buying_cost: '',
-                quantity: '',
-                selling_price: '',
-                tax: '',
-                description: ''
+                // id: '',
+                // name: '',
+                // code: '',
+                // category_id: '',
+                // buying_cost: '',
+                // quantity: '',
+                // selling_price: '',
+                // tax: '',
+                // description: ''
             }
         }
     },
@@ -107,14 +107,14 @@ export default {
                     this.$emit('on-close')
                     this.$buefy.notification.open({
                         message: 'Product has been updated',
-                        type: 'is-success'
+                        type: 'is-success is-light'
                     })
                 })
                 .catch(err => {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Product update failed',
-                        type: 'is-danger'
+                        type: 'is-danger is-light'
                     })
                 })
         },
@@ -128,7 +128,7 @@ export default {
                     this.$emit('on-close');
                     this.$buefy.notification.open({
                         message: 'Product is created',
-                        type: 'is-success'
+                        type: 'is-success is-light'
                     })
                     if (this.total < this.per_page) {
                         this.$store.dispatch('products/loadData', {page: 1})
@@ -138,7 +138,7 @@ export default {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Whoops! Something went wrong...',
-                        type: 'is-danger'
+                        type: 'is-danger is-light'
                     })
                 })
         }

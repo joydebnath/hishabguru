@@ -93,14 +93,14 @@ export default {
                             })
                             this.$buefy.notification.open({
                                 message: data.message,
-                                type: 'is-success'
+                                type: 'is-success is-light'
                             })
                         })
                         .catch(err => {
                             if (err.response) {
                                 this.$buefy.notification.open({
                                     message: err.response.data.message,
-                                    type: 'is-danger'
+                                    type: 'is-danger is-light'
                                 })
                             }
                         })

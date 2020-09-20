@@ -54,7 +54,7 @@ export default {
             show_profile_modal: false,
             action_type: 'add',
             loading: false,
-            client: []
+            client: {}
         };
     },
     methods: {
@@ -63,7 +63,7 @@ export default {
         }),
         handleToggleModal() {
             this.show_modal = !this.show_modal;
-            this.client = [];
+            this.client = {};
         },
         handleSearch(value) {
             this.setFilters({
@@ -105,14 +105,14 @@ export default {
                             })
                             this.$buefy.notification.open({
                                 message: data.message,
-                                type: 'is-success'
+                                type: 'is-success is-light'
                             })
                         })
                         .catch(err => {
                             if (err.response) {
                                 this.$buefy.notification.open({
                                     message: err.response.data.message,
-                                    type: 'is-danger'
+                                    type: 'is-danger is-light'
                                 })
                             }
                         })

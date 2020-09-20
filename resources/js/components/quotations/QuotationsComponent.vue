@@ -22,9 +22,16 @@
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
-            <Table/>
+            <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-read="handleRead"/>
         </div>
-        <ItemCRUD :show="show_modal" @on-close="handleToggleModal"/>
+        <ItemCRUD
+            :show="show_modal"
+            :action_type="action_name"
+            :item="computed_quotation"
+            :loading="computed_loading"
+            @on-close="handleToggleModal"
+            @on-loading="handleToggleViewModal"
+        />
     </div>
 </template>
 
@@ -44,12 +51,19 @@ export default {
     },
     data() {
         return {
-            show_modal: false
+            show_modal: false,
+            loading: false,
+            show_view_modal: false,
+            action_type: 'add',
+            quotation: {}
         };
     },
     methods: {
         handleToggleModal() {
             this.show_modal = !this.show_modal;
+        },
+        handleToggleViewModal() {
+            this.show_view_modal = !this.show_view_modal
         },
         handleSearch(value) {
             this.$store.commit('quotations/setFilters', {
@@ -58,6 +72,15 @@ export default {
                 }
             });
             this.$store.dispatch('quotations/loadData', {page: 1})
+        },
+        handleEdit(){
+
+        },
+        handleDelete(){
+
+        },
+        handleRead(){
+
         }
     },
     computed: {
@@ -67,6 +90,15 @@ export default {
         show_bulk_actions() {
             return this.checked_products.length
         },
+        action_name() {
+            return this.action_type
+        },
+        computed_loading() {
+            return this.loading
+        },
+        computed_quotation() {
+            return this.quotation
+        }
     }
 };
 </script>

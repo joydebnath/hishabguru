@@ -9,6 +9,7 @@
         aria-modal
         width="1000"
     >
+        <b-loading :is-full-page="false" v-model="$props.loading" :can-cancel="false"/>
         <div class="modal-card" style="width: 75rem">
             <header class="modal-card-head flex flex-row justify-between">
                 <p class="text-lg text-gray-700" v-text="title"></p>
@@ -54,7 +55,9 @@ import {store, update} from '../repo/index';
 export default {
     props: {
         show: Boolean,
-        action_type: String
+        action_type: String,
+        loading: Boolean,
+        item: Object | Array,
     },
     components: {
         FooterActions,
@@ -64,19 +67,31 @@ export default {
         return {
             error_container: false,
             error_message: '',
+            quotation: {}
         }
     },
     computed: {
         ...mapGetters({
-            'tenant_id': 'tenancy/getCurrentTenant'
+            tenant_id: 'tenancy/getCurrentTenant',
+            total: 'products/getTotal',
+            per_page: 'getPerPage'
         }),
         title() {
             return this.$props.action_type == "edit"
                 ? "Edit Quotation"
                 : "Create new Quotation";
+        },
+        computed_item() {
+            if (this.$props.item) {
+                return {...this.$props.item}
+            }
+            return this.quotation
         }
     },
     methods: {
+        loading_event(value) {
+            this.$emit('on-loading', value)
+        },
         async handleDraft() {
             let quotation = {};
             _.forEach(this.$refs, value => {
@@ -91,9 +106,16 @@ export default {
             }
             //axios
             quotation['status'] = 'draft';
-            const response = await update(quotation);
-            console.log(response.data)
-
+            quotation['tenant_id'] = this.tenant_id;
+            try {
+                const {data} = await store(quotation);
+                this.onSuccess('Quotation Draft is created')
+            } catch (err) {
+                console.log(err)
+                if (err.response) {
+                    this.onError(err.response)
+                }
+            }
         },
         async handleSave() {
             let quotation = {}, error_bag = {};
@@ -111,12 +133,35 @@ export default {
             if (_.isEmpty(error_bag)) {
                 quotation['status'] = 'save';
                 quotation['tenant_id'] = this.tenant_id;
-                const response = await store(quotation);
-                console.log(response.data)
+                try {
+                    const {data} = await store(quotation);
+                    this.onSuccess('Quotation is created',)
+                } catch (err) {
+                    if (err.response) {
+                        this.onError(err.response)
+                    }
+                }
             }
         },
         handleSaveForApproval() {
             console.log('approve')
+        },
+        onSuccess(message) {
+            this.quotation = {};
+            this.$emit('on-close');
+            this.$buefy.notification.open({
+                message: message,
+                type: 'is-success is-light'
+            })
+            if (this.total < this.per_page) {
+                this.$store.dispatch('quotations/loadData', {page: 1})
+            }
+        },
+        onError(response) {
+            this.$buefy.notification.open({
+                message: response.data.message,
+                type: 'is-danger is-light'
+            })
         }
     }
 };
