@@ -25,7 +25,7 @@ export default {
     },
     data() {
         return {
-            input_value: this.$props.value
+            input_value: null
         }
     },
     methods: {
@@ -35,6 +35,11 @@ export default {
                 return;
             }
             this.$emit('on-input', Math.abs(this.input_value), this.$props.id)
+        }
+    },
+    watch:{
+        value(val){
+            this.input_value = val
         }
     }
 }

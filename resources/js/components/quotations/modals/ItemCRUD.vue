@@ -104,7 +104,7 @@ export default {
                 this.error_message = 'Quotation number can not be empty!';
                 return;
             }
-            //axios
+
             quotation['status'] = 'draft';
             quotation['tenant_id'] = this.tenant_id;
             try {

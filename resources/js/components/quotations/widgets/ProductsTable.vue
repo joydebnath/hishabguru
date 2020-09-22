@@ -183,7 +183,7 @@ export default {
         },
         collectData({validate}) {
             this.resetErrors()
-            if(validate){
+            if (validate) {
                 this.validation()
             }
             return {
@@ -197,11 +197,22 @@ export default {
                 errors: this.errors
             }
         },
-        resetErrors(){
+        resetErrors() {
             this.errors = {}
         },
         handleProductSelect(product) {
-            this.data = [...this.data, product];
+            const INDEX = _.findIndex(this.data, value => value.id === product.id)
+            if (INDEX === -1) {
+                this.data = [...this.data, product];
+                return;
+            }
+            const new_quantity = this.data[INDEX].quantity + product.quantity;
+            this.data[INDEX] = {
+                ...this.data[INDEX],
+                quantity: new_quantity,
+                total: new_quantity * product.total,
+            }
+            this.data = [...this.data];
         },
         handleEditQuantity(value, product_id) {
             const index = _.findIndex(this.data, value => value.id == product_id)
@@ -274,10 +285,10 @@ export default {
         total() {
             return parseFloat(_.round(this.sub_total + this.tax, 2));
         },
-        has_create_date(){
+        has_create_date() {
             return this.errors.create_date !== undefined
         },
-        has_products(){
+        has_products() {
             return this.errors.products !== undefined
         }
     }
