@@ -76,6 +76,7 @@
                     <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
                     <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">Statistics</b-dropdown-item>
                     <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Mark Inactive</b-dropdown-item>
                     <hr class="dropdown-divider">
                     <b-dropdown-item aria-role="listitem" class="text-red-600" @click="$emit('on-delete', props.row)">Delete</b-dropdown-item>
                 </b-dropdown>

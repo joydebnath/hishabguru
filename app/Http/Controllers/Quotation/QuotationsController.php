@@ -63,6 +63,11 @@ class QuotationsController extends Controller
 
     public function destroy(Quotation $quotation)
     {
-        //
+        try {
+            $quotation->delete();
+            return response(['message' => 'Quotation is deleted']);
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 }

@@ -23,8 +23,8 @@ class CreateQuotationProductsTable extends Migration
             $table->unsignedDecimal('total');
             $table->timestamps();
 
-            $table->foreign('quotation_id')->references('id')->on('quotations');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

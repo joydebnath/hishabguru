@@ -1,4 +1,4 @@
-import Vuex from 'vuex'
+import {NotificationProgrammatic as Notification} from 'buefy'
 
 const store = {
     namespaced: true,
@@ -50,6 +50,21 @@ const store = {
                     console.log(err)
                     commit('setLoading', {loading: false})
                 })
+        },
+        delete({commit, getters, dispatch}){
+            commit('setLoading', {loading: true})
+            dispatch('loadData', {page: getters.getCurrentPage})
+            Notification.open({
+                message: data.message,
+                type: 'is-success'
+            });
+            // ====== //
+            if (err.response) {
+                Notification.open({
+                    message: err.response.data.message,
+                    type: 'is-danger'
+                })
+            }
         }
     }
 }

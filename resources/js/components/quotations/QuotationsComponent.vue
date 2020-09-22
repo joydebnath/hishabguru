@@ -73,13 +73,23 @@ export default {
             });
             this.$store.dispatch('quotations/loadData', {page: 1})
         },
-        handleEdit(){
+        handleEdit() {
 
         },
-        handleDelete(){
+        handleDelete(quotation) {
+            this.$buefy.dialog.confirm({
+                title: 'Deleting quotation',
+                message: 'Are you sure you want to delete the quotation: <b>' + quotation.quotation_number + '</b> ?',
+                confirmText: 'Delete',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => {
+                    this.$store.dispatch('quotations/delete', {quotation})
+                }
+            })
 
         },
-        handleRead(){
+        handleRead() {
 
         }
     },

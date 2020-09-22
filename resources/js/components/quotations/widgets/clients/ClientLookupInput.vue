@@ -1,44 +1,58 @@
 <template>
     <div>
+        <b-tag
+            v-if="selected"
+            attached
+            closable
+            size="is-medium"
+            class="w-100"
+            type="is-dark"
+            @close="selected = null"
+        >
+            {{ selected.name }}
+        </b-tag>
         <b-autocomplete
+            v-else
+            v-model="client_name"
             :data="search_results"
             placeholder="Search by name or mobile no"
             field="name"
-            required
             :loading="loading"
+            clear-on-select
             @typing="searchClients"
             @select="handleClientSelected">
             <template slot-scope="props">
                 <ClientTile :client="props"/>
             </template>
             <template v-slot:empty>
-                <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">+ Add Client</p>
+                <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">
+                    + Add Client {{ client_name }}
+                </p>
             </template>
         </b-autocomplete>
-        <b-message v-model="show_add_new" class="mt-2 tracker-wider">
-            <div>
-                <p class="tracing-wider mb-2 uppercase text-sm">New Client</p>
-                <div class="flex flex-row justify-content-between">
-                    <b-input placeholder="Name" v-model="name" class="mb-1 mr-1" size="is-small"/>
-                    <b-input placeholder="Mobile" v-model="mobile" class="ml-1" size="is-small"/>
-                </div>
-                <div class="flex flex-row-reverse mt-2">
-                    <b-button size="is-small" rounded type="is-link " @click="handleAddNewClient">Add</b-button>
-                    &nbsp;&nbsp;
-                    <b-button size="is-small" rounded @click="show_add_new = false">Close</b-button>
-                </div>
-            </div>
-        </b-message>
+        <b-modal
+            v-model="show_add_new"
+            has-modal-card
+            trap-focus
+            :destroy-on-hide="false"
+            aria-role="dialog"
+            aria-modal>
+            <template #default="props">
+                <ClientAddNew :name="client_name" @on-close="show_add_new = false" @on-add="handleAddNewClient"/>
+            </template>
+        </b-modal>
     </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex';
 import ClientTile from "./ClientTile";
+import ClientAddNew from "./ClientAddNew";
 
 export default {
     name: "ClientDropdown",
     components: {
+        ClientAddNew,
         ClientTile
     },
     data() {
@@ -46,8 +60,7 @@ export default {
             loading: false,
             search_results: [],
             selected: null,
-            name: '',
-            mobile: '',
+            client_name: '',
             show_add_new: false
         }
     },
@@ -78,18 +91,19 @@ export default {
         showAddNewClient() {
             this.show_add_new = true;
         },
-        handleAddNewClient() {
+        handleAddNewClient({name, mobile}) {
             //axios call to create a client
             const new_client = {
                 tenant_id: this.tenant_id,
-                name: this.name,
-                mobile: this.mobile,
+                name: name,
+                mobile: mobile,
                 address_type: 'client'
             }
             this.show_add_new = false;
         },
         handleClientSelected(client) {
             if (client) {
+                this.selected = client;
                 this.$emit('on-select', client)
             }
         }
