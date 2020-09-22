@@ -67,7 +67,7 @@
         </b-table-column>
         <b-table-column label="Category" centered v-slot="props">
                 <span>
-                    {{ props.row.category }}
+                    {{ props.row.category.name }}
                 </span>
         </b-table-column>
         <b-table-column v-slot="props">

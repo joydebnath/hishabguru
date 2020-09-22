@@ -41,7 +41,6 @@
                 field="parent_category"
                 label="Parent Category"
                 sortable
-                centered
                 v-slot="props"
             >
                 <span>

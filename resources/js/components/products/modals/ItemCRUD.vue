@@ -23,14 +23,7 @@
                         <b-input v-model="computed_item.code"></b-input>
                     </b-field>
                     <b-field label="Category">
-                        <b-select placeholder="Select Category" expanded v-model="computed_item.category_id">
-                            <option
-                                v-for="category in categories"
-                                :key="category.id"
-                                :value="category.id"
-                                v-text="category.name"
-                            ></option>
-                        </b-select>
+                        <ProductCategory :name="computed_category.name" @on-add="handleAddCategory" @on-remove="handleRemoveCategory"/>
                     </b-field>
                 </b-field>
                 <b-field grouped>
@@ -62,8 +55,10 @@
 
 <script>
 import {mapGetters} from 'vuex';
+import ProductCategory from "../widgets/ProductCategory";
 
 export default {
+    components: {ProductCategory},
     props: {
         show: Boolean,
         action_type: String,
@@ -72,17 +67,7 @@ export default {
     },
     data() {
         return {
-            product: {
-                // id: '',
-                // name: '',
-                // code: '',
-                // category_id: '',
-                // buying_cost: '',
-                // quantity: '',
-                // selling_price: '',
-                // tax: '',
-                // description: ''
-            }
+            product: {},
         }
     },
     methods: {
@@ -96,58 +81,69 @@ export default {
             }
             this.create()
         },
+        handleRemoveCategory() {
+            this.$emit('on-update', {...this.computed_item, category: {}})
+        },
+        handleAddCategory(category) {
+            this.$emit('on-update', {...this.computed_item, category: category})
+        },
         update() {
             this.loading_event(true);
             axios
-                .put('/products/' + this.computed_item.id, this.computed_item)
+                .put('/products/' + this.computed_item.id, {
+                    ...this.computed_item,
+                    tenant_id: this.tenant_id
+                })
                 .then(({data}) => {
-                    this.loading_event(false);
                     this.$store.commit('products/update', {product: data.data})
                     this.product = data.data
-                    this.$emit('on-close')
-                    this.$buefy.notification.open({
-                        message: 'Product has been updated',
-                        type: 'is-success is-light'
-                    })
+                    this.onSuccess('Product has been updated')
                 })
                 .catch(err => {
-                    this.loading_event(false);
-                    this.$buefy.notification.open({
-                        message: 'Product update failed',
-                        type: 'is-danger is-light'
-                    })
+                    this.onError('Product update failed')
                 })
         },
         create() {
             this.loading_event(true);
             axios
-                .post('/products', this.computed_item)
+                .post('/products', {
+                    ...this.computed_item,
+                    tenant_id: this.tenant_id
+                })
                 .then(({data}) => {
-                    this.loading_event(false);
+                    this.onSuccess('Product is created')
                     this.product = {};
-                    this.$emit('on-close');
-                    this.$buefy.notification.open({
-                        message: 'Product is created',
-                        type: 'is-success is-light'
-                    })
+
                     if (this.total < this.per_page) {
                         this.$store.dispatch('products/loadData', {page: 1})
                     }
                 })
                 .catch(err => {
-                    this.loading_event(false);
-                    this.$buefy.notification.open({
-                        message: 'Whoops! Something went wrong...',
-                        type: 'is-danger is-light'
-                    })
+                    this.onError('Whoops! Something went wrong...')
                 })
-        }
+        },
+        onSuccess(message) {
+            this.loading_event(false);
+            this.$emit('on-close')
+            this.$buefy.notification.open({
+                message: 'Product ',
+                type: 'is-success is-light'
+            })
+        },
+        onError(message) {
+            this.loading_event(false);
+            this.$buefy.notification.open({
+                message: message,
+                type: 'is-danger is-light'
+            })
+        },
+
     },
     computed: {
         ...mapGetters({
-            categories: 'filters/getProductCategories',
+            tenant_id: 'tenancy/getCurrentTenant',
             total: 'products/getTotal',
-            per_page:'getPerPage'
+            per_page: 'getPerPage'
         }),
         title() {
             return this.$props.action_type == "edit"
@@ -159,7 +155,13 @@ export default {
                 return {...this.$props.item}
             }
             return this.product
-        }
+        },
+        computed_category() {
+            if (this.$props.item.category) {
+                return {...this.$props.item.category}
+            }
+            return {}
+        },
     },
 };
 </script>

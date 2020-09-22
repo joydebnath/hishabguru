@@ -23,8 +23,10 @@ class Product extends JsonResource
             'selling_price' => $this->selling_unit_price,
             'sell' => number_format($this->selling_unit_price,2),
             'quantity' => $this->quantity,
-            'category' => $this->product_category->name,
-            'category_id' => $this->product_category->id,
+            'category' => [
+                'id' => $this->product_category->id,
+                'name' => $this->product_category->name,
+            ],
             'tax' => $this->tax_rate,
             'description' => $this->description
         ];

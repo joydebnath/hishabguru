@@ -18,7 +18,7 @@ class ProductsController extends Controller
         try {
             return new ProductCollection(Product::filter($filters)->with('product_category')->paginate());
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -28,7 +28,7 @@ class ProductsController extends Controller
             $product = Product::create($request->validated());
             return new ProductResource($product);
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -37,7 +37,7 @@ class ProductsController extends Controller
         try {
             return new ProductResource($product);
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -47,7 +47,7 @@ class ProductsController extends Controller
             $product->update($request->validated());
             return new ProductResource($product->fresh('product_category'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -57,7 +57,7 @@ class ProductsController extends Controller
             $product->delete();
             return response(['message' => 'Product is deleted!']);
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 }

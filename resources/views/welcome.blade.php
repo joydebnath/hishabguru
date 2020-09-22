@@ -68,7 +68,7 @@
             @endif
 
             <div class="content">
-                <img src="{{asset('images/2.png')}}" style="width: 300px" alt="HishabGuru">
+                <img src="{{asset('images/logo.png')}}" style="width: 300px" alt="HishabGuru">
             </div>
         </div>
     </body>

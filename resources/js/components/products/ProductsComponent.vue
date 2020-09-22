@@ -31,6 +31,7 @@
             :loading="computed_loading"
             @on-close="handleToggleModal"
             @on-loading="handleToggleLoading"
+            @on-update="handleUpdateSelectedProduct"
         />
         <Profile
             :show="show_profile_modal"
@@ -63,7 +64,7 @@ export default {
             show_profile_modal: false,
             action_type: 'add',
             loading: false,
-            product: []
+            product: {}
         };
     },
     methods: {
@@ -127,6 +128,9 @@ export default {
                         })
                 }
             })
+        },
+        handleUpdateSelectedProduct(product){
+            this.product = product
         },
         handleToggleLoading(value) {
             this.loading = value

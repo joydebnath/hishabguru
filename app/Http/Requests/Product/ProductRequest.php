@@ -40,8 +40,8 @@ class ProductRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'product_category_id' => $this->category_id,
-            'tax_rate' => $this->tax ? doubleval($this->tax) : null,
+            'product_category_id' => isset($this->category['id']) ? $this->category['id'] : null,
+            'tax_rate' => $this->tax ? doubleval($this->tax) : 0,
             'quantity' => $this->quantity ? intval($this->quantity) : null,
             'buying_unit_cost' => $this->buying_cost ? doubleval($this->buying_cost) : null,
             'selling_unit_price' => $this->selling_price ? doubleval($this->selling_price) : null,

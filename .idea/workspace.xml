@@ -14,13 +14,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/products/widgets/ProductCategory.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/clients/ClientsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/clients/ClientsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/product-categories/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/product-categories/ProductsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ProductLookupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ProductLookupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Product/ProductRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Product/ProductRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Product/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Product/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/product-categories/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/product-categories/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/products/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/ProductsComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/products/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/products/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/QuotationsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/QuotationsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/vendors/VendorsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vendors/VendorsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -399,8 +406,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -541,7 +548,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/global/input" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -553,19 +560,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/products/widgets" />
+      <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
+      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
+      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/products" />
+      <recent name="$PROJECT_DIR$/app/Console/Commands" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/components/global/input" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/resources/js/components/orders" />
       <recent name="$PROJECT_DIR$/resources/js/components/orders/modals" />
       <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
-      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
-      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/products" />
-      <recent name="$PROJECT_DIR$/app/Console/Commands" />
-      <recent name="$PROJECT_DIR$/app/Console/Stubs" />
     </key>
   </component>
   <component name="RunManager">
@@ -707,7 +714,11 @@
       <workItem from="1600415798316" duration="18540000" />
       <workItem from="1600471168494" duration="43308000" />
       <workItem from="1600559204305" duration="11194000" />
-      <workItem from="1600590863647" duration="11957000" />
+      <workItem from="1600590863647" duration="12217000" />
+      <workItem from="1600647986631" duration="101000" />
+      <workItem from="1600685198199" duration="4633000" />
+      <workItem from="1600728305150" duration="685000" />
+      <workItem from="1600772086534" duration="6348000" />
     </task>
     <servers />
   </component>
@@ -749,11 +760,11 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2615" y="454" width="520" height="178" key="ComposerInitDialogKey/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600045698148" />
-    <state x="4583" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600390271634">
-      <screen x="3840" y="0" width="1920" height="1080" />
+    <state x="2930" y="132" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600730610547">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600140079457" />
-    <state x="2930" y="132" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600155188061" />
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600648085384" />
+    <state x="2930" y="132" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600730610547" />
     <state x="2663" y="298" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600315656834" />
     <state x="4583" y="298" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600390271634" />
     <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1600211170648" />
@@ -797,13 +808,13 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1600609484622" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1600593878230">
-      <screen x="72" y="27" width="1848" height="1053" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1600777159524">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600172874492" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1599567006535" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600582309060" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600694383742" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600777159524" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600391066566" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1600417876827" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1600593878230" />
