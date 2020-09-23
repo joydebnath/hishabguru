@@ -37,7 +37,7 @@ class QuotationsController extends Controller
                     'quantity' => $product['quantity'],
                     'discount' => $product['discount'],
                     'tax_rate' => $product['tax_rate'],
-                    'total' => $product['tax_rate'],
+                    'total' => $product['total'],
                 ]);
             }
 
@@ -50,7 +50,7 @@ class QuotationsController extends Controller
     public function show(Quotation $quotation)
     {
         try {
-            return new QuotationFullResource($quotation->load('contact'));
+            return new QuotationFullResource($quotation->load('contact', 'products'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -58,7 +58,27 @@ class QuotationsController extends Controller
 
     public function update(QuotationRequest $request, Quotation $quotation)
     {
-        return $request->validated();
+        try {
+            $storable = $request->validated();
+            unset($storable['products']);
+
+            $quotation->update($storable);
+
+            foreach ($request->products as $product) {
+                $syncable[$product['id']] = [
+                    'quantity' => intval($product['quantity']),
+                    'discount' => doubleval($product['discount']),
+                    'tax_rate' => doubleval($product['tax_rate']),
+                    'total' => doubleval($product['total']),
+                ];
+            }
+
+            $quotation->products()->sync($syncable);
+
+            return new QuotationResource($quotation->load('contact'));
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 
     public function destroy(Quotation $quotation)

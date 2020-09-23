@@ -8,7 +8,7 @@
                     :message="has_create_date ? 'This field is required' : null"
                 >
                     <b-datepicker
-                        v-model="new_quotation.create_date"
+                        v-model="quotation.create_date"
                         :show-week-number="false"
                         :locale="undefined"
                         placeholder="Click to select..."
@@ -19,7 +19,7 @@
                 <span class="px-2"></span>
                 <b-field label="Expiry Date">
                     <b-datepicker
-                        v-model="new_quotation.expiry_date"
+                        v-model="quotation.expiry_date"
                         :show-week-number="false"
                         :locale="undefined"
                         placeholder="Click to select..."
@@ -154,13 +154,12 @@ import EmptyTable from '@/components/global/table/EmptyTable'
 
 export default {
     components: {EditableInput, EmptyTable, ProductLookupInput},
+    props: {
+        item: Object | Array
+    },
     data() {
         return {
             data: [],
-            new_quotation: {
-                create_date: new Date(),
-                expiry_date: null,
-            },
             required_fields: {
                 create_date: true,
                 products: true
@@ -171,12 +170,12 @@ export default {
     methods: {
         validation() {
             let error_bag = {}
-            for (let value in this.new_quotation) {
-                if (this.required_fields[value] && this.new_quotation[value] == null) {
+            for (let value in this.quotation) {
+                if (this.required_fields[value] && this.quotation[value] == null) {
                     error_bag[value] = true;
                 }
             }
-            if (!this.data.length) {
+            if (!this.products.length) {
                 error_bag['products'] = true;
             }
             this.errors = error_bag;
@@ -188,8 +187,8 @@ export default {
             }
             return {
                 data: {
-                    ...this.new_quotation,
-                    products: this.data,
+                    ...this.quotation,
+                    products: this.products,
                     total_amount: this.total,
                     total_tax: this.tax,
                     sub_total: this.sub_total,
@@ -257,11 +256,11 @@ export default {
             }
         },
         calculateProductTotalPrice(quantity, selling_unit_price, discount) {
-            const TOTAL = selling_unit_price * quantity
+            let total = selling_unit_price * quantity
             if (discount) {
-                return TOTAL - (TOTAL * (discount / 100));
+                total = total - (total * (discount / 100));
             }
-            return TOTAL;
+            return _.round(total, 2);
         },
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]
@@ -290,6 +289,23 @@ export default {
         },
         has_products() {
             return this.errors.products !== undefined
+        },
+        quotation() {
+            if (this.$props.item) {
+                return {
+                    create_date: this.$props.item.create_date ? new Date(this.$props.item.create_date) : new Date(),
+                    expiry_date: this.$props.item.expiry_date ? new Date(this.$props.item.expiry_date) : null,
+                }
+            }
+            return {
+                create_date: new Date(),
+                expiry_date: null,
+            }
+        },
+    },
+    watch: {
+        item(value) {
+            this.data = value.products ? value.products : []
         }
     }
 };

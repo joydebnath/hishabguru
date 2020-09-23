@@ -1,15 +1,15 @@
 <template>
     <div>
         <b-tag
-            v-if="selected"
+            v-if="$props.selected"
             attached
             closable
             size="is-medium"
             class="w-100"
             type="is-dark"
-            @close="selected = null"
+            @close="$emit('on-select',null)"
         >
-            {{ selected.name }}
+            {{ $props.selected.name }}
         </b-tag>
         <b-autocomplete
             v-else
@@ -25,8 +25,11 @@
                 <ClientTile :client="props"/>
             </template>
             <template v-slot:empty>
-                <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">
-                    + Add Client {{ client_name }}
+<!--                <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">-->
+<!--                    + Add Client {{ client_name }}-->
+<!--                </p>-->
+                <p class="mb-0 py-2 cursor-pointer text-gray-700" >
+                    Client {{ client_name }} not found
                 </p>
             </template>
         </b-autocomplete>
@@ -51,6 +54,9 @@ import ClientAddNew from "./ClientAddNew";
 
 export default {
     name: "ClientDropdown",
+    props:{
+      selected: Object
+    },
     components: {
         ClientAddNew,
         ClientTile
@@ -59,7 +65,6 @@ export default {
         return {
             loading: false,
             search_results: [],
-            selected: null,
             client_name: '',
             show_add_new: false
         }
@@ -78,15 +83,15 @@ export default {
                     tenant_id: this.tenant_id
                 }
             })
-                .then(({data}) => {
-                    this.name = value;
-                    this.loading = false;
-                    this.search_results = data.data;
-                })
-                .catch(err => {
-                    this.loading = false;
-                    console.log('searchClients => ', err)
-                })
+            .then(({data}) => {
+                this.name = value;
+                this.loading = false;
+                this.search_results = data.data;
+            })
+            .catch(err => {
+                this.loading = false;
+                console.log('searchClients => ', err)
+            })
         },
         showAddNewClient() {
             this.show_add_new = true;
@@ -103,9 +108,9 @@ export default {
         },
         handleClientSelected(client) {
             if (client) {
-                this.selected = client;
                 this.$emit('on-select', client)
             }
+            this.client_name = ''
         }
     },
 }

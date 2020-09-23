@@ -6,6 +6,10 @@ function index(params) {
     })
 }
 
+function read(id){
+    return axios.get(URL + '/' + id)
+}
+
 function store(params) {
     return axios.post(URL, params)
 }
@@ -19,5 +23,5 @@ function remove(id) {
 }
 
 module.exports = {
-    index, store, update, remove
+    index, read, store, update, remove
 }

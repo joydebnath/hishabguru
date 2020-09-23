@@ -7,7 +7,7 @@
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
-                <ClientLookupInput @on-select="handleClientSelect"/>
+                <ClientLookupInput :selected="contact" @on-select="handleClientSelect"/>
             </b-field>
         </div>
         <b-field
@@ -16,10 +16,10 @@
             :type="has_quotation_number ? 'is-danger' :null"
             :message="has_quotation_number ? 'This field is required' : null"
         >
-            <b-input v-model="new_quotation.quotation_number"/>
+            <b-input v-model="quotation.quotation_number"/>
         </b-field>
         <b-field label="Reference Number">
-            <b-input v-model="new_quotation.reference_number"/>
+            <b-input v-model="quotation.reference_number"/>
         </b-field>
         <b-field
             label="Payment Condition"
@@ -29,7 +29,7 @@
             <b-select
                 @input="handlePaymentCondition"
                 placeholder="Select one"
-                v-model="new_quotation.payment_condition"
+                v-model="quotation.payment_condition"
                 class="w-full payment-condition"
             >
                 <option value="partial">Partial Payment</option>
@@ -39,18 +39,18 @@
             </b-select>
         </b-field>
         <b-field
-            v-if="(new_quotation.payment_condition === 'partial')"
+            v-if="(quotation.payment_condition === 'partial')"
             label="Minimum Payment Amount"
             :type="has_minimum_payment_amount ? 'is-danger' :null"
             :message="has_minimum_payment_amount ? 'This field is required' : null"
         >
             <b-input
-                v-model="new_quotation.minimum_payment_amount"
+                v-model="quotation.minimum_payment_amount"
                 required
             />
         </b-field>
         <b-field label="Extra Note">
-            <b-input type="textarea" v-model="new_quotation.note"/>
+            <b-input type="textarea" v-model="quotation.note"/>
         </b-field>
     </div>
 </template>
@@ -61,9 +61,12 @@ import ClientLookupInput from "./clients/ClientLookupInput";
 export default {
     name: "QuotationDetails",
     components: {ClientLookupInput},
+    props: {
+        item: Object | Array
+    },
     data() {
         return {
-            new_quotation: {
+            quotation: {
                 contact_id: null,
                 quotation_number: null,
                 reference_number: null,
@@ -77,18 +80,18 @@ export default {
                 payment_condition: true
             },
             errors: {},
+            contact: null
         }
     },
     methods: {
         validation() {
             let error_bag = {}
-            for (let value in this.new_quotation) {
-                if (this.required_fields[value] !== undefined && this.new_quotation[value] == null) {
+            for (let value in this.quotation) {
+                if (this.required_fields[value] !== undefined && this.quotation[value] == null) {
                     error_bag[value] = true
                 }
             }
             this.errors = error_bag
-            console.log(error_bag)
         },
         collectData({validate}) {
             this.resetErrors()
@@ -96,12 +99,13 @@ export default {
                 this.validation()
             }
             return {
-                data: this.new_quotation,
+                data: this.quotation,
                 errors: this.errors
             }
         },
         handleClientSelect(client) {
-            this.new_quotation = {...this.new_quotation, contact_id: client.id}
+            this.quotation = {...this.quotation, contact_id: client ? client.id : null}
+            this.contact = client
         },
         resetErrors() {
             this.errors = {}
@@ -131,6 +135,12 @@ export default {
             return this.errors.minimum_payment_amount !== undefined
         },
     },
+    watch: {
+        item(value) {
+            this.quotation = value;
+            this.contact = value.contact ? value.contact : null
+        }
+    }
 }
 </script>
 

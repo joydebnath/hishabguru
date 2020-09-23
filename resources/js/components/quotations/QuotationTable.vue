@@ -74,16 +74,20 @@
                 <div class="flex justify-end">
                     <b-tooltip label="Actions" position="is-right" type="is-dark">
                         <b-dropdown aria-role="list">
-                            <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">View
+                            <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
+                                      slot="trigger"/>
+                            <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">
+                                View
                             </b-dropdown-item>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit
+                            <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">
+                                Edit
                             </b-dropdown-item>
-                            <!--                        <b-dropdown-item aria-role="listitem">Send to the client</b-dropdown-item>-->
-                            <b-dropdown-item aria-role="listitem">Share the link</b-dropdown-item>
+                            <b-dropdown-item aria-role="listitem" @click="$emit('on-share', props.row)">
+                                Share the link
+                            </b-dropdown-item>
                             <hr class="dropdown-divider">
-                            <b-dropdown-item aria-role="listitem" class="text-red-600"
-                                             @click="$emit('on-delete', props.row)">Delete
+                            <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
+                                <span class="text-red-600">Delete</span>
                             </b-dropdown-item>
                         </b-dropdown>
                     </b-tooltip>

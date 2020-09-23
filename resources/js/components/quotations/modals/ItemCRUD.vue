@@ -18,10 +18,10 @@
             <section class="modal-card-body">
                 <div class="grid grid-cols-3 gap-2">
                     <div class="col-span-1">
-                        <QuotationDetails ref="part1"/>
+                        <QuotationDetails ref="part1" :item="computed_item"/>
                     </div>
                     <div class="col-span-2 ml-4">
-                        <ProductsTable ref="part2"/>
+                        <ProductsTable ref="part2" :item="computed_item"/>
                         <div class="mx-12 mt-4">
                             <b-message
                                 type="is-danger"
@@ -37,6 +37,7 @@
                 </div>
             </section>
             <FooterActions
+                :action_type="$props.action_type"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -73,7 +74,7 @@ export default {
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'products/getTotal',
+            total: 'quotations/getTotal',
             per_page: 'getPerPage'
         }),
         title() {
@@ -92,7 +93,7 @@ export default {
         loading_event(value) {
             this.$emit('on-loading', value)
         },
-        async handleDraft() {
+        handleDraft() {
             let quotation = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
@@ -107,17 +108,18 @@ export default {
 
             quotation['status'] = 'draft';
             quotation['tenant_id'] = this.tenant_id;
-            try {
-                const {data} = await store(quotation);
-                this.onSuccess('Quotation Draft is created')
-            } catch (err) {
-                console.log(err)
-                if (err.response) {
-                    this.onError(err.response)
-                }
-            }
+            store(quotation)
+                .then(({data}) => {
+                    this.onSuccess('Quotation Draft is created')
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        this.onError(err.response.data.message)
+                    }
+                });
         },
-        async handleSave() {
+        handleSave() {
             let quotation = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
@@ -133,18 +135,38 @@ export default {
             if (_.isEmpty(error_bag)) {
                 quotation['status'] = 'save';
                 quotation['tenant_id'] = this.tenant_id;
-                try {
-                    const {data} = await store(quotation);
-                    this.onSuccess('Quotation is created',)
-                } catch (err) {
-                    if (err.response) {
-                        this.onError(err.response)
-                    }
+                if (this.action_type === 'add') {
+                    this.createQuotation(quotation)
+                } else {
+                    this.updateQuotation(quotation)
                 }
             }
         },
         handleSaveForApproval() {
             console.log('approve')
+        },
+        createQuotation(quotation) {
+            store(quotation)
+                .then(({data}) => {
+                    this.onSuccess('Quotation is created')
+                })
+                .catch(err => {
+                    if (err.response) {
+                        this.onError(err.response.data.message)
+                    }
+                });
+        },
+        updateQuotation(quotation) {
+            update(quotation.id, quotation)
+                .then(({data}) => {
+                    console.log(data)
+                    this.onSuccess('Quotation is updated')
+                })
+                .catch(err => {
+                    if (err.response) {
+                        this.onError(err.response.data.message)
+                    }
+                })
         },
         onSuccess(message) {
             this.quotation = {};

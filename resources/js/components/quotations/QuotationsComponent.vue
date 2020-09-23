@@ -5,7 +5,6 @@
                 <div class="flex flex-row justify-between pb-4 w-full">
                     <template v-if="show_bulk_actions">
                         <div>
-                            <!--                            <b-button size="is-small" type="is-light" class="mr-2">Mark as Inactive</b-button>-->
                             <b-button size="is-small" type="is-danger is-light">Delete</b-button>
                         </div>
                     </template>
@@ -16,7 +15,7 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <button class="button field is-info" @click="handleToggleModal">
+                    <button class="button field is-info" @click="handleAdd">
                         <span>New Quotation</span>
                     </button>
                 </div>
@@ -41,6 +40,7 @@ import SearchBox from '../global/SearchBox';
 import Table from "./QuotationTable.vue";
 import Filters from "./QuotationsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
+import {read} from './repo/index'
 
 export default {
     components: {
@@ -60,6 +60,7 @@ export default {
     },
     methods: {
         handleToggleModal() {
+            this.quotation = {};
             this.show_modal = !this.show_modal;
         },
         handleToggleViewModal() {
@@ -73,8 +74,23 @@ export default {
             });
             this.$store.dispatch('quotations/loadData', {page: 1})
         },
-        handleEdit() {
-
+        handleAdd() {
+            this.action_type = 'add';
+            this.handleToggleModal();
+        },
+        handleEdit(quotation) {
+            this.loading = true;
+            this.action_type = 'edit'
+            this.handleToggleModal();
+            read(quotation.id)
+                .then(({data}) => {
+                    this.loading = false;
+                    this.quotation = data.data
+                })
+                .catch(err => {
+                    this.loading = false;
+                    this.handleToggleModal();
+                })
         },
         handleDelete(quotation) {
             this.$buefy.dialog.confirm({
@@ -89,8 +105,8 @@ export default {
             })
 
         },
-        handleRead() {
-
+        handleRead(quotation) {
+            this.show_view_modal = true
         }
     },
     computed: {
