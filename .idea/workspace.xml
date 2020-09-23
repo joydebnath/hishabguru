@@ -16,16 +16,11 @@
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/input/ProductEditableInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/input/ProductEditableInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/QuotationTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/QuotationsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/QuotationsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Business/QuotationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Business/QuotationRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/repo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/repo/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/FooterActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/FooterActions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/QuotationDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/QuotationDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients/ClientLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/quotations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/quotations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -718,7 +713,7 @@
       <workItem from="1600728305150" duration="685000" />
       <workItem from="1600772086534" duration="13136000" />
       <workItem from="1600823679865" duration="20000" />
-      <workItem from="1600852226786" duration="10337000" />
+      <workItem from="1600852226786" duration="12627000" />
     </task>
     <servers />
   </component>
@@ -812,13 +807,13 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1600609484622" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1600860680956">
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1600865179285">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600172874492" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600694383742" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600860680956" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600865179285" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600391066566" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1600417876827" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1600593878230" />

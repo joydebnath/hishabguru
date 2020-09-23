@@ -187,7 +187,8 @@ export default {
             }
             return {
                 data: {
-                    ...this.quotation,
+                    create_date: this.quotation.create_date ? this.quotation.create_date.toLocaleDateString() : null,
+                    expiry_date: this.quotation.expiry_date ? this.quotation.expiry_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
                     total_tax: this.tax,

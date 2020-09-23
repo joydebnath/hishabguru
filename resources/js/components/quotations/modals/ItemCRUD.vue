@@ -108,16 +108,12 @@ export default {
 
             quotation['status'] = 'draft';
             quotation['tenant_id'] = this.tenant_id;
-            store(quotation)
-                .then(({data}) => {
-                    this.onSuccess('Quotation Draft is created')
-                })
-                .catch(err => {
-                    console.log(err)
-                    if (err.response) {
-                        this.onError(err.response.data.message)
-                    }
-                });
+
+            if (this.action_type === 'add') {
+                this.createQuotation(quotation, 'Quotation Draft is created')
+            } else {
+                this.updateQuotation(quotation, 'Quotation Draft is updated')
+            }
         },
         handleSave() {
             let quotation = {}, error_bag = {};
@@ -136,19 +132,19 @@ export default {
                 quotation['status'] = 'save';
                 quotation['tenant_id'] = this.tenant_id;
                 if (this.action_type === 'add') {
-                    this.createQuotation(quotation)
+                    this.createQuotation(quotation, 'Quotation is created')
                 } else {
-                    this.updateQuotation(quotation)
+                    this.updateQuotation(quotation, 'Quotation is updated')
                 }
             }
         },
         handleSaveForApproval() {
             console.log('approve')
         },
-        createQuotation(quotation) {
+        createQuotation(quotation, message) {
             store(quotation)
                 .then(({data}) => {
-                    this.onSuccess('Quotation is created')
+                    this.onSuccess(message)
                 })
                 .catch(err => {
                     if (err.response) {
@@ -156,11 +152,10 @@ export default {
                     }
                 });
         },
-        updateQuotation(quotation) {
+        updateQuotation(quotation, message) {
             update(quotation.id, quotation)
                 .then(({data}) => {
-                    console.log(data)
-                    this.onSuccess('Quotation is updated')
+                    this.onSuccess(message)
                 })
                 .catch(err => {
                     if (err.response) {

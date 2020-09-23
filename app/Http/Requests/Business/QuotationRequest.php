@@ -53,8 +53,8 @@ class QuotationRequest extends FormRequest
             'total_tax' => isset($this->total_tax) ? doubleval($this->total_tax) : null,
             'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,
             'minimum_payment_amount' => isset($this->minimum_payment_amount) ? doubleval($this->minimum_payment_amount) : null,
-            'create_date' => $this->create_date ? Carbon::parse($this->create_date) : null,
-            'expiry_date' => $this->expiry_date ? Carbon::parse($this->expiry_date) : null,
+            'create_date' => $this->create_date ? Carbon::createFromFormat('d/m/Y', $this->create_date) : null,
+            'expiry_date' => $this->expiry_date ? Carbon::createFromFormat('d/m/Y', $this->expiry_date) : null,
         ]);
     }
 }

@@ -71,7 +71,7 @@ const store = {
                     commit('setLoading', {loading: false})
                     Notification.open({
                         message: data.message,
-                        type: 'is-success'
+                        type: 'is-success is-light'
                     });
                     dispatch('loadData', {page: getters.getCurrentPage})
                 })
@@ -80,7 +80,7 @@ const store = {
                     if (err.response) {
                         Notification.open({
                             message: err.response.data.message,
-                            type: 'is-danger'
+                            type: 'is-danger is-light'
                         })
                     }
                     commit('setLoading', {loading: false})
