@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lookup;
 
+use App\Enums\Product\ProductStatus;
 use App\Filters\Products\ProductCategoriesFilter;
 use App\Filters\Products\ProductsFilter;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,7 @@ class ProductLookupController extends Controller
     public function index(ProductsFilter $filters)
     {
         try {
-            return new ProductLookupCollection(Product::filter($filters)->limit(15)->get());
+            return new ProductLookupCollection(Product::filter($filters)->where('status', ProductStatus::ACTIVE)->limit(15)->get());
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], intval($exception->getCode()));
         }

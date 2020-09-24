@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductSitesTable extends Migration
+class CreateOrderProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateProductSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_sites', function (Blueprint $table) {
+        Schema::create('order_products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('inventory_site_id');
-            $table->integer('quantity')->default(0);
-            $table->string('status')->nullable()->default('active');
+            $table->integer('quantity')->default(1);
+            $table->unsignedDecimal('discount')->default(0)->nullable();
+            $table->unsignedDecimal('tax_rate')->default(0)->nullable();
+            $table->unsignedDecimal('total');
             $table->timestamps();
 
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('inventory_site_id')->references('id')->on('inventory_sites')->onDelete('cascade');
         });
     }
 
@@ -33,6 +35,6 @@ class CreateProductSitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sites');
+        Schema::dropIfExists('order_products');
     }
 }

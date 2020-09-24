@@ -33,10 +33,10 @@ class CreateQuotationsTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('tenant_id')->references('id')->on('tenants');
-            $table->foreign('contact_id')->references('id')->on('contacts');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('approved_by')->references('id')->on('users');
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('approved_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

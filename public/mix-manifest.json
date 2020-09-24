@@ -9,11 +9,11 @@
     "/js/invoices.js": "/js/invoices.js",
     "/js/marketplace.js": "/js/marketplace.js",
     "/js/orders.js": "/js/orders.js",
+    "/js/orders~js/quotations.js": "/js/orders~js/quotations.js",
     "/js/product-categories.js": "/js/product-categories.js",
     "/js/products.js": "/js/products.js",
     "/js/promo-codes.js": "/js/promo-codes.js",
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotations.js": "/js/quotations.js",
-    "/js/suppliers.js": "/js/suppliers.js",
-    "/vendors~js/quotations.js": "/vendors~js/quotations.js"
+    "/js/suppliers.js": "/js/suppliers.js"
 }

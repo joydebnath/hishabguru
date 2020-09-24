@@ -22,13 +22,13 @@
             @sort="onSort"
         >
             <b-table-column
-                field="quotation_number"
+                field="order_number"
                 label="Number"
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.quotation_number }}
+                {{ props.row.order_number }}
             </b-table-column>
 
             <b-table-column
@@ -60,8 +60,8 @@
                 {{ props.row.create_date }}
             </b-table-column>
 
-            <b-table-column field="expiry_date" sortable label="Expiry" v-slot="props" cell-class="align-middle">
-                {{ props.row.expiry_date }}
+            <b-table-column field="delivery_date" sortable label="Expiry" v-slot="props" cell-class="align-middle">
+                {{ props.row.delivery_date }}
             </b-table-column>
             <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
@@ -96,7 +96,7 @@
             <template slot="footer">
                 <EmptyTable v-if="!data.length"/>
                 <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
-                    Total quotations: {{ total }}
+                    Total orders: {{ total }}
                 </div>
             </template>
         </b-table>
@@ -112,11 +112,11 @@ export default {
         EmptyTable
     },
     mounted() {
-        this.$store.dispatch('quotations/loadData', {page: 1})
+        this.$store.dispatch('orders/loadData', {page: 1})
     },
     methods: {
         onPageChange(page_no) {
-            this.$store.dispatch('quotations/loadData', {page: page_no})
+            this.$store.dispatch('orders/loadData', {page: page_no})
         },
         onSort(field_name, order) {
             console.log(field_name, order)
@@ -139,18 +139,18 @@ export default {
     },
     computed: {
         ...mapGetters({
-            loading: 'quotations/getLoading',
-            data: 'quotations/getQuotations',
-            total: 'quotations/getTotal',
-            current_page: 'quotations/getCurrentPage',
+            loading: 'orders/getLoading',
+            data: 'orders/getOrders',
+            total: 'orders/getTotal',
+            current_page: 'orders/getCurrentPage',
             per_page: 'getPerPage'
         }),
         checked_rows: {
             get() {
-                return this.$store.getters['quotations/getCheckedQuotations']
+                return this.$store.getters['orders/getCheckedOrders']
             },
             set(value) {
-                this.$store.commit('quotations/setCheckedQuotations', {quotations: value})
+                this.$store.commit('orders/setCheckedOrders', {orders: value})
             }
         }
     }

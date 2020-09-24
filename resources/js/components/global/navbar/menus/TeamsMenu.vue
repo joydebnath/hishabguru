@@ -14,11 +14,11 @@
                 Employees
             </b-dropdown-item>
         </router-link>
-        <router-link to="/@/leave-management">
-            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Leave Management
-            </b-dropdown-item>
-        </router-link>
+<!--        <router-link to="/@/leave-management">-->
+<!--            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">-->
+<!--                Leave Management-->
+<!--            </b-dropdown-item>-->
+<!--        </router-link>-->
     </b-dropdown>
 </template>
 

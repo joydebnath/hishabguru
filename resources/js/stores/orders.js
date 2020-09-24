@@ -8,19 +8,29 @@ const store = {
         orders: [],
         loading: false,
         current_page: 1,
-        filters: {}
+        filters: {},
+        checked_orders: [],
     },
     getters: {
         getOrders: state => state.orders,
+        getCheckedOrders: state => state.checked_orders,
         getUrl: state => state.url,
         getTotal: state => state.total,
         getLoading: state => state.loading,
         getCurrentPage: state => state.current_page,
-        getFilters: state => state.filters
+        getFilters: (state, getters, rootState, rootGetters) => {
+            return {
+                ...state.filters,
+                tenant_id: rootGetters['tenancy/getCurrentTenant']
+            }
+        }
     },
     mutations: {
         setOrders: (state, {orders}) => {
             state.orders = orders
+        },
+        setCheckedOrders: (state, {orders}) => {
+            state.checked_orders = orders
         },
         setLoading: (state, {loading}) => {
             state.loading = loading
@@ -44,27 +54,35 @@ const store = {
                     commit('setLoading', {loading: false})
                     commit('setOrders', {orders: data.data})
                     commit('setTotal', {total: data.meta.total})
-                    commit('setCurrentPage', {total: data.meta.current_page})
+                    commit('setCurrentPage', {current_page: data.meta.current_page})
                 })
                 .catch(err => {
                     console.log(err)
                     commit('setLoading', {loading: false})
                 })
         },
-        delete({commit, getters, dispatch}){
+        delete({commit, getters, dispatch}, {order}) {
             commit('setLoading', {loading: true})
-            dispatch('loadData', {page: getters.getCurrentPage})
-            Notification.open({
-                message: data.message,
-                type: 'is-success'
-            });
-            // ====== //
-            if (err.response) {
-                Notification.open({
-                    message: err.response.data.message,
-                    type: 'is-danger'
+            axios
+                .delete(getters.getUrl + '/' + order.id)
+                .then(({data}) => {
+                    commit('setLoading', {loading: false})
+                    Notification.open({
+                        message: data.message,
+                        type: 'is-success is-light'
+                    });
+                    dispatch('loadData', {page: getters.getCurrentPage})
                 })
-            }
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        Notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light'
+                        })
+                    }
+                    commit('setLoading', {loading: false})
+                })
         }
     }
 };
