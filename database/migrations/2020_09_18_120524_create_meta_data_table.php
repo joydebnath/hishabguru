@@ -17,6 +17,7 @@ class CreateMetaDataTable extends Migration
             $table->id();
             $table->string('key');
             $table->text('value');
+            $table->morphs('meta');
             $table->unsignedBigInteger('tenant_id');
             $table->timestamps();
 

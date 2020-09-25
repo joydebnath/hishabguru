@@ -21,15 +21,15 @@
         <b-field label="Reference Number">
             <b-input v-model="order.reference_number"/>
         </b-field>
-        <div class="field">
+        <div class="field" v-show="client">
             <div class="flex flex-row justify-content-between align-items-center">
                 <label class="label">Delivery Address</label>
-                <b-button type="is-text" size="is-small">change</b-button>
+                <b-button type="is-text" size="is-small" v-show="false">change</b-button>
             </div>
             <article class="message">
                 <section class="message-body py-3">
                     <div class="media">
-                        <div class="media-content">
+                        <div class="media-content" >
                             23 Main Street
                             Marineville
                             NSW
@@ -39,10 +39,10 @@
                 </section>
             </article>
         </div>
-        <div class="field">
+        <div class="field" v-show="client">
             <div class="flex flex-row justify-content-between align-items-center">
                 <label class="label">Contact Number</label>
-                <b-button type="is-text" size="is-small">change</b-button>
+                <b-button type="is-text" size="is-small" v-show="false">change</b-button>
             </div>
             <article class="message">
                 <section class="message-body py-2">

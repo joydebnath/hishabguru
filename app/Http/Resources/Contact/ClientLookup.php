@@ -19,8 +19,10 @@ class ClientLookup extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'mobile' => $this->mobiles->first() ? $this->mobiles->first()->value : null,
+            'm_contact_details_id' => $this->mobiles->first() ? $this->mobiles->first()->id : null,
             'email' => $this->emails->first() ? $this->emails->first()->value : null,
             'formatted_address' => $address ? $address->address_line_1 . ', ' . $address->city : null,
+            'address_id' => $address ? $address->id : null,
         ];
     }
 }

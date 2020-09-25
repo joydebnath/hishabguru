@@ -14,33 +14,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/OrderTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/repo/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/FooterActions.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientAddNew.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientLookupInput.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/products/ProductLookupInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/AddNewClientAddress.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/AddNewClientContact.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Product/ProductStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Product/ProductStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ProductLookupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lookup/ProductLookupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientLookup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientLookup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_162626_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_162626_create_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_162636_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_162636_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_23_021823_create_quotations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_23_021823_create_quotations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_14_153507_create_product_sites_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_14_153507_create_product_sites_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/TeamsMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/TeamsMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/OrdersComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/OrdersTable.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/modals/ItemCRUD.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_18_120524_create_meta_data_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_18_120524_create_meta_data_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/OrderDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/OrderDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientDropdown.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientTile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientTile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/products/ProductDropdown.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/products/ProductTile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/products/ProductTile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/QuotationTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientAddNew.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/AddNewClient.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientLookupInput.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -561,7 +543,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/orders/widgets/clients" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -573,19 +555,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/resources/js/components/global/input" />
-      <recent name="$PROJECT_DIR$/resources/js/components/orders" />
-      <recent name="$PROJECT_DIR$/resources/js/components/orders/modals" />
-      <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/components/products/widgets" />
       <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
       <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/clients" />
       <recent name="$PROJECT_DIR$/resources/js/components/quotations/widgets/products" />
       <recent name="$PROJECT_DIR$/app/Console/Commands" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/orders/widgets/clients" />
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/resources/js/components/global/input" />
+      <recent name="$PROJECT_DIR$/resources/js/components/orders" />
+      <recent name="$PROJECT_DIR$/resources/js/components/orders/modals" />
     </key>
   </component>
   <component name="RunManager">
@@ -734,7 +716,9 @@
       <workItem from="1600772086534" duration="13136000" />
       <workItem from="1600823679865" duration="20000" />
       <workItem from="1600852226786" duration="13852000" />
-      <workItem from="1600925237275" duration="8496000" />
+      <workItem from="1600925237275" duration="9130000" />
+      <workItem from="1600999778212" duration="771000" />
+      <workItem from="1601025206217" duration="1668000" />
     </task>
     <servers />
   </component>
@@ -780,12 +764,12 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2020" y="100" width="1720" height="880" key="DiffContextDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600858022311" />
-    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600866431661">
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600999948060">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600648085384" />
     <state x="2930" y="132" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600730610547" />
-    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600866431661" />
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600999948060" />
     <state x="4583" y="298" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600390271634" />
     <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1600211170648" />
     <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1599355486797">
@@ -828,10 +812,11 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1600609484622" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1600955257537">
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1601026436901">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601026436901" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600865880539" />

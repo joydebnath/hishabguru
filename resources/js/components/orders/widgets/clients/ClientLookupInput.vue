@@ -41,7 +41,7 @@
             aria-role="dialog"
             aria-modal>
             <template #default="props">
-                <ClientAddNew :name="client_name" @on-close="show_add_new = false" @on-add="handleAddNewClient"/>
+                <AddNewClient :name="client_name" @on-close="show_add_new = false" @on-add="handleAddNewClient"/>
             </template>
         </b-modal>
     </div>
@@ -50,7 +50,7 @@
 <script>
 import {mapGetters} from 'vuex';
 import ClientTile from "./ClientTile";
-import ClientAddNew from "./ClientAddNew";
+import AddNewClient from "./AddNewClient";
 
 export default {
     name: "ClientDropdown",
@@ -58,7 +58,7 @@ export default {
       selected: Object
     },
     components: {
-        ClientAddNew,
+        AddNewClient,
         ClientTile
     },
     data() {
