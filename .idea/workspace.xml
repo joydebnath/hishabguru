@@ -15,17 +15,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Business/QuotationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Business/QuotationRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientLookup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientLookup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Quotation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Quotation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/OrderTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/OrderDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/OrderDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/SearchBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/SearchBox.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -722,7 +712,7 @@
       <workItem from="1600925237275" duration="9130000" />
       <workItem from="1600999778212" duration="771000" />
       <workItem from="1601025206217" duration="10289000" />
-      <workItem from="1601043803134" duration="5629000" />
+      <workItem from="1601043803134" duration="6993000" />
     </task>
     <servers />
   </component>

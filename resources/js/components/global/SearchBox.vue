@@ -1,13 +1,14 @@
 <template>
     <b-field>
         <b-input
-            type="search"
             icon="magnify"
             custom-class="is-info"
             v-model="string"
             :placeholder="$props.placeholder"
             @keyup.enter.native="handleSearchEmit"
-            @icon-right-click="handleSearchEmit"
+            @icon-right-click="handleClear"
+            icon-right="close text-xs"
+            icon-right-clickable
         />
         <p class="control">
             <button class="button is-info" @click="handleSearchEmit" >
@@ -33,6 +34,13 @@ export default {
     methods:{
         handleSearchEmit(){
             this.$emit('search', this.string)
+        },
+        handleClear(){
+            if(this.string === ''){
+                return
+            }
+            this.string = '';
+            this.handleSearchEmit()
         }
     }
 };
