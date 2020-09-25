@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class QuotationRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,11 +29,12 @@ class QuotationRequest extends FormRequest
             'contact_id' => 'nullable|numeric|required_unless:status,draft',
             'tenant_id' => 'numeric|required',
             'create_date' => 'required',
-            'expiry_date' => 'nullable',
-            'note' => 'nullable|string',
-            'payment_condition' => 'nullable|string|required_unless:status,draft',
+            'delivery_date' => 'nullable',
+            'delivery_instructions' => 'nullable|string',
+            'delivery_address' => 'nullable|string',
+            'delivery_contact_number' => 'nullable|string',
             'products' => 'nullable|required_unless:status,draft',
-            'quotation_number' => 'required|string',
+            'order_number' => 'required|string',
             'reference_number' => 'nullable|string',
             'status' => 'required|string',
             'created_by' => 'nullable|numeric',
@@ -41,7 +42,6 @@ class QuotationRequest extends FormRequest
             'total_amount' => 'nullable|numeric|required_unless:status,draft',
             'total_tax' => 'nullable|numeric|required_unless:status,draft',
             'sub_total' => 'nullable|numeric|required_unless:status,draft',
-            'minimum_payment_amount' => 'nullable|numeric|required_if:payment_condition,partial',
         ];
     }
 
@@ -53,9 +53,8 @@ class QuotationRequest extends FormRequest
             'total_amount' => isset($this->total_amount) ? doubleval($this->total_amount) : null,
             'total_tax' => isset($this->total_tax) ? doubleval($this->total_tax) : null,
             'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,
-            'minimum_payment_amount' => isset($this->minimum_payment_amount) ? doubleval($this->minimum_payment_amount) : null,
             'create_date' => $this->create_date ? Carbon::createFromFormat('d/m/Y', $this->create_date) : null,
-            'expiry_date' => $this->expiry_date ? Carbon::createFromFormat('d/m/Y', $this->expiry_date) : null,
+            'delivery_date' => $this->delivery_date ? Carbon::createFromFormat('d/m/Y', $this->delivery_date) : null,
         ]);
     }
 }

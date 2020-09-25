@@ -60,14 +60,13 @@
                 {{ props.row.create_date }}
             </b-table-column>
 
-            <b-table-column field="delivery_date" sortable label="Expiry" v-slot="props" cell-class="align-middle">
+            <b-table-column field="delivery_date" sortable label="Delivery" v-slot="props" cell-class="align-middle">
                 {{ props.row.delivery_date }}
             </b-table-column>
             <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
-                            cell-class="align-middle">
+            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle">
                 {{ props.row.total_amount }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">

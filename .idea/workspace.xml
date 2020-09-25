@@ -14,15 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/AddNewClientAddress.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/AddNewClientContact.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Business/QuotationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Business/QuotationRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientLookup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/ClientLookup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_162626_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_162626_create_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_18_120524_create_meta_data_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_18_120524_create_meta_data_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Quotation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Quotation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/OrderTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/OrderDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/OrderDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientAddNew.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/AddNewClient.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/orders/widgets/clients/ClientLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/orders.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -718,7 +721,8 @@
       <workItem from="1600852226786" duration="13852000" />
       <workItem from="1600925237275" duration="9130000" />
       <workItem from="1600999778212" duration="771000" />
-      <workItem from="1601025206217" duration="1668000" />
+      <workItem from="1601025206217" duration="10289000" />
+      <workItem from="1601043803134" duration="5629000" />
     </task>
     <servers />
   </component>
@@ -746,16 +750,21 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2683" y="318" width="374" height="457" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599473751410" />
-    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600576121338">
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601045654513">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601027813801" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600167207332" />
-    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600576121338" />
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601045654513" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1600384795322" />
     <state x="2953" y="293" width="413" height="463" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1600259485523">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2953" y="293" width="413" height="463" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600259485523" />
+    <state x="2668" y="229" width="413" height="629" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1601028346921">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2668" y="229" width="413" height="629" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601028346921" />
     <state x="2615" y="454" width="520" height="178" key="ComposerInitDialogKey" timestamp="1600045698148">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -799,6 +808,10 @@
     <state x="791" y="479" width="399" height="156" key="NewPhpFileDialog/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1598190552866" />
     <state x="2667" y="464" key="NewPhpFileDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600577248482" />
     <state x="791" y="479" width="399" height="156" key="NewPhpFileDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1599742187105" />
+    <state x="2686" y="477" width="387" height="133" key="ReplaceDuplicatesPrompt" timestamp="1601028349160">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2686" y="477" width="387" height="133" key="ReplaceDuplicatesPrompt/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601028349160" />
     <state x="2369" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1600045398243">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -812,14 +825,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1600609484622" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1601026436901">
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup" timestamp="1601049310422">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601026436901" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601029633495" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600865880539" />
+    <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601049310422" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600391066566" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1600417876827" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1600593878230" />

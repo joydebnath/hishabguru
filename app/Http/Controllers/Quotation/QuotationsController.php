@@ -27,8 +27,7 @@ class QuotationsController extends Controller
     public function store(QuotationRequest $request)
     {
         try {
-            $storable = $request->validated();
-            unset($storable['products']);
+            $storable = $this->getQuotationFillable($request);
 
             $quotation = Quotation::create($storable);
 
@@ -59,8 +58,7 @@ class QuotationsController extends Controller
     public function update(QuotationRequest $request, Quotation $quotation)
     {
         try {
-            $storable = $request->validated();
-            unset($storable['products']);
+            $storable = $this->getQuotationFillable($request);
 
             $quotation->update($storable);
 
@@ -90,5 +88,16 @@ class QuotationsController extends Controller
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
+    }
+
+    /**
+     * @param QuotationRequest $request
+     * @return array
+     */
+    private function getQuotationFillable(QuotationRequest $request): array
+    {
+        $fillable = $request->validated();
+        unset($fillable['products']);
+        return $fillable;
     }
 }

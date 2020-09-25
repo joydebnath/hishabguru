@@ -4,7 +4,7 @@ namespace App\Http\Resources\Business;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class QuotationFullResource extends JsonResource
+class OrderFullResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,18 +18,16 @@ class QuotationFullResource extends JsonResource
             'id' => $this->id,
             'contact' => isset($this->contact) ? ['id' => $this->contact->id, 'name' => $this->contact->name] : null,
             'contact_id' => $this->contact_id,
-            'quotation_number' => $this->quotation_number,
+            'order_number' => $this->order_number,
             'reference_number' => $this->reference_number,
-            'payment_condition' => $this->payment_condition,
-            'minimum_payment_amount' => $this->minimum_payment_amount,
-            'note' => $this->note,
+            'delivery_details' => self::deliveryDetails($this->deliveryDetails),
             'create_date' => $this->create_date,
-            'expiry_date' => $this->expiry_date,
+            'delivery_date' => $this->delivery_date,
             'products' => self::products($this->products)
         ];
     }
 
-    protected static function products($products)
+    private static function products($products)
     {
         return collect($products)->map(function ($product) {
             $pivot = collect($product->pivot);
@@ -45,5 +43,18 @@ class QuotationFullResource extends JsonResource
                 'edit' => false
             ];
         });
+    }
+
+    private static function deliveryDetails($details)
+    {
+        if ($details) {
+            return [
+                'delivery_details_id' => $details->id,
+                'address' => $details->address,
+                'delivery_contact_number' => $details->contact_number,
+                'delivery_instructions' => $details->instructions,
+            ];
+        }
+        return null;
     }
 }

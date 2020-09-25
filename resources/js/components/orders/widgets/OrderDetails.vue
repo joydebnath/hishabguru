@@ -21,42 +21,32 @@
         <b-field label="Reference Number">
             <b-input v-model="order.reference_number"/>
         </b-field>
-        <div class="field" v-show="client">
-            <div class="flex flex-row justify-content-between align-items-center">
-                <label class="label">Delivery Address</label>
-                <b-button type="is-text" size="is-small" v-show="false">change</b-button>
-            </div>
-            <article class="message">
-                <section class="message-body py-3">
-                    <div class="media">
-                        <div class="media-content" >
-                            23 Main Street
-                            Marineville
-                            NSW
-                            2000
+        <template >
+            <b-field label="Contact Number" v-if="contact">
+                <b-input v-model="order.delivery_contact_number" :value="contact.mobile"/>
+            </b-field>
+            <div class="field" v-if="contact">
+                <div class="flex flex-row justify-content-between align-items-center">
+                    <label class="label">Delivery Address</label>
+                    <b-button type="is-text" size="is-small" v-show="false">change</b-button>
+                </div>
+                <article class="message">
+                    <section class="message-body py-3">
+                        <div class="media">
+                            <div class="media-content">
+                                {{ contact.address ? contact.address : '---' }}
+                            </div>
                         </div>
-                    </div>
-                </section>
-            </article>
-        </div>
-        <div class="field" v-show="client">
-            <div class="flex flex-row justify-content-between align-items-center">
-                <label class="label">Contact Number</label>
-                <b-button type="is-text" size="is-small" v-show="false">change</b-button>
+                    </section>
+                </article>
             </div>
-            <article class="message">
-                <section class="message-body py-2">
-                    <div class="media">
-                        <div class="media-content">
-                            +61426000956
-                        </div>
-                    </div>
-                </section>
-            </article>
-        </div>
-        <b-field label="Delivery Instructions">
-            <b-input type="textarea" v-model="order.delivery_instructions"/>
-        </b-field>
+            <b-field label="Delivery Instructions" v-if="contact" >
+                <b-input type="textarea" v-model="order.delivery_instructions" rows="3"/>
+            </b-field>
+            <b-field label="Extra Note">
+                <b-input type="textarea" v-model="order.note" rows="3"/>
+            </b-field>
+        </template>
     </div>
 </template>
 
@@ -76,13 +66,16 @@ export default {
                 order_number: null,
                 reference_number: null,
                 delivery_instructions: null,
+                delivery_address: null,
+                delivery_contact_number: null,
+                note: null
             },
             required_fields: {
                 contact_id: true,
                 order_number: true,
             },
             errors: {},
-            contact: null
+            contact: null,
         }
     },
     methods: {
@@ -106,22 +99,16 @@ export default {
             }
         },
         handleClientSelect(client) {
-            this.order = {...this.order, contact_id: client ? client.id : null}
+            this.order = {
+                ...this.order,
+                contact_id: client ? client.id : null,
+                delivery_address: client ? client.address : null,
+            }
             this.contact = client
         },
         resetErrors() {
             this.errors = {}
         },
-        handlePaymentCondition(value) {
-            if (value === 'partial') {
-                this.required_fields = {...this.required_fields, minimum_payment_amount: true};
-                return
-            }
-            if (this.required_fields.minimum_payment_amount) {
-                delete this.required_fields.minimum_payment_amount;
-            }
-            this.required_fields = {...this.required_fields};
-        }
     },
     computed: {
         has_contact_id() {
@@ -135,12 +122,12 @@ export default {
         },
         has_minimum_payment_amount() {
             return this.errors.minimum_payment_amount !== undefined
-        },
+        }
     },
     watch: {
         item(value) {
-            this.order = value;
-            this.contact = value.contact ? value.contact : null
+            this.order = {...value, ...value.delivery_details};
+            this.contact = value.contact ? {...value.contact, ...value.delivery_details} : null
         }
     }
 }

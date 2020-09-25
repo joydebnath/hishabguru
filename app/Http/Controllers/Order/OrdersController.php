@@ -2,35 +2,127 @@
 
 namespace App\Http\Controllers\Order;
 
+use App\Filters\Business\OrderFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Business\OrderRequest;
 use App\Http\Resources\Business\OrderCollection;
+use App\Http\Resources\Business\OrderFullResource;
+use App\Http\Resources\Business\Order as OrderResource;
 use App\Models\Order;
-use Illuminate\Http\Request;
+use App\Models\OrderDeliveryDetails;
+use Exception;
 
 class OrdersController extends Controller
 {
-    public function index()
+    public function index(OrderFilter $filters)
     {
-        return new OrderCollection([]);
+        try {
+            return new OrderCollection(
+                Order::filter($filters)->paginate()
+            );
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        try {
+            $storable = $this->getOrderFillable($request);
+            $order = Order::create($storable);
+
+            foreach ($request->products as $product) {
+                $order->products()->attach($product['id'], [
+                    'quantity' => $product['quantity'],
+                    'discount' => $product['discount'],
+                    'tax_rate' => $product['tax_rate'],
+                    'total' => $product['total'],
+                ]);
+            }
+
+            $deliveryDetails = $this->getOrderDetailsFillable($request);
+            if(collect($deliveryDetails)->isNotEmpty()){
+                $deliveryDetails['order_id'] = $order->id;
+                OrderDeliveryDetails::create($deliveryDetails);
+            }
+
+            return new OrderResource($order->load('contact'));
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 
     public function show(Order $order)
     {
-        //
+        try {
+            return new OrderFullResource($order->load('contact', 'products','deliveryDetails'));
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
-        //
+        try {
+            $storable = $this->getOrderFillable($request);
+            $order->update($storable);
+
+            if (collect($request->products)->isNotEmpty()) {
+                foreach ($request->products as $product) {
+                    $syncable[$product['id']] = [
+                        'quantity' => intval($product['quantity']),
+                        'discount' => doubleval($product['discount']),
+                        'tax_rate' => doubleval($product['tax_rate']),
+                        'total' => doubleval($product['total']),
+                    ];
+                }
+                $order->products()->sync($syncable);
+            }
+
+            $deliveryDetails = $this->getOrderDetailsFillable($request);
+            if(collect($deliveryDetails)->isNotEmpty()){
+                $order->deliveryDetails->update($deliveryDetails);
+            }
+
+            return new OrderResource($order->load('contact'));
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 
     public function destroy(Order $order)
     {
-        //
+        try {
+            $order->delete();
+            return response(['message' => 'Order is deleted']);
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @param OrderRequest $request
+     * @return array
+     */
+    private function getOrderFillable(OrderRequest $request): array
+    {
+        $fillable = $request->validated();
+        unset($fillable['products']);
+        unset($fillable['delivery_instructions']);
+        unset($fillable['delivery_address']);
+        unset($fillable['delivery_contact_number']);
+        return $fillable;
+    }
+
+    private function getOrderDetailsFillable(OrderRequest $request): array
+    {
+        $fillable = [];
+        $fillable['instructions'] = $request->get('delivery_instructions', null);
+        $fillable['address'] = $request->get('delivery_address', null);
+        $fillable['contact_number'] = $request->get('delivery_contact_number', null);
+
+        return collect($fillable)->filter(function ($value) {
+            return $value !== null;
+        })->toArray();
     }
 }

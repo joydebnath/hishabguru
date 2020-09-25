@@ -49,7 +49,9 @@ const store = {
         loadData({commit, getters}, {page}) {
             commit('setLoading', {loading: true})
             axios
-                .get(getters.getUrl + '?page=' + page)
+                .get(getters.getUrl + '?page=' + page, {
+                    params: {...getters.getFilters}
+                })
                 .then(({data}) => {
                     commit('setLoading', {loading: false})
                     commit('setOrders', {orders: data.data})
