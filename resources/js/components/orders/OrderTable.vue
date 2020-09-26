@@ -75,14 +75,16 @@
                         <b-dropdown aria-role="list">
                             <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                       slot="trigger"/>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">
-                                View
+                            <router-link :to="'/@/orders/' + props.row.id">
+                                <b-dropdown-item >
+                                    View
+                                </b-dropdown-item>
+                            </router-link>
+                            <b-dropdown-item @click="$emit('on-copy', props.row)">
+                                Copy to
                             </b-dropdown-item>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">
-                                Edit
-                            </b-dropdown-item>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-share', props.row)">
-                                Share the link
+                            <b-dropdown-item @click="$emit('on-download', props.row)">
+                                Download PDF
                             </b-dropdown-item>
                             <hr class="dropdown-divider">
                             <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">

@@ -15,22 +15,16 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <button class="button field is-info" @click="handleAdd">
-                        <span>New order</span>
-                    </button>
+                    <router-link to="/@/orders/create">
+                        <button class="button field is-info">
+                            <span>New order</span>
+                        </button>
+                    </router-link>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
-            <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-read="handleRead"/>
+            <Table @on-delete="handleDelete" />
         </div>
-        <ItemCRUD
-            :show="show_modal"
-            :action_type="action_name"
-            :item="computed_order"
-            :loading="computed_loading"
-            @on-close="handleToggleModal"
-            @on-loading="handleToggleViewModal"
-        />
     </div>
 </template>
 
@@ -39,33 +33,17 @@ import {mapGetters} from 'vuex';
 import SearchBox from '../global/SearchBox';
 import Table from "./OrderTable.vue";
 import Filters from "./OrdersFilters";
-import ItemCRUD from "./modals/ItemCRUD";
-import {read} from './repo/index'
 
 export default {
     components: {
         Filters,
-        ItemCRUD,
         Table,
         SearchBox
     },
     data() {
-        return {
-            show_modal: false,
-            loading: false,
-            show_view_modal: false,
-            action_type: 'add',
-            order: {}
-        };
+        return {};
     },
     methods: {
-        handleToggleModal() {
-            this.order = {};
-            this.show_modal = !this.show_modal;
-        },
-        handleToggleViewModal() {
-            this.show_view_modal = !this.show_view_modal
-        },
         handleSearch(value) {
             this.$store.commit('orders/setFilters', {
                 filters: {
@@ -73,24 +51,6 @@ export default {
                 }
             });
             this.$store.dispatch('orders/loadData', {page: 1})
-        },
-        handleAdd() {
-            this.action_type = 'add';
-            this.handleToggleModal();
-        },
-        handleEdit(order) {
-            this.loading = true;
-            this.action_type = 'edit'
-            this.handleToggleModal();
-            read(order.id)
-                .then(({data}) => {
-                    this.loading = false;
-                    this.order = data.data
-                })
-                .catch(err => {
-                    this.loading = false;
-                    this.handleToggleModal();
-                })
         },
         handleDelete(order) {
             this.$buefy.dialog.confirm({
@@ -103,11 +63,7 @@ export default {
                     this.$store.dispatch('orders/delete', {order})
                 }
             })
-
         },
-        handleRead(order) {
-            this.show_view_modal = true
-        }
     },
     computed: {
         ...mapGetters({
@@ -116,15 +72,6 @@ export default {
         show_bulk_actions() {
             return this.checked_products.length
         },
-        action_name() {
-            return this.action_type
-        },
-        computed_loading() {
-            return this.loading
-        },
-        computed_order() {
-            return this.order
-        }
     }
 };
 </script>

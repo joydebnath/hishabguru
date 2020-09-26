@@ -1,5 +1,31 @@
 <template>
-    <div class="max-w-6xl m-auto w-1/2 py-6 mt-10 pt-10">
+    <div class="max-w-6xl m-auto w-1/2 py-6">
+        <nav class="level box shadow">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Tweets</p>
+                    <p class="title">3,456</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Following</p>
+                    <p class="title">123</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Followers</p>
+                    <p class="title">456K</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Likes</p>
+                    <p class="title">789</p>
+                </div>
+            </div>
+        </nav>
         <svg
             id="b02f0796-e5a2-4f93-9b0b-1e5532738db1"
             data-name="Layer 1"
@@ -7,6 +33,7 @@
             width="600.74194"
             height="400.32602"
             viewBox="0 0 948.74194 658.32602"
+            class="m-auto mt-10"
         >
             <ellipse
                 cx="701.12549"

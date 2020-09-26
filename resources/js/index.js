@@ -6,8 +6,7 @@ import buefy from "buefy";
 Vue.use(buefy)
 
 import store from './stores/index'
-import router from './router'
-
+import router from './route/router'
 import App from './components/App'
 
 const app = new Vue({

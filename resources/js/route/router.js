@@ -3,17 +3,21 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "./components/products/ProductsComponent");
-const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "./components/product-categories/ProductsComponent");
-const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "./components/marketplace/MarketplaceComponent");
-const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "./components/ExampleComponent");
-const QuotationsComponent = () => import(/* webpackChunkName: "js/quotations" */  "./components/quotations/QuotationsComponent");
-const OrdersComponent = () => import(/* webpackChunkName: "js/orders" */  "./components/orders/OrdersComponent");
-const PurchasesComponent = () => import(/* webpackChunkName: "js/purchases" */  "./components/purchases/PurchasesComponent");
-const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "./components/promo-codes/PromocodesComponent");
-const InvoicesComponent = () => import(/* webpackChunkName: "js/invoices" */  "./components/invoices/InvoicesComponent");
-const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "./components/clients/ClientsComponent");
-const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "./components/vendors/VendorsComponent");
+const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "../components/products/ProductsComponent");
+const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "../components/product-categories/ProductsComponent");
+const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
+const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "../components/ExampleComponent");
+
+
+import QuotationRoutes from './quotations'
+import OrderRoutes from './orders'
+import InvoiceRoutes from './invoices'
+
+const PurchasesComponent = () => import(/* webpackChunkName: "js/purchases" */  "../components/purchases/PurchasesComponent");
+const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
+
+const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../components/clients/ClientsComponent");
+const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../components/vendors/VendorsComponent");
 
 const router = new VueRouter({
     mode: 'history',
@@ -36,18 +40,8 @@ const router = new VueRouter({
             meta: {type: 'products'},
             component: ProductCategoriesComponent,
         },
-        {
-            path: '/@/quotations',
-            name: 'quotations',
-            meta: {type: 'business'},
-            component: QuotationsComponent,
-        },
-        {
-            path: '/@/orders',
-            name: 'orders',
-            meta: {type: 'business'},
-            component: OrdersComponent,
-        },
+        ...QuotationRoutes,
+        ...OrderRoutes,
         {
             path: '/@/purchases',
             name: 'purchases',
@@ -66,12 +60,7 @@ const router = new VueRouter({
             meta: {type: 'business'},
             component: PromoCodesComponent,
         },
-        {
-            path: '/@/invoices',
-            name: 'invoices',
-            meta: {type: 'accounting'},
-            component: InvoicesComponent,
-        },
+        ...InvoiceRoutes,
         {
             path: '/@/expenses',
             name: 'expenses',
