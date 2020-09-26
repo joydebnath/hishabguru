@@ -8,7 +8,7 @@
                     :message="has_create_date ? 'This field is required' : null"
                 >
                     <b-datepicker
-                        v-model="order.create_date"
+                        v-model="quotation.create_date"
                         :show-week-number="false"
                         :locale="undefined"
                         placeholder="Click to select..."
@@ -17,9 +17,9 @@
                     />
                 </b-field>
                 <span class="px-2"></span>
-                <b-field label="Delivery Date">
+                <b-field label="Expiry Date">
                     <b-datepicker
-                        v-model="order.delivery_date"
+                        v-model="quotation.expiry_date"
                         :show-week-number="false"
                         :locale="undefined"
                         placeholder="Click to select..."
@@ -38,6 +38,7 @@
             :hoverable="true"
         >
             <b-table-column
+                field="user.first_name"
                 label="Product"
                 v-slot="props"
                 width="200"
@@ -169,8 +170,8 @@ export default {
     methods: {
         validation() {
             let error_bag = {}
-            for (let value in this.order) {
-                if (this.required_fields[value] && this.order[value] == null) {
+            for (let value in this.quotation) {
+                if (this.required_fields[value] && this.quotation[value] == null) {
                     error_bag[value] = true;
                 }
             }
@@ -186,8 +187,8 @@ export default {
             }
             return {
                 data: {
-                    create_date: this.order.create_date ? this.order.create_date.toLocaleDateString() : null,
-                    delivery_date: this.order.delivery_date ? this.order.delivery_date.toLocaleDateString() : null,
+                    create_date: this.quotation.create_date ? this.quotation.create_date.toLocaleDateString() : null,
+                    expiry_date: this.quotation.expiry_date ? this.quotation.expiry_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
                     total_tax: this.tax,
@@ -290,16 +291,16 @@ export default {
         has_products() {
             return this.errors.products !== undefined
         },
-        order() {
+        quotation() {
             if (this.$props.item) {
                 return {
                     create_date: this.$props.item.create_date ? new Date(this.$props.item.create_date) : new Date(),
-                    delivery_date: this.$props.item.delivery_date ? new Date(this.$props.item.delivery_date) : null,
+                    expiry_date: this.$props.item.expiry_date ? new Date(this.$props.item.expiry_date) : null,
                 }
             }
             return {
                 create_date: new Date(),
-                delivery_date: null,
+                expiry_date: null,
             }
         },
     },

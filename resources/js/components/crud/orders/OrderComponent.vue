@@ -1,14 +1,6 @@
 <template>
     <div class="max-w-6xl m-auto w-full mb-6 py-2">
-        <nav class="breadcrumb flex-row-reverse bg-white shadow-sm text-sm align-items-center" aria-label="breadcrumbs">
-            <ul>
-                <li><span class="text-blue-400 px-2">Business</span></li>
-                <li>
-                    <router-link to="/@/orders"><span class="text-blue-400 ">Orders</span></router-link>
-                </li>
-                <li class="is-active"><a href="#" aria-current="page">Order# {{ order.order_number }}</a></li>
-            </ul>
-        </nav>
+        <Breadcrumb :active_link_name="breadcrumb_link_name"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <HeaderActions v-if="false"/>
@@ -32,6 +24,7 @@
                 </div>
             </div>
             <FooterActions
+                cancel_route="/@/orders"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -46,12 +39,13 @@ import OrderDetails from "./widgets/OrderDetails";
 import ProductsTable from "./widgets/ProductsTable";
 import {update, read} from "./repo";
 import HeaderActions from "./widgets/HeaderActions";
-import FooterActions from "./widgets/FooterActions";
+import Breadcrumb from "../quotations/widgets/Breadcrumb";
+import FooterActions from "@/components/global/crud/FooterActions";
 
 
 export default {
     name: "OrderOverview",
-    components: {FooterActions, HeaderActions, ProductsTable, OrderDetails},
+    components: {Breadcrumb, FooterActions, HeaderActions, ProductsTable, OrderDetails},
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
@@ -80,6 +74,9 @@ export default {
         }),
         computed_item() {
             return this.order
+        },
+        breadcrumb_link_name() {
+            return this.order ? 'Order# ' + this.order.order_number : '---'
         }
     },
     methods: {
@@ -97,8 +94,6 @@ export default {
             }
 
             order['status'] = 'draft';
-            order['tenant_id'] = this.tenant_id;
-
             this.updateOrder(order, 'Order Draft is updated')
         },
         handleSave() {
@@ -116,8 +111,6 @@ export default {
 
             if (_.isEmpty(error_bag)) {
                 order['status'] = 'save';
-                order['tenant_id'] = this.tenant_id;
-
                 this.updateOrder(order, 'Order is updated')
             }
         },
@@ -125,7 +118,7 @@ export default {
             console.log('approve')
         },
         updateOrder(order, message) {
-            update(order.id, order)
+            update(order.id, {...order, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -151,7 +144,8 @@ export default {
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
-                type: 'is-danger is-light'
+                type: 'is-danger is-light',
+                duration: 3000
             })
         }
     }

@@ -23,6 +23,7 @@
                 </div>
             </div>
             <FooterActions
+                cancel_route="/@/orders"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -35,8 +36,8 @@
 import {mapGetters} from "vuex";
 import OrderDetails from "./widgets/OrderDetails";
 import ProductsTable from "./widgets/ProductsTable";
-import FooterActions from "./widgets/FooterActions";
 import Breadcrumb from "./widgets/Breadcrumb";
+import FooterActions from "@/components/global/crud/FooterActions";
 import {store} from "./repo";
 
 export default {
@@ -75,8 +76,6 @@ export default {
             }
 
             order['status'] = 'draft';
-            order['tenant_id'] = this.tenant_id;
-
             this.createOrder(order, 'Order Draft is created')
         },
         handleSave() {
@@ -94,8 +93,6 @@ export default {
 
             if (_.isEmpty(error_bag)) {
                 order['status'] = 'save';
-                order['tenant_id'] = this.tenant_id;
-
                 this.createOrder(order, 'Order is created')
             }
         },
@@ -103,7 +100,7 @@ export default {
             console.log('approve')
         },
         createOrder(order, message) {
-            store(order)
+            store({...order, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -128,7 +125,8 @@ export default {
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
-                type: 'is-danger is-light'
+                type: 'is-danger is-light',
+                duration: 3000
             })
         }
     }

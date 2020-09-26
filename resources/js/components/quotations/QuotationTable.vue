@@ -64,7 +64,9 @@
                 {{ props.row.expiry_date }}
             </b-table-column>
             <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
-                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
+                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
+                    {{ props.row.status }}
+                </b-tag>
             </b-table-column>
             <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
                             cell-class="align-middle">
@@ -76,12 +78,11 @@
                         <b-dropdown aria-role="list">
                             <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                       slot="trigger"/>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">
-                                View
-                            </b-dropdown-item>
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">
-                                Edit
-                            </b-dropdown-item>
+                            <router-link :to="'/@/quotations/'+props.row.id">
+                                <b-dropdown-item aria-role="listitem">
+                                    View
+                                </b-dropdown-item>
+                            </router-link>
                             <b-dropdown-item aria-role="listitem" @click="$emit('on-share', props.row)">
                                 Share the link
                             </b-dropdown-item>
@@ -121,14 +122,14 @@ export default {
         onSort(field_name, order) {
             console.log(field_name, order)
         },
-        status_type(value){
+        status_type(value) {
             let type = '';
             switch (value) {
                 case 'save':
                     type = 'is-success'
                     break;
                 case 'draft':
-                    type= 'is-light'
+                    type = 'is-light'
                     break
                 case 'save-for-approval':
                     type = 'is-warning'

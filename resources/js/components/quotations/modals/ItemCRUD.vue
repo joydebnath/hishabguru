@@ -16,25 +16,7 @@
                 <button type="button" class="delete" @click="$emit('on-close')"/>
             </header>
             <section class="modal-card-body">
-                <div class="grid grid-cols-3 gap-2">
-                    <div class="col-span-1">
-                        <QuotationDetails ref="part1" :item="computed_item"/>
-                    </div>
-                    <div class="col-span-2 ml-4">
-                        <ProductsTable ref="part2" :item="computed_item"/>
-                        <div class="mx-12 mt-4">
-                            <b-message
-                                type="is-danger"
-                                size="is-small"
-                                :auto-close="true"
-                                :duration="2000"
-                                v-model="error_container"
-                            >
-                                <span class="tracking-wider" v-text="error_message"></span>
-                            </b-message>
-                        </div>
-                    </div>
-                </div>
+
             </section>
             <FooterActions
                 :action_type="$props.action_type"

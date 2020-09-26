@@ -1,20 +1,12 @@
 <template>
     <div class="max-w-6xl m-auto w-full mb-6 py-2">
-        <nav class="breadcrumb flex-row-reverse bg-white shadow-sm text-sm align-items-center" aria-label="breadcrumbs">
-            <ul>
-                <li><span class="text-blue-400 px-2">Business</span></li>
-                <li>
-                    <router-link to="/@/orders"><span class="text-blue-400 ">Orders</span></router-link>
-                </li>
-                <li class="is-active"><a href="#" aria-current="page">Order# {{ order.order_number }}</a></li>
-            </ul>
-        </nav>
+        <Breadcrumb :active_link_name="breadcrumb_link_name"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <HeaderActions v-if="false"/>
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-1">
-                    <OrderDetails ref="part1" :item="computed_item"/>
+                    <QuotationDetails ref="part1" :item="computed_item"/>
                 </div>
                 <div class="col-span-2 ml-4">
                     <ProductsTable ref="part2" :item="computed_item"/>
@@ -32,6 +24,7 @@
                 </div>
             </div>
             <FooterActions
+                cancel_route="/@/quotations"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -40,72 +33,74 @@
     </div>
 </template>
 
+
 <script>
 import {mapGetters} from "vuex";
-import OrderDetails from "./widgets/OrderDetails";
 import ProductsTable from "./widgets/ProductsTable";
 import {update, read} from "./repo";
+import FooterActions from "@/components/global/crud/FooterActions";
+import Breadcrumb from "./widgets/Breadcrumb";
+import QuotationDetails from "./widgets/QuotationDetails";
 import HeaderActions from "./widgets/HeaderActions";
-import FooterActions from "./widgets/FooterActions";
-
 
 export default {
     name: "OrderOverview",
-    components: {FooterActions, HeaderActions, ProductsTable, OrderDetails},
+    components: {HeaderActions, QuotationDetails, Breadcrumb, FooterActions, ProductsTable},
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
             .then(({data}) => {
                 this.loading = false;
-                this.order = data.data
+                this.quotation = data.data
             })
             .catch(err => {
                 this.loading = false;
-                //push to orders page
+                this.$router.push('/@/quotations')
             })
     },
     data() {
         return {
             error_container: false,
             error_message: '',
-            order: {},
-            loading: false,
+            quotation: {},
+            loading: false
         }
     },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'orders/getTotal',
+            total: 'quotations/getTotal',
             per_page: 'getPerPage'
         }),
         computed_item() {
-            return this.order
+            return this.quotation
+        },
+        breadcrumb_link_name() {
+            return this.quotation ? 'Quotation# ' + this.quotation.quotation_number : '---'
         }
     },
     methods: {
         handleDraft() {
-            let order = {};
+            let quotation = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
-                order = {...order, ...data}
+                quotation = {...quotation, ...data}
             });
 
-            if (order.order_number == null) {
+            if (quotation.quotation_number == null) {
                 this.error_container = true;
-                this.error_message = 'Order number can not be empty!';
+                this.error_message = 'Quotation number can not be empty!';
                 return;
             }
 
-            order['status'] = 'draft';
-            order['tenant_id'] = this.tenant_id;
-
-            this.updateOrder(order, 'Order Draft is updated')
+            quotation['status'] = 'draft';
+            this.updateQuotation(quotation, 'Quotation Draft is updated')
         },
         handleSave() {
-            let order = {}, error_bag = {};
+            let quotation = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
-                order = {...order, ...data}
+                quotation = {...quotation, ...data}
                 error_bag = {...error_bag, ...errors}
             });
 
@@ -115,17 +110,15 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'save';
-                order['tenant_id'] = this.tenant_id;
-
-                this.updateOrder(order, 'Order is updated')
+                quotation['status'] = 'save';
+                this.updateQuotation(quotation, 'Quotation is updated')
             }
         },
         handleSaveForApproval() {
             console.log('approve')
         },
-        updateOrder(order, message) {
-            update(order.id, order)
+        updateQuotation(quotation, message) {
+            update(quotation.id, {...quotation, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -136,20 +129,23 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.order = {};
-            this.$emit('on-close');
+            this.quotation = {};
             this.$buefy.notification.open({
                 message: message,
-                type: 'is-success is-light'
+                type: 'is-success is-light',
+                duration: 3000,
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('orders/loadData', {page: 1})
+                this.$store.dispatch('quotations/loadData', {page: 1})
             }
+
+            this.$router.push('/@/quotations');
         },
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
-                type: 'is-danger is-light'
+                type: 'is-danger is-light',
+                duration: 3000
             })
         }
     }

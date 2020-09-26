@@ -15,22 +15,16 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <button class="button field is-info" @click="handleAdd">
-                        <span>New Quotation</span>
-                    </button>
+                    <router-link to="/@/quotations/create">
+                        <button class="button field is-info">
+                            <span>New Quotation</span>
+                        </button>
+                    </router-link>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
-            <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-read="handleRead"/>
+            <Table @on-delete="handleDelete"/>
         </div>
-        <ItemCRUD
-            :show="show_modal"
-            :action_type="action_name"
-            :item="computed_quotation"
-            :loading="computed_loading"
-            @on-close="handleToggleModal"
-            @on-loading="handleToggleViewModal"
-        />
     </div>
 </template>
 
@@ -50,22 +44,9 @@ export default {
         SearchBox
     },
     data() {
-        return {
-            show_modal: false,
-            loading: false,
-            show_view_modal: false,
-            action_type: 'add',
-            quotation: {}
-        };
+        return {};
     },
     methods: {
-        handleToggleModal() {
-            this.quotation = {};
-            this.show_modal = !this.show_modal;
-        },
-        handleToggleViewModal() {
-            this.show_view_modal = !this.show_view_modal
-        },
         handleSearch(value) {
             this.$store.commit('quotations/setFilters', {
                 filters: {
@@ -73,24 +54,6 @@ export default {
                 }
             });
             this.$store.dispatch('quotations/loadData', {page: 1})
-        },
-        handleAdd() {
-            this.action_type = 'add';
-            this.handleToggleModal();
-        },
-        handleEdit(quotation) {
-            this.loading = true;
-            this.action_type = 'edit'
-            this.handleToggleModal();
-            read(quotation.id)
-                .then(({data}) => {
-                    this.loading = false;
-                    this.quotation = data.data
-                })
-                .catch(err => {
-                    this.loading = false;
-                    this.handleToggleModal();
-                })
         },
         handleDelete(quotation) {
             this.$buefy.dialog.confirm({
@@ -105,9 +68,6 @@ export default {
             })
 
         },
-        handleRead(quotation) {
-            this.show_view_modal = true
-        }
     },
     computed: {
         ...mapGetters({
@@ -116,15 +76,6 @@ export default {
         show_bulk_actions() {
             return this.checked_products.length
         },
-        action_name() {
-            return this.action_type
-        },
-        computed_loading() {
-            return this.loading
-        },
-        computed_quotation() {
-            return this.quotation
-        }
     }
 };
 </script>

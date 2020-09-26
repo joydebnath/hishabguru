@@ -1,4 +1,4 @@
-const URL = '/orders'
+const URL = '/quotations'
 
 function index(params) {
     return axios.get(URL, {

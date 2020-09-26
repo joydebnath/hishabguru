@@ -1,11 +1,11 @@
 <template>
     <div class="max-w-6xl m-auto w-full mb-6 py-2">
-        <Breadcrumb active_link_name="New Order"/>
+        <Breadcrumb active_link_name="New Quotation"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-1">
-                    <OrderDetails ref="part1" :item="computed_item"/>
+                    <QuotationDetails ref="part1" :item="computed_item"/>
                 </div>
                 <div class="col-span-2 ml-4">
                     <ProductsTable ref="part2" :item="computed_item"/>
@@ -23,6 +23,7 @@
                 </div>
             </div>
             <FooterActions
+                cancel_route="/@/quotations"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -33,57 +34,54 @@
 
 <script>
 import {mapGetters} from "vuex";
-import OrderDetails from "./widgets/OrderDetails";
 import ProductsTable from "./widgets/ProductsTable";
-import FooterActions from "./widgets/FooterActions";
+import FooterActions from "@/components/global/crud/FooterActions";
 import Breadcrumb from "./widgets/Breadcrumb";
+import QuotationDetails from "./widgets/QuotationDetails";
 import {store} from "./repo";
 
 export default {
     name: "OrderOverview",
-    components: {Breadcrumb, FooterActions, ProductsTable, OrderDetails},
+    components: {QuotationDetails, Breadcrumb, FooterActions, ProductsTable, OrderDetails},
     data() {
         return {
             error_container: false,
             error_message: '',
-            order: {},
-            loading: false
+            quotation: {}
         }
     },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'orders/getTotal',
+            total: 'quotations/getTotal',
             per_page: 'getPerPage'
         }),
         computed_item() {
-            return this.order
+            return this.quotation
         }
     },
     methods: {
         handleDraft() {
-            let order = {};
+            let quotation = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
-                order = {...order, ...data}
+                quotation = {...quotation, ...data}
             });
 
-            if (order.order_number == null) {
+            if (quotation.quotation_number == null) {
                 this.error_container = true;
-                this.error_message = 'Order number can not be empty!';
+                this.error_message = 'Quotation number can not be empty!';
                 return;
             }
 
-            order['status'] = 'draft';
-            order['tenant_id'] = this.tenant_id;
-
-            this.createOrder(order, 'Order Draft is created')
+            quotation['status'] = 'draft';
+            this.createQuotation(quotation, 'Quotation Draft is created')
         },
         handleSave() {
-            let order = {}, error_bag = {};
+            let quotation = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
-                order = {...order, ...data}
+                quotation = {...quotation, ...data}
                 error_bag = {...error_bag, ...errors}
             });
 
@@ -93,17 +91,15 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'save';
-                order['tenant_id'] = this.tenant_id;
-
-                this.createOrder(order, 'Order is created')
+                quotation['status'] = 'save';
+                this.createQuotation(quotation, 'Quotation is created')
             }
         },
         handleSaveForApproval() {
             console.log('approve')
         },
-        createOrder(order, message) {
-            store(order)
+        createQuotation(quotation, message) {
+            store({...quotation, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -114,21 +110,22 @@ export default {
                 });
         },
         onSuccess(message) {
-            this.order = {};
+            this.quotation = {};
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
                 duration: 3000
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('orders/loadData', {page: 1})
+                this.$store.dispatch('quotations/loadData', {page: 1})
             }
-            this.router.push({ path: '/@/orders' })
+            this.$router.push('/@/quotations');
         },
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
-                type: 'is-danger is-light'
+                type: 'is-danger is-light',
+                duration: 3000
             })
         }
     }
