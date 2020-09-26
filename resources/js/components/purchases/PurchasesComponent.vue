@@ -3,48 +3,75 @@
         <div class="box pt-6">
             <b-field grouped group-multiline>
                 <div class="flex flex-row justify-between pb-4 w-full">
-                    <b-field grouped>
-                        <SearchBox placeholder="Search by name" @search="handleSearch"/>
-                        &nbsp;&nbsp;&nbsp;
-                        <Filters />
-                    </b-field>
-                    <button class="button field is-info" @click="handleToggleModal">
-                        <span>New Quotation</span>
-                    </button>
+                    <template v-if="show_bulk_actions">
+                        <div>
+                            <b-button size="is-small" type="is-danger is-light">Delete</b-button>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <b-field grouped>
+                            <SearchBox placeholder="Search by name" @search="handleSearch"/>
+                            &nbsp;&nbsp;&nbsp;
+                            <Filters/>
+                        </b-field>
+                    </template>
+                    <router-link to="/@/purchases/create">
+                        <button class="button field is-info">
+                            <span>New order</span>
+                        </button>
+                    </router-link>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
-            <Table />
+            <Table @on-delete="handleDelete" />
         </div>
-        <ItemCRUD :show="show_modal" @on-close="handleToggleModal" />
     </div>
 </template>
 
 <script>
-import SearchBox from '../global/SearchBox'
-import Table from "./PurchasesTable.vue";
+import {mapGetters} from 'vuex';
+import SearchBox from '../global/SearchBox';
+import Table from "./PurchaseTable.vue";
 import Filters from "./PurchasesFilters";
-import ItemCRUD from "./modals/ItemCRUD";
 
 export default {
     components: {
         Filters,
-        ItemCRUD,
         Table,
         SearchBox
     },
     data() {
-        return {
-            show_modal: false
-        };
+        return {};
     },
     methods: {
-        handleToggleModal() {
-            this.show_modal = !this.show_modal;
+        handleSearch(value) {
+            this.$store.commit('purchases/setFilters', {
+                filters: {
+                    search: value
+                }
+            });
+            this.$store.dispatch('purchases/loadData', {page: 1})
         },
-        handleSearch(value){
-            console.log(value)
-        }
+        handleDelete(order) {
+            this.$buefy.dialog.confirm({
+                title: 'Deleting order',
+                message: 'Are you sure you want to delete the order: <b>' + order.order_number + '</b> ?',
+                confirmText: 'Delete',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => {
+                    this.$store.dispatch('purchases/delete', {order})
+                }
+            })
+        },
+    },
+    computed: {
+        ...mapGetters({
+            checked_products: 'purchases/getCheckedPurchases'
+        }),
+        show_bulk_actions() {
+            return this.checked_products.length
+        },
     }
 };
 </script>

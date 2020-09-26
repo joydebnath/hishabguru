@@ -6,6 +6,7 @@
                     <DashboardMenu :active="active"/>
                     <InventoryMenu :active="active"/>
                     <BusinessMenu :active="active"/>
+                    <ExpenseMenu :active="active"/>
                     <AccountingMenu :active="active"/>
                     <ContactsMenu :active="active"/>
                     <TeamsMenu :active="active"/>
@@ -21,6 +22,7 @@ import AccountingMenu from "./menus/AccountingMenu";
 import BusinessMenu from "./menus/BusinessMenu";
 import ContactsMenu from "./menus/ContactsMenu";
 import DashboardMenu from "./menus/DashboardMenu";
+import ExpenseMenu from "./menus/ExpenseMenu";
 import InventoryMenu from "./menus/InventoryMenu";
 import TeamsMenu from "./menus/TeamsMenu";
 
@@ -29,7 +31,7 @@ export default {
     props: {
         active: String
     },
-    components: {AccountingMenu, BusinessMenu, ContactsMenu, DashboardMenu, InventoryMenu, TeamsMenu}
+    components: {AccountingMenu, BusinessMenu, ContactsMenu, DashboardMenu,ExpenseMenu, InventoryMenu, TeamsMenu}
 }
 </script>
 

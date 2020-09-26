@@ -12,8 +12,8 @@ const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "..
 import QuotationRoutes from './quotations'
 import OrderRoutes from './orders'
 import InvoiceRoutes from './invoices'
+import PurchaseRoutes from './purchases'
 
-const PurchasesComponent = () => import(/* webpackChunkName: "js/purchases" */  "../components/purchases/PurchasesComponent");
 const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
 
 const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../components/clients/ClientsComponent");
@@ -42,12 +42,7 @@ const router = new VueRouter({
         },
         ...QuotationRoutes,
         ...OrderRoutes,
-        {
-            path: '/@/purchases',
-            name: 'purchases',
-            meta: {type: 'business'},
-            component: PurchasesComponent,
-        },
+        ...PurchaseRoutes,
         {
             path: '/@/marketplace',
             name: 'marketplace',

@@ -9,20 +9,9 @@
         <span>Accounting</span>
         <b-icon icon="menu-down"/>
     </span>
-        <router-link to="/@/invoices">
+        <router-link to="/@/balance-sheet">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Invoices
-            </b-dropdown-item>
-        </router-link>
-        <span class="dropdown-header tracking-wider">Expenses</span>
-        <router-link to="/@/bills">
-            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Bills to pay
-            </b-dropdown-item>
-        </router-link>
-        <router-link to="/@/miscellaneous-expense">
-            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Miscellaneous expense
+                Balance sheet
             </b-dropdown-item>
         </router-link>
     </b-dropdown>

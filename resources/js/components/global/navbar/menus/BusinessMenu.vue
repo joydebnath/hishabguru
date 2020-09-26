@@ -19,9 +19,10 @@
                 Orders
             </b-dropdown-item>
         </router-link>
-        <router-link to="/@/purchase">
+        <span class="dropdown-divider"></span>
+        <router-link to="/@/invoices">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Purchases
+                Invoices
             </b-dropdown-item>
         </router-link>
         <span class="dropdown-divider"></span>

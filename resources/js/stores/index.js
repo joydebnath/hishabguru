@@ -9,6 +9,7 @@ import productCategoriesModule from '../stores/product-categories'
 import inventorySitesModule from '../stores/inventory-sites'
 import quotationsModule from './quotations'
 import ordersModule from './orders'
+import purchasesModule from './purchases'
 import promoCodesModule from './promo-codes'
 import invoicesModule from './invoices'
 import dashboardModule from './dashboard'
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
         product_categories: productCategoriesModule,
         quotations: quotationsModule,
         orders: ordersModule,
+        purchases: purchasesModule,
         promo_codes: promoCodesModule,
         invoices: invoicesModule,
         dashboard: dashboardModule,

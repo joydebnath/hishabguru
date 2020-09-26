@@ -14,27 +14,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/CreatePurchaseComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/PurchaseComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/repo/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/Breadcrumb.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/HeaderActions.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/ProductsTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/PurchaseDetails.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/products/ProductLookupInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/products/ProductTile.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/suppliers/AddNewSupplier.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/suppliers/SupplierLookupInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/suppliers/SupplierTile.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/ExpenseMenu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/purchases/PurchaseTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/route/purchases.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/stores/purchases.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/CreateOrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/CreateOrderComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/OrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/OrderComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/FooterActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/crud/FooterActions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/CreateOrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/CreateQuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/OrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/QuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/repo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/repo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/Breadcrumb.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/Breadcrumb.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/FooterActions.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/OrderDetails.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/clients/AddNewClient.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/clients/ClientAddNew.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/clients/AddNewClientAddress.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/clients/AddNewClientContact.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/clients/ClientLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/clients/ClientLookupInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/QuotationTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/QuotationsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/QuotationsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/quotations/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/route/quotations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route/quotations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/TopMenuBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/TopMenuBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/AccountingMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/AccountingMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/BusinessMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/BusinessMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/PurchasesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/purchases/PurchasesComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/PurchasesTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/modals/ItemCRUD.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/widgets/ProductsTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/widgets/PurchaseDetails.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/widgets/products/ProductDropdown.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/widgets/products/ProductTile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/widgets/suppliers/SupplierTile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/purchases/widgets/suppliers/SuppliersDropdown.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/route/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -555,7 +566,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -568,11 +579,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets" />
-      <recent name="$PROJECT_DIR$/resources/js/components/global/crud" />
-      <recent name="$PROJECT_DIR$/resources/js/components/crud/quotations" />
+      <recent name="$PROJECT_DIR$/resources/js/components/global/navbar/menus" />
+      <recent name="$PROJECT_DIR$/resources/js/stores" />
       <recent name="$PROJECT_DIR$/resources/js/components/crud" />
-      <recent name="$PROJECT_DIR$/resources/js/components/create-or-update/orders" />
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/route" />
@@ -732,7 +743,7 @@
       <workItem from="1600999778212" duration="771000" />
       <workItem from="1601025206217" duration="10289000" />
       <workItem from="1601043803134" duration="7235000" />
-      <workItem from="1601081962029" duration="16106000" />
+      <workItem from="1601081962029" duration="19532000" />
     </task>
     <servers />
   </component>
