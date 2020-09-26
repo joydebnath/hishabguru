@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/suppliers', 'Contact\SuppliersController');
     Route::resource('/clients', 'Contact\ClientsController');
     Route::resource('/quotations', 'Quotation\QuotationsController');
+    Route::resource('/purchases', 'Expense\PurchasesController');
     Route::resource('/orders', 'Order\OrdersController');
     Route::resource('/promo-codes', 'Promo\PromoCodesController');
 

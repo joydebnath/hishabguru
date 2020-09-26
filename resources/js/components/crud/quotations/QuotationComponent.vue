@@ -44,7 +44,7 @@ import QuotationDetails from "./widgets/QuotationDetails";
 import HeaderActions from "./widgets/HeaderActions";
 
 export default {
-    name: "OrderOverview",
+    name: "QuotationComponent",
     components: {HeaderActions, QuotationDetails, Breadcrumb, FooterActions, ProductsTable},
     mounted() {
         this.loading = true;

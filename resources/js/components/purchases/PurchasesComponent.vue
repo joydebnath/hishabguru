@@ -17,7 +17,7 @@
                     </template>
                     <router-link to="/@/purchases/create">
                         <button class="button field is-info">
-                            <span>New order</span>
+                            <span>New purchase</span>
                         </button>
                     </router-link>
                 </div>
@@ -52,15 +52,15 @@ export default {
             });
             this.$store.dispatch('purchases/loadData', {page: 1})
         },
-        handleDelete(order) {
+        handleDelete(purchase_order) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting order',
-                message: 'Are you sure you want to delete the order: <b>' + order.order_number + '</b> ?',
+                title: 'Deleting purchase order',
+                message: 'Are you sure you want to delete the purchase order: <b>' + purchase_order.order_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,
                 onConfirm: () => {
-                    this.$store.dispatch('purchases/delete', {order})
+                    this.$store.dispatch('purchases/delete', {purchase_order})
                 }
             })
         },

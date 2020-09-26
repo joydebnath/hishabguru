@@ -29,7 +29,7 @@
 <!--                    + Add Client {{ supplier_name }}-->
 <!--                </p>-->
                 <p class="mb-0 py-2 cursor-pointer text-gray-700" >
-                    Client {{ supplier_name }} not found
+                    Supplier {{ supplier_name }} not found
                 </p>
             </template>
         </b-autocomplete>
@@ -53,7 +53,7 @@ import SupplierTile from "./SupplierTile";
 import AddNewSupplier from "./AddNewSupplier";
 
 export default {
-    name: "ClientDropdown",
+    name: "Supplier:LookupInput",
     props:{
       selected: Object
     },

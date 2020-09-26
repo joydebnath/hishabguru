@@ -41,7 +41,7 @@ import FooterActions from "@/components/global/crud/FooterActions";
 import {store} from "./repo";
 
 export default {
-    name: "PurchaseOrderOverview",
+    name: "CreatePurchaseComponent",
     components: {Breadcrumb, FooterActions, ProductsTable, PurchaseDetails},
     data() {
         return {
@@ -69,7 +69,7 @@ export default {
                 order = {...order, ...data}
             });
 
-            if (order.order_number == null) {
+            if (order.purchase_order_number == null) {
                 this.error_container = true;
                 this.error_message = 'Purchase Order number can not be empty!';
                 return;

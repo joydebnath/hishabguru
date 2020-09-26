@@ -19,9 +19,10 @@ class SupplierLookupController extends Controller
                     ->where('type', ContactType::SUPPLIER)
                     ->with('emails', 'mobiles', 'addresses')
                     ->limit(15)
+                    ->get()
             );
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], intval($exception->getCode()));
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 }

@@ -22,6 +22,7 @@ class ProductLookup extends JsonResource
             'discount' => null,
             'total' => doubleval($this->selling_unit_price),
             'selling_unit_price' => doubleval($this->selling_unit_price),
+            'buying_unit_cost' => doubleval($this->buying_unit_cost),
             'tax_rate' => doubleval($this->tax_rat),
             'edit' => false
 //            'description' => $this->description,

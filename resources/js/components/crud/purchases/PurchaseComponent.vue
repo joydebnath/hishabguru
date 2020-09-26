@@ -44,7 +44,7 @@ import FooterActions from "@/components/global/crud/FooterActions";
 
 
 export default {
-    name: "OrderOverview",
+    name: "PurchaseComponent",
     components: {Breadcrumb, FooterActions, HeaderActions, ProductsTable, PurchaseDetails},
     mounted() {
         this.loading = true;

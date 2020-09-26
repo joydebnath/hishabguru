@@ -41,8 +41,8 @@ import QuotationDetails from "./widgets/QuotationDetails";
 import {store} from "./repo";
 
 export default {
-    name: "OrderOverview",
-    components: {QuotationDetails, Breadcrumb, FooterActions, ProductsTable, OrderDetails},
+    name: "CreateQuotationComponent",
+    components: {QuotationDetails, Breadcrumb, FooterActions, ProductsTable},
     data() {
         return {
             error_container: false,

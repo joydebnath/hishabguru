@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Business;
+namespace App\Http\Requests\Expense;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class OrderRequest extends FormRequest
+class PurchaseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,14 +30,12 @@ class OrderRequest extends FormRequest
             'tenant_id' => 'numeric|required',
             'create_date' => 'required',
             'delivery_date' => 'nullable',
-            'delivery_instructions' => 'nullable|string',
             'note' => 'nullable|string',
-            'delivery_address' => 'nullable|string',
-            'delivery_contact_number' => 'nullable|string',
             'products' => 'nullable|required_unless:status,draft',
             'order_number' => 'required|string',
             'reference_number' => 'nullable|string',
             'status' => 'required|string',
+            'delivery_site_id' => 'nullable|numeric',
             'created_by' => 'nullable|numeric',
             'approved_by' => 'nullable|numeric',
             'total_amount' => 'nullable|numeric|required_unless:status,draft',

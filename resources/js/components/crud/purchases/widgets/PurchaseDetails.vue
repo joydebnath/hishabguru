@@ -11,7 +11,7 @@
             </b-field>
         </div>
         <b-field
-            label="Purchase Number"
+            label="Purchase Order Number"
             required
             :type="has_purchase_order_number ? 'is-danger' :null"
             :message="has_purchase_order_number ? 'This field is required' : null"
@@ -21,32 +21,24 @@
         <b-field label="Reference Number">
             <b-input v-model="purchase_order.reference_number"/>
         </b-field>
-        <template >
-            <b-field label="Contact Number" v-if="contact">
-                <b-input v-model="purchase_order.delivery_contact_number" />
-            </b-field>
-            <div class="field" v-if="contact">
-                <div class="flex flex-row justify-content-between align-items-center">
-                    <label class="label">Delivery Address</label>
-                    <b-button type="is-text" size="is-small" v-show="false">change</b-button>
-                </div>
-                <article class="message">
-                    <section class="message-body py-3">
-                        <div class="media">
-                            <div class="media-content">
-                                {{ contact.address ? contact.address : '---' }}
-                            </div>
-                        </div>
-                    </section>
-                </article>
+        <div class="field" >
+            <div class="flex flex-row justify-content-between align-items-center">
+                <label class="label">Delivery Address</label>
+                <b-button type="is-text" size="is-small" >change</b-button>
             </div>
-            <b-field label="Delivery Instructions" >
-                <b-input type="textarea" v-model="purchase_order.delivery_instructions" rows="3"/>
-            </b-field>
-            <b-field label="Extra Note">
-                <b-input type="textarea" v-model="purchase_order.note" rows="2"/>
-            </b-field>
-        </template>
+            <article class="message">
+                <section class="message-body py-3">
+                    <div class="media">
+                        <div class="media-content">
+                            ---
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+        <b-field label="Extra Note">
+            <b-input type="textarea" v-model="purchase_order.note" rows="3"/>
+        </b-field>
     </div>
 </template>
 
@@ -65,9 +57,6 @@ export default {
                 contact_id: null,
                 purchase_order_number: null,
                 reference_number: null,
-                delivery_instructions: null,
-                delivery_address: null,
-                delivery_contact_number: null,
                 note: null
             },
             required_fields: {
@@ -99,12 +88,9 @@ export default {
             }
         },
         handleSupplierSelect(supplier) {
-            console.log(supplier)
             this.purchase_order = {
                 ...this.purchase_order,
                 contact_id: supplier ? supplier.id : null,
-                delivery_address: supplier ? supplier.address : null,
-                delivery_contact_number: supplier ? supplier.mobile : null
             }
             this.contact = supplier
         },
@@ -119,17 +105,11 @@ export default {
         has_purchase_order_number() {
             return this.errors.purchase_order_number !== undefined
         },
-        has_payment_condition() {
-            return this.errors.payment_condition !== undefined
-        },
-        has_minimum_payment_amount() {
-            return this.errors.minimum_payment_amount !== undefined
-        }
     },
     watch: {
         item(value) {
-            this.purchase_order = {...value, ...value.delivery_details};
-            this.contact = value.contact ? {...value.contact, ...value.delivery_details} : null
+            this.purchase_order = value;
+            this.contact = value.contact ? {...value.contact} : null
         }
     }
 }

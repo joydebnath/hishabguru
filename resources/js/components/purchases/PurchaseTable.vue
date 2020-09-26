@@ -42,12 +42,12 @@
             </b-table-column>
 
             <b-table-column
-                field="customer_name"
-                label="Client"
+                field="supplier_name"
+                label="Supplier"
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.customer_name }}
+                {{ props.row.supplier_name }}
             </b-table-column>
 
             <b-table-column
@@ -75,16 +75,13 @@
                         <b-dropdown aria-role="list">
                             <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                       slot="trigger"/>
-                            <router-link :to="'/@/orders/' + props.row.id">
+                            <router-link :to="'/@/purchases/' + props.row.id">
                                 <b-dropdown-item >
                                     View
                                 </b-dropdown-item>
                             </router-link>
                             <b-dropdown-item @click="$emit('on-copy', props.row)">
                                 Copy to
-                            </b-dropdown-item>
-                            <b-dropdown-item @click="$emit('on-download', props.row)">
-                                Download PDF
                             </b-dropdown-item>
                             <hr class="dropdown-divider">
                             <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
@@ -97,7 +94,7 @@
             <template slot="footer">
                 <EmptyTable v-if="!data.length"/>
                 <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
-                    Total orders: {{ total }}
+                    Total purchases: {{ total }}
                 </div>
             </template>
         </b-table>
@@ -113,11 +110,11 @@ export default {
         EmptyTable
     },
     mounted() {
-        this.$store.dispatch('orders/loadData', {page: 1})
+        this.$store.dispatch('purchases/loadData', {page: 1})
     },
     methods: {
         onPageChange(page_no) {
-            this.$store.dispatch('orders/loadData', {page: page_no})
+            this.$store.dispatch('purchases/loadData', {page: page_no})
         },
         onSort(field_name, order) {
             console.log(field_name, order)
@@ -140,18 +137,18 @@ export default {
     },
     computed: {
         ...mapGetters({
-            loading: 'orders/getLoading',
-            data: 'orders/getOrders',
-            total: 'orders/getTotal',
-            current_page: 'orders/getCurrentPage',
+            loading: 'purchases/getLoading',
+            data: 'purchases/getPurchases',
+            total: 'purchases/getTotal',
+            current_page: 'purchases/getCurrentPage',
             per_page: 'getPerPage'
         }),
         checked_rows: {
             get() {
-                return this.$store.getters['orders/getCheckedOrders']
+                return this.$store.getters['purchases/getCheckedPurchases']
             },
             set(value) {
-                this.$store.commit('orders/setCheckedOrders', {orders: value})
+                this.$store.commit('purchases/setCheckedPurchases', {purchases: value})
             }
         }
     }

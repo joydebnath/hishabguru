@@ -119,12 +119,6 @@ export default {
         has_order_number() {
             return this.errors.order_number !== undefined
         },
-        has_payment_condition() {
-            return this.errors.payment_condition !== undefined
-        },
-        has_minimum_payment_amount() {
-            return this.errors.minimum_payment_amount !== undefined
-        }
     },
     watch: {
         item(value) {
