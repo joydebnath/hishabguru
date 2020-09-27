@@ -53,7 +53,7 @@ import SupplierTile from "./SupplierTile";
 import AddNewSupplier from "./AddNewSupplier";
 
 export default {
-    name: "Supplier:LookupInput",
+    name: "SupplierLookupInput",
     props:{
       selected: Object
     },

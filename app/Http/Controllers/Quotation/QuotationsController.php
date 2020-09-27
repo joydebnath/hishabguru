@@ -62,17 +62,16 @@ class QuotationsController extends Controller
 
             $quotation->update($storable);
 
-            if (collect($request->products)->isNotEmpty()) {
-                foreach ($request->products as $product) {
-                    $syncable[$product['id']] = [
-                        'quantity' => intval($product['quantity']),
-                        'discount' => doubleval($product['discount']),
-                        'tax_rate' => doubleval($product['tax_rate']),
-                        'total' => doubleval($product['total']),
-                    ];
-                }
-                $quotation->products()->sync($syncable);
+            $syncable = [];
+            foreach ($request->products as $product) {
+                $syncable[$product['id']] = [
+                    'quantity' => intval($product['quantity']),
+                    'discount' => doubleval($product['discount']),
+                    'tax_rate' => doubleval($product['tax_rate']),
+                    'total' => doubleval($product['total']),
+                ];
             }
+            $quotation->products()->sync($syncable);
 
             return new QuotationResource($quotation->load('contact'));
         } catch (Exception $exception) {

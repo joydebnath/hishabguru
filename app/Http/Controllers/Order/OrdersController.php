@@ -41,7 +41,7 @@ class OrdersController extends Controller
             }
 
             $deliveryDetails = $this->getOrderDetailsFillable($request);
-            if(collect($deliveryDetails)->isNotEmpty()){
+            if (collect($deliveryDetails)->isNotEmpty()) {
                 $deliveryDetails['order_id'] = $order->id;
                 OrderDeliveryDetails::create($deliveryDetails);
             }
@@ -55,7 +55,7 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         try {
-            return new OrderFullResource($order->load('contact', 'products','deliveryDetails'));
+            return new OrderFullResource($order->load('contact', 'products', 'deliveryDetails'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -67,20 +67,19 @@ class OrdersController extends Controller
             $storable = $this->getOrderFillable($request);
             $order->update($storable);
 
-            if (collect($request->products)->isNotEmpty()) {
-                foreach ($request->products as $product) {
-                    $syncable[$product['id']] = [
-                        'quantity' => intval($product['quantity']),
-                        'discount' => doubleval($product['discount']),
-                        'tax_rate' => doubleval($product['tax_rate']),
-                        'total' => doubleval($product['total']),
-                    ];
-                }
-                $order->products()->sync($syncable);
+            $syncable = [];
+            foreach ($request->products as $product) {
+                $syncable[$product['id']] = [
+                    'quantity' => intval($product['quantity']),
+                    'discount' => doubleval($product['discount']),
+                    'tax_rate' => doubleval($product['tax_rate']),
+                    'total' => doubleval($product['total']),
+                ];
             }
+            $order->products()->sync($syncable);
 
             $deliveryDetails = $this->getOrderDetailsFillable($request);
-            if(collect($deliveryDetails)->isNotEmpty()){
+            if (collect($deliveryDetails)->isNotEmpty()) {
                 $order->deliveryDetails->update($deliveryDetails);
             }
 

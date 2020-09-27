@@ -1,8 +1,8 @@
 <template>
     <b-dropdown aria-role="list">
-            <span class="navbar-item" slot="trigger" role="button">
+            <span class="navbar-item text-sm" slot="trigger" role="button">
                 <span>{{ username }}</span>
-                <b-icon icon="menu-down"/>
+                <b-icon icon="pan-down -mt-1"/>
             </span>
         <small class="dropdown-header uppercase tracking-wider">Businesses</small>
         <b-dropdown-item class="py-3" aria-role="listitem">

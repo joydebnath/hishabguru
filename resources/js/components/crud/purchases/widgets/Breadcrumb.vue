@@ -3,7 +3,7 @@
         <ul>
             <li><span class="text-blue-400 px-2">Business</span></li>
             <li>
-                <router-link to="/@/orders"><span class="text-blue-400 ">Orders</span></router-link>
+                <router-link to="/@/purchases"><span class="text-blue-400 ">Purchases</span></router-link>
             </li>
             <li class="is-active"><a href="#" aria-current="page">{{ $props.active_link_name }}</a></li>
         </ul>

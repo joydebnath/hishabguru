@@ -1,13 +1,13 @@
 <template>
     <b-dropdown aria-role="list">
         <span
-            class="navbar-item text-base leading-6 px-3 py-2 font-medium focus:outline-none hover:no-underline"
+            class="navbar-item text-sm leading-6 px-3 py-2 font-medium focus:outline-none hover:no-underline"
             :class="[$props.active == 'teams' ? 'text-blue-400 rounded font-semibold hover:text-blue-600' : 'text-gray-600 hover:text-gray-900 focus:text-gray-900']"
             slot="trigger"
             role="button"
         >
             <span>Teams</span>
-            <b-icon icon="menu-down"/>
+            <b-icon icon="menu-down mt-1"/>
         </span>
         <router-link to="/@/employees">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">

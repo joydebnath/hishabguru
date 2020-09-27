@@ -39,7 +39,7 @@ import OrderDetails from "./widgets/OrderDetails";
 import ProductsTable from "./widgets/ProductsTable";
 import {update, read} from "./repo";
 import HeaderActions from "./widgets/HeaderActions";
-import Breadcrumb from "../quotations/widgets/Breadcrumb";
+import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 
 
@@ -55,7 +55,7 @@ export default {
             })
             .catch(err => {
                 this.loading = false;
-                //push to orders page
+                this.$router.push('/@/orders');
             })
     },
     data() {

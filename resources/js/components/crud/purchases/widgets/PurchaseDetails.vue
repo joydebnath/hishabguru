@@ -21,33 +21,35 @@
         <b-field label="Reference Number">
             <b-input v-model="purchase_order.reference_number"/>
         </b-field>
-        <div class="field" >
+        <div class="field">
             <div class="flex flex-row justify-content-between align-items-center">
                 <label class="label">Delivery Address</label>
-                <b-button type="is-text" size="is-small" >change</b-button>
+                <b-button type="is-text" size="is-small" @click="handleChangeAddress">change</b-button>
             </div>
             <article class="message">
                 <section class="message-body py-3">
                     <div class="media">
-                        <div class="media-content">
-                            ---
+                        <div class="media-content text-center">
+                            Select Inventory Site
                         </div>
                     </div>
                 </section>
             </article>
         </div>
-        <b-field label="Extra Note">
+        <b-field label="Note">
             <b-input type="textarea" v-model="purchase_order.note" rows="3"/>
         </b-field>
+        <SelectDeliverySite :show="changeable_address" @on-close="handleCloseSelectAddress"/>
     </div>
 </template>
 
 <script>
 import SupplierLookupInput from "./suppliers/SupplierLookupInput";
+import SelectDeliverySite from "./SelectDeliverySite";
 
 export default {
     name: "PurchaseDetails",
-    components: {SupplierLookupInput},
+    components: {SelectDeliverySite, SupplierLookupInput},
     props: {
         item: Object | Array
     },
@@ -65,6 +67,8 @@ export default {
             },
             errors: {},
             contact: null,
+            site_address: null,
+            changeable_address: false,
         }
     },
     methods: {
@@ -97,6 +101,12 @@ export default {
         resetErrors() {
             this.errors = {}
         },
+        handleChangeAddress(){
+            this.changeable_address = true;
+        },
+        handleCloseSelectAddress(){
+            this.changeable_address = false;
+        }
     },
     computed: {
         has_contact_id() {
