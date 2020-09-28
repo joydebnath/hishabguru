@@ -29,7 +29,7 @@
 </head>
 <body>
 <div id="app">
-    <app :user="{{Auth::user()}}" />
+    <app/>
 </div>
 @auth
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

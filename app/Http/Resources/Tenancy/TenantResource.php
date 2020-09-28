@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Tenancy;
 
-use App\Http\Resources\Business\InventorySite;
+use App\Http\Resources\Business\InventorySiteCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TenantResource extends JsonResource
@@ -16,8 +16,7 @@ class TenantResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'tenant_id' => $this->id,
-            'inventories' => new InventorySite($this->inventorySites),
+            'inventories' => new InventorySiteCollection($this->inventorySites),
         ];
     }
 }

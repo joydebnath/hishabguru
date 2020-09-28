@@ -1,21 +1,40 @@
 <template>
     <b-dropdown aria-role="list">
-            <span class="navbar-item text-sm" slot="trigger" role="button">
+        <div class="navbar-item text-sm" slot="trigger" role="button">
+            <span style="width: 135px" v-if="user_loading">
+                <b-skeleton :animated="true"/>
+            </span>
+            <tempate v-else>
                 <span>{{ username }}</span>
                 <b-icon icon="pan-down -mt-1"/>
-            </span>
-        <small class="dropdown-header uppercase tracking-wider">Businesses</small>
+            </tempate>
+        </div>
+        <small class="dropdown-header uppercase tracking-wider">Switch Business</small>
         <b-dropdown-item class="py-3" aria-role="listitem">
             <div class="media">
                 <div class="media-content">
-                    <h3>Meghomitra</h3>
+                    <p class="mb-0" v-for="tenant in tenants">
+                        <b-icon
+                            pack="far" v-if="tenant.id === current_tenant"
+                            custom-class="text-xs text-teal-600"
+                            icon="check-circle"
+                        />
+                        {{ tenant.name }}
+                    </p>
                 </div>
             </div>
         </b-dropdown-item>
         <hr class="dropdown-divider ">
-        <router-link to="/@/settings">
+        <small class="dropdown-header uppercase tracking-wider">Business Settings</small>
+        <router-link to="/@/business-settings">
             <b-dropdown-item class="py-2" aria-role="listitem">
                 Settings
+            </b-dropdown-item>
+        </router-link>
+        <hr class="dropdown-divider ">
+        <router-link to="/@/profile">
+            <b-dropdown-item class="py-2" aria-role="listitem">
+                Profile
             </b-dropdown-item>
         </router-link>
         <b-dropdown-item class="py-2" aria-role="listitem" @click="handleLogout">
@@ -29,18 +48,24 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
     name: "UserMenu",
-    props: {
-        username: String,
-        tenants: Array
-    },
-    data() {
-        return {}
-    },
     methods: {
         handleLogout() {
             document.getElementById('logout-form').submit();
+        }
+    },
+    computed: {
+        ...mapGetters({
+            user: 'getUser',
+            user_loading: 'getLoadingUser',
+            current_tenant: 'tenancy/getCurrentTenant',
+            tenants: 'tenancy/getTenants'
+        }),
+        username() {
+            return this.user ? this.user.name : null
         }
     }
 }

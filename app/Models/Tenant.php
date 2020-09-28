@@ -17,4 +17,9 @@ class Tenant extends Model
     {
         return $this->hasMany(InventorySite::class);
     }
+
+    public function user_roles()
+    {
+        return $this->belongsToMany(Role::class, 'tenant_users');
+    }
 }

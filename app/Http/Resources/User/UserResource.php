@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Business;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InventorySite extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +17,7 @@ class InventorySite extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'formatted_address' => $this->address ? $this->formattedAddress($this->address) : null,
+            'email' => $this->email,
         ];
-    }
-
-    private function formattedAddress($address)
-    {
-        return $address->address_line_1 . ', ' . $address->city. ' ' . $address->postcode;
     }
 }

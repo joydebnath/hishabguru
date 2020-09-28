@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'PagesController@welcome');
+Route::get('/', 'GuestPageController@welcome');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/@/dashboard', 'PagesController@index')->name('home');

@@ -10,8 +10,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="flex flex-row items-center">
-                <!--<AddNewItemMenu/>-->
-                <UserMenu :username="username"/>
+                <AddNewItemMenu/>
+                <UserMenu />
             </div>
         </div>
     </nav>
@@ -26,17 +26,6 @@ export default {
     components: {
         AddNewItemMenu, UserMenu
     },
-    props: {
-        username: {
-            type: String,
-            default: 'User'
-        },
-    },
-    methods: {
-        handleLogout() {
-
-        }
-    }
 }
 </script>
 

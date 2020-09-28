@@ -26,7 +26,7 @@ class ClientLookup extends JsonResource
             'email' => $email ? $email->value : null,
             'address' => $address ? $this->fullAddress($address) : null,
             'address_id' => $address ? $address->id : null,
-            'formatted_address' => $address ? $this->formatedAddress($address) : null,
+            'formatted_address' => $address ? $this->formattedAddress($address) : null,
         ];
     }
 
@@ -35,7 +35,7 @@ class ClientLookup extends JsonResource
         return $address->address_line_1 . ' ' . $address->address_line_2 . ', ' . $address->city . ', ' . $address->postcode;
     }
 
-    private function formatedAddress($address)
+    private function formattedAddress($address)
     {
         return $address->address_line_1 . ', ' . $address->city;
     }

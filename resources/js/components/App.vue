@@ -1,6 +1,6 @@
 <template>
     <div>
-        <TopNavBar :username="username"/>
+        <TopNavBar/>
         <TopMenuBar :active="active_page_type"/>
         <header class="max-w-6xl mx-auto pt-5" v-if="title">
             <h1 class="text-xl font-medium tracking-wider leading-tight px-2 text-gray-700 uppercase">
@@ -25,17 +25,17 @@ export default {
         TopNavBar
     },
     name: "App",
-    props: {
-        user: Object | Array
-    },
     mounted() {
         this.setPageType({type: this.$route.meta.type})
         this.setTitle({title: this.$route.name})
+        this.$store.dispatch('init')
+        this.$store.dispatch('tenancy/init')
     },
     methods: {
         ...mapMutations({
             setTitle: 'setTitle',
             setPageType: 'setPageType',
+            setUser: 'setUser',
         })
     },
     computed: {
@@ -43,12 +43,6 @@ export default {
             title: 'getTitle',
             active_page_type: 'getPageType',
         }),
-        username() {
-            if (this.$props.user) {
-                return this.$props.user.name
-            }
-            return ''
-        },
     },
     watch: {
         $route(to, from) {
