@@ -58,12 +58,18 @@
                 />
             </b-table-column>
             <b-table-column
-                label="Unit Price"
+                label="Unit Cost"
                 centered
                 v-slot="props"
                 cell-class="align-middle"
             >
-                <span class="text-sm">{{ props.row.selling_unit_price }}</span>
+                <EditableInput
+                    placeholder="0.0%"
+                    :value="props.row.buying_unit_cost"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    @on-input="handleEditUnitCost"
+                />
             </b-table-column>
             <b-table-column
                 label="Disc %"
@@ -219,7 +225,18 @@ export default {
                 this.data[index] = {
                     ...this.data[index],
                     quantity: value,
-                    total: this.calculateProductTotalPrice(value, this.data[index].selling_unit_price, this.data[index].discount)
+                    total: this.calculateProductTotalPrice(value, this.data[index].buying_unit_cost, this.data[index].discount)
+                }
+                this.data = [...this.data]
+            }
+        },
+        handleEditUnitCost(value, product_id) {
+            const index = _.findIndex(this.data, value => value.id == product_id)
+            if (index !== -1) {
+                this.data[index] = {
+                    ...this.data[index],
+                    buying_unit_cost: value,
+                    total: this.calculateProductTotalPrice(this.data[index].quantity, value, this.data[index].discount)
                 }
                 this.data = [...this.data]
             }
@@ -230,7 +247,7 @@ export default {
                 this.data[index] = {
                     ...this.data[index],
                     discount: value,
-                    total: this.calculateProductTotalPrice(this.data[index].quantity, this.data[index].selling_unit_price, value)
+                    total: this.calculateProductTotalPrice(this.data[index].quantity, this.data[index].buying_unit_cost, value)
                 }
                 this.data = [...this.data]
             }
@@ -255,8 +272,8 @@ export default {
                 this.data = [...this.data]
             }
         },
-        calculateProductTotalPrice(quantity, selling_unit_price, discount) {
-            let total = selling_unit_price * quantity
+        calculateProductTotalPrice(quantity, buying_unit_cost, discount) {
+            let total = buying_unit_cost * quantity
             if (discount) {
                 total = total - (total * (discount / 100));
             }

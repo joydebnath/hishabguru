@@ -12,4 +12,9 @@ class Tenant extends Model
     {
         return $this->hasMany(ProductCategory::class);
     }
+
+    public function inventorySites()
+    {
+        return $this->hasMany(InventorySite::class);
+    }
 }

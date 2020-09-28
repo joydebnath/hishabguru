@@ -29,8 +29,16 @@
             <article class="message">
                 <section class="message-body py-3">
                     <div class="media">
-                        <div class="media-content text-center">
-                            Select Inventory Site
+                        <div class="media-content">
+                            <template v-if="false">
+                                <p class="text-center">
+                                    Select Inventory Site
+                                </p>
+                            </template>
+                            <template v-else>
+                                <p class="font-medium">Online store</p>
+                                <p class="text-sm">295/ka, Tali Office Road, Rayer Bazar, Dhaka 1209</p>
+                            </template>
                         </div>
                     </div>
                 </section>
@@ -101,10 +109,10 @@ export default {
         resetErrors() {
             this.errors = {}
         },
-        handleChangeAddress(){
+        handleChangeAddress() {
             this.changeable_address = true;
         },
-        handleCloseSelectAddress(){
+        handleCloseSelectAddress() {
             this.changeable_address = false;
         }
     },

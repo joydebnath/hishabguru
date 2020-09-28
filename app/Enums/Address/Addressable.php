@@ -2,11 +2,10 @@
 
 namespace App\Enums\Address;
 
-use BenSampo\Enum\Enum;
-
-final class Addressable extends Enum
+final class Addressable
 {
     const CONTACT =   'contact';
     const TENANT =   'tenant';
     const USER = 'user';
+    const INVENTORY_SITE = 'inventory_site';
 }
