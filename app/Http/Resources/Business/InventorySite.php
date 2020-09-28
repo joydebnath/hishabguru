@@ -18,11 +18,12 @@ class InventorySite extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'formatted_address' => $this->address ? $this->formattedAddress($this->address) : null,
+            'address_type' => $this->address ? $this->address->address_type : null
         ];
     }
 
     private function formattedAddress($address)
     {
-        return $address->address_line_1 . ', ' . $address->city. ' ' . $address->postcode;
+        return $address->address_line_1 . ', ' . $address->city . ' ' . $address->postcode;
     }
 }

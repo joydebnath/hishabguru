@@ -24,20 +24,22 @@
         <div class="field">
             <div class="flex flex-row justify-content-between align-items-center">
                 <label class="label">Delivery Address</label>
-                <b-button type="is-text" size="is-small" @click="handleChangeAddress">change</b-button>
+                <b-button v-if="is_changeable_inventory" type="is-text" size="is-small" @click="handleChangeAddress">
+                    change
+                </b-button>
             </div>
             <article class="message">
                 <section class="message-body py-3">
                     <div class="media">
                         <div class="media-content">
-                            <template v-if="false">
+                            <template v-if="selected_inventory">
+                                <p class="font-medium">{{ selected_inventory.name }}</p>
+                                <p class="text-sm">{{ selected_inventory.formatted_address }}</p>
+                            </template>
+                            <template v-else>
                                 <p class="text-center">
                                     Select Inventory Site
                                 </p>
-                            </template>
-                            <template v-else>
-                                <p class="font-medium">Online store</p>
-                                <p class="text-sm">295/ka, Tali Office Road, Rayer Bazar, Dhaka 1209</p>
                             </template>
                         </div>
                     </div>
@@ -52,6 +54,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 import SupplierLookupInput from "./suppliers/SupplierLookupInput";
 import SelectDeliverySite from "./SelectDeliverySite";
 
@@ -117,6 +120,15 @@ export default {
         }
     },
     computed: {
+        ...mapGetters({
+            inventories: 'tenancy/getCurrentInventories'
+        }),
+        selected_inventory() {
+            return _.first(this.inventories)
+        },
+        is_changeable_inventory() {
+            return this.inventories && this.inventories.length > 1
+        },
         has_contact_id() {
             return this.errors.contact_id !== undefined
         },

@@ -11,11 +11,11 @@
                 <button class="delete" @click="$emit('on-close')"></button>
             </header>
             <div class="modal-card-body" style="width: 700px">
-                <div class="flex-row mb-2">
-                    <SearchBox placeholder="Search by name" @search="handleSearch"/>
-                </div>
+<!--                <div class="flex-row mb-2">-->
+<!--                    <SearchBox placeholder="Search by name" @search="handleSearch"/>-->
+<!--                </div>-->
                 <b-table
-                    :data="data"
+                    :data="sites"
                     :columns="columns"
                     :selected.sync="selected"
                     :paginated="true"
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 import SearchBox from "@/components/global/SearchBox";
 
 export default {
@@ -46,26 +47,18 @@ export default {
     },
     data() {
         return {
-            data: [
-                {'id': 1, 'site': 'Default Store', 'address': 'Simmons', 'type': 'Online'},
-                {'id': 2, 'site': 'Default Store', 'address': 'Simmons', 'type': 'Online'},
-                {'id': 3, 'site': 'Default Store', 'address': 'Simmons', 'type': 'Online'},
-                {'id': 4, 'site': 'Default Store', 'address': 'Simmons', 'type': 'Online'},
-                {'id': 5, 'site': 'Default Store', 'address': 'Simmons', 'type': 'Online'},
-                {'id': 6, 'site': 'Default Store', 'address': 'Simmons', 'type': 'Online'},
-            ],
             columns: [
                 {
-                    field: 'site',
+                    field: 'name',
                     label: 'Site name',
                     width: 150,
                 },
                 {
-                    field: 'address',
+                    field: 'formatted_address',
                     label: 'Address',
                 },
                 {
-                    field: 'type',
+                    field: 'address_type',
                     label: 'Type',
                     width: 100,
                 },
@@ -78,6 +71,18 @@ export default {
     methods: {
         handleSearch(value) {
 
+        }
+    },
+    computed:{
+        ...mapGetters({
+            sites: 'tenancy/getCurrentInventories'
+        })
+    },
+    watch:{
+        selected(new_value, old_value){
+            if(new_value !== old_value){
+                this.$emit('on-select', new_value)
+            }
         }
     }
 }

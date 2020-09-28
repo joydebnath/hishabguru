@@ -4,10 +4,10 @@
             <span style="width: 135px" v-if="user_loading">
                 <b-skeleton :animated="true"/>
             </span>
-            <tempate v-else>
+            <template v-else>
                 <span>{{ username }}</span>
                 <b-icon icon="pan-down -mt-1"/>
-            </tempate>
+            </template>
         </div>
         <small class="dropdown-header uppercase tracking-wider">Switch Business</small>
         <b-dropdown-item class="py-3" aria-role="listitem">
