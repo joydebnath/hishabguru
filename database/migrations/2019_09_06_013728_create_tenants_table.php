@@ -16,7 +16,7 @@ class CreateTenantsTable extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
+            $table->boolean('setup_complete_flag')->default(false)->nullable();
             $table->timestamps();
         });
     }

@@ -59,12 +59,22 @@ const store = new Vuex.Store({
         setLoadingUser: (state, value) => state.loading_user = value,
     },
     actions: {
-        init: ({commit}) => {
+        init: ({commit, dispatch}) => {
             commit('setLoadingUser', true)
             axios
                 .get('/me')
                 .then(({data}) => {
-                    commit('setUser', {user: data.data})
+                    commit('setUser', {user: data.data.user})
+                    commit('tenancy/setTenants', {tenants: data.data.tenants})
+
+                    const FIRST = _.first(data.data.tenants);
+                    commit('tenancy/setCurrentTenant', {current_tenant: FIRST ? FIRST.id : null})
+                    commit('tenancy/setUserRoles', {roles: FIRST ? FIRST.user_roles : []})
+
+                    if (FIRST) {
+                        dispatch('tenancy/loadCurrentTenancyData')
+                    }
+
                     commit('setLoadingUser', false)
                 })
                 .catch(err => {

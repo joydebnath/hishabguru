@@ -17,6 +17,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'GuestPageController@index');
 Route::get('/almost-there', 'GuestPageController@welcome');
+Route::get('/is-void-account', 'GuestPageController@hasNoTenacy');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/init', 'Setup\InventoryController@create');

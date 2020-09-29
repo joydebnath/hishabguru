@@ -29,7 +29,6 @@ export default {
         this.setPageType({type: this.$route.meta.type})
         this.setTitle({title: this.$route.name})
         this.$store.dispatch('init')
-        this.$store.dispatch('tenancy/init')
     },
     methods: {
         ...mapMutations({

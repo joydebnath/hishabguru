@@ -19,22 +19,6 @@ const tenancy = {
         setUserRoles: (state, {roles}) => state.user_current_roles = roles,
     },
     actions: {
-        init: ({getters, commit, dispatch}) => {
-            axios
-                .get('/user-tenancies')
-                .then(({data}) => {
-                    commit('setTenants', {tenants: data.data})
-                    const FIRST = _.first(data.data);
-                    commit('setCurrentTenant', {current_tenant: FIRST ? FIRST.id : null})
-                    commit('setUserRoles', {roles: FIRST ? FIRST.user_roles : []})
-                    if (getters.getCurrentTenant) {
-                        dispatch('loadCurrentTenancyData')
-                    }
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-        },
         loadCurrentTenancyData: ({commit, getters}) => {
             axios
                 .get('/tenants/' + getters.getCurrentTenant)
