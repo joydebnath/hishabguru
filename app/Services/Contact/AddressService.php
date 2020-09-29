@@ -6,12 +6,12 @@ use App\Models\Address;
 
 class AddressService
 {
-    public function create($contactId, $addressableType, $storeable): Address
+    public function create($addressableId, $addressableType, $storeable): Address
     {
         return
             Address::create([
                 'addressable_type' => $addressableType,
-                'addressable_id' => $contactId,
+                'addressable_id' => $addressableId,
                 'address_line_1' => $storeable['address_line_1'],
                 'address_line_2' => isset($storeable['address_line_2']) ? $storeable['address_line_2'] : null,
                 'city' => $storeable['city'],

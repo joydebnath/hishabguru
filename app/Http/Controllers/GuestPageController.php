@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class GuestPageController extends Controller
 {
-    public function welcome()
+    public function index()
     {
         return view('welcome');
+    }
+
+    public function welcome()
+    {
+        return view('guest.email-verification-sent');
     }
 }

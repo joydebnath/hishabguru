@@ -13,13 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/', 'GuestPageController@welcome');
+Route::get('/', 'GuestPageController@index');
+Route::get('/almost-there', 'GuestPageController@welcome');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/init', 'Setup\InventoryController@create');
+    Route::post('/init', 'Setup\InventoryController@store');
     Route::get('/@/dashboard', 'PagesController@index')->name('home');
     Route::get('/@/{any}', 'PagesController@index')->where('any', '.*');
 });
+//'verified'
 
 

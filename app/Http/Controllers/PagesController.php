@@ -9,10 +9,6 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-//        if($user->email_verified_at === null){
-//            return view('welcome');
-//        }
         return view('spa');
     }
 }

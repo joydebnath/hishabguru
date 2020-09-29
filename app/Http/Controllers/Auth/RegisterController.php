@@ -8,6 +8,8 @@ use App\Models\Tenant;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/almost-there';
 
     /**
      * Create a new controller instance.
@@ -96,5 +98,10 @@ class RegisterController extends Controller
     {
         $role = Role::where('slug', 'admin')->first();
         $user->tenants()->attach($tenant->id, ['role_id' => $role->id]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        Auth::logout();
     }
 }

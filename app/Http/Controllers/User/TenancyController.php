@@ -14,4 +14,9 @@ class TenancyController extends Controller
         $user = Auth::user();
         return new TenancyCollection($user->tenants->load('user_roles'));
     }
+
+    public function store(Request $request)
+    {
+
+    }
 }

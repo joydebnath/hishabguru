@@ -58,9 +58,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -70,45 +68,11 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
-                    @else
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nav-item text-base leading-6 px-3 py-2 font-medium focus:outline-none hover:no-underline text-gray-600 hover:text-gray-900 focus:text-gray-900"
-                               href="#" role="button" data-toggle="dropdown">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <h6 class="dropdown-header">Businesses</h6>
-                                <section class="dropdown-item">
-                                    Meghomitra
-                                </section>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/settings">Settings</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
                     @endguest
                 </ul>
             </div>
         </div>
     </nav>
-    @auth
-        @include('layouts.topnav')
-        @if(isset($title))
-            <header class="max-w-6xl mx-auto pt-5">
-                <h1 class="text-xl font-medium tracking-wider leading-tight px-2 text-gray-700 uppercase">
-                    {{$title}}
-                </h1>
-            </header>
-        @endif
-    @endauth
     <main class="py-4">
         @yield('content')
     </main>
