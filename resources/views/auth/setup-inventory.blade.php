@@ -22,9 +22,9 @@
                         <input hidden name="address_type" type="text" value="headquarter">
                         <input hidden name="tenant_id" type="number" value="{{$tenant->id}}">
                         <div class="field">
-                            <label class="label">Site</label>
+                            <label class="label">Site Name</label>
                             <div class="control">
-                                <input class="input" name="name" type="text" value="{{ old('name') }}" placeholder="Enter location name">
+                                <input class="input" name="name" type="text" value="{{ old('name') }}" placeholder="e.g. Online Store">
                             </div>
                         </div>
                         <p class="font-semibold mt-4 my-3 ">

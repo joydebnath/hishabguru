@@ -6,10 +6,13 @@ use App\Enums\Address\Addressable;
 use App\Enums\Address\AddressType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\InventoryRequest;
+use App\Models\Tenant;
 use App\Services\Contact\AddressService;
 use App\Services\Inventory\InventoryService;
+use App\Services\User\SystemUserCacheService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class InventoryController extends Controller
 {
@@ -33,15 +36,22 @@ class InventoryController extends Controller
 
     public function store(InventoryRequest $request)
     {
-        $storable = $this->getAddressStoreable($request);
-        $site = $this->inventoryService->create([
-            'name' => $request->get('name'),
-            'description' => $request->get('description', null),
-        ], $storable['tenant_id']);
+        try {
+            $storable = $this->getAddressStoreable($request);
+            $site = $this->inventoryService->create([
+                'name' => $request->get('name'),
+                'description' => $request->get('description', null),
+            ], $storable['tenant_id']);
 
-        $this->addressService->create($site->id, Addressable::INVENTORY_SITE, $storable);
+            $this->addressService->create($site->id, Addressable::INVENTORY_SITE, $storable);
+            $this->tenantSetupCompleted($storable['tenant_id']);
 
-        return redirect('/@/dashboard');
+            (new SystemUserCacheService())->flushCache(Auth::user());
+
+            return redirect('/@/dashboard');
+        } catch (\Exception $exception) {
+            return redirect('/');
+        }
     }
 
     /**
@@ -54,5 +64,12 @@ class InventoryController extends Controller
         unset($fillable['description']);
         unset($fillable['name']);
         return $fillable;
+    }
+
+    private function tenantSetupCompleted($tenantId)
+    {
+        Tenant::where('id', $tenantId)->update([
+            'setup_complete_flag' => true
+        ]);
     }
 }

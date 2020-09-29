@@ -19,12 +19,11 @@ Route::get('/', 'GuestPageController@index');
 Route::get('/almost-there', 'GuestPageController@welcome');
 Route::get('/is-void-account', 'GuestPageController@hasNoTenacy');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/init', 'Setup\InventoryController@create');
     Route::post('/init', 'Setup\InventoryController@store');
     Route::get('/@/dashboard', 'PagesController@index')->name('home');
     Route::get('/@/{any}', 'PagesController@index')->where('any', '.*');
 });
-//'verified'
 
 

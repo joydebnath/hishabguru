@@ -2,6 +2,8 @@
 
 namespace App\Services\User;
 
+use Illuminate\Support\Facades\Cache;
+
 class SystemUserCacheService
 {
     protected $cacheTTL = 600; // 10 min
@@ -21,5 +23,10 @@ class SystemUserCacheService
     public function generateCacheKey($user)
     {
         return 'user:' . $user->id . ':roles';
+    }
+
+    public function flushCache($user)
+    {
+        Cache::forget($this->generateCacheKey($user));
     }
 }
