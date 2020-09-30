@@ -81,7 +81,7 @@
                                 </b-dropdown-item>
                             </router-link>
                             <b-dropdown-item @click="$emit('on-copy', props.row)">
-                                Copy to
+                                Copy to Bill
                             </b-dropdown-item>
                             <hr class="dropdown-divider">
                             <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
@@ -122,7 +122,7 @@ export default {
         status_type(value){
             let type = '';
             switch (value) {
-                case 'save':
+                case 'purchased':
                     type = 'is-success'
                     break;
                 case 'draft':

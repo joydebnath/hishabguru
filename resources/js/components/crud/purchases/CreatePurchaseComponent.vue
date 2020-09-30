@@ -94,7 +94,7 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'save';
+                order['status'] = 'purchased';
                 this.createPurchaseOrder(order, 'Purchase Order is created')
             }
         },

@@ -25,19 +25,6 @@
                 Invoices
             </b-dropdown-item>
         </router-link>
-<!--        <span class="dropdown-divider"></span>-->
-<!--        <span class="dropdown-header tracking-wider">Banking</span>-->
-<!--        <router-link to="/@/marketplace">-->
-<!--            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">-->
-<!--                Bkash-->
-<!--            </b-dropdown-item>-->
-<!--        </router-link>-->
-<!--        <router-link to="/@/promo-codes">-->
-<!--            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">-->
-<!--                SSLCommerz-->
-<!--            </b-dropdown-item>-->
-<!--        </router-link>-->
-<!--        <span class="dropdown-divider"></span>-->
         <span class="dropdown-header tracking-wider">E-commerce</span>
         <router-link to="/@/marketplace">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
