@@ -2,9 +2,7 @@
 
 namespace App\Enums\Product;
 
-use BenSampo\Enum\Enum;
-
-final class ProductStatus extends Enum
+final class ProductStatus
 {
     const ACTIVE =   'active';
     const INACTIVE =   'inactive';

@@ -75,6 +75,8 @@ class RegisterController extends Controller
 
         $this->attachUserToTenant($user, $tenant);
 
+        $this->updateUserCurrentTenancy($user, $tenant);
+
         return $user;
     }
 
@@ -98,6 +100,13 @@ class RegisterController extends Controller
     {
         $role = Role::where('slug', 'admin')->first();
         $user->tenants()->attach($tenant->id, ['role_id' => $role->id]);
+    }
+
+    private function updateUserCurrentTenancy($user, $tenant)
+    {
+        if ($user->current_tenant_id === null) {
+            $user->update(['current_tenant_id' => $tenant->id]);
+        }
     }
 
     protected function registered(Request $request, $user)

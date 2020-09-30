@@ -2,9 +2,7 @@
 
 namespace App\Enums\Contact;
 
-use BenSampo\Enum\Enum;
-
-final class ContactDetailsType extends Enum
+final class ContactDetailsType
 {
     const MOBILE =   'mobile';
     const PHONE =   'phone';

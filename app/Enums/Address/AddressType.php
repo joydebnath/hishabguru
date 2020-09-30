@@ -2,9 +2,7 @@
 
 namespace App\Enums\Address;
 
-use BenSampo\Enum\Enum;
-
-final class AddressType extends Enum
+final class AddressType
 {
     const BILLING =   'billing';
     const SHIPPING =   'shipping';

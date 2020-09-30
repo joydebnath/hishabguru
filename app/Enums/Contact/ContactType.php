@@ -2,9 +2,7 @@
 
 namespace App\Enums\Contact;
 
-use BenSampo\Enum\Enum;
-
-final class ContactType extends Enum
+final class ContactType
 {
     const CLIENT =   'client';
     const SUPPLIER =   'supplier';

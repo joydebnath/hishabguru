@@ -2,9 +2,7 @@
 
 namespace App\Enums\Business;
 
-use BenSampo\Enum\Enum;
-
-final class OrderStatus extends Enum
+final class OrderStatus
 {
     const COMPLETED =   'completed';
     const DISPATCHED =   'dispatched';

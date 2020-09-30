@@ -2,9 +2,7 @@
 
 namespace App\Enums\Business;
 
-use BenSampo\Enum\Enum;
-
-final class QuotationStatus extends Enum
+final class QuotationStatus
 {
     const DRAFT = 'draft';
     const SAVE = 'save';
