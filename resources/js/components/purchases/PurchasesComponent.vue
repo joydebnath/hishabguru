@@ -54,7 +54,7 @@ export default {
         },
         handleDelete(purchase_order) {
             this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting purchase order</h5>Are you sure you want to delete the purchase order: <b>' + purchase_order.purchase_order_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Purchase Order</h5>Are you sure you want to delete the purchase order: <b>' + purchase_order.purchase_order_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,

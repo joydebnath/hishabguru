@@ -54,8 +54,7 @@ export default {
         },
         handleDelete(order) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting order',
-                message: 'Are you sure you want to delete the order: <b>' + order.order_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Order</h5>Are you sure you want to delete the order: <b>' + order.order_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,

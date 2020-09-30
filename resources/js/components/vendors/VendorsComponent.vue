@@ -95,8 +95,7 @@ export default {
         },
         handleDelete(supplier) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting supplier',
-                message: 'Are you sure you want to delete <b>' + supplier.name + '</b>?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Supplier</h5>Are you sure you want to delete <b>' + supplier.name + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,

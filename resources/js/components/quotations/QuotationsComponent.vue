@@ -57,8 +57,7 @@ export default {
         },
         handleDelete(quotation) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting quotation',
-                message: 'Are you sure you want to delete the quotation: <b>' + quotation.quotation_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Quotation</h5>Are you sure you want to delete <b>' + quotation.quotation_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,

@@ -79,8 +79,7 @@ export default {
         },
         handleDelete(product_category) {
             this.$buefy.dialog.confirm({
-                title: 'Deleting product: ' + product_category.name,
-                message: 'Are you sure you want to <b>delete</b> the product category?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Site</h5>Are you sure you want to <b>delete</b> the product category?',
                 confirmText: 'Delete Category',
                 type: 'is-danger',
                 hasIcon: true,
