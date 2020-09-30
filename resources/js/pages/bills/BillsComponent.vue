@@ -17,7 +17,7 @@
                     </template>
                     <router-link to="/@/purchases/create">
                         <button class="button field is-info">
-                            <span>New purchase</span>
+                            <span>New Bill</span>
                         </button>
                     </router-link>
                 </div>
@@ -31,8 +31,8 @@
 <script>
 import {mapGetters} from 'vuex';
 import SearchBox from '../../components/global/SearchBox';
-import Table from "./PurchaseTable.vue";
-import Filters from "./PurchasesFilters";
+import Table from "./BillsTable.vue";
+import Filters from "./BillsFilters";
 
 export default {
     components: {
@@ -54,7 +54,7 @@ export default {
         },
         handleDelete(purchase_order) {
             this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Purchase Order</h5>Are you sure you want to delete the purchase order: <b>' + purchase_order.purchase_order_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Bill</h5>Are you sure you want to delete <b>' + purchase_order.purchase_order_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,

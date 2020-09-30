@@ -6,7 +6,7 @@
             <HeaderActions v-if="false"/>
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-1">
-                    <PurchaseDetails ref="part1" :item="computed_item"/>
+                    <BillDetails ref="part1" :item="computed_item"/>
                 </div>
                 <div class="col-span-2 ml-4">
                     <ProductsTable ref="part2" :item="computed_item"/>
@@ -35,16 +35,16 @@
 
 <script>
 import {mapGetters} from "vuex";
-import PurchaseDetails from "./widgets/PurchaseDetails";
+import BillDetails from "./widgets/BillDetails.vue";
 import ProductsTable from "./widgets/ProductsTable";
-import {update, read} from "../../../repos";
+import {update, read} from "@/repos/bills";
 import HeaderActions from "./widgets/HeaderActions";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 
 export default {
     name: "PurchaseComponent",
-    components: {Breadcrumb, FooterActions, HeaderActions, ProductsTable, PurchaseDetails},
+    components: {Breadcrumb, FooterActions, HeaderActions, ProductsTable, BillDetails},
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
