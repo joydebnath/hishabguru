@@ -20,9 +20,9 @@
                 Purchases
             </b-dropdown-item>
         </router-link>
-        <router-link to="/@/miscellaneous-expenses">
+        <router-link to="/@/other-expenses">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Miscellaneous expenses
+                Other expenses
             </b-dropdown-item>
         </router-link>
     </b-dropdown>

@@ -6,7 +6,7 @@
                 <b-icon :icon="active ? 'menu-up' : 'menu-down'"/>
             </button>
             <b-dropdown-item aria-role="listitem">
-                Copy To
+                Copy To Bill
             </b-dropdown-item>
             <b-dropdown-item class="text-red-700" aria-role="listitem">
                 Delete

@@ -19,9 +19,9 @@
                     <b-field label="Type">
                         <b-select placeholder="Select a type" expanded>
                             <option
-                                v-for="(option, index) in options"
+                                v-for="(option, bills) in options"
                                 :value="option"
-                                :key="index"
+                                :key="bills"
                             >
                                 {{ option }}
                             </option>

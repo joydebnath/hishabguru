@@ -41,6 +41,15 @@
                 </div>
             </b-dropdown-item>
         </router-link>
+        <router-link to="/@/other-expenses/create">
+            <b-dropdown-item class="py-3" aria-role="listitem" custom-class="outline-none">
+                <div class="media">
+                    <div class="media-content">
+                        <h3>New Other Expense</h3>
+                    </div>
+                </div>
+            </b-dropdown-item>
+        </router-link>
     </b-dropdown>
 </template>
 

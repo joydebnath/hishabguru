@@ -37,7 +37,7 @@
 <script>
 import {mapGetters} from "vuex";
 import ProductsTable from "./widgets/ProductsTable";
-import {update, read} from "./repo";
+import {update, read} from "@/repos/quotations";
 import FooterActions from "@/components/global/crud/FooterActions";
 import Breadcrumb from "./widgets/Breadcrumb";
 import QuotationDetails from "./widgets/QuotationDetails";

@@ -37,7 +37,7 @@
 import {mapGetters} from "vuex";
 import PurchaseDetails from "./widgets/PurchaseDetails";
 import ProductsTable from "./widgets/ProductsTable";
-import {update, read} from "./repo";
+import {update, read} from "@/repos/purchases";
 import HeaderActions from "./widgets/HeaderActions";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";

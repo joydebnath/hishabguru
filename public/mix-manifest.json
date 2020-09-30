@@ -7,6 +7,8 @@
     "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~0b98a6d9.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~0b98a6d9.js",
     "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/quotation~0b838fcf.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/quotation~0b838fcf.js",
     "/js/create-order.js": "/js/create-order.js",
+    "/js/create-order~js/create-purchase~js/create-quotation~js/order~js/purchase~js/quotation.js": "/js/create-order~js/create-purchase~js/create-quotation~js/order~js/purchase~js/quotation.js",
+    "/js/create-order~js/create-quotation~js/order~js/quotation.js": "/js/create-order~js/create-quotation~js/order~js/quotation.js",
     "/js/create-order~js/order.js": "/js/create-order~js/order.js",
     "/js/create-purchase.js": "/js/create-purchase.js",
     "/js/create-purchase~js/purchase.js": "/js/create-purchase~js/purchase.js",
@@ -24,5 +26,18 @@
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotation.js": "/js/quotation.js",
     "/js/quotations.js": "/js/quotations.js",
-    "/js/suppliers.js": "/js/suppliers.js"
+    "/js/suppliers.js": "/js/suppliers.js",
+    "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~4f867e34.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~4f867e34.js",
+    "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/suppliers.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/suppliers.js",
+    "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~7dc96752.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~7dc96752.js",
+    "/js/clients~js/invoices~js/marketplace~js/products~js/promo-codes~js/purchases~js/quotations~js/suppliers.js": "/js/clients~js/invoices~js/marketplace~js/products~js/promo-codes~js/purchases~js/quotations~js/suppliers.js",
+    "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~e5196092.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~e5196092.js",
+    "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/quotations~js/suppliers.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/quotations~js/suppliers.js",
+    "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~11168e4f.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~11168e4f.js",
+    "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/quotations.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/quotations.js",
+    "/js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/order~js/orders~f4561d52.js": "/js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/order~js/orders~f4561d52.js",
+    "/js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/quotations~js/suppliers.js": "/js/invoices~js/marketplace~js/orders~js/products~js/promo-codes~js/purchases~js/quotations~js/suppliers.js",
+    "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~c31af4d9.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~c31af4d9.js",
+    "/js/clients~js/invoices~js/marketplace~js/orders~js/promo-codes~js/purchases~js/quotations~js/suppliers.js": "/js/clients~js/invoices~js/marketplace~js/orders~js/promo-codes~js/purchases~js/quotations~js/suppliers.js",
+    "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~f760e7d7.js": "/js/clients~js/create-order~js/create-purchase~js/create-quotation~js/invoices~js/marketplace~js/orde~f760e7d7.js"
 }

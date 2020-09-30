@@ -1,4 +1,4 @@
-const PurchasesComponent = () => import(/* webpackChunkName: "js/purchases" */  "../components/purchases/PurchasesComponent");
+const PurchasesComponent = () => import(/* webpackChunkName: "js/purchases" */  "../pages/purchases/PurchasesComponent");
 const PurchaseComponent = () => import(/* webpackChunkName: "js/purchase" */  "../components/crud/purchases/PurchaseComponent");
 const CreatePurchaseComponent = () => import(/* webpackChunkName: "js/create-purchase" */  "../components/crud/purchases/CreatePurchaseComponent");
 

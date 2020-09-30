@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import EmptyTable from '../global/table/EmptyTable'
+import EmptyTable from '@/components/global/table/EmptyTable'
 export default {
     components:{
         EmptyTable

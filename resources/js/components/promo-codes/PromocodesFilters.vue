@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import FilterComponent from "../global/filter/Filter";
+import FilterComponent from "@/components/global/filter/Filter";
 export default {
     components: {
         FilterComponent

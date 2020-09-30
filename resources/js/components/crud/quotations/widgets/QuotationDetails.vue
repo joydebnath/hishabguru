@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import ClientLookupInput from "./clients/ClientLookupInput";
+import ClientLookupInput from "@/components/global/lookup/clients/ClientLookupInput";
 
 export default {
     name: "QuotationDetails",

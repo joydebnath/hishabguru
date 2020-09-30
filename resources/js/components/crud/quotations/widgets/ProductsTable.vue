@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import ProductLookupInput from "./products/ProductLookupInput";
+import ProductLookupInput from "@/components/global/lookup/products/ProductLookupInput";
 import EditableInput from "@/components/global/input/ProductEditableInput";
 import EmptyTable from '@/components/global/table/EmptyTable'
 
@@ -215,31 +215,31 @@ export default {
             this.data = [...this.data];
         },
         handleEditQuantity(value, product_id) {
-            const index = _.findIndex(this.data, value => value.id == product_id)
-            if (index !== -1) {
-                this.data[index] = {
-                    ...this.data[index],
+            const bills = _.findIndex(this.data, value => value.id == product_id)
+            if (bills !== -1) {
+                this.data[bills] = {
+                    ...this.data[bills],
                     quantity: value,
-                    total: this.calculateProductTotalPrice(value, this.data[index].selling_unit_price, this.data[index].discount)
+                    total: this.calculateProductTotalPrice(value, this.data[bills].selling_unit_price, this.data[bills].discount)
                 }
                 this.data = [...this.data]
             }
         },
         handleEditDiscount(value, product_id) {
-            const index = _.findIndex(this.data, value => value.id == product_id)
-            if (index !== -1) {
-                this.data[index] = {
-                    ...this.data[index],
+            const bills = _.findIndex(this.data, value => value.id == product_id)
+            if (bills !== -1) {
+                this.data[bills] = {
+                    ...this.data[bills],
                     discount: value,
-                    total: this.calculateProductTotalPrice(this.data[index].quantity, this.data[index].selling_unit_price, value)
+                    total: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].selling_unit_price, value)
                 }
                 this.data = [...this.data]
             }
         },
         handleEditTaxRate(value, product_id) {
-            const index = _.findIndex(this.data, value => value.id == product_id)
-            if (index !== -1) {
-                this.data[index] = {...this.data[index], tax_rate: value}
+            const bills = _.findIndex(this.data, value => value.id == product_id)
+            if (bills !== -1) {
+                this.data[bills] = {...this.data[bills], tax_rate: value}
                 this.data = [...this.data]
             }
         },
@@ -250,9 +250,9 @@ export default {
             this.updateEditField(product, false)
         },
         updateEditField(product, editable) {
-            const index = _.findIndex(this.data, value => value.id == product.id)
-            if (index !== -1) {
-                this.data[index] = {...this.data[index], edit: editable}
+            const bills = _.findIndex(this.data, value => value.id == product.id)
+            if (bills !== -1) {
+                this.data[bills] = {...this.data[bills], edit: editable}
                 this.data = [...this.data]
             }
         },

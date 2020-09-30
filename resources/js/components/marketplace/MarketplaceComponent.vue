@@ -35,7 +35,7 @@
 
 <script>
 import {mapMutations} from 'vuex';
-import SearchBox from '../global/SearchBox'
+import SearchBox from '@/components/global/SearchBox'
 import Table from "./MarketplaceTable.vue";
 import Filters from "./MarketplaceFilters";
 import ItemCRUD from "./modals/ItemCRUD";

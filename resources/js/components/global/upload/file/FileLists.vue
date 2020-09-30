@@ -1,6 +1,6 @@
 <template>
     <ul class="border border-gray-200 rounded-md">
-        <File v-for="(file, index) in $props.files" :key="index" :name="file.name"/>
+        <File v-for="(file, bills) in $props.files" :key="bills" :name="file.name"/>
     </ul>
 </template>
 

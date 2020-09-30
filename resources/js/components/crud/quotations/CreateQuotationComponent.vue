@@ -38,7 +38,7 @@ import ProductsTable from "./widgets/ProductsTable";
 import FooterActions from "@/components/global/crud/FooterActions";
 import Breadcrumb from "./widgets/Breadcrumb";
 import QuotationDetails from "./widgets/QuotationDetails";
-import {store} from "./repo";
+import {store} from "@/repos/quotations";
 
 export default {
     name: "CreateQuotationComponent",

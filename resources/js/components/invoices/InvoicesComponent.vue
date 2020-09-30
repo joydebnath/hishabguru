@@ -16,20 +16,18 @@
             <div class="border-b my-4"></div>
             <Table />
         </div>
-        <ItemCRUD :show="show_modal" @close="handleToggleModal" />
     </div>
 </template>
 
 <script>
-import SearchBox from '../global/SearchBox'
+import SearchBox from '@/components/global/SearchBox'
 import Table from "./InvoicesTable.vue";
 import Filters from "./InvoicesFilters";
-import ItemCRUD from "./modals/ItemCRUD";
+
 
 export default {
     components: {
         Filters,
-        ItemCRUD,
         Table,
         SearchBox
     },
@@ -39,9 +37,6 @@ export default {
         };
     },
     methods: {
-        handleToggleModal() {
-            this.show_modal = !this.show_modal;
-        },
         handleSearch(value){
             console.log(value)
         }

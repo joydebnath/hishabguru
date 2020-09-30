@@ -1,4 +1,4 @@
-const QuotationsComponent = () => import(/* webpackChunkName: "js/quotations" */  "../components/quotations/QuotationsComponent");
+const QuotationsComponent = () => import(/* webpackChunkName: "js/quotations" */  "../pages/quotations/QuotationsComponent");
 const QuotationComponent = () => import(/* webpackChunkName: "js/quotation" */  "../components/crud/quotations/QuotationComponent");
 const CreateQuotationComponent = () => import(/* webpackChunkName: "js/create-quotation" */  "../components/crud/quotations/CreateQuotationComponent");
 

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import SearchBox from '../global/SearchBox'
+import SearchBox from '@/components/global/SearchBox'
 import Table from "./PromocodesTable.vue";
 import Filters from "./PromocodesFilters";
 import ItemCRUD from "./modals/ItemCRUD";

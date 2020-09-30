@@ -39,7 +39,7 @@ import PurchaseDetails from "./widgets/PurchaseDetails";
 import ProductsTable from "./widgets/ProductsTable";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
-import {store} from "./repo";
+import {store} from "@/repos/purchases";
 import HeaderActions from "./widgets/HeaderActions";
 
 export default {

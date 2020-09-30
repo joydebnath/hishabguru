@@ -60,7 +60,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import SupplierLookupInput from "./suppliers/SupplierLookupInput";
+import SupplierLookupInput from "@/components/global/lookup/suppliers/SupplierLookupInput";
 import SelectDeliverySite from "./SelectDeliverySite";
 import UploadedFiles from "./UploadedFiles";
 

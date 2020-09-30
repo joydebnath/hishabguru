@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "../components/products/ProductsComponent");
-const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "../components/product-categories/ProductsComponent");
+const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "../pages/products/ProductsComponent");
+const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "../pages/product-categories/ProductsComponent");
 const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
 const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "../components/ExampleComponent");
 
@@ -16,8 +16,8 @@ import PurchaseRoutes from './purchases'
 
 const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
 
-const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../components/clients/ClientsComponent");
-const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../components/vendors/VendorsComponent");
+const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../pages/clients/ClientsComponent");
+const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/vendors/VendorsComponent");
 
 const router = new VueRouter({
     mode: 'history',
@@ -57,9 +57,15 @@ const router = new VueRouter({
         },
         ...InvoiceRoutes,
         {
-            path: '/@/expenses',
-            name: 'expenses',
-            meta: {type: 'accounting'},
+            path: '/@/bills',
+            name: 'bills',
+            meta: {type: 'expenses'},
+            component: ExampleComponent,
+        },
+        {
+            path: '/@/other-expenses',
+            name: 'other expenses',
+            meta: {type: 'expenses'},
             component: ExampleComponent,
         },
         {

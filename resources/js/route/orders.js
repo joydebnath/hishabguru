@@ -1,4 +1,4 @@
-const OrdersComponent = () => import(/* webpackChunkName: "js/orders" */  "../components/orders/OrdersComponent");
+const OrdersComponent = () => import(/* webpackChunkName: "js/orders" */  "../pages/orders/OrdersComponent");
 const OrderComponent = () => import(/* webpackChunkName: "js/order" */  "../components/crud/orders/OrderComponent");
 const CreateOrderComponent = () => import(/* webpackChunkName: "js/create-order" */  "../components/crud/orders/CreateOrderComponent");
 
