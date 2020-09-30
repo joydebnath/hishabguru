@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Setup;
 
 use App\Enums\Address\Addressable;
-use App\Enums\Address\AddressType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\InventoryRequest;
 use App\Models\Tenant;
 use App\Services\Contact\AddressService;
 use App\Services\Inventory\InventoryService;
 use App\Services\User\SystemUserCacheService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 
 class InventoryController extends Controller
 {
@@ -39,9 +36,9 @@ class InventoryController extends Controller
         try {
             $storable = $this->getAddressStoreable($request);
             $site = $this->inventoryService->create([
-                'name' => $request->get('name'),
+                'name' => $request->name,
                 'description' => $request->get('description', null),
-            ], $storable['tenant_id']);
+            ], $request->tenant_id);
 
             $this->addressService->create($site->id, Addressable::INVENTORY_SITE, $storable);
             $this->tenantSetupCompleted($storable['tenant_id']);

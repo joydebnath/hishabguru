@@ -16,9 +16,8 @@
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Setup/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Setup/InventoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/User/SystemUserCacheService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/User/SystemUserCacheService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/setup-inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/setup-inventory.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -529,6 +528,19 @@
       <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
       <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/vendor/hollodotme/fast-cgi-client" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/vendor/riverline/multipart-parser" />
+      <path value="$PROJECT_DIR$/vendor/mnapoli/silly" />
+      <path value="$PROJECT_DIR$/vendor/php-di/invoker" />
+      <path value="$PROJECT_DIR$/vendor/async-aws/cloud-formation" />
+      <path value="$PROJECT_DIR$/vendor/async-aws/lambda" />
+      <path value="$PROJECT_DIR$/vendor/async-aws/core" />
+      <path value="$PROJECT_DIR$/vendor/bref/laravel-bridge" />
+      <path value="$PROJECT_DIR$/vendor/bref/bref" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
     </include_path>
   </component>
   <component name="ProjectId" id="1gTrurrO9K1Pfs6lOvh6nyMtABi" />
@@ -542,7 +554,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/guest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -727,7 +739,8 @@
       <workItem from="1601246020330" duration="1831000" />
       <workItem from="1601292426740" duration="11250000" />
       <workItem from="1601339797019" duration="83000" />
-      <workItem from="1601349185058" duration="29029000" />
+      <workItem from="1601349185058" duration="30038000" />
+      <workItem from="1601424292992" duration="869000" />
     </task>
     <servers />
   </component>
@@ -780,12 +793,12 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2020" y="100" width="1720" height="880" key="DiffContextDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600858022311" />
-    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601339866808">
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601423049080">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600648085384" />
     <state x="2930" y="132" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600730610547" />
-    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601339866808" />
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601423049080" />
     <state x="4583" y="298" key="FileChooserDialogImpl/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600390271634" />
     <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1601187315809" />
     <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1599355486797">
