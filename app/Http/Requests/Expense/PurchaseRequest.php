@@ -54,6 +54,7 @@ class PurchaseRequest extends FormRequest
             'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,
             'create_date' => $this->create_date ? Carbon::createFromFormat('d/m/Y', $this->create_date) : null,
             'delivery_date' => $this->delivery_date ? Carbon::createFromFormat('d/m/Y', $this->delivery_date) : null,
+            'delivery_site_id' => $this->delivery_site ? $this->delivery_site['id'] : null
         ]);
     }
 }

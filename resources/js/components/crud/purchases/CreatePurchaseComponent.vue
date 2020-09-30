@@ -3,6 +3,7 @@
         <Breadcrumb active_link_name="New Purchase Order"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
+            <HeaderActions v-if="false" :show_option="false" :show_print="false"/>
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-1">
                     <PurchaseDetails ref="part1" :item="computed_item"/>
@@ -39,10 +40,11 @@ import ProductsTable from "./widgets/ProductsTable";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 import {store} from "./repo";
+import HeaderActions from "./widgets/HeaderActions";
 
 export default {
     name: "CreatePurchaseComponent",
-    components: {Breadcrumb, FooterActions, ProductsTable, PurchaseDetails},
+    components: {HeaderActions, Breadcrumb, FooterActions, ProductsTable, PurchaseDetails},
     data() {
         return {
             error_container: false,

@@ -49,7 +49,12 @@
         <b-field label="Note">
             <b-input type="textarea" v-model="purchase_order.note" rows="3"/>
         </b-field>
-        <SelectDeliverySite :show="changeable_address" @on-close="handleCloseSelectAddress"/>
+        <UploadedFiles v-if="false"/>
+        <SelectDeliverySite
+            :show="changeable_address"
+            @on-select="handleDeliverySiteSelected"
+            @on-close="handleCloseSelectAddress"
+        />
     </div>
 </template>
 
@@ -57,10 +62,11 @@
 import {mapGetters} from 'vuex';
 import SupplierLookupInput from "./suppliers/SupplierLookupInput";
 import SelectDeliverySite from "./SelectDeliverySite";
+import UploadedFiles from "./UploadedFiles";
 
 export default {
     name: "PurchaseDetails",
-    components: {SelectDeliverySite, SupplierLookupInput},
+    components: {UploadedFiles, SelectDeliverySite, SupplierLookupInput},
     props: {
         item: Object | Array
     },
@@ -70,15 +76,16 @@ export default {
                 contact_id: null,
                 purchase_order_number: null,
                 reference_number: null,
-                note: null
+                note: null,
+                delivery_site: null
             },
             required_fields: {
                 contact_id: true,
                 purchase_order_number: true,
+                delivery_site: true
             },
             errors: {},
             contact: null,
-            site_address: null,
             changeable_address: false,
         }
     },
@@ -98,7 +105,10 @@ export default {
                 this.validation()
             }
             return {
-                data: this.purchase_order,
+                data: {
+                    ...this.purchase_order,
+                    delivery_site: this.selected_inventory
+                },
                 errors: this.errors
             }
         },
@@ -117,6 +127,9 @@ export default {
         },
         handleCloseSelectAddress() {
             this.changeable_address = false;
+        },
+        handleDeliverySiteSelected(site){
+            this.purchase_order = {...this.purchase_order, delivery_site: site}
         }
     },
     computed: {
@@ -124,7 +137,10 @@ export default {
             inventories: 'tenancy/getCurrentInventories'
         }),
         selected_inventory() {
-            return _.first(this.inventories)
+            if(this.purchase_order.delivery_site){
+                return this.purchase_order.delivery_site;
+            }
+            return _.first(this.inventories);
         },
         is_changeable_inventory() {
             return this.inventories && this.inventories.length > 1
