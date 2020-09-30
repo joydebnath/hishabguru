@@ -15,8 +15,8 @@ class Purchase extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')
-            ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total');
+        return $this->belongsToMany(Product::class, 'purchase_products', 'purchase_id', 'product_id')
+            ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total', 'buying_unit_cost');
     }
 
     public function contact(): BelongsTo
@@ -34,7 +34,7 @@ class Purchase extends Model
         return $this->belongsTo(User::class, 'approved_by');
     }
 
-    public function delivery_site() : BelongsTo
+    public function delivery_site(): BelongsTo
     {
         return $this->belongsTo(InventorySite::class, 'delivery_site_id');
     }

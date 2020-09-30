@@ -206,16 +206,18 @@ export default {
             this.errors = {}
         },
         handleProductSelect(product) {
+            console.log(product)
             const INDEX = _.findIndex(this.data, value => value.id === product.id)
             if (INDEX === -1) {
                 this.data = [...this.data, product];
                 return;
             }
-            const new_quantity = this.data[INDEX].quantity + product.quantity;
+            const new_quantity = parseInt(this.data[INDEX].quantity) + parseInt(product.quantity);
+            console.log(this.data[INDEX])
             this.data[INDEX] = {
                 ...this.data[INDEX],
                 quantity: new_quantity,
-                total: new_quantity * product.total,
+                total: new_quantity * this.data[INDEX].buying_unit_cost,
             }
             this.data = [...this.data];
         },

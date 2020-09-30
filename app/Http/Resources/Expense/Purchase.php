@@ -17,7 +17,7 @@ class Purchase extends JsonResource
     {
         return [
             'id' => $this->id,
-            'order_number' => $this->order_number,
+            'purchase_order_number' => $this->purchase_order_number,
             'reference_number' => $this->reference_number,
             'supplier_name' => isset($this->contact) ? $this->contact->name : null,
             'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/Y') : null,

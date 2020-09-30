@@ -7,7 +7,7 @@
                     <InventoryMenu :active="active"/>
                     <BusinessMenu :active="active"/>
                     <ExpenseMenu :active="active"/>
-                    <AccountingMenu :active="active"/>
+<!--                    <AccountingMenu :active="active"/>-->
                     <ContactsMenu :active="active"/>
                     <TeamsMenu :active="active"/>
                 </nav>

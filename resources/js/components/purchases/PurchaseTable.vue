@@ -28,7 +28,7 @@
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.order_number }}
+                {{ props.row.purchase_order_number }}
             </b-table-column>
 
             <b-table-column

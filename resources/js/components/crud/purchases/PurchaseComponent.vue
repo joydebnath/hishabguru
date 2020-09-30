@@ -24,7 +24,7 @@
                 </div>
             </div>
             <FooterActions
-                cancel_route="/@/orders"
+                cancel_route="/@/purchases"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -50,7 +50,7 @@ export default {
         read(this.$route.params.id)
             .then(({data}) => {
                 this.loading = false;
-                this.order = data.data
+                this.purchase_order = data.data
             })
             .catch(err => {
                 this.loading = false;
@@ -61,21 +61,21 @@ export default {
         return {
             error_container: false,
             error_message: '',
-            order: {},
+            purchase_order: {},
             loading: false,
         }
     },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'orders/getTotal',
+            total: 'purchases/getTotal',
             per_page: 'getPerPage'
         }),
         computed_item() {
-            return this.order
+            return this.purchase_order
         },
         breadcrumb_link_name() {
-            return this.order ? 'Order# ' + this.order.order_number : '---'
+            return this.purchase_order ? 'Purchase Order# ' + this.purchase_order.purchase_order_number : '---'
         }
     },
     methods: {
@@ -86,14 +86,14 @@ export default {
                 order = {...order, ...data}
             });
 
-            if (order.order_number == null) {
+            if (order.purchase_order_number == null) {
                 this.error_container = true;
-                this.error_message = 'Order number can not be empty!';
+                this.error_message = 'Purchase Order number can not be empty!';
                 return;
             }
 
             order['status'] = 'draft';
-            this.updateOrder(order, 'Order Draft is updated')
+            this.updateOrder(order, 'Purchase Order Draft is updated')
         },
         handleSave() {
             let order = {}, error_bag = {};
@@ -110,7 +110,7 @@ export default {
 
             if (_.isEmpty(error_bag)) {
                 order['status'] = 'save';
-                this.updateOrder(order, 'Order is updated')
+                this.updateOrder(order, 'Purchase Order is updated')
             }
         },
         handleSaveForApproval() {
@@ -128,14 +128,14 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.order = {};
+            this.purchase_order = {};
             this.$emit('on-close');
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light'
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('orders/loadData', {page: 1})
+                this.$store.dispatch('purchases/loadData', {page: 1})
             }
 
             this.$router.push('/@/purchases');

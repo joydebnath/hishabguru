@@ -206,11 +206,11 @@ export default {
                 this.data = [...this.data, product];
                 return;
             }
-            const new_quantity = this.data[INDEX].quantity + product.quantity;
+            const new_quantity = parseInt(this.data[INDEX].quantity) + parseInt(product.quantity);
             this.data[INDEX] = {
                 ...this.data[INDEX],
                 quantity: new_quantity,
-                total: new_quantity * product.total,
+                total: new_quantity * product.selling_unit_price,
             }
             this.data = [...this.data];
         },

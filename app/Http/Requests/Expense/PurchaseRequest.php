@@ -32,7 +32,7 @@ class PurchaseRequest extends FormRequest
             'delivery_date' => 'nullable',
             'note' => 'nullable|string',
             'products' => 'nullable|required_unless:status,draft',
-            'order_number' => 'required|string',
+            'purchase_order_number' => 'required|string',
             'reference_number' => 'nullable|string',
             'status' => 'required|string',
             'delivery_site_id' => 'nullable|numeric',
@@ -49,6 +49,7 @@ class PurchaseRequest extends FormRequest
 
         $this->merge([
             'created_by' => Auth::id(),
+            'purchase_order_number' => $this->purchase_order_number ? strtoupper($this->purchase_order_number) : null,
             'total_amount' => isset($this->total_amount) ? doubleval($this->total_amount) : null,
             'total_tax' => isset($this->total_tax) ? doubleval($this->total_tax) : null,
             'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,

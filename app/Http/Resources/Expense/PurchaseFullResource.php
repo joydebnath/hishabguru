@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Expense;
 
+use App\Http\Resources\Business\InventorySite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PurchaseFullResource extends JsonResource
@@ -9,7 +10,7 @@ class PurchaseFullResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -22,7 +23,8 @@ class PurchaseFullResource extends JsonResource
             'reference_number' => $this->reference_number,
             'create_date' => $this->create_date,
             'delivery_date' => $this->delivery_date,
-            'products' => self::products($this->products)
+            'delivery_site' => new InventorySite($this->delivery_site),
+            'products' => self::products($this->products),
         ];
     }
 
@@ -34,7 +36,7 @@ class PurchaseFullResource extends JsonResource
                 'id' => $product->id,
                 'name' => $product->name,
                 'code' => $product->code,
-                'buying_unit_cost' => doubleval($product->buying_unit_cost),
+                'buying_unit_cost' => doubleval($pivot->get('buying_unit_cost', null)),
                 'quantity' => doubleval($pivot->get('quantity', null)),
                 'discount' => doubleval($pivot->get('discount', null)),
                 'tax_rate' => doubleval($pivot->get('tax_rate', null)),

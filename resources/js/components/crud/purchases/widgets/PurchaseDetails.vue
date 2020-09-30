@@ -16,7 +16,7 @@
             :type="has_purchase_order_number ? 'is-danger' :null"
             :message="has_purchase_order_number ? 'This field is required' : null"
         >
-            <b-input v-model="purchase_order.purchase_order_number"/>
+            <b-input custom-class="uppercase" v-model="purchase_order.purchase_order_number"/>
         </b-field>
         <b-field label="Reference Number">
             <b-input v-model="purchase_order.reference_number"/>
@@ -128,7 +128,7 @@ export default {
         handleCloseSelectAddress() {
             this.changeable_address = false;
         },
-        handleDeliverySiteSelected(site){
+        handleDeliverySiteSelected(site) {
             this.purchase_order = {...this.purchase_order, delivery_site: site}
         }
     },
@@ -137,10 +137,11 @@ export default {
             inventories: 'tenancy/getCurrentInventories'
         }),
         selected_inventory() {
-            if(this.purchase_order.delivery_site){
+            if (this.purchase_order.delivery_site) {
                 return this.purchase_order.delivery_site;
             }
-            return _.first(this.inventories);
+            this.purchase_order.delivery_site = _.first(this.inventories)
+            return this.purchase_order.delivery_site;
         },
         is_changeable_inventory() {
             return this.inventories && this.inventories.length > 1

@@ -32,10 +32,11 @@ class PurchasesController extends Controller
 
             foreach ($request->products as $product) {
                 $purchaseOrder->products()->attach($product['id'], [
-                    'quantity' => $product['quantity'],
-                    'discount' => $product['discount'],
-                    'tax_rate' => $product['tax_rate'],
-                    'total' => $product['total'],
+                    'quantity' => intval($product['quantity']),
+                    'buying_unit_cost' => doubleval($product['buying_unit_cost']),
+                    'discount' => doubleval($product['discount']),
+                    'tax_rate' => doubleval($product['tax_rate']),
+                    'total' => doubleval($product['total']),
                 ]);
             }
 
@@ -48,7 +49,7 @@ class PurchasesController extends Controller
     public function show(Purchase $purchase)
     {
         try {
-            return new PurchaseFullResource($purchase->load('contact', 'products'));
+            return new PurchaseFullResource($purchase->load('contact', 'products','delivery_site'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -64,6 +65,7 @@ class PurchasesController extends Controller
             foreach ($request->products as $product) {
                 $syncable[$product['id']] = [
                     'quantity' => intval($product['quantity']),
+                    'buying_unit_cost' => doubleval($product['buying_unit_cost']),
                     'discount' => doubleval($product['discount']),
                     'tax_rate' => doubleval($product['tax_rate']),
                     'total' => doubleval($product['total']),

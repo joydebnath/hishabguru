@@ -9,15 +9,15 @@
         <span>Expenses</span>
         <b-icon icon="menu-down mt-1"/>
     </span>
-        <router-link to="/@/purchases">
-            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Purchases
-            </b-dropdown-item>
-        </router-link>
-        <span class="dropdown-divider"></span>
         <router-link to="/@/bills">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
                 Bills to pay
+            </b-dropdown-item>
+        </router-link>
+        <span class="dropdown-divider"></span>
+        <router-link to="/@/purchases">
+            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
+                Purchases
             </b-dropdown-item>
         </router-link>
         <router-link to="/@/miscellaneous-expenses">
