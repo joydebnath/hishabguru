@@ -25,6 +25,8 @@ class CreateProductsTable extends Migration
             $table->decimal('tax_rate')->default(0);
             $table->text('description')->nullable();
             $table->string('status')->nullable()->default('active');
+            $table->boolean('is_sellable')->default(true);
+            $table->boolean('is_purchasable')->default(true);
             $table->timestamps();
 
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
