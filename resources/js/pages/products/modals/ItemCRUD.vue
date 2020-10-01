@@ -23,7 +23,8 @@
                         <b-input v-model="computed_item.code"></b-input>
                     </b-field>
                     <b-field label="Category">
-                        <ProductCategory :name="computed_category.name" @on-add="handleAddCategory" @on-remove="handleRemoveCategory"/>
+                        <ProductCategory :name="computed_category.name" @on-add="handleAddCategory"
+                                         @on-remove="handleRemoveCategory"/>
                     </b-field>
                 </b-field>
                 <b-field grouped>
@@ -42,6 +43,22 @@
                         <b-input v-model="computed_item.tax"></b-input>
                     </b-field>
                 </b-field>
+                <div class="grid grid-cols-2 my-4">
+                    <b-switch
+                        v-model="computed_item.is_sellable"
+                        :true-value="1"
+                        :false-value="0"
+                    >
+                        <strong>{{ sell_message }}</strong>
+                    </b-switch>
+                    <b-switch
+                        v-model="computed_item.is_purchasable"
+                        :true-value="1"
+                        :false-value="0"
+                    >
+                        <strong>{{ purchase_message }}</strong>
+                    </b-switch>
+                </div>
                 <b-field label="Description">
                     <b-input type="textarea" v-model="computed_item.description"></b-input>
                 </b-field>
@@ -152,7 +169,7 @@ export default {
         },
         computed_item() {
             if (this.$props.item) {
-                return {...this.$props.item}
+                this.product = {...this.$props.item}
             }
             return this.product
         },
@@ -162,6 +179,12 @@ export default {
             }
             return {}
         },
+        sell_message(){
+            return this.computed_item.is_sellable ? "I Sell the Item" : "I Don't Sell the Item"
+        },
+        purchase_message(){
+            return this.computed_item.is_purchasable ? "I Purchase the Item" : "I Don't Purchase the Item"
+        }
     },
 };
 </script>

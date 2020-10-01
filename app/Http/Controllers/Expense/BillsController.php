@@ -2,94 +2,95 @@
 
 namespace App\Http\Controllers\Expense;
 
-use App\Filters\Expense\PurchaseFilter;
+use App\Filters\Expense\BillFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Expense\PurchaseRequest;
-use App\Http\Resources\Expense\PurchaseCollection;
-use App\Http\Resources\Expense\Purchase as PurchaseResource;
-use App\Http\Resources\Expense\PurchaseFullResource;
-use App\Models\Purchase;
+use App\Http\Requests\Expense\BillRequest;
+use App\Http\Resources\Expense\BillCollection;
+use App\Http\Resources\Expense\BillFullResource;
+use App\Models\Bill;
+use App\Http\Resources\Expense\Bill as BillResource;
 use Exception;
 
-class PurchasesController extends Controller
+class BillsController extends Controller
 {
-    public function index(PurchaseFilter $filters)
+    public function index(BillFilter $filters)
     {
         try {
-            return new PurchaseCollection(
-                Purchase::filter($filters)->paginate()
+            return new BillCollection(
+                Bill::filter($filters)->paginate()
             );
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
     }
 
-    public function store(PurchaseRequest $request)
+    public function store(BillRequest $request)
     {
         try {
             $storable = $this->getFillable($request);
-            $purchaseOrder = Purchase::create($storable);
+            $bill = Bill::create($storable);
 
             foreach ($request->products as $product) {
-                $purchaseOrder->products()->attach($product['id'], [
+                $bill->products()->attach($product['id'], [
                     'quantity' => intval($product['quantity']),
                     'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'discount' => doubleval($product['discount']),
+                    'description' => doubleval($product['description']),
                     'tax_rate' => doubleval($product['tax_rate']),
                     'total' => doubleval($product['total']),
                 ]);
             }
 
-            return new PurchaseResource($purchaseOrder->load('contact'));
+            return new BillResource($bill->load('contact'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
     }
 
-    public function show(Purchase $purchase)
+
+    public function show(Bill $bill)
     {
         try {
-            return new PurchaseFullResource($purchase->load('contact', 'products','delivery_site'));
+            return new BillFullResource($bill->load('contact', 'products'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
     }
 
-    public function update(PurchaseRequest $request, Purchase $purchase)
+    public function update(BillRequest $request, Bill $bill)
     {
         try {
             $storable = $this->getFillable($request);
-            $purchase->update($storable);
+            $bill->update($storable);
 
             $syncable = [];
             foreach ($request->products as $product) {
                 $syncable[$product['id']] = [
                     'quantity' => intval($product['quantity']),
                     'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'discount' => doubleval($product['discount']),
+                    'description' => doubleval($product['description']),
                     'tax_rate' => doubleval($product['tax_rate']),
                     'total' => doubleval($product['total']),
                 ];
             }
-            $purchase->products()->sync($syncable);
+            $bill->products()->sync($syncable);
 
-            return new PurchaseResource($purchase->load('contact'));
+            return new BillResource($bill->load('contact'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
     }
 
-    public function destroy(Purchase $purchase)
+    public function destroy(Bill $bill)
     {
         try {
-            $purchase->delete();
-            return response(['message' => 'Purchase Order is deleted']);
+            $bill->delete();
+            return response(['message' => 'Bill is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
     }
 
-    private function getFillable(PurchaseRequest $request): array
+    private function getFillable(BillRequest $request): array
     {
         $fillable = $request->validated();
         unset($fillable['products']);

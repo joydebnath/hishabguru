@@ -19,7 +19,6 @@ class CreateBillItemsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity')->default(1);
             $table->unsignedDecimal('buying_unit_cost');
-            $table->unsignedDecimal('discount')->default(0)->nullable();
             $table->unsignedDecimal('tax_rate')->default(0)->nullable();
             $table->unsignedDecimal('total');
             $table->text('description')->nullable();

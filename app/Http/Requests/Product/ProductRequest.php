@@ -33,7 +33,9 @@ class ProductRequest extends FormRequest
             'selling_unit_price' => 'required|numeric',
             'quantity' => 'numeric|nullable',
             'tax_rate' => 'numeric|nullable',
-            'description' => 'string|nullable'
+            'description' => 'string|nullable',
+            'is_purchasable' => 'boolean|nullable',
+            'is_sellable' => 'boolean|nullable',
         ];
     }
 

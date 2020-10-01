@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use Filterable;
-    use SoftDeletes;
 
     protected $guarded = ['id'];
 

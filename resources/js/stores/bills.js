@@ -12,8 +12,8 @@ const store = {
         checked_bills: [],
     },
     getters: {
-        getPurchases: state => state.bills,
-        getCheckedPurchases: state => state.checked_bills,
+        getBills: state => state.bills,
+        getCheckedBills: state => state.checked_bills,
         getUrl: state => state.url,
         getTotal: state => state.total,
         getLoading: state => state.loading,
@@ -26,10 +26,10 @@ const store = {
         }
     },
     mutations: {
-        setPurchases: (state, {bills}) => {
+        setBills: (state, {bills}) => {
             state.bills = bills
         },
-        setCheckedPurchases: (state, {bills}) => {
+        setCheckedBills: (state, {bills}) => {
             state.checked_bills = bills
         },
         setLoading: (state, {loading}) => {
@@ -54,7 +54,7 @@ const store = {
                 })
                 .then(({data}) => {
                     commit('setLoading', {loading: false})
-                    commit('setPurchases', {bills: data.data})
+                    commit('setBills', {bills: data.data})
                     commit('setTotal', {total: data.meta.total})
                     commit('setCurrentPage', {current_page: data.meta.current_page})
                 })
