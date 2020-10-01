@@ -28,7 +28,7 @@
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.purchase_order_number }}
+                {{ props.row.bill_order_number }}
             </b-table-column>
 
             <b-table-column
@@ -75,7 +75,7 @@
                         <b-dropdown aria-role="list">
                             <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                       slot="trigger"/>
-                            <router-link :to="'/@/purchases/' + props.row.id">
+                            <router-link :to="'/@/bills/' + props.row.id">
                                 <b-dropdown-item >
                                     View
                                 </b-dropdown-item>
@@ -94,7 +94,7 @@
             <template slot="footer">
                 <EmptyTable v-if="!data.length"/>
                 <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
-                    Total purchases: {{ total }}
+                    Total bills: {{ total }}
                 </div>
             </template>
         </b-table>
@@ -110,11 +110,11 @@ export default {
         EmptyTable
     },
     mounted() {
-        this.$store.dispatch('purchases/loadData', {page: 1})
+        this.$store.dispatch('bills/loadData', {page: 1})
     },
     methods: {
         onPageChange(page_no) {
-            this.$store.dispatch('purchases/loadData', {page: page_no})
+            this.$store.dispatch('bills/loadData', {page: page_no})
         },
         onSort(field_name, order) {
             console.log(field_name, order)
@@ -122,13 +122,19 @@ export default {
         status_type(value){
             let type = '';
             switch (value) {
-                case 'purchased':
+                case 'awaiting-payment':
+                    type = 'is-link'
+                    break
+                case 'paid':
                     type = 'is-success'
+                    break;
+                case 'due':
+                    type = 'is-danger'
                     break;
                 case 'draft':
                     type= 'is-light'
                     break
-                case 'save-for-approval':
+                case 'awaiting-approval':
                     type = 'is-warning'
                     break
             }
@@ -137,18 +143,18 @@ export default {
     },
     computed: {
         ...mapGetters({
-            loading: 'purchases/getLoading',
-            data: 'purchases/getPurchases',
-            total: 'purchases/getTotal',
-            current_page: 'purchases/getCurrentPage',
+            loading: 'bills/getLoading',
+            data: 'bills/getBills',
+            total: 'bills/getTotal',
+            current_page: 'bills/getCurrentPage',
             per_page: 'getPerPage'
         }),
         checked_rows: {
             get() {
-                return this.$store.getters['purchases/getCheckedPurchases']
+                return this.$store.getters['bills/getCheckedBills']
             },
             set(value) {
-                this.$store.commit('purchases/setCheckedPurchases', {purchases: value})
+                this.$store.commit('bills/setCheckedBills', {bills: value})
             }
         }
     }

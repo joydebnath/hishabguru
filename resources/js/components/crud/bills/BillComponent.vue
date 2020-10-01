@@ -43,39 +43,39 @@ import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 
 export default {
-    name: "PurchaseComponent",
+    name: "BillComponent",
     components: {Breadcrumb, FooterActions, HeaderActions, ProductsTable, BillDetails},
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
             .then(({data}) => {
                 this.loading = false;
-                this.purchase_order = data.data
+                this.bill = data.data
             })
             .catch(err => {
                 this.loading = false;
-                this.$router.push('/@/purchases');
+                this.$router.push('/@/bills');
             })
     },
     data() {
         return {
             error_container: false,
             error_message: '',
-            purchase_order: {},
+            bill: {},
             loading: false,
         }
     },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'purchases/getTotal',
+            total: 'bills/getTotal',
             per_page: 'getPerPage'
         }),
         computed_item() {
-            return this.purchase_order
+            return this.bill
         },
         breadcrumb_link_name() {
-            return this.purchase_order ? 'Purchase Order# ' + this.purchase_order.purchase_order_number : '---'
+            return this.bill ? 'Bill# ' + this.bill.bill_number : '---'
         }
     },
     methods: {
@@ -88,18 +88,18 @@ export default {
 
             if (order.purchase_order_number == null) {
                 this.error_container = true;
-                this.error_message = 'Purchase Order number can not be empty!';
+                this.error_message = 'Bill number can not be empty!';
                 return;
             }
 
             order['status'] = 'draft';
-            this.updateOrder(order, 'Purchase Order Draft is updated')
+            this.updateOrder(order, 'Bill Draft is updated')
         },
         handleSave() {
-            let order = {}, error_bag = {};
+            let bill = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
-                order = {...order, ...data}
+                bill = {...bill, ...data}
                 error_bag = {...error_bag, ...errors}
             });
 
@@ -109,15 +109,14 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'purchased';
-                this.updateOrder(order, 'Purchase Order is updated')
+                this.updateOrder(bill, 'Bill is updated')
             }
         },
         handleSaveForApproval() {
             console.log('approve')
         },
-        updateOrder(order, message) {
-            update(order.id, {...order, tenant_id: this.tenant_id})
+        updateOrder(bill, message) {
+            update(bill.id, {...bill, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -128,23 +127,24 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.purchase_order = {};
+            this.bill = {};
             this.$emit('on-close');
             this.$buefy.notification.open({
                 message: message,
-                type: 'is-success is-light'
+                type: 'is-success is-light',
+                duration:5000
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('purchases/loadData', {page: 1})
+                this.$store.dispatch('bills/loadData', {page: 1})
             }
 
-            this.$router.push('/@/purchases');
+            this.$router.push('/@/bills');
         },
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',
-                duration: 3000
+                duration: 5000
             })
         }
     }

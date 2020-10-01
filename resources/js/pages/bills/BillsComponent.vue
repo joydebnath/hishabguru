@@ -15,7 +15,7 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <router-link to="/@/purchases/create">
+                    <router-link to="/@/bills/create">
                         <button class="button field is-info">
                             <span>New Bill</span>
                         </button>
@@ -30,7 +30,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import SearchBox from '../../components/global/SearchBox';
+import SearchBox from '@/components/global/SearchBox';
 import Table from "./BillsTable.vue";
 import Filters from "./BillsFilters";
 
@@ -45,28 +45,28 @@ export default {
     },
     methods: {
         handleSearch(value) {
-            this.$store.commit('purchases/setFilters', {
+            this.$store.commit('bills/setFilters', {
                 filters: {
                     search: value
                 }
             });
-            this.$store.dispatch('purchases/loadData', {page: 1})
+            this.$store.dispatch('bills/loadData', {page: 1})
         },
-        handleDelete(purchase_order) {
+        handleDelete(bill) {
             this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Bill</h5>Are you sure you want to delete <b>' + purchase_order.purchase_order_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Bill</h5>Are you sure you want to delete <b>' + bill.bill_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,
                 onConfirm: () => {
-                    this.$store.dispatch('purchases/delete', {purchase_order})
+                    this.$store.dispatch('bills/delete', {bill})
                 }
             })
         },
     },
     computed: {
         ...mapGetters({
-            checked_products: 'purchases/getCheckedPurchases'
+            checked_products: 'bills/getCheckedBills'
         }),
         show_bulk_actions() {
             return this.checked_products.length

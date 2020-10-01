@@ -18,10 +18,12 @@ import suppliersModule from './suppliers'
 import tenancyModule from "./tenancy";
 import marketplaceModule from './marketplace'
 import expensesModule from './expenses'
+import billsModule from './bills'
 
 const store = new Vuex.Store({
     namespaced: true,
     modules: {
+        bills: billsModule,
         products: productsModule,
         filters: filtersModule,
         product_categories: productCategoriesModule,

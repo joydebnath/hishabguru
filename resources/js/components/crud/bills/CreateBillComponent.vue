@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-6xl m-auto w-full mb-6 py-2">
-        <Breadcrumb active_link_name="New Purchase Order"/>
+        <Breadcrumb active_link_name="New Bill"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <HeaderActions v-if="false" :show_option="false" :show_print="false"/>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <FooterActions
-                cancel_route="/@/purchases"
+                cancel_route="/@/bills"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -43,48 +43,48 @@ import {store} from "@/repos/bills";
 import HeaderActions from "./widgets/HeaderActions";
 
 export default {
-    name: "CreatePurchaseComponent",
+    name: "CreateBillComponent",
     components: {HeaderActions, Breadcrumb, FooterActions, ProductsTable, BillDetails},
     data() {
         return {
             error_container: false,
             error_message: '',
-            order: {},
+            bill: {},
             loading: false
         }
     },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'purchases/getTotal',
+            total: 'bills/getTotal',
             per_page: 'getPerPage'
         }),
         computed_item() {
-            return this.order
+            return this.bill
         }
     },
     methods: {
         handleDraft() {
-            let order = {};
+            let bill = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
-                order = {...order, ...data}
+                bill = {...bill, ...data}
             });
 
-            if (order.purchase_order_number == null) {
+            if (bill.purchase_bill_number == null) {
                 this.error_container = true;
-                this.error_message = 'Purchase Order number can not be empty!';
+                this.error_message = 'Bill number can not be empty!';
                 return;
             }
 
-            order['status'] = 'draft';
-            this.createPurchaseOrder(order, 'Purchase Order Draft is created')
+            bill['status'] = 'draft';
+            this.createBill(bill, 'Bill Draft is created')
         },
         handleSave() {
-            let order = {}, error_bag = {};
+            let bill = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
-                order = {...order, ...data}
+                bill = {...bill, ...data}
                 error_bag = {...error_bag, ...errors}
             });
 
@@ -94,15 +94,15 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'purchased';
-                this.createPurchaseOrder(order, 'Purchase Order is created')
+                bill['status'] = 'due';
+                this.createBill(bill, 'Bill is created')
             }
         },
         handleSaveForApproval() {
-            console.log('approve')
+            console.log('awaiting-for-approve')
         },
-        createPurchaseOrder(order, message) {
-            store({...order, tenant_id: this.tenant_id})
+        createBill(bill, message) {
+            store({...bill, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -113,22 +113,22 @@ export default {
                 });
         },
         onSuccess(message) {
-            this.order = {};
+            this.bill = {};
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
-                duration: 3000
+                duration: 5000
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('purchases/loadData', {page: 1})
+                this.$store.dispatch('bills/loadData', {page: 1})
             }
-            this.$router.push('/@/purchases');
+            this.$router.push('/@/bills');
         },
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',
-                duration: 3000
+                duration: 5000
             })
         }
     }
