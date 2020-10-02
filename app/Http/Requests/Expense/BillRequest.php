@@ -25,7 +25,7 @@ class BillRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'contact_id' => 'nullable|numeric|required_unless:status,draft',
             'tenant_id' => 'numeric|required',
             'issue_date' => 'required',
@@ -34,13 +34,17 @@ class BillRequest extends FormRequest
             'products' => 'nullable|required_unless:status,draft',
             'bill_number' => 'required|string',
             'reference_number' => 'nullable|string',
-            'status' => 'required|string',
+            'status' => 'nullable|string',
             'created_by' => 'nullable|numeric',
             'approved_by' => 'nullable|numeric',
             'total_amount' => 'nullable|numeric|required_unless:status,draft',
             'total_tax' => 'nullable|numeric|required_unless:status,draft',
             'sub_total' => 'nullable|numeric|required_unless:status,draft',
         ];
+        if($this->isMethod('POST')){
+            $rules['status'] = 'required|string';
+        }
+        return $rules;
     }
 
     protected function prepareForValidation()
@@ -53,7 +57,7 @@ class BillRequest extends FormRequest
             'total_tax' => isset($this->total_tax) ? doubleval($this->total_tax) : null,
             'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,
             'issue_date' => $this->issue_date ? Carbon::createFromFormat('d/m/Y', $this->issue_date) : null,
-            'delivery_date' => $this->delivery_date ? Carbon::createFromFormat('d/m/Y', $this->delivery_date) : null,
+            'due_date' => $this->due_date ? Carbon::createFromFormat('d/m/Y', $this->due_date) : null,
         ]);
     }
 }

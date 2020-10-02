@@ -20,12 +20,13 @@ class ProductLookup extends JsonResource
             'code' => $this->code,
             'quantity' => 1,
             'discount' => null,
-            'total' => doubleval($this->selling_unit_price),
+            'total_selling_cost' => doubleval($this->selling_unit_price),
+            'total_buying_cost' => doubleval($this->buying_unit_cost),
             'selling_unit_price' => doubleval($this->selling_unit_price),
             'buying_unit_cost' => doubleval($this->buying_unit_cost),
             'tax_rate' => doubleval($this->tax_rat),
-            'edit' => false
-//            'description' => $this->description,
+            'edit' => false,
+            'description' => $this->description,
         ];
     }
 }

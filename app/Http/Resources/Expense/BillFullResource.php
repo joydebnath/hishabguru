@@ -23,6 +23,7 @@ class BillFullResource extends JsonResource
             'reference_number' => $this->reference_number,
             'issue_date' => $this->issue_date,
             'due_date' => $this->due_date,
+            'note' => $this->note,
             'products' => self::products($this->products),
         ];
     }
@@ -39,7 +40,7 @@ class BillFullResource extends JsonResource
                 'quantity' => doubleval($pivot->get('quantity', null)),
                 'description' => $pivot->get('description', null),
                 'tax_rate' => doubleval($pivot->get('tax_rate', null)),
-                'total' => doubleval($pivot->get('total', null)),
+                'total_buying_cost' => doubleval($pivot->get('total', null)),
                 'edit' => false
             ];
         });

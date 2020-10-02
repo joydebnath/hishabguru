@@ -36,7 +36,7 @@ class QuotationsController extends Controller
                     'quantity' => $product['quantity'],
                     'discount' => $product['discount'],
                     'tax_rate' => $product['tax_rate'],
-                    'total' => $product['total'],
+                    'total' => $product['total_selling_cost'],
                 ]);
             }
 
@@ -68,7 +68,7 @@ class QuotationsController extends Controller
                     'quantity' => intval($product['quantity']),
                     'discount' => doubleval($product['discount']),
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total']),
+                    'total' => doubleval($product['total_selling_cost']),
                 ];
             }
             $quotation->products()->sync($syncable);

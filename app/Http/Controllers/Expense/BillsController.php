@@ -34,9 +34,9 @@ class BillsController extends Controller
                 $bill->products()->attach($product['id'], [
                     'quantity' => intval($product['quantity']),
                     'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'description' => doubleval($product['description']),
+                    'description' => $product['description'] ? $product['description'] : null,
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total']),
+                    'total' => doubleval($product['total_buying_cost']),
                 ]);
             }
 
@@ -67,9 +67,9 @@ class BillsController extends Controller
                 $syncable[$product['id']] = [
                     'quantity' => intval($product['quantity']),
                     'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'description' => doubleval($product['description']),
+                    'description' => $product['description'] ? $product['description'] : null,
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total']),
+                    'total' => doubleval($product['total_buying_cost']),
                 ];
             }
             $bill->products()->sync($syncable);

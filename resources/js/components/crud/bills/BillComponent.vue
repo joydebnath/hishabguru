@@ -24,10 +24,11 @@
                 </div>
             </div>
             <FooterActions
-                cancel_route="/@/purchases"
+                cancel_route="/@/bills"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
+                :hide_draft="true"
             />
         </div>
     </div>

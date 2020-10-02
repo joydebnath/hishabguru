@@ -3,12 +3,12 @@
         <div class="flex flex-row pl-4 mb-4">
             <b-field grouped custom-class="dates">
                 <b-field
-                    label="Create Date"
-                    :type="has_create_date ? 'is-danger' :null"
-                    :message="has_create_date ? 'This field is required' : null"
+                    label="Issue Date"
+                    :type="has_issue_date ? 'is-danger' :null"
+                    :message="has_issue_date ? 'This field is required' : null"
                 >
                     <b-datepicker
-                        v-model="order.create_date"
+                        v-model="order.issue_date"
                         :show-week-number="false"
                         :locale="undefined"
                         placeholder="Click to select..."
@@ -40,13 +40,22 @@
             <b-table-column
                 label="Product"
                 v-slot="props"
-                width="200"
+                width="150"
                 cell-class="align-middle"
             >
                 <p class="m-0 flex flex-col">
                     <small class="text-xs">{{ props.row.code }}</small>
                     <span class="text-sm">{{ props.row.name }}</span>
                 </p>
+            </b-table-column>
+            <b-table-column label="Description" centered v-slot="props" width="150" cell-class="align-middle">
+                <EditableDescription
+                    placeholder="Write something..."
+                    :value="props.row.description"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    @on-input="handleEditDescription"
+                />
             </b-table-column>
             <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle">
                 <EditableInput
@@ -71,21 +80,6 @@
                     @on-input="handleEditUnitCost"
                 />
             </b-table-column>
-            <b-table-column
-                label="Disc %"
-                centered
-                v-slot="props"
-                width="80"
-                cell-class="align-middle"
-            >
-                <EditableInput
-                    placeholder="0.0%"
-                    :value="props.row.discount"
-                    :id="props.row.id"
-                    :editable="props.row.edit"
-                    @on-input="handleEditDiscount"
-                />
-            </b-table-column>
             <b-table-column label="Tax" centered v-slot="props" width="80" cell-class="align-middle">
                 <EditableInput
                     placeholder="0.0"
@@ -96,7 +90,7 @@
                 />
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle">
-                <span class="text-sm">{{ props.row.total }}</span>
+                <span class="text-sm">{{ props.row.total_buying_cost }}</span>
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
                 <div class="flex justify-end">
@@ -155,10 +149,11 @@
 <script>
 import ProductLookupInput from "@/components/global/lookup/products/ProductLookupInput";
 import EditableInput from "@/components/global/input/ProductEditableInput";
+import EditableDescription from "@/components/global/input/ProductEditableDescription";
 import EmptyTable from '@/components/global/table/EmptyTable'
 
 export default {
-    components: {EditableInput, EmptyTable, ProductLookupInput},
+    components: {EditableInput, EmptyTable, EditableDescription, ProductLookupInput},
     props: {
         item: Object | Array
     },
@@ -166,7 +161,7 @@ export default {
         return {
             data: [],
             required_fields: {
-                create_date: true,
+                issue_date: true,
                 products: true
             },
             errors: {},
@@ -192,7 +187,7 @@ export default {
             }
             return {
                 data: {
-                    create_date: this.order.create_date ? this.order.create_date.toLocaleDateString() : null,
+                    issue_date: this.order.issue_date ? this.order.issue_date.toLocaleDateString() : null,
                     due_date: this.order.due_date ? this.order.due_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
@@ -215,7 +210,7 @@ export default {
             this.data[INDEX] = {
                 ...this.data[INDEX],
                 quantity: new_quantity,
-                total: new_quantity * this.data[INDEX].buying_unit_cost,
+                total_buying_cost: new_quantity * this.data[INDEX].buying_unit_cost,
             }
             this.data = [...this.data];
         },
@@ -225,7 +220,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     quantity: value,
-                    total: this.calculateProductTotalPrice(value, this.data[bills].buying_unit_cost, this.data[bills].discount)
+                    total_buying_cost: this.calculateProductTotalPrice(value, this.data[bills].buying_unit_cost)
                 }
                 this.data = [...this.data]
             }
@@ -236,18 +231,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     buying_unit_cost: value,
-                    total: this.calculateProductTotalPrice(this.data[bills].quantity, value, this.data[bills].discount)
-                }
-                this.data = [...this.data]
-            }
-        },
-        handleEditDiscount(value, product_id) {
-            const bills = _.findIndex(this.data, value => value.id == product_id)
-            if (bills !== -1) {
-                this.data[bills] = {
-                    ...this.data[bills],
-                    discount: value,
-                    total: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].buying_unit_cost, value)
+                    total_buying_cost: this.calculateProductTotalPrice(this.data[bills].quantity, value)
                 }
                 this.data = [...this.data]
             }
@@ -256,6 +240,13 @@ export default {
             const bills = _.findIndex(this.data, value => value.id == product_id)
             if (bills !== -1) {
                 this.data[bills] = {...this.data[bills], tax_rate: value}
+                this.data = [...this.data]
+            }
+        },
+        handleEditDescription(value, product_id) {
+            const bills = _.findIndex(this.data, value => value.id == product_id)
+            if (bills !== -1) {
+                this.data[bills] = {...this.data[bills], description: value}
                 this.data = [...this.data]
             }
         },
@@ -272,12 +263,8 @@ export default {
                 this.data = [...this.data]
             }
         },
-        calculateProductTotalPrice(quantity, buying_unit_cost, discount) {
-            let total = buying_unit_cost * quantity
-            if (discount) {
-                total = total - (total * (discount / 100));
-            }
-            return _.round(total, 2);
+        calculateProductTotalPrice(quantity, buying_unit_cost) {
+            return _.round(buying_unit_cost * quantity, 2);
         },
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]
@@ -288,12 +275,12 @@ export default {
             return this.data
         },
         sub_total() {
-            return _.round(_.sumBy(this.products, 'total'), 2);
+            return _.round(_.sumBy(this.products, 'total_buying_cost'), 2);
         },
         tax() {
             return _.sumBy(this.products, value => {
                 if (value.tax_rate) {
-                    return _.round(value.total * (value.tax_rate / 100), 2);
+                    return _.round(value.total_buying_cost * (value.tax_rate / 100), 2);
                 }
                 return 0.0;
             });
@@ -301,8 +288,8 @@ export default {
         total() {
             return parseFloat(_.round(this.sub_total + this.tax, 2));
         },
-        has_create_date() {
-            return this.errors.create_date !== undefined
+        has_issue_date() {
+            return this.errors.issue_date !== undefined
         },
         has_products() {
             return this.errors.products !== undefined
@@ -310,13 +297,13 @@ export default {
         order() {
             if (this.$props.item) {
                 return {
-                    create_date: this.$props.item.create_date ? new Date(this.$props.item.create_date) : new Date(),
+                    issue_date: this.$props.item.issue_date ? new Date(this.$props.item.issue_date) : new Date(),
                     due_date: this.$props.item.due_date ? new Date(this.$props.item.due_date) : null,
                 }
             }
             return {
-                create_date: new Date(),
-                delivery_date: null,
+                issue_date: new Date(),
+                due_date: null,
             }
         },
     },

@@ -96,7 +96,7 @@
                 />
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle">
-                <span class="text-sm">{{ props.row.total }}</span>
+                <span class="text-sm">{{ props.row.total_buying_cost }}</span>
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
                 <div class="flex justify-end">
@@ -216,7 +216,7 @@ export default {
             this.data[INDEX] = {
                 ...this.data[INDEX],
                 quantity: new_quantity,
-                total: new_quantity * this.data[INDEX].buying_unit_cost,
+                total_buying_cost: new_quantity * this.data[INDEX].buying_unit_cost,
             }
             this.data = [...this.data];
         },
@@ -226,7 +226,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     quantity: value,
-                    total: this.calculateProductTotalPrice(value, this.data[bills].buying_unit_cost, this.data[bills].discount)
+                    total_buying_cost: this.calculateProductTotalPrice(value, this.data[bills].buying_unit_cost, this.data[bills].discount)
                 }
                 this.data = [...this.data]
             }
@@ -237,7 +237,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     buying_unit_cost: value,
-                    total: this.calculateProductTotalPrice(this.data[bills].quantity, value, this.data[bills].discount)
+                    total_buying_cost: this.calculateProductTotalPrice(this.data[bills].quantity, value, this.data[bills].discount)
                 }
                 this.data = [...this.data]
             }
@@ -248,7 +248,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     discount: value,
-                    total: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].buying_unit_cost, value)
+                    total_buying_cost: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].buying_unit_cost, value)
                 }
                 this.data = [...this.data]
             }
@@ -289,12 +289,12 @@ export default {
             return this.data
         },
         sub_total() {
-            return _.round(_.sumBy(this.products, 'total'), 2);
+            return _.round(_.sumBy(this.products, 'total_buying_cost'), 2);
         },
         tax() {
             return _.sumBy(this.products, value => {
                 if (value.tax_rate) {
-                    return _.round(value.total * (value.tax_rate / 100), 2);
+                    return _.round(value.total_buying_cost * (value.tax_rate / 100), 2);
                 }
                 return 0.0;
             });

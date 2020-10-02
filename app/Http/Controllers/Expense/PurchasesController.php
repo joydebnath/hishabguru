@@ -36,7 +36,7 @@ class PurchasesController extends Controller
                     'buying_unit_cost' => doubleval($product['buying_unit_cost']),
                     'discount' => doubleval($product['discount']),
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total']),
+                    'total' => doubleval($product['total_buying_cost']),
                 ]);
             }
 
@@ -68,7 +68,7 @@ class PurchasesController extends Controller
                     'buying_unit_cost' => doubleval($product['buying_unit_cost']),
                     'discount' => doubleval($product['discount']),
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total']),
+                    'total' => doubleval($product['total_buying_cost']),
                 ];
             }
             $purchase->products()->sync($syncable);

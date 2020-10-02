@@ -28,7 +28,7 @@
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.bill_order_number }}
+                {{ props.row.bill_number }}
             </b-table-column>
 
             <b-table-column
@@ -52,16 +52,16 @@
 
             <b-table-column
                 field="create_date"
-                label="Created"
+                label="Issued"
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.create_date }}
+                {{ props.row.issue_date }}
             </b-table-column>
 
-            <b-table-column field="delivery_date" sortable label="Delivery" v-slot="props" cell-class="align-middle">
-                {{ props.row.delivery_date }}
+            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle">
+                {{ props.row.due_date }}
             </b-table-column>
             <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
@@ -80,9 +80,6 @@
                                     View
                                 </b-dropdown-item>
                             </router-link>
-                            <b-dropdown-item @click="$emit('on-copy', props.row)">
-                                Copy to Bill
-                            </b-dropdown-item>
                             <hr class="dropdown-divider">
                             <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
                                 <span class="text-red-600">Delete</span>

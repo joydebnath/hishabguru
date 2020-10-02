@@ -41,7 +41,7 @@ class QuotationFullResource extends JsonResource
                 'quantity' => doubleval($pivot->get('quantity', null)),
                 'discount' => doubleval($pivot->get('discount', null)),
                 'tax_rate' => doubleval($pivot->get('tax_rate', null)),
-                'total' => doubleval($pivot->get('total', null)),
+                'total_selling_cost' => doubleval($pivot->get('total', null)),
                 'edit' => false
             ];
         });
