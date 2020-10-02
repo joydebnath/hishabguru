@@ -28,7 +28,7 @@
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
-                :hide_draft="true"
+                :hide_draft="hide_draft_option"
             />
         </div>
     </div>
@@ -77,6 +77,9 @@ export default {
         },
         breadcrumb_link_name() {
             return this.bill ? 'Bill# ' + this.bill.bill_number : '---'
+        },
+        hide_draft_option() {
+            return this.bill && this.bill.status !== 'draft';
         }
     },
     methods: {
@@ -133,7 +136,7 @@ export default {
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
-                duration:5000
+                duration: 5000
             })
             if (this.total < this.per_page) {
                 this.$store.dispatch('bills/loadData', {page: 1})
@@ -148,6 +151,6 @@ export default {
                 duration: 5000
             })
         }
-    }
+    },
 }
 </script>

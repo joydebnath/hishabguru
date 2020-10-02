@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Expense;
 
-use App\Http\Resources\Business\InventorySite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BillFullResource extends JsonResource
