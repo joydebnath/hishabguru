@@ -1,9 +1,9 @@
 <template>
     <div class="max-w-6xl m-auto w-full mb-6 py-2">
         <Breadcrumb :active_link_name="breadcrumb_link_name"/>
-        <div class="box pt-6 pb-0">
+        <section class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
-            <HeaderActions v-if="false"/>
+            <HeaderActions @on-add-payment="handleAddPayment" @on-delete="handleDelete"/>
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-1">
                     <BillDetails ref="part1" :item="computed_item"/>
@@ -21,6 +21,17 @@
                             <span class="tracking-wider" v-text="error_message"></span>
                         </b-message>
                     </div>
+                    <div class="flex flex-row align-items-center justify-content-between w-full" v-if="!loading">
+                        <b-button
+                            type="is-info is-light"
+                            class="text-blue-700"
+                            @click="handleReadPH"
+                            v-text="payment_history_action_text"
+                        />
+                        <div class="font-medium" v-if="bill.total_due">
+                            Total Due: <span class="text-red-600">{{ bill.total_due }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <FooterActions
@@ -30,7 +41,24 @@
                 @on-save-for-approval="handleSaveForApproval"
                 :hide_draft="hide_draft_option"
             />
-        </div>
+        </section>
+
+        <b-sidebar
+            type="is-light"
+            :fullheight="true"
+            :overlay="false"
+            :right="true"
+            class="r-sidebar"
+            v-model="show_payment_history"
+        >
+            <PaymentHistories :histories="computed_payment_histories" :loading="computed_loading_payment_histories"/>
+        </b-sidebar>
+        <AddPaymentRecord
+            :show="show_add_payment"
+            :due_amount="bill.total_due"
+            @on-close="show_add_payment = false"
+            @on-add-record="handleAddPaymentRecord"
+        />
     </div>
 </template>
 
@@ -42,10 +70,18 @@ import {update, read} from "@/repos/bills";
 import HeaderActions from "./widgets/HeaderActions";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
+import PaymentHistories from "./widgets/PaymentHistories";
+import AddPaymentRecord from "./widgets/AddPaymentRecord";
+import headerActionsMixin from './mixins/header-actions'
+import PaymentHistoriesMixin from './mixins/payment-histories'
 
 export default {
     name: "BillComponent",
-    components: {Breadcrumb, FooterActions, HeaderActions, ProductsTable, BillDetails},
+    components: {
+        AddPaymentRecord,
+        PaymentHistories, Breadcrumb, FooterActions, HeaderActions, ProductsTable, BillDetails
+    },
+    mixins: [headerActionsMixin, PaymentHistoriesMixin],
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
@@ -80,7 +116,7 @@ export default {
         },
         hide_draft_option() {
             return this.bill && this.bill.status !== 'draft';
-        }
+        },
     },
     methods: {
         handleDraft() {
@@ -150,7 +186,13 @@ export default {
                 type: 'is-danger is-light',
                 duration: 5000
             })
-        }
+        },
     },
 }
 </script>
+
+<style>
+.r-sidebar .sidebar-content {
+    width: 300px !important;
+}
+</style>

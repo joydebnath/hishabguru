@@ -3,7 +3,7 @@
         <b-tag
             v-if="$props.selected"
             attached
-            closable
+            :closable="$props.read_only"
             size="is-medium"
             class="w-100"
             type="is-dark"
@@ -25,10 +25,10 @@
                 <SupplierTile :supplier="props"/>
             </template>
             <template v-slot:empty>
-<!--                <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">-->
-<!--                    + Add Client {{ supplier_name }}-->
-<!--                </p>-->
-                <p class="mb-0 py-2 cursor-pointer text-gray-700" >
+                <!--                <p class="mb-0 py-2 cursor-pointer text-gray-700" @click="showAddNewClient">-->
+                <!--                    + Add Client {{ supplier_name }}-->
+                <!--                </p>-->
+                <p class="mb-0 py-2 cursor-pointer text-gray-700">
                     Supplier {{ supplier_name }} not found
                 </p>
             </template>
@@ -54,8 +54,12 @@ import AddNewSupplier from "./AddNewSupplier";
 
 export default {
     name: "SupplierLookupInput",
-    props:{
-      selected: Object
+    props: {
+        selected: Object,
+        read_only: {
+            type: Boolean,
+            default: false
+        }
     },
     components: {
         AddNewSupplier,
@@ -83,15 +87,15 @@ export default {
                     tenant_id: this.tenant_id
                 }
             })
-            .then(({data}) => {
-                this.name = value;
-                this.loading = false;
-                this.search_results = data.data;
-            })
-            .catch(err => {
-                this.loading = false;
-                console.log('searchSuppliers => ', err)
-            })
+                .then(({data}) => {
+                    this.name = value;
+                    this.loading = false;
+                    this.search_results = data.data;
+                })
+                .catch(err => {
+                    this.loading = false;
+                    console.log('searchSuppliers => ', err)
+                })
         },
         showAddNewClient() {
             this.show_add_new = true;

@@ -14,9 +14,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Filters/Payment/PaymentHistoryFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentHistoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Payment/PaymentHistoryRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/mixins/header-actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/mixins/payment-histories.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/AddPaymentRecord.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/PaymentHistories.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Expense/BillFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Expense/BillFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Products/ProductsFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Products/ProductsFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Expense/BillsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Expense/BillsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Expense/BillFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Expense/BillFullResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Bill.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Bill.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PaymentHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PaymentHistory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_02_125037_create_payment_history_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_02_125037_create_payment_history_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/BillComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/BillComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/BillDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/BillDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/HeaderActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/ProductsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/input/ProductEditableInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/input/ProductEditableInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/lookup/suppliers/SupplierLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/lookup/suppliers/SupplierLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/bills.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/bills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -395,8 +416,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -747,7 +768,8 @@
       <workItem from="1601527224829" duration="226000" />
       <workItem from="1601539992592" duration="13774000" />
       <workItem from="1601594018979" duration="745000" />
-      <workItem from="1601633878850" duration="9721000" />
+      <workItem from="1601633878850" duration="11249000" />
+      <workItem from="1601700466505" duration="26000000" />
     </task>
     <servers />
   </component>
@@ -775,12 +797,12 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2683" y="318" width="374" height="457" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599473751410" />
-    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601556507647">
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601731398513">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601027813801" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600167207332" />
-    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601556507647" />
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601731398513" />
     <state x="4523" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601360824932" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601126665694" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1601209660547" />
@@ -843,23 +865,23 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2369" y="175" width="1022" height="737" key="SettingsEditor/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600045398243" />
-    <state x="1921" y="245" width="2071" height="678" key="run.anything.popup" timestamp="1601304767760">
-      <screen x="72" y="27" width="5688" height="1053" />
+    <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1601710763920">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="624" y="245" key="run.anything.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599363128410" />
     <state x="673" y="245" key="run.anything.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1599561357024" />
-    <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600431661860" />
+    <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601710763920" />
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1601644311809">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1601736523766">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601029633495" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601644311809" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601736523766" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601357362901" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601294790953" />

@@ -14,7 +14,7 @@ class BillFilter extends QueryFilter {
     {
         $this->builder->where(function ($query) use ($search) {
             $query
-                ->where('purchase_order_number', 'like', '%' . $search . '%')
+                ->where('bill_number', 'like', '%' . $search . '%')
                 ->orWhere('reference_number', 'like', '%' . $search . '%');
         })->orWhereHas('contact', function ($query) use ($search) {
             $query->where('name', 'like', '%' . $search . '%');

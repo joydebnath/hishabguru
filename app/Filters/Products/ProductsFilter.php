@@ -20,4 +20,14 @@ class ProductsFilter extends QueryFilter
                 ->orWhere('code', 'like', '%' . $search . '%');
         });
     }
+
+    public function sellable()
+    {
+        $this->builder->where('is_sellable', '=', true);
+    }
+
+    public function purchasable()
+    {
+        $this->builder->where('is_purchasable', '=', true);
+    }
 }

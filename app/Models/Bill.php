@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Bill extends Model
 {
     use Filterable;
+
     protected $guarded = ['id'];
 
     public function products(): BelongsToMany
@@ -38,5 +39,10 @@ class Bill extends Model
         return collect($this->products)->sum(function ($product) {
             return $product->buying_unit_cost * $product->pivot->quantity;
         });
+    }
+
+    public function payable()
+    {
+        return $this->morphOne(PaymentHistory::class, 'payable');
     }
 }

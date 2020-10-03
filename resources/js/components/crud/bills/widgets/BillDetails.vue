@@ -7,7 +7,7 @@
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
-                <SupplierLookupInput :selected="contact" @on-select="handleSupplierSelect"/>
+                <SupplierLookupInput :selected="contact" :read_only="bill.read_only" @on-select="handleSupplierSelect"/>
             </b-field>
         </div>
         <b-field

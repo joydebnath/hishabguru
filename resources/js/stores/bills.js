@@ -72,7 +72,7 @@ const store = {
                     Notification.open({
                         message: data.message,
                         type: 'is-success is-light',
-                        duration:5000
+                        duration: 5000
                     });
                     dispatch('loadData', {page: getters.getCurrentPage})
                 })
@@ -82,7 +82,7 @@ const store = {
                         Notification.open({
                             message: err.response.data.message,
                             type: 'is-danger is-light',
-                            duration:5000
+                            duration: 5000
                         })
                     }
                     commit('setLoading', {loading: false})

@@ -13,12 +13,16 @@ class CreatePaymentHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_history', function (Blueprint $table) {
+        Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
             $table->morphs('payable');
             $table->decimal('amount');
             $table->dateTime('payment_date');
+            $table->text('payment_note')->nullable();
+            $table->unsignedBigInteger('record_entered_by')->nullable();
             $table->timestamps();
+
+            $table->foreign('record_entered_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -29,6 +33,6 @@ class CreatePaymentHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_history');
+        Schema::dropIfExists('payment_histories');
     }
 }

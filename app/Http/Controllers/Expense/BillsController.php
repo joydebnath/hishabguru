@@ -28,6 +28,9 @@ class BillsController extends Controller
     {
         try {
             $storable = $this->getFillable($request);
+            if ($request->status !== 'draft') {
+                $storable['total_due'] = $request->total_amount;
+            }
             $bill = Bill::create($storable);
 
             foreach ($request->products as $product) {

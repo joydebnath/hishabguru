@@ -29,7 +29,7 @@
                 </b-field>
             </b-field>
         </div>
-        <div class="pl-4 mb-4 relative border-t pt-4">
+        <div class="pl-4 mb-4 relative border-t pt-4" v-if="!read_only">
             <ProductLookupInput @on-select="handleProductSelect"/>
         </div>
         <b-table
@@ -86,14 +86,15 @@
                     :value="props.row.tax_rate"
                     :id="props.row.id"
                     :editable="props.row.edit"
+                    unit="%"
                     @on-input="handleEditTaxRate"
                 />
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle">
                 <span class="text-sm">{{ props.row.total_buying_cost }}</span>
             </b-table-column>
-            <b-table-column v-slot="props" cell-class="align-middle">
-                <div class="flex justify-end">
+            <b-table-column v-slot="props" cell-class="align-middle" v-if="!read_only">
+                <div class="flex justify-end" >
                     <b-button
                         v-if="props.row.edit"
                         type="is-success is-light "
@@ -306,6 +307,9 @@ export default {
                 due_date: null,
             }
         },
+        read_only(){
+            return this.$props.item.status !== 'draft'
+        }
     },
     watch: {
         item(value) {

@@ -9,7 +9,7 @@
             />
         </template>
         <template v-else>
-            <span class="px-3 py-0 outline-none w-16 text-center text-sm">{{ $props.value }}</span>
+            <span class="px-3 py-0 outline-none w-16 text-center text-sm">{{ $props.value }}{{$props.unit}}</span>
         </template>
     </div>
 </template>
@@ -21,7 +21,11 @@ export default {
         placeholder: String,
         editable: Boolean,
         value: Number | null,
-        id: Number | null
+        id: Number | null,
+        unit:{
+            type: String,
+            default: ''
+        }
     },
     data() {
         return {

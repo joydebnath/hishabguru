@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/promo-codes', 'Promo\PromoCodesController');
     Route::resource('/tenants', 'Tenancy\TenantController');
     Route::resource('/inventories', 'Inventory\InventoryController');
+    Route::resource('/payment-histories', 'Payment\PaymentHistoryController');
 
     Route::get('/me', 'User\UserController@index');
     Route::post('/current-tenant', 'User\TenancyController@store');
