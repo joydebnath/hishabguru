@@ -23,8 +23,7 @@
                     </div>
                     <div class="flex flex-row align-items-center justify-content-between w-full" v-if="!loading">
                         <b-button
-                            type="is-info is-light"
-                            class="text-blue-700"
+                            :type="show_payment_history ? 'is-info': 'is-info is-light'"
                             @click="handleReadPH"
                             v-text="payment_history_action_text"
                         />

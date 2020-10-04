@@ -94,7 +94,7 @@
                 <span class="text-sm">{{ props.row.total_buying_cost }}</span>
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle" v-if="!read_only">
-                <div class="flex justify-end" >
+                <div class="flex justify-end">
                     <b-button
                         v-if="props.row.edit"
                         type="is-success is-light "
@@ -307,7 +307,10 @@ export default {
                 due_date: null,
             }
         },
-        read_only(){
+        read_only() {
+            if (_.isEmpty(this.$props.item)) {
+                return false;
+            }
             return this.$props.item.status !== 'draft'
         }
     },

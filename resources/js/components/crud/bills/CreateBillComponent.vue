@@ -71,7 +71,7 @@ export default {
                 bill = {...bill, ...data}
             });
 
-            if (bill.purchase_bill_number == null) {
+            if (bill.bill_number == null) {
                 this.error_container = true;
                 this.error_message = 'Bill number can not be empty!';
                 return;
