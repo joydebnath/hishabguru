@@ -20,6 +20,7 @@ class CreateOtherExpensesTable extends Migration
             $table->dateTime('issue_date');
 
             $table->unsignedDecimal('total_amount')->nullable();
+            $table->unsignedDecimal('total_due')->nullable();
             $table->unsignedDecimal('sub_total')->nullable();
             $table->unsignedDecimal('total_tax')->nullable();
             $table->text('note')->nullable();

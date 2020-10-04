@@ -21,6 +21,12 @@
             </b-dropdown-item>
         </router-link>
         <span class="dropdown-divider"></span>
+        <router-link to="/@/accounts-chart">
+            <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
+                Chart of Accounts
+            </b-dropdown-item>
+        </router-link>
+        <span class="dropdown-divider"></span>
         <span class="dropdown-header tracking-wider">Reports</span>
         <router-link to="/@/balance-sheet">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">

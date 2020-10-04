@@ -15,9 +15,9 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <router-link to="/@/purchases/create">
+                    <router-link to="/@/other-expenses/create">
                         <button class="button field is-info">
-                            <span>New purchase</span>
+                            <span>New expense</span>
                         </button>
                     </router-link>
                 </div>
@@ -31,8 +31,8 @@
 <script>
 import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
-import Table from "./PurchaseTable.vue";
-import Filters from "./PurchasesFilters";
+import Table from "./OtherExpensesTable.vue";
+import Filters from "./OtherExpensesFilters";
 
 export default {
     components: {
@@ -45,28 +45,28 @@ export default {
     },
     methods: {
         handleSearch(value) {
-            this.$store.commit('purchases/setFilters', {
+            this.$store.commit('other_expenses/setFilters', {
                 filters: {
                     search: value
                 }
             });
-            this.$store.dispatch('purchases/loadData', {page: 1})
+            this.$store.dispatch('other_expenses/loadData', {page: 1})
         },
         handleDelete(purchase_order) {
             this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Purchase Order</h5>Are you sure you want to delete the purchase order: <b>' + purchase_order.purchase_order_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Expense</h5>Are you sure you want to delete the expnese: <b>' + purchase_order.purchase_order_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,
                 onConfirm: () => {
-                    this.$store.dispatch('purchases/delete', {purchase_order})
+                    this.$store.dispatch('other_expenses/delete', {purchase_order})
                 }
             })
         },
     },
     computed: {
         ...mapGetters({
-            checked_products: 'purchases/getCheckedPurchases'
+            checked_products: 'other_expenses/getCheckedExpenses'
         }),
         show_bulk_actions() {
             return this.checked_products.length

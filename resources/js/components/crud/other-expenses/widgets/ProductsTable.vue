@@ -1,0 +1,329 @@
+<template>
+    <section class="w-full">
+        <div class="flex flex-row pl-4 mb-4">
+            <b-field grouped custom-class="dates">
+                <b-field
+                    label="Spend Date"
+                    :type="has_spend_date ? 'is-danger' :null"
+                    :message="has_spend_date ? 'This field is required' : null"
+                >
+                    <b-datepicker
+                        v-model="order.spend_date"
+                        :show-week-number="false"
+                        :locale="undefined"
+                        placeholder="Click to select..."
+                        icon="calendar-today"
+                        trap-focus
+                    />
+                </b-field>
+                <span class="px-2"></span>
+                <b-field label="Due Date">
+                    <b-datepicker
+                        v-model="order.due_date"
+                        :show-week-number="false"
+                        :locale="undefined"
+                        placeholder="Click to select..."
+                        icon="calendar-today"
+                        trap-focus
+                    />
+                </b-field>
+            </b-field>
+        </div>
+        <div class="pl-1 mb-4 border-t pt-4" >
+            <b-button type="is-info" size="is-small" class="font-medium tracking-wider">Add Item</b-button>
+        </div>
+        <b-table
+            :data="products"
+            :narrowed="true"
+            :hoverable="true"
+        >
+            <b-table-column
+                label="Product"
+                v-slot="props"
+                width="150"
+                cell-class="align-middle"
+            >
+                <EditableDescription
+                    placeholder="Write something..."
+                    :value="props.row.name"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    @on-input="handleEditName"
+                />
+            </b-table-column>
+            <b-table-column label="Description" centered v-slot="props" width="150" cell-class="align-middle">
+                <EditableDescription
+                    placeholder="Write something..."
+                    :value="props.row.description"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    @on-input="handleEditDescription"
+                />
+            </b-table-column>
+            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle">
+                <EditableInput
+                    placeholder="#"
+                    :value="props.row.quantity"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    @on-input="handleEditQuantity"
+                />
+            </b-table-column>
+            <b-table-column
+                label="Unit Cost"
+                centered
+                v-slot="props"
+                cell-class="align-middle"
+            >
+                <EditableInput
+                    placeholder="0.0%"
+                    :value="props.row.buying_unit_cost"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    @on-input="handleEditUnitCost"
+                />
+            </b-table-column>
+            <b-table-column label="Tax" centered v-slot="props" width="80" cell-class="align-middle">
+                <EditableInput
+                    placeholder="0.0"
+                    :value="props.row.tax_rate"
+                    :id="props.row.id"
+                    :editable="props.row.edit"
+                    unit="%"
+                    @on-input="handleEditTaxRate"
+                />
+            </b-table-column>
+            <b-table-column label="Total" centered v-slot="props" cell-class="align-middle">
+                <span class="text-sm">{{ props.row.total_buying_cost }}</span>
+            </b-table-column>
+            <b-table-column v-slot="props" cell-class="align-middle" v-if="!read_only">
+                <div class="flex justify-end">
+                    <b-button
+                        v-if="props.row.edit"
+                        type="is-success is-light "
+                        class="text-lg h-8 w-8 p-4"
+                        icon-right="check"
+                        @click="()=>handleSaveRecord(props.row)"
+                    />
+                    <b-button
+                        v-else
+                        type="is-info is-light "
+                        class="text-lg h-8 w-8 p-4"
+                        icon-right="lead-pencil"
+                        @click="()=>handleEditRecord(props.row)"
+                    />
+                    &nbsp; &nbsp;
+                    <b-button
+                        type="is-danger is-light"
+                        class="text-lg h-8 w-8 p-4"
+                        icon-right="trash-can-outline"
+                        @click="()=>deleteSelectedProducts(props.row)"
+                    />
+                </div>
+            </b-table-column>
+            <template slot="footer">
+                <EmptyTable v-if="!data.length" message="Add a product"/>
+                <th v-else class="pt-0" colspan="7">
+                    <section class="grid grid-col-5 gap-4 w-full border-t">
+                        <div class="col-start-4 col-span-2 mt-4">
+                            <table class="table is-narrow w-full">
+                                <tbody>
+                                <tr>
+                                    <td class="border-t-0 border-b text-base font-normal">Sub Total</td>
+                                    <td class="border-t-0 border-b text-base font-normal">{{ sub_total }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border-t-0 border-b text-base font-normal">Total Tax</td>
+                                    <td class="border-t-0 border-b text-base font-normal">{{ tax }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border-t-0 text-lg">Total</td>
+                                    <td class="border-t-0 text-lg">{{ total }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </th>
+            </template>
+        </b-table>
+    </section>
+</template>
+
+<script>
+import ProductLookupInput from "@/components/global/lookup/products/ProductLookupInput";
+import EditableInput from "@/components/global/input/ProductEditableInput";
+import EditableDescription from "@/components/global/input/ProductEditableDescription";
+import EmptyTable from '@/components/global/table/EmptyTable'
+
+export default {
+    components: {EditableInput, EmptyTable, EditableDescription, ProductLookupInput},
+    props: {
+        item: Object | Array
+    },
+    data() {
+        return {
+            data: [],
+            required_fields: {
+                spend_date: true,
+                products: true
+            },
+            errors: {},
+        };
+    },
+    methods: {
+        validation() {
+            let error_bag = {}
+            for (let value in this.order) {
+                if (this.required_fields[value] && this.order[value] == null) {
+                    error_bag[value] = true;
+                }
+            }
+            if (!this.products.length) {
+                error_bag['products'] = true;
+            }
+            this.errors = error_bag;
+        },
+        collectData({validate}) {
+            this.resetErrors()
+            if (validate) {
+                this.validation()
+            }
+            return {
+                data: {
+                    spend_date: this.order.spend_date ? this.order.spend_date.toLocaleDateString() : null,
+                    due_date: this.order.due_date ? this.order.due_date.toLocaleDateString() : null,
+                    products: this.products,
+                    total_amount: this.total,
+                    total_tax: this.tax,
+                    sub_total: this.sub_total,
+                },
+                errors: this.errors
+            }
+        },
+        resetErrors() {
+            this.errors = {}
+        },
+        handleEditQuantity(value, product_id) {
+            const expenses = _.findIndex(this.data, value => value.id == product_id)
+            if (expenses !== -1) {
+                this.data[expenses] = {
+                    ...this.data[expenses],
+                    quantity: value,
+                    total_buying_cost: this.calculateProductTotalPrice(value, this.data[expenses].buying_unit_cost)
+                }
+                this.data = [...this.data]
+            }
+        },
+        handleEditUnitCost(value, product_id) {
+            const expenses = _.findIndex(this.data, value => value.id == product_id)
+            if (expenses !== -1) {
+                this.data[expenses] = {
+                    ...this.data[expenses],
+                    buying_unit_cost: value,
+                    total_buying_cost: this.calculateProductTotalPrice(this.data[expenses].quantity, value)
+                }
+                this.data = [...this.data]
+            }
+        },
+        handleEditTaxRate(value, product_id) {
+            const expenses = _.findIndex(this.data, value => value.id == product_id)
+            if (expenses !== -1) {
+                this.data[expenses] = {...this.data[expenses], tax_rate: value}
+                this.data = [...this.data]
+            }
+        },
+        handleEditName(value, product_id) {
+            const expenses = _.findIndex(this.data, value => value.id == product_id)
+            if (expenses !== -1) {
+                this.data[expenses] = {...this.data[expenses], name: value}
+                this.data = [...this.data]
+            }
+        },
+        handleEditDescription(value, product_id) {
+            const expenses = _.findIndex(this.data, value => value.id == product_id)
+            if (expenses !== -1) {
+                this.data[expenses] = {...this.data[expenses], description: value}
+                this.data = [...this.data]
+            }
+        },
+        handleEditRecord(product) {
+            this.updateEditField(product, true)
+        },
+        handleSaveRecord(product) {
+            this.updateEditField(product, false)
+        },
+        updateEditField(product, editable) {
+            const expenses = _.findIndex(this.data, value => value.id == product.id)
+            if (expenses !== -1) {
+                this.data[expenses] = {...this.data[expenses], edit: editable}
+                this.data = [...this.data]
+            }
+        },
+        calculateProductTotalPrice(quantity, buying_unit_cost) {
+            return _.round(buying_unit_cost * quantity, 2);
+        },
+        deleteSelectedProducts(product) {
+            this.data = [..._.filter(this.data, value => value.id !== product.id)]
+        },
+    },
+    computed: {
+        products() {
+            return this.data
+        },
+        sub_total() {
+            return _.round(_.sumBy(this.products, 'total_buying_cost'), 2);
+        },
+        tax() {
+            return _.sumBy(this.products, value => {
+                if (value.tax_rate) {
+                    return _.round(value.total_buying_cost * (value.tax_rate / 100), 2);
+                }
+                return 0.0;
+            });
+        },
+        total() {
+            return parseFloat(_.round(this.sub_total + this.tax, 2));
+        },
+        has_spend_date() {
+            return this.errors.spend_date !== undefined
+        },
+        has_products() {
+            return this.errors.products !== undefined
+        },
+        order() {
+            if (this.$props.item) {
+                return {
+                    spend_date: this.$props.item.spend_date ? new Date(this.$props.item.spend_date) : new Date(),
+                    due_date: this.$props.item.due_date ? new Date(this.$props.item.due_date) : null,
+                }
+            }
+            return {
+                spend_date: new Date(),
+                due_date: null,
+            }
+        },
+        read_only() {
+            if (_.isEmpty(this.$props.item)) {
+                return false;
+            }
+            return this.$props.item.status !== 'draft'
+        }
+    },
+    watch: {
+        item(value) {
+            this.data = value.products ? value.products : []
+        }
+    }
+};
+</script>
+
+<style>
+.table-footer th {
+    border-color: transparent !important;
+}
+
+.dates .dropdown-item.active, .dropdown-item:active {
+    background-color: transparent !important;
+}
+</style>

@@ -90,12 +90,6 @@ export default {
         },
     },
     computed: {
-        ...mapGetters({
-            inventories: 'tenancy/getCurrentInventories'
-        }),
-        is_changeable_inventory() {
-            return this.inventories && this.inventories.length > 1
-        },
         has_contact_id() {
             return this.errors.contact_id !== undefined
         },
