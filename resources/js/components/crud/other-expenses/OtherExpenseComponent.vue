@@ -29,7 +29,7 @@
                 </div>
             </div>
             <FooterActions
-                cancel_route="/@/other_expenses"
+                cancel_route="/@/other-expenses"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"

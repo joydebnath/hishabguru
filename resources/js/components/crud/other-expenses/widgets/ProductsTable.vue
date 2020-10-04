@@ -3,12 +3,12 @@
         <div class="flex flex-row pl-4 mb-4">
             <b-field grouped custom-class="dates">
                 <b-field
-                    label="Spend Date"
-                    :type="has_spend_date ? 'is-danger' :null"
-                    :message="has_spend_date ? 'This field is required' : null"
+                    label="Issue Date"
+                    :type="has_issue_date ? 'is-danger' :null"
+                    :message="has_issue_date ? 'This field is required' : null"
                 >
                     <b-datepicker
-                        v-model="order.spend_date"
+                        v-model="order.issue_date"
                         :show-week-number="false"
                         :locale="undefined"
                         placeholder="Click to select..."
@@ -29,8 +29,11 @@
                 </b-field>
             </b-field>
         </div>
-        <div class="pl-1 mb-4 border-t pt-4" >
-            <b-button type="is-info" size="is-small" class="font-medium tracking-wider">Add Item</b-button>
+        <div class="pl-1 mb-4 border-t pt-4">
+            <b-button type="is-info" size="is-small" class="font-medium tracking-wider" @click="toggleAddNewItemModel">Add
+                Item
+            </b-button>
+            <AddItem :show="show_add_new" @on-add="handleAddNewItem" @on-close="toggleAddNewItemModel"/>
         </div>
         <b-table
             :data="products"
@@ -155,18 +158,22 @@ import ProductLookupInput from "@/components/global/lookup/products/ProductLooku
 import EditableInput from "@/components/global/input/ProductEditableInput";
 import EditableDescription from "@/components/global/input/ProductEditableDescription";
 import EmptyTable from '@/components/global/table/EmptyTable'
+import AddItem from "./AddItem";
 
 export default {
-    components: {EditableInput, EmptyTable, EditableDescription, ProductLookupInput},
+    components: {AddItem, EditableInput, EmptyTable, EditableDescription, ProductLookupInput},
     props: {
         item: Object | Array
     },
     data() {
         return {
             data: [],
+            show_add_new: false,
             required_fields: {
-                spend_date: true,
-                products: true
+                issue_date: true,
+                products: true,
+                payment_date: true,
+                amount: true,
             },
             errors: {},
         };
@@ -191,10 +198,11 @@ export default {
             }
             return {
                 data: {
-                    spend_date: this.order.spend_date ? this.order.spend_date.toLocaleDateString() : null,
+                    issue_date: this.order.issue_date ? this.order.issue_date.toLocaleDateString() : null,
                     due_date: this.order.due_date ? this.order.due_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
+                    total_due: this.total_due,
                     total_tax: this.tax,
                     sub_total: this.sub_total,
                 },
@@ -266,6 +274,12 @@ export default {
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]
         },
+        handleAddNewItem(item) {
+            this.data = [...this.products, item]
+        },
+        toggleAddNewItemModel() {
+            this.show_add_new = !this.show_add_new
+        }
     },
     computed: {
         products() {
@@ -285,8 +299,11 @@ export default {
         total() {
             return parseFloat(_.round(this.sub_total + this.tax, 2));
         },
-        has_spend_date() {
-            return this.errors.spend_date !== undefined
+        total_due() {
+            return 0
+        },
+        has_issue_date() {
+            return this.errors.issue_date !== undefined
         },
         has_products() {
             return this.errors.products !== undefined
@@ -294,12 +311,12 @@ export default {
         order() {
             if (this.$props.item) {
                 return {
-                    spend_date: this.$props.item.spend_date ? new Date(this.$props.item.spend_date) : new Date(),
+                    issue_date: this.$props.item.issue_date ? new Date(this.$props.item.issue_date) : new Date(),
                     due_date: this.$props.item.due_date ? new Date(this.$props.item.due_date) : null,
                 }
             }
             return {
-                spend_date: new Date(),
+                issue_date: new Date(),
                 due_date: null,
             }
         },

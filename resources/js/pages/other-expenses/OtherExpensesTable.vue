@@ -41,13 +41,13 @@
                 {{ props.row.reference_number }}
             </b-table-column>
             <b-table-column
-                field="spend_date"
+                field="issue_date"
                 label="Spent"
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
             >
-                {{ props.row.spend_date }}
+                {{ props.row.issue_date }}
             </b-table-column>
 
             <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle">

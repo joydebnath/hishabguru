@@ -21,6 +21,8 @@
                             <span class="tracking-wider" v-text="error_message"></span>
                         </b-message>
                     </div>
+                    <br>
+                    <AddInlinePaymentRecord ref="part3"/>
                 </div>
             </div>
             <FooterActions
@@ -41,10 +43,11 @@ import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 import {store} from "@/repos/other-expenses";
 import HeaderActions from "./widgets/HeaderActions";
+import AddInlinePaymentRecord from "./widgets/AddInlinePaymentRecord";
 
 export default {
     name: "CreateBillComponent",
-    components: {HeaderActions, Breadcrumb, FooterActions, ProductsTable, BillDetails},
+    components: {HeaderActions, Breadcrumb, FooterActions, ProductsTable, BillDetails, AddInlinePaymentRecord},
     data() {
         return {
             error_container: false,
