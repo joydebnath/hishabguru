@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentHistoryRequest;
 use App\Http\Resources\Payment\PaymentHistoryCollection;
 use App\Models\PaymentHistory;
-use App\Http\Resources\Payment\PaymentHistory as PaymentHistoryResource;
+use App\Http\Resources\Payment\PaymentHistoryResource;
 use Exception;
 
 class PaymentHistoryController extends Controller
@@ -25,7 +25,8 @@ class PaymentHistoryController extends Controller
     {
         try {
             $paymentHistory = PaymentHistory::create($request->validated());
-            return new PaymentHistoryResource($paymentHistory->load('payable'));
+            $this->updateTotalDue($paymentHistory->payable, $paymentHistory->amount, 'subtraction');
+            return new PaymentHistoryResource($paymentHistory->fresh('payable'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -48,10 +49,28 @@ class PaymentHistoryController extends Controller
     public function destroy(PaymentHistory $paymentHistory)
     {
         try {
+            $amount = $paymentHistory->amount;
+            $payable = $paymentHistory->payable;
+
             $paymentHistory->delete();
+
+            $this->updateTotalDue($payable, $amount, 'addition');
+
             return response(['message' => 'Payment History is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
+    }
+
+    // $payable = Bill || Invoice Model
+    private function updateTotalDue($payable, $paidAmount, $operation): void
+    {
+        if ($operation === 'subtraction') {
+            $paidAmount = (-1) * $paidAmount;
+        }
+
+        $payable->update([
+            'total_due' => $payable->total_due + $paidAmount
+        ]);
     }
 }

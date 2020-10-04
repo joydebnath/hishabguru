@@ -12,7 +12,7 @@
                     type="is-danger is-light"
                     class="text-base h-6 w-6 p-3"
                     icon-right="trash-can-outline"
-                    @click="handleDelete"
+                    @click="()=>handleDelete(props.row)"
                 />
             </div>
         </b-table-column>
@@ -25,12 +25,31 @@
 <script>
 export default {
     name: "PaymentHistories",
-    props:{
+    props: {
         loading: Boolean,
         histories: Object | Array
     },
-    methods:{
-        handleDelete(){
+    methods: {
+        handleDelete(record) {
+            this.$buefy.dialog.confirm({
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Payment Record</h5>Are you sure you want to delete?',
+                confirmText: 'Delete',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => {
+                    this.$emit('on-loading', true);
+                    axios
+                        .delete('/payment-histories/' + record.id)
+                        .then(({data}) => {
+                            this.$emit('on-delete', record);
+                            this.$emit('on-loading', false);
+                        })
+                        .catch(err => {
+                            this.$emit('on-loading', false);
+                            console.log(err)
+                        })
+                }
+            })
 
         }
     }

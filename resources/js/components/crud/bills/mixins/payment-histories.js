@@ -20,8 +20,8 @@ const histories = {
     },
     methods: {
         handleReadPH() {
-            this.show_payment_history = true;
-            if (this.payment_histories.length === 0) {
+            this.show_payment_history = !this.show_payment_history;
+            if (this.payment_histories.length === 0 && this.show_payment_history) {
                 this.loadPaymentHistories()
             }
         },
@@ -30,7 +30,7 @@ const histories = {
             axios
                 .get('/payment-histories', {
                     params: {
-                        payable: 'bill'
+                        payable: 'bills'
                     }
                 })
                 .then(({data}) => {
@@ -42,12 +42,19 @@ const histories = {
                     console.log(err)
                 })
         },
-        handleAddPaymentRecord({paid_amount, history}) {
+        handleAddPaymentRecord({total_due, history}) {
             this.show_add_payment = false;
-            this.bill = {...this.bill, total_due: this.bill.total_due - paid_amount}
+            this.bill = {...this.bill, total_due: parseFloat(total_due)}
             if (history) {
                 this.payment_histories = [...this.payment_histories, history]
             }
+        },
+        toggleLoadingPH(value) {
+            this.loading_payment_histories = value
+        },
+        handleDeletePH({id, amount}) {
+            this.bill = {...this.bill, total_due: parseFloat(this.bill.total_due) + parseFloat(amount)}
+            this.payment_histories = [..._.filter(value => value.id !== id)]
         }
     }
 }

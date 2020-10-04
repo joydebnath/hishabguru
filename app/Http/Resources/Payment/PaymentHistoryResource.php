@@ -4,12 +4,12 @@ namespace App\Http\Resources\Payment;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PaymentHistory extends JsonResource
+class PaymentHistoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)
@@ -19,6 +19,7 @@ class PaymentHistory extends JsonResource
             'amount' => $this->amount,
             'payment_date' => $this->payment_date,
             'payment_note' => $this->payment_note,
+            'total_due' => $this->payable ? $this->payable->total_due : null
         ];
     }
 }

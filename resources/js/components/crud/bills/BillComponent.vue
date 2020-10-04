@@ -50,8 +50,14 @@
             :right="true"
             class="r-sidebar"
             v-model="show_payment_history"
+            :can-cancel="['escape']"
         >
-            <PaymentHistories :histories="computed_payment_histories" :loading="computed_loading_payment_histories"/>
+            <PaymentHistories
+                :histories="computed_payment_histories"
+                :loading="computed_loading_payment_histories"
+                @on-loading="toggleLoadingPH"
+                @on-delete="handleDeletePH"
+            />
         </b-sidebar>
         <AddPaymentRecord
             :show="show_add_payment"
@@ -78,8 +84,7 @@ import PaymentHistoriesMixin from './mixins/payment-histories'
 export default {
     name: "BillComponent",
     components: {
-        AddPaymentRecord,
-        PaymentHistories, Breadcrumb, FooterActions, HeaderActions, ProductsTable, BillDetails
+        AddPaymentRecord, PaymentHistories, Breadcrumb, FooterActions, HeaderActions, ProductsTable, BillDetails
     },
     mixins: [headerActionsMixin, PaymentHistoriesMixin],
     mounted() {

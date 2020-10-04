@@ -2,6 +2,7 @@
     <b-modal
         v-model="$props.show"
         has-modal-card
+        :can-cancel="['x']"
         :destroy-on-hide="false"
     >
         <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
@@ -93,7 +94,6 @@ export default {
             }
 
             this.loading = true
-            const PAID = this.payment_record.amount
 
             axios
                 .post('/payment-histories', {
@@ -105,7 +105,7 @@ export default {
                 .then(({data}) => {
                     this.loading = false
                     this.payment_record = {}
-                    this.$emit('on-add-record', {paid_amount: PAID, history: data.data})
+                    this.$emit('on-add-record', {total_due: data.data.total_due, history: data.data})
                 })
                 .catch(err => {
                     this.loading = false
