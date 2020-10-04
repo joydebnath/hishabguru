@@ -1,12 +1,12 @@
 <template>
     <div class="max-w-6xl m-auto w-full mb-6 py-2">
-        <Breadcrumb active_link_name="New Bill"/>
+        <Breadcrumb active_link_name="New Expense"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <HeaderActions v-if="false" :show_option="false" :show_print="false"/>
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-1">
-                    <BillDetails ref="part1" :item="computed_item"/>
+                    <OtherExpenseDetails ref="part1" :item="computed_item"/>
                 </div>
                 <div class="col-span-2 ml-4">
                     <ProductsTable ref="part2" :item="computed_item"/>
@@ -15,13 +15,17 @@
                             type="is-danger"
                             size="is-small"
                             :auto-close="true"
-                            :duration="2000"
+                            :duration="3500"
                             v-model="error_container"
                         >
                             <span class="tracking-wider" v-text="error_message"></span>
                         </b-message>
                     </div>
                     <br>
+                </div>
+            </div>
+            <div class="grid grid-cols-3">
+                <div class="col-start-2 col-span-2">
                     <AddInlinePaymentRecord ref="part3"/>
                 </div>
             </div>
@@ -37,7 +41,7 @@
 
 <script>
 import {mapGetters} from "vuex";
-import BillDetails from "./widgets/ExpenseDetails";
+import OtherExpenseDetails from "./widgets/ExpenseDetails";
 import ProductsTable from "./widgets/ProductsTable";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
@@ -46,48 +50,48 @@ import HeaderActions from "./widgets/HeaderActions";
 import AddInlinePaymentRecord from "./widgets/AddInlinePaymentRecord";
 
 export default {
-    name: "CreateBillComponent",
-    components: {HeaderActions, Breadcrumb, FooterActions, ProductsTable, BillDetails, AddInlinePaymentRecord},
+    name: "CreateOtherExpenseComponent",
+    components: {HeaderActions, Breadcrumb, FooterActions, ProductsTable, OtherExpenseDetails, AddInlinePaymentRecord},
     data() {
         return {
             error_container: false,
             error_message: '',
-            bill: {},
+            expense: {},
             loading: false
         }
     },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
-            total: 'bills/getTotal',
+            total: 'other_expenses/getTotal',
             per_page: 'getPerPage'
         }),
         computed_item() {
-            return this.bill
+            return this.expense
         }
     },
     methods: {
         handleDraft() {
-            let bill = {};
+            let expense = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
-                bill = {...bill, ...data}
+                expense = {...expense, ...data}
             });
 
-            if (bill.bill_number == null) {
+            if (expense.expense_number == null) {
                 this.error_container = true;
-                this.error_message = 'Bill number can not be empty!';
+                this.error_message = 'Expense number can not be empty!';
                 return;
             }
 
-            bill['status'] = 'draft';
-            this.createBill(bill, 'Bill Draft is created')
+            expense['status'] = 'draft';
+            this.createOtherExpense(expense, 'Expense Draft is created')
         },
         handleSave() {
-            let bill = {}, error_bag = {};
+            let expense = {}, error_bag = {};
             _.forEach(this.$refs, value => {
                 let {data, errors} = value.collectData({validate: true});
-                bill = {...bill, ...data}
+                expense = {...expense, ...data}
                 error_bag = {...error_bag, ...errors}
             });
 
@@ -97,15 +101,21 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                bill['status'] = 'due';
-                this.createBill(bill, 'Bill is created')
+
+                if (expense.amount && (parseFloat(expense.total_amount) <= parseFloat(expense.amount))) {
+                    expense['status'] = 'paid';
+                } else {
+                    expense['status'] = 'due';
+                }
+
+                this.createOtherExpense(expense, 'Expense is created')
             }
         },
         handleSaveForApproval() {
             console.log('awaiting-for-approve')
         },
-        createBill(bill, message) {
-            store({...bill, tenant_id: this.tenant_id})
+        createOtherExpense(expense, message) {
+            store({...expense, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
                 })
@@ -116,16 +126,16 @@ export default {
                 });
         },
         onSuccess(message) {
-            this.bill = {};
+            this.expense = {};
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
                 duration: 5000
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('bills/loadData', {page: 1})
+                this.$store.dispatch('expenses/loadData', {page: 1})
             }
-            this.$router.push('/@/bills');
+            this.$router.push('/@/expenses');
         },
         onError(response) {
             this.$buefy.notification.open({

@@ -124,12 +124,9 @@ export default {
         }
     },
     computed: {
-        sub_total() {
+        total() {
             return this.record.quantity && this.record.buying_unit_cost ?
                 (parseFloat(this.record.buying_unit_cost) * parseInt(this.record.quantity)) : 0
-        },
-        total() {
-            return parseFloat(_.round(this.sub_total + (this.sub_total * this.tax), 2));
         },
         tax() {
             return this.record.tax_rate ? (parseFloat(this.record.tax_rate) / 100) : 0

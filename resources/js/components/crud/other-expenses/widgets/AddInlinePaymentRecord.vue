@@ -3,7 +3,7 @@
         <p class="mb-2 flex flex-row align-items-center">
             <b-switch v-model="show_row">
                 <span class="font-medium tracking-wider ">
-                    Payment Record
+                    Add Payment Record
                 </span>
             </b-switch>
         </p>
@@ -74,9 +74,18 @@ export default {
         }
     },
     methods: {
-        collectData() {
-            if (this.show_row && !this.hasErrors()) {
-                return this.payment_record
+        collectData({validate}) {
+            if (validate) {
+                this.hasErrors()
+            }
+            if (this.show_row) {
+                return {
+                    data: {
+                        ...this.payment_record,
+                        payment_date: this.payment_record.payment_date ? this.payment_record.payment_date.toLocaleDateString() : null
+                    },
+                    errors: this.errors
+                }
             }
             return {}
         },
@@ -84,8 +93,8 @@ export default {
             this.errors = {}
 
             for (let value in this.required) {
-                if (this.record[value] === undefined && this.required[value]) {
-                    this.errors[value] = 'This field is required'
+                if (this.payment_record[value] === undefined && this.required[value]) {
+                    this.errors[value] = true
                 }
             }
 

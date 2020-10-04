@@ -9,7 +9,9 @@
             />
         </template>
         <template v-else>
-            <span class="px-3 py-0 outline-none w-16 text-center text-sm">{{ $props.value }}{{$props.unit}}</span>
+            <span class="px-3 py-0 outline-none w-16 text-center text-sm">
+                {{ $props.value }} <template v-if="$props.value">{{$props.unit}}</template>
+            </span>
         </template>
     </div>
 </template>
