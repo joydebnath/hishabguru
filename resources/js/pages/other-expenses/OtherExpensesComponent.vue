@@ -52,14 +52,14 @@ export default {
             });
             this.$store.dispatch('other_expenses/loadData', {page: 1})
         },
-        handleDelete(purchase_order) {
+        handleDelete(expense) {
             this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Expense</h5>Are you sure you want to delete the expnese: <b>' + purchase_order.purchase_order_number + '</b> ?',
+                message: '<h5 class="mb-2 font-medium text-xl">Deleting Expense</h5>Are you sure you want to delete the expense: <b>' + expense.expense_number + '</b> ?',
                 confirmText: 'Delete',
                 type: 'is-danger',
                 hasIcon: true,
                 onConfirm: () => {
-                    this.$store.dispatch('other_expenses/delete', {purchase_order})
+                    this.$store.dispatch('other_expenses/delete', {expense})
                 }
             })
         },

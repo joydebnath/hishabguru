@@ -80,6 +80,7 @@ class OtherExpenseController extends Controller
         try {
             $otherExpense->payable()->delete();
             $otherExpense->delete();
+            return response(['message' => 'Other Expense is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

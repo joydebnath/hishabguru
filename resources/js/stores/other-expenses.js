@@ -58,10 +58,10 @@ const store = {
                     commit('setLoading', {loading: false})
                 })
         },
-        delete({commit, getters, dispatch}, {bill}) {
+        delete({commit, getters, dispatch}, {expense}) {
             commit('setLoading', {loading: true})
             axios
-                .delete(getters.getUrl + '/' + bill.id)
+                .delete(getters.getUrl + '/' + expense.id)
                 .then(({data}) => {
                     commit('setLoading', {loading: false})
                     Notification.open({
