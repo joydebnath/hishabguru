@@ -6,6 +6,7 @@ use App\Filters\Expense\OtherExpenseFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Expense\OtherExpenseRequest;
 use App\Http\Resources\Expense\OtherExpenseCollection;
+use App\Http\Resources\Expense\OtherExpenseFullResource;
 use App\Models\OtherExpense;
 use App\Http\Resources\Expense\OtherExpense as OtherExpenseResource;
 use App\Services\Expense\OtherExpenseService;
@@ -60,7 +61,7 @@ class OtherExpenseController extends Controller
     public function show(OtherExpense $otherExpense)
     {
         try {
-            return $otherExpense->load('payable');
+            return new OtherExpenseFullResource($otherExpense->load('items', 'payable'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

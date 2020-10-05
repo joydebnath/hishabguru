@@ -15,7 +15,7 @@ class OtherExpense extends Model
     protected $table = 'other_expenses';
     protected $guarded = ['id'];
 
-    public function products(): HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(OtherExpenseItem::class);
     }
