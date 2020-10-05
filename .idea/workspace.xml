@@ -14,9 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Expense/OtherExpenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Expense/OtherExpenseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/OtherExpense.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OtherExpense.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Expense/OtherExpenseFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Expense/OtherExpenseFullResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -395,8 +397,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -752,7 +754,8 @@
       <workItem from="1601772425006" duration="20229000" />
       <workItem from="1601813369751" duration="4593000" />
       <workItem from="1601855901827" duration="5117000" />
-      <workItem from="1601869047300" duration="10618000" />
+      <workItem from="1601869047300" duration="10998000" />
+      <workItem from="1601903506435" duration="2815000" />
     </task>
     <servers />
   </component>
@@ -850,23 +853,23 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2369" y="175" width="1022" height="737" key="SettingsEditor/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600045398243" />
-    <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1601814535808">
+    <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1601906259445">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="624" y="245" key="run.anything.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599363128410" />
     <state x="673" y="245" key="run.anything.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1599561357024" />
-    <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601814535808" />
+    <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601906259445" />
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1601884946997">
-      <screen x="72" y="27" width="5688" height="1053" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1601904992506">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601029633495" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601868984773" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601904992506" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601357362901" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601869073108" />

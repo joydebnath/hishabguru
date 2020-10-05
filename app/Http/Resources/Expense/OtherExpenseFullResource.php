@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Expense;
 
+use App\Http\Resources\Payment\PaymentHistoryCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OtherExpenseFullResource extends JsonResource
@@ -23,7 +24,7 @@ class OtherExpenseFullResource extends JsonResource
             'note' => $this->note,
             'status' => $this->status,
             'products' => self::items($this->items),
-            'payment_history_count' => collect($this->payable)->count(),
+            'payment' => $this->payable ? new PaymentHistoryCollection($this->payable) : null,
             'total_due' => $this->total_due
         ];
     }

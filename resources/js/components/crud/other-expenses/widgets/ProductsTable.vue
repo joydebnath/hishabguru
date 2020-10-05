@@ -30,10 +30,12 @@
             </b-field>
         </div>
         <div class="pl-1 mb-4 border-t pt-4">
-            <b-button type="is-info" size="is-small" class="font-medium tracking-wider" @click="toggleAddNewItemModel">Add
-                Item
-            </b-button>
-            <AddItem :show="show_add_new" @on-add="handleAddNewItem" @on-close="toggleAddNewItemModel"/>
+            <template v-if="$props.editable">
+                <b-button type="is-info" size="is-small" class="font-medium tracking-wider" @click="toggleAddNewItemModel">Add
+                    Item
+                </b-button>
+                <AddItem :show="show_add_new" @on-add="handleAddNewItem" @on-close="toggleAddNewItemModel"/>
+            </template>
         </div>
         <b-table
             :data="products"
@@ -41,7 +43,7 @@
             :hoverable="true"
         >
             <b-table-column
-                label="Product"
+                label="Item"
                 v-slot="props"
                 width="150"
                 cell-class="align-middle"
@@ -125,7 +127,7 @@
                 </div>
             </b-table-column>
             <template slot="footer">
-                <EmptyTable v-if="!data.length" message="Add a product"/>
+                <EmptyTable v-if="!data.length" message="Add an Item"/>
                 <th v-else class="pt-0" colspan="7">
                     <section class="grid grid-col-5 gap-4 w-full border-t">
                         <div class="col-start-4 col-span-2 mt-4">
@@ -163,7 +165,11 @@ import AddItem from "./AddItem";
 export default {
     components: {AddItem, EditableInput, EmptyTable, EditableDescription, ProductLookupInput},
     props: {
-        item: Object | Array
+        item: Object | Array,
+        editable: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return {
