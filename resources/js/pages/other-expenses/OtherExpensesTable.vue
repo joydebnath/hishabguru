@@ -42,7 +42,7 @@
             </b-table-column>
             <b-table-column
                 field="issue_date"
-                label="Spent"
+                label="Issued"
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
@@ -59,7 +59,7 @@
             <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle">
                 {{ props.row.total_amount }}
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle">
+            <b-table-column field="total_amount" sortable label="Remaining" centered v-slot="props" cell-class="align-middle">
                 {{ props.row.total_due }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
@@ -110,19 +110,13 @@ export default {
             console.log(field_name, order)
         },
         status_type(value){
-            let type = '';
-            switch (value) {
-                case 'purchased':
-                    type = 'is-success'
-                    break;
-                case 'draft':
-                    type= 'is-light'
-                    break
-                case 'save-for-approval':
-                    type = 'is-warning'
-                    break
+            const STATUS_MAP = {
+                'paid': 'is-success',
+                'due': 'is-danger',
+                'draft': 'is-light',
+                'save-for-approval': 'is-warning'
             }
-            return type
+            return STATUS_MAP[value];
         }
     },
     computed: {

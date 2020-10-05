@@ -7,10 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Expense\OtherExpenseRequest;
 use App\Http\Resources\Expense\OtherExpenseCollection;
 use App\Models\OtherExpense;
+use App\Http\Resources\Expense\OtherExpense as OtherExpenseResource;
+use App\Services\Expense\OtherExpenseService;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class OtherExpenseController extends Controller
 {
+    protected $service;
+
+    public function __construct(OtherExpenseService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index(OtherExpenseFilter $filters)
     {
         try {
@@ -23,7 +33,25 @@ class OtherExpenseController extends Controller
     public function store(OtherExpenseRequest $request)
     {
         try {
+            $storable = $this->getExpenseFillable($request);
 
+            if ($request->status !== 'draft') {
+                $storable['total_due'] = $request->total_amount;
+            }
+
+            $expense = OtherExpense::create($storable);
+
+            $this->service->attachExpenseItems($expense, $request->products);
+
+            if ($request->get('payment', null)) {
+                $this->service->attachPaymentHistory(
+                    $expense,
+                    $request->get('payment'),
+                    Auth::id()
+                );
+            }
+
+            return new OtherExpenseResource($expense->fresh());
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -32,7 +60,7 @@ class OtherExpenseController extends Controller
     public function show(OtherExpense $otherExpense)
     {
         try {
-
+            return $otherExpense->load('payable');
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -50,14 +78,18 @@ class OtherExpenseController extends Controller
     public function destroy(OtherExpense $otherExpense)
     {
         try {
-
+            $otherExpense->payable()->delete();
+            $otherExpense->delete();
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
     }
 
-    private function getExpenseFillable($fillable)
+    private function getExpenseFillable($request): array
     {
-
+        $fillable = $request->validated();
+        unset($fillable['products']);
+        unset($fillable['payment']);
+        return $fillable;
     }
 }

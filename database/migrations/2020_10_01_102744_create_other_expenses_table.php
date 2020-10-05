@@ -15,6 +15,7 @@ class CreateOtherExpensesTable extends Migration
     {
         Schema::create('other_expenses', function (Blueprint $table) {
             $table->id();
+            $table->string('expense_number');
             $table->string('reference_number')->nullable();
             $table->string('status');
             $table->dateTime('issue_date');

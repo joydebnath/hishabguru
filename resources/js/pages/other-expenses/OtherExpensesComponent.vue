@@ -10,7 +10,7 @@
                     </template>
                     <template v-else>
                         <b-field grouped>
-                            <SearchBox placeholder="Search by name" @search="handleSearch"/>
+                            <SearchBox placeholder="Search by Number or Ref." @search="handleSearch"/>
                             &nbsp;&nbsp;&nbsp;
                             <Filters/>
                         </b-field>

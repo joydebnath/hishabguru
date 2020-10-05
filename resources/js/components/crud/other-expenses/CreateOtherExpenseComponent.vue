@@ -102,7 +102,7 @@ export default {
 
             if (_.isEmpty(error_bag)) {
 
-                if (expense.amount && (parseFloat(expense.total_amount) <= parseFloat(expense.amount))) {
+                if (expense.payment.amount && (parseFloat(expense.total_amount) <= parseFloat(expense.payment.amount))) {
                     expense['status'] = 'paid';
                 } else {
                     expense['status'] = 'due';
@@ -135,7 +135,7 @@ export default {
             if (this.total < this.per_page) {
                 this.$store.dispatch('expenses/loadData', {page: 1})
             }
-            this.$router.push('/@/expenses');
+            this.$router.push('/@/other-expenses');
         },
         onError(response) {
             this.$buefy.notification.open({

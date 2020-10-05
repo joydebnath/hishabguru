@@ -26,7 +26,7 @@ class CustomMorphMapServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'bills' => 'App\Models\Bill',
-            'other_expenses' => 'App\Models\OtherExpense',
+            'other-expenses' => 'App\Models\OtherExpense',
             'invoices' => 'App\Models\Invoice',
         ]);
     }

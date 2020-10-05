@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Expense;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OtherExpenseRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class OtherExpenseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +25,39 @@ class OtherExpenseRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'tenant_id' => 'numeric|required',
+            'issue_date' => 'required',
+            'due_date' => 'nullable',
+            'note' => 'nullable|string',
+            'products' => 'nullable|required_unless:status,draft',
+            'payment' => 'nullable',
+            'expense_number' => 'required|string',
+            'reference_number' => 'nullable|string',
+            'status' => 'nullable|string',
+            'created_by' => 'nullable|numeric',
+            'approved_by' => 'nullable|numeric',
+            'total_amount' => 'nullable|numeric|required_unless:status,draft',
+            'total_tax' => 'nullable|numeric|required_unless:status,draft',
+            'sub_total' => 'nullable|numeric|required_unless:status,draft',
         ];
+        if($this->isMethod('POST')){
+            $rules['status'] = 'required|string';
+        }
+        return $rules;
+    }
+
+    protected function prepareForValidation()
+    {
+
+        $this->merge([
+            'created_by' => Auth::id(),
+            'expense_number' => $this->expense_number ? strtoupper($this->expense_number) : null,
+            'total_amount' => isset($this->total_amount) ? doubleval($this->total_amount) : null,
+            'total_tax' => isset($this->total_tax) ? doubleval($this->total_tax) : null,
+            'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,
+            'issue_date' => $this->issue_date ? Carbon::createFromFormat('d/m/Y', $this->issue_date) : null,
+            'due_date' => $this->due_date ? Carbon::createFromFormat('d/m/Y', $this->due_date) : null,
+        ]);
     }
 }

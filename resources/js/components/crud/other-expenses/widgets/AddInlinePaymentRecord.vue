@@ -75,19 +75,18 @@ export default {
     },
     methods: {
         collectData({validate}) {
-            if (validate) {
+            if (validate && this.show_row) {
                 this.hasErrors()
             }
-            if (this.show_row) {
-                return {
-                    data: {
-                        ...this.payment_record,
-                        payment_date: this.payment_record.payment_date ? this.payment_record.payment_date.toLocaleDateString() : null
-                    },
-                    errors: this.errors
-                }
+            if (this.payment_record.payment_date) {
+                this.payment_record['payment_date'] = this.payment_record.payment_date.toLocaleDateString()
             }
-            return {}
+            return {
+                data: {
+                    payment: this.payment_record
+                },
+                errors: this.errors
+            }
         },
         hasErrors() {
             this.errors = {}

@@ -107,7 +107,7 @@ export default {
             if (this.hasErrors()) {
                 return
             }
-            this.$emit('on-add', {...this.record, total_buying_cost: this.total, edit: false})
+            this.$emit('on-add', {...this.record, total_buying_cost: this.total, edit: false, id: new Date().getTime()})
             this.$emit('on-close')
             this.record = {}
         },
