@@ -56,7 +56,9 @@
                     >
                     </b-input>
                 </b-field>
-                <label class="text-gray-700">Amount Remaining: {{ $props.due_amount }} {{ $props.currency }}</label>
+                <label class="text-gray-700" v-if="$props.due_amount">
+                    Amount Remaining: {{ $props.due_amount }} {{ $props.currency }}
+                </label>
             </section>
             <footer class="modal-card-foot flex-row-reverse">
                 <button class="button is-primary" @click="handleAddRecord">Save</button>
@@ -99,7 +101,7 @@ export default {
                 .post('/payment-histories', {
                     ...this.payment_record,
                     payment_date: this.payment_record.payment_date ? this.payment_record.payment_date.toLocaleDateString() : null,
-                    payable_type: 'bills',
+                    payable_type: 'other-expenses',
                     payable_id: this.$route.params.id,
                 })
                 .then(({data}) => {

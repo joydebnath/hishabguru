@@ -6,7 +6,7 @@ use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class OtherExpense extends Model
 {
@@ -37,8 +37,8 @@ class OtherExpense extends Model
         });
     }
 
-    public function payable(): MorphOne
+    public function payable(): MorphMany
     {
-        return $this->morphOne(PaymentHistory::class, 'payable');
+        return $this->morphMany(PaymentHistory::class, 'payable');
     }
 }

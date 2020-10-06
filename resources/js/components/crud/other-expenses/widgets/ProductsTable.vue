@@ -30,9 +30,14 @@
             </b-field>
         </div>
         <div class="pl-1 mb-4 border-t pt-4">
-            <template v-if="$props.editable">
-                <b-button type="is-info" size="is-small" class="font-medium tracking-wider" @click="toggleAddNewItemModel">Add
-                    Item
+<!--            <template v-if="$props.editable">-->
+            <template >
+                <b-button type="is-info"
+                          size="is-small"
+                          class="font-medium tracking-wider"
+                          @click="toggleAddNewItemModel"
+                >
+                    Add Item
                 </b-button>
                 <AddItem :show="show_add_new" @on-add="handleAddNewItem" @on-close="toggleAddNewItemModel"/>
             </template>
@@ -282,6 +287,10 @@ export default {
         },
         handleAddNewItem(item) {
             this.data = [...this.products, item]
+            this.$emit('on-add-product', {
+                total_amount: this.total,
+                products: this.data
+            })
         },
         toggleAddNewItemModel() {
             this.show_add_new = !this.show_add_new

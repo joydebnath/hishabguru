@@ -47,4 +47,29 @@ class OtherExpenseService
             'record_entered_by' => $userId,
         ];
     }
+
+    public function updateTotalDue($expense, $paymentHistories): void
+    {
+        $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
+
+        $expense->update([
+            'total_due' => abs($expense->total_amount - $totalPaid)
+        ]);
+    }
+
+    public function syncItems($expense, $items)
+    {
+        //find new items
+        //find items that are deleted
+        //delete items
+        //updateOrCreate
+        $oldItems = collect($expense->items)->toArray();
+        return ['o' => $oldItems, 'n' => $items];
+//        foreach ($items as $item) {
+//            OtherExpenseItem::updateOrCreate(
+//                ['id' => $item['id']],
+//                $this->getItemFillable($item, $expense)
+//            );
+//        }
+    }
 }

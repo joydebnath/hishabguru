@@ -9,7 +9,12 @@
                     <ExpenseDetails ref="part1" :item="computed_item"/>
                 </div>
                 <div class="col-span-2 ml-4">
-                    <ProductsTable ref="part2" :editable="!not_editable" :item="computed_item"/>
+                    <ProductsTable
+                        ref="part2"
+                        :editable="!not_editable"
+                        :item="computed_item"
+                        @on-add-product="handleAddProduct"
+                    />
                     <div class="mx-12 mt-4">
                         <b-message
                             type="is-danger"
@@ -23,11 +28,18 @@
                     </div>
                     <br>
                     <div class="flex flex-col w-full" v-if="!loading">
-                        <div class="font-medium align-items-center text-right px-8" v-if="expense.total_due">
+                        <div
+                            class="font-medium align-items-center text-right px-8"
+                            v-if="expense.status !== 'draft'"
+                        >
                             Total Due: <span class="text-red-600">{{ expense.total_due }}</span>
                         </div>
-                        <div class="w-100" v-if="expense.payment">
-                            <PaymentHistories currency="BDT" :payment_histories="expense.payment"/>
+                        <div class="w-100">
+                            <PaymentHistories
+                                currency="BDT"
+                                :payment_histories="computed_payment_histories"
+                                @on-delete="handleDeletePH"
+                            />
                         </div>
                     </div>
                 </div>
@@ -42,7 +54,7 @@
         </section>
         <AddPaymentRecord
             :show="show_add_payment"
-            :due_amount="expense.total_due"
+            :due_amount="computed_total_due"
             @on-close="show_add_payment = false"
             @on-add-record="handleAddPaymentRecord"
         />
@@ -59,22 +71,23 @@ import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 import AddPaymentRecord from "./widgets/AddPaymentRecord";
 import headerActionsMixin from './mixins/header-actions'
-import PaymentHistoriesMixin from './mixins/payment-histories'
+import paymentHistoriesMixin from './mixins/payment-histories'
 import PaymentHistories from "./widgets/PaymentHistories";
 
 export default {
     name: "ExpenseComponent",
     components: {
-        PaymentHistories,
-        AddPaymentRecord, Breadcrumb, FooterActions, HeaderActions, ProductsTable, ExpenseDetails
+        PaymentHistories, AddPaymentRecord, Breadcrumb, FooterActions, HeaderActions, ProductsTable, ExpenseDetails
     },
-    mixins: [headerActionsMixin, PaymentHistoriesMixin],
+    mixins: [headerActionsMixin, paymentHistoriesMixin],
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
             .then(({data}) => {
                 this.loading = false;
                 this.expense = data.data
+                this.payment_histories = this.expense.payment_histories
+                delete this.expense.payment_histories
             })
             .catch(err => {
                 this.loading = false;
@@ -102,11 +115,11 @@ export default {
             return this.expense ? 'Expense# ' + this.expense.expense_number : '---'
         },
         hide_draft_option() {
-            var STATUSES = ['save-for-approval', 'due','paid']
+            var STATUSES = ['save-for-approval', 'due', 'paid']
             return this.expense && STATUSES.includes(this.expense.status);
         },
-        not_editable(){
-            const STATUSES = ['due','paid'];
+        not_editable() {
+            const STATUSES = ['due', 'paid'];
             return this.expense && STATUSES.includes(this.expense.status);
         }
     },
@@ -141,11 +154,26 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
+                const total_paid = _.sumBy(this.payment_histories, value => parseFloat(value.amount))
+                if (parseFloat(expense.total_amount) <= total_paid) {
+                    expense['status'] = 'paid';
+                } else {
+                    expense['status'] = 'due';
+                }
                 this.updateOrder(expense, 'Expense is updated')
             }
         },
         handleSaveForApproval() {
             console.log('save-for-approval')
+        },
+        handleAddProduct({total_amount, products}) {
+            const total_paid = _.sumBy(this.payment_histories, value => parseFloat(value.amount))
+            this.expense = {
+                ...this.expense,
+                total_amount: total_amount,
+                total_due: parseFloat(total_amount) - parseFloat(total_paid),
+                products: products
+            }
         },
         updateOrder(expense, message) {
             update(expense.id, {...expense, tenant_id: this.tenant_id})

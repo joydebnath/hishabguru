@@ -30,7 +30,8 @@ const histories = {
             axios
                 .get('/payment-histories', {
                     params: {
-                        payable: 'bills'
+                        payable_type: 'bills',
+                        payable_id: this.bill.id,
                     }
                 })
                 .then(({data}) => {

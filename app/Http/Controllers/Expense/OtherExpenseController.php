@@ -36,23 +36,21 @@ class OtherExpenseController extends Controller
         try {
             $storable = $this->getExpenseFillable($request);
 
-            if ($request->status !== 'draft') {
-                $storable['total_due'] = $request->total_amount;
-            }
+            $otherExpense = OtherExpense::create($storable);
 
-            $expense = OtherExpense::create($storable);
-
-            $this->service->attachExpenseItems($expense, $request->products);
+            $this->service->attachExpenseItems($otherExpense, $request->products);
 
             if ($request->get('payment', null)) {
                 $this->service->attachPaymentHistory(
-                    $expense,
+                    $otherExpense,
                     $request->get('payment'),
                     Auth::id()
                 );
+
+                $this->service->updateTotalDue($otherExpense, $otherExpense->payable);
             }
 
-            return new OtherExpenseResource($expense->fresh());
+            return new OtherExpenseResource($otherExpense->fresh());
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -70,7 +68,13 @@ class OtherExpenseController extends Controller
     public function update(OtherExpenseRequest $request, OtherExpense $otherExpense)
     {
         try {
+//            $storable = $this->getExpenseFillable($request);
+//            $otherExpense->update($storable);
 
+            return $this->service->syncItems($otherExpense, $request->products);
+//            $this->service->updateTotalDue($otherExpense, $otherExpense->payable);
+
+//            return new OtherExpenseResource($otherExpense->fresh());
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -81,6 +85,7 @@ class OtherExpenseController extends Controller
         try {
             $otherExpense->payable()->delete();
             $otherExpense->delete();
+
             return response(['message' => 'Other Expense is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);

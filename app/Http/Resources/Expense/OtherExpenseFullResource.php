@@ -24,7 +24,7 @@ class OtherExpenseFullResource extends JsonResource
             'note' => $this->note,
             'status' => $this->status,
             'products' => self::items($this->items),
-            'payment' => $this->payable ? new PaymentHistoryCollection($this->payable) : null,
+            'payment_histories' => $this->payable ? new PaymentHistoryCollection($this->payable) : [],
             'total_due' => $this->total_due
         ];
     }
@@ -35,11 +35,11 @@ class OtherExpenseFullResource extends JsonResource
             return [
                 'id' => $item->id,
                 'name' => $item->name,
-                'buying_unit_cost' => doubleval($item->get('buying_unit_cost', null)),
-                'quantity' => doubleval($item->get('quantity', null)),
-                'description' => $item->get('description', null),
-                'tax_rate' => doubleval($item->get('tax_rate', null)),
-                'total_buying_cost' => doubleval($item->get('total', null)),
+                'buying_unit_cost' => doubleval($item->buying_unit_cost),
+                'quantity' => doubleval($item->quantity),
+                'description' => $item->description,
+                'tax_rate' => doubleval($item->tax_rate),
+                'total_buying_cost' => doubleval($item->total),
                 'edit' => false
             ];
         });
