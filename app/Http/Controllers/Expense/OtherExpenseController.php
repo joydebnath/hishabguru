@@ -68,13 +68,13 @@ class OtherExpenseController extends Controller
     public function update(OtherExpenseRequest $request, OtherExpense $otherExpense)
     {
         try {
-//            $storable = $this->getExpenseFillable($request);
-//            $otherExpense->update($storable);
+            $storable = $this->getExpenseFillable($request);
+            $otherExpense->update($storable);
 
-            return $this->service->syncItems($otherExpense, $request->products);
-//            $this->service->updateTotalDue($otherExpense, $otherExpense->payable);
+            $this->service->syncItems($otherExpense, $request->products);
+            $this->service->updateTotalDue($otherExpense, $otherExpense->payable);
 
-//            return new OtherExpenseResource($otherExpense->fresh());
+            return new OtherExpenseResource($otherExpense->fresh());
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

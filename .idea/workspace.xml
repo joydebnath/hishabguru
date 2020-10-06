@@ -14,30 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Filters/Payment/PaymentHistoryFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Payment/PaymentHistoryFilter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Expense/OtherExpenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Expense/OtherExpenseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentHistoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentHistoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Expense/OtherExpenseFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Expense/OtherExpenseFullResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Payment/PaymentHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Payment/PaymentHistory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Payment/PaymentHistoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Payment/PaymentHistoryResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Bill.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Bill.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/OtherExpense.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OtherExpense.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Expense/OtherExpenseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Expense/OtherExpenseService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_06_013445_create_contacts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_06_013445_create_contacts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_06_013452_create_contact_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_06_013452_create_contact_details_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_18_120524_create_meta_data_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/mixins/payment-histories.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/mixins/payment-histories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/AddPaymentRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/AddPaymentRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/PaymentHistories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/PaymentHistories.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/mixins/payment-histories.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/mixins/payment-histories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/AddItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/AddItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/AddPaymentRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/AddPaymentRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -776,7 +758,7 @@
       <workItem from="1601869047300" duration="10998000" />
       <workItem from="1601903506435" duration="3351000" />
       <workItem from="1601934000808" duration="1647000" />
-      <workItem from="1601969231836" duration="17159000" />
+      <workItem from="1601969231836" duration="19778000" />
     </task>
     <servers />
   </component>
@@ -884,7 +866,7 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1601986013822">
+    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1601990208124">
       <screen x="72" y="27" width="5688" height="1053" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
@@ -896,7 +878,7 @@
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601357362901" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601869073108" />
     <state x="1269" y="259" width="1371" height="678" key="search.everywhere.popup/72.27.3768.1053@72.27.3768.1053" timestamp="1599558738514" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601986013822" />
+    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601990208124" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

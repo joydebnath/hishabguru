@@ -54,31 +54,37 @@
                 {{ props.row.due_date }}
             </b-table-column>
             <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
-                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
+                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
+                    {{ props.row.status }}
+                </b-tag>
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle">
+            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
+                            cell-class="align-middle">
                 {{ props.row.total_amount }}
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Remaining" centered v-slot="props" cell-class="align-middle">
+            <b-table-column field="total_amount" sortable label="Remaining" centered v-slot="props"
+                            cell-class="align-middle">
                 {{ props.row.total_due }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
                 <div class="flex justify-end">
-                    <b-tooltip label="Actions" position="is-right" type="is-dark">
-                        <b-dropdown aria-role="list">
-                            <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
-                                      slot="trigger"/>
-                            <router-link :to="'/@/other-expenses/' + props.row.id">
-                                <b-dropdown-item >
-                                    View
-                                </b-dropdown-item>
-                            </router-link>
-                            <hr class="dropdown-divider">
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
-                                <span class="text-red-600">Delete</span>
+                    <b-dropdown aria-role="list">
+                        <b-button
+                            class="px-2 rounded"
+                            size="is-small"
+                            icon-left="dots-vertical text-lg"
+                            slot="trigger"
+                        />
+                        <router-link :to="'/@/other-expenses/' + props.row.id">
+                            <b-dropdown-item>
+                                View
                             </b-dropdown-item>
-                        </b-dropdown>
-                    </b-tooltip>
+                        </router-link>
+                        <hr class="dropdown-divider">
+                        <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
+                            <span class="text-red-600">Delete</span>
+                        </b-dropdown-item>
+                    </b-dropdown>
                 </div>
             </b-table-column>
             <template slot="footer">
@@ -109,7 +115,7 @@ export default {
         onSort(field_name, order) {
             console.log(field_name, order)
         },
-        status_type(value){
+        status_type(value) {
             const STATUS_MAP = {
                 'paid': 'is-success',
                 'due': 'is-danger',

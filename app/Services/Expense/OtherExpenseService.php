@@ -57,19 +57,29 @@ class OtherExpenseService
         ]);
     }
 
-    public function syncItems($expense, $items)
+    public function syncItems($expense, $newItems): void
     {
-        //find new items
-        //find items that are deleted
-        //delete items
-        //updateOrCreate
-        $oldItems = collect($expense->items)->toArray();
-        return ['o' => $oldItems, 'n' => $items];
-//        foreach ($items as $item) {
-//            OtherExpenseItem::updateOrCreate(
-//                ['id' => $item['id']],
-//                $this->getItemFillable($item, $expense)
-//            );
-//        }
+        $this->unlinkRemovedExpenseItem($expense->items, $newItems);
+
+        foreach ($newItems as $item) {
+            OtherExpenseItem::updateOrCreate(
+                ['id' => $item['id']],
+                $this->getItemFillable($item, $expense)
+            );
+        }
+    }
+
+    private function unlinkRemovedExpenseItem($oldItems, $newItems)
+    {
+        $oldItemIdCollection = collect($oldItems)->pluck('id');
+        $newItemIdCollection = collect($newItems)->pluck('id');
+        $deletedItemsIdCollection = [];
+
+        foreach ($oldItemIdCollection as $id) {
+            if (!$newItemIdCollection->contains($id)) {
+                array_push($deletedItemsIdCollection, $id);
+            }
+        }
+        OtherExpenseItem::destroy($deletedItemsIdCollection);
     }
 }

@@ -30,15 +30,14 @@
             </b-field>
         </div>
         <div class="pl-1 mb-4 border-t pt-4">
-<!--            <template v-if="$props.editable">-->
-            <template >
-                <b-button type="is-info"
-                          size="is-small"
-                          class="font-medium tracking-wider"
-                          @click="toggleAddNewItemModel"
-                >
-                    Add Item
-                </b-button>
+            <template>
+                <b-button
+                    type="is-info"
+                    size="is-small"
+                    class="font-medium tracking-wider"
+                    @click="toggleAddNewItemModel"
+                    v-text="'Add Item'"
+                />
                 <AddItem :show="show_add_new" @on-add="handleAddNewItem" @on-close="toggleAddNewItemModel"/>
             </template>
         </div>
