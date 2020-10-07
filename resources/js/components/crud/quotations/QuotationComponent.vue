@@ -129,23 +129,20 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.quotation = {};
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
-                duration: 3000,
+                duration: 5000,
             })
-            if (this.total < this.per_page) {
-                this.$store.dispatch('quotations/loadData', {page: 1})
-            }
 
+            this.quotation = {};
             this.$router.push('/@/quotations');
         },
         onError(response) {
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',
-                duration: 3000
+                duration: 5000
             })
         }
     }

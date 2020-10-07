@@ -23,11 +23,12 @@
                     </div>
                     <div class="flex flex-row align-items-center justify-content-between w-full" v-if="!loading">
                         <b-button
+                            v-if="is_not_draft"
                             :type="show_payment_history ? 'is-info': 'is-info is-light'"
                             @click="handleReadPH"
                             v-text="payment_history_action_text"
                         />
-                        <div class="font-medium" v-if="invoice.total_due">
+                        <div class="font-medium" v-if="invoice.total_due && is_not_draft">
                             Total Due: <span class="text-red-600">{{ invoice.total_due }}</span>
                         </div>
                     </div>
@@ -38,7 +39,7 @@
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
-                :hide_draft="hide_draft_option"
+                :hide_draft="is_not_draft"
             />
         </section>
 
@@ -118,26 +119,26 @@ export default {
         breadcrumb_link_name() {
             return this.invoice ? 'Invoice# ' + this.invoice.invoice_number : '---'
         },
-        hide_draft_option() {
+        is_not_draft() {
             return this.invoice && this.invoice.status !== 'draft';
         },
     },
     methods: {
         handleDraft() {
-            let order = {};
+            let invoice = {};
             _.forEach(this.$refs, value => {
                 let {data} = value.collectData({validate: false});
-                order = {...order, ...data}
+                invoice = {...invoice, ...data}
             });
 
-            if (order.purchase_order_number == null) {
+            if (invoice.invoice_number == null) {
                 this.error_container = true;
                 this.error_message = 'Invoice number can not be empty!';
                 return;
             }
 
-            order['status'] = 'draft';
-            this.updateOrder(order, 'Invoice Draft is updated')
+            invoice['status'] = 'draft';
+            this.updateOrder(invoice, 'Invoice Draft is updated')
         },
         handleSave() {
             let invoice = {}, error_bag = {};
@@ -153,6 +154,7 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
+                invoice['status'] = 'due';
                 this.updateOrder(invoice, 'Invoice is updated')
             }
         },
@@ -160,6 +162,7 @@ export default {
             console.log('approve')
         },
         updateOrder(invoice, message) {
+            this.loading = true;
             update(invoice.id, {...invoice, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
@@ -171,17 +174,14 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.invoice = {};
-            this.$emit('on-close');
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
                 duration: 5000
             })
-            if (this.total < this.per_page) {
-                this.$store.dispatch('invoices/loadData', {page: 1})
-            }
 
+            this.invoice = {};
+            this.loading = false;
             this.$router.push('/@/invoices');
         },
         onError(response) {
@@ -190,6 +190,7 @@ export default {
                 type: 'is-danger is-light',
                 duration: 5000
             })
+            this.loading = false;
         },
     },
 }

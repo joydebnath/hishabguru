@@ -30,7 +30,7 @@
                     <div class="flex flex-col w-full" v-if="!loading">
                         <div
                             class="font-medium align-items-center text-right px-8"
-                            v-if="expense.status !== 'draft'"
+                            v-if="is_not_draft"
                         >
                             Total Due: <span class="text-red-600">{{ expense.total_due }}</span>
                         </div>
@@ -118,6 +118,9 @@ export default {
             var STATUSES = ['save-for-approval', 'due', 'paid']
             return this.expense && STATUSES.includes(this.expense.status);
         },
+        is_not_draft() {
+            return this.expense && this.expense.status !== 'draft';
+        },
         not_editable() {
             const STATUSES = ['due', 'paid'];
             return this.expense && STATUSES.includes(this.expense.status);
@@ -187,17 +190,13 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.expense = {};
-            this.$emit('on-close');
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
                 duration: 5000
             })
-            if (this.total < this.per_page) {
-                this.$store.dispatch('other_expenses/loadData', {page: 1})
-            }
 
+            this.expense = {};
             this.$router.push('/@/other-expenses');
         },
         onError(response) {

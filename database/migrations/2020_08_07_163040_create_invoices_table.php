@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('reference_number')->nullable();
             $table->string('status');
             $table->dateTime('issue_date');
-            $table->dateTime('due_date');
+            $table->dateTime('due_date')->nullable();
             $table->unsignedDecimal('total_amount')->nullable();
             $table->unsignedDecimal('total_due')->nullable();
             $table->unsignedDecimal('sub_total')->nullable();

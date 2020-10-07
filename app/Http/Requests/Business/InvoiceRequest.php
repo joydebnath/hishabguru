@@ -25,7 +25,7 @@ class InvoiceRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'contact_id' => 'nullable|numeric|required_unless:status,draft',
             'tenant_id' => 'numeric|required',
             'issue_date' => 'required',
@@ -34,13 +34,20 @@ class InvoiceRequest extends FormRequest
             'products' => 'nullable|required_unless:status,draft',
             'invoice_number' => 'required|string',
             'reference_number' => 'nullable|string',
-            'status' => 'required|string',
+            'status' => 'string',
             'created_by' => 'nullable|numeric',
             'approved_by' => 'nullable|numeric',
             'total_amount' => 'nullable|numeric|required_unless:status,draft',
             'total_tax' => 'nullable|numeric|required_unless:status,draft',
             'sub_total' => 'nullable|numeric|required_unless:status,draft',
         ];
+
+
+        if($this->isMethod('POST')){
+            $rules['status'] = 'required|string';
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation()

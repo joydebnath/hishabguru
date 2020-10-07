@@ -231,30 +231,30 @@ export default {
             }
         },
         handleEditUnitCost(value, product_id) {
-            const invoices = _.findIndex(this.data, value => value.id == product_id)
-            if (invoices !== -1) {
-                this.data[invoices] = {
-                    ...this.data[invoices],
+            const INDEX = _.findIndex(this.data, value => value.id == product_id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {
+                    ...this.data[INDEX],
                     selling_unit_price: value,
-                    total_selling_cost: this.calculateProductTotalPrice(this.data[invoices].quantity, value)
+                    total_selling_cost: this.calculateProductTotalPrice(this.data[INDEXINDEX].quantity, value)
                 }
                 this.data = [...this.data]
             }
         },
         handleEditTaxRate(value, product_id) {
-            const invoices = _.findIndex(this.data, value => value.id == product_id)
-            if (invoices !== -1) {
-                this.data[invoices] = {...this.data[invoices], tax_rate: value}
+            const INDEX = _.findIndex(this.data, value => value.id == product_id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {...this.data[INDEX], tax_rate: value}
                 this.data = [...this.data]
             }
         },
         handleEditDiscount(value, product_id) {
-            const bills = _.findIndex(this.data, value => value.id == product_id)
-            if (bills !== -1) {
-                this.data[bills] = {
-                    ...this.data[bills],
+            const INDEX = _.findIndex(this.data, value => value.id == product_id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {
+                    ...this.data[INDEX],
                     discount: value,
-                    total_selling_cost: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].selling_unit_price, value)
+                    total_selling_cost: this.calculateProductTotalPrice(this.data[INDEX].quantity, this.data[INDEX].selling_unit_price, value)
                 }
                 this.data = [...this.data]
             }
@@ -266,14 +266,18 @@ export default {
             this.updateEditField(product, false)
         },
         updateEditField(product, editable) {
-            const invoices = _.findIndex(this.data, value => value.id == product.id)
-            if (invoices !== -1) {
-                this.data[invoices] = {...this.data[invoices], edit: editable}
+            const INDEX = _.findIndex(this.data, value => value.id == product.id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {...this.data[INDEX], edit: editable}
                 this.data = [...this.data]
             }
         },
-        calculateProductTotalPrice(quantity, selling_unit_price) {
-            return _.round(selling_unit_price * quantity, 2);
+        calculateProductTotalPrice(quantity, selling_unit_price,discount) {
+            let total = selling_unit_price * quantity
+            if (discount) {
+                total = total - (total * (discount / 100));
+            }
+            return _.round(total, 2);
         },
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]

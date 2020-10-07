@@ -99,6 +99,7 @@ export default {
             console.log('approve')
         },
         createQuotation(quotation, message) {
+            this.loading = true;
             store({...quotation, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
@@ -110,7 +111,6 @@ export default {
                 });
         },
         onSuccess(message) {
-            this.quotation = {};
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
@@ -119,9 +119,12 @@ export default {
             if (this.total < this.per_page) {
                 this.$store.dispatch('quotations/loadData', {page: 1})
             }
+            this.loading = false;
+            this.quotation = {};
             this.$router.push('/@/quotations');
         },
         onError(response) {
+            this.loading = false;
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',

@@ -102,6 +102,7 @@ export default {
             console.log('awaiting-for-approve')
         },
         createBill(bill, message) {
+            this.loading = true;
             store({...bill, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
@@ -113,18 +114,20 @@ export default {
                 });
         },
         onSuccess(message) {
-            this.bill = {};
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
                 duration: 5000
             })
+            this.loading = false;
+            this.bill = {};
             if (this.total < this.per_page) {
                 this.$store.dispatch('bills/loadData', {page: 1})
             }
             this.$router.push('/@/bills');
         },
         onError(response) {
+            this.loading = false;
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',

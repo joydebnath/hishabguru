@@ -23,11 +23,12 @@
                     </div>
                     <div class="flex flex-row align-items-center justify-content-between w-full" v-if="!loading">
                         <b-button
+                            v-if="is_not_draft"
                             :type="show_payment_history ? 'is-info': 'is-info is-light'"
                             @click="handleReadPH"
                             v-text="payment_history_action_text"
                         />
-                        <div class="font-medium" v-if="bill.total_due">
+                        <div class="font-medium" v-if="bill.total_due && is_not_draft">
                             Total Due: <span class="text-red-600">{{ bill.total_due }}</span>
                         </div>
                     </div>
@@ -38,7 +39,7 @@
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
-                :hide_draft="hide_draft_option"
+                :hide_draft="is_not_draft"
             />
         </section>
 
@@ -118,7 +119,7 @@ export default {
         breadcrumb_link_name() {
             return this.bill ? 'Bill# ' + this.bill.bill_number : '---'
         },
-        hide_draft_option() {
+        is_not_draft() {
             return this.bill && this.bill.status !== 'draft';
         },
     },
@@ -160,6 +161,7 @@ export default {
             console.log('approve')
         },
         updateOrder(bill, message) {
+            this.loading = true;
             update(bill.id, {...bill, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
@@ -171,20 +173,17 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.bill = {};
-            this.$emit('on-close');
             this.$buefy.notification.open({
                 message: message,
                 type: 'is-success is-light',
                 duration: 5000
             })
-            if (this.total < this.per_page) {
-                this.$store.dispatch('bills/loadData', {page: 1})
-            }
-
+            this.loading = false;
+            this.bill = {};
             this.$router.push('/@/bills');
         },
         onError(response) {
+            this.loading = false;
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',

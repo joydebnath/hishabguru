@@ -44,17 +44,17 @@
             </b-table-column>
 
             <b-table-column
-                field="client_name"
+                field="customer_name"
                 label="Client"
                 v-slot="props"
                 cell-class="align-middle"
                 header-class="text-sm"
             >
-                {{ props.row.client_name }}
+                {{ props.row.customer_name }}
             </b-table-column>
 
             <b-table-column
-                field="create_date"
+                field="issue_date"
                 label="Issued"
                 sortable
                 v-slot="props"

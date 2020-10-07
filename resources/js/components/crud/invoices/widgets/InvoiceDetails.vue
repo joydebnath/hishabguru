@@ -9,7 +9,7 @@
             >
                 <ClientLookupInput
                     :selected="contact"
-                    :read_only="invoice.read_only ? invoice.read_only : false"
+                    :read_only="(invoice.read_only ? invoice.read_only : false) && invoice.status !== 'draft'"
                     @on-select="handleSupplierSelect"
                 />
             </b-field>

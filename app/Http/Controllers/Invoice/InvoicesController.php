@@ -103,10 +103,14 @@ class InvoicesController extends Controller
     private function updateTotalDue($expense, $paymentHistories): void
     {
         $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
+        $updatable = [
+            'total_due' => abs($expense->total_amount - $totalPaid)
+        ];
 
-        $expense->update([
-            'total_due' => abs($expense->total_amount - $totalPaid),
-            'status' => $totalPaid >= $expense->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
-        ]);
+        if ($expense->status === PaymentStatus::DUE) {
+            $updatable['status'] = $totalPaid >= $expense->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE;
+        }
+
+        $expense->update($updatable);
     }
 }

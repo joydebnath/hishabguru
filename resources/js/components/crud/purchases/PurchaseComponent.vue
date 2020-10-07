@@ -117,6 +117,7 @@ export default {
             console.log('approve')
         },
         updateOrder(order, message) {
+            this.loading = false;
             update(order.id, {...order, tenant_id: this.tenant_id})
                 .then(({data}) => {
                     this.onSuccess(message)
@@ -128,23 +129,21 @@ export default {
                 })
         },
         onSuccess(message) {
-            this.purchase_order = {};
-            this.$emit('on-close');
             this.$buefy.notification.open({
                 message: message,
-                type: 'is-success is-light'
+                type: 'is-success is-light',
+                duration:5000
             })
-            if (this.total < this.per_page) {
-                this.$store.dispatch('purchases/loadData', {page: 1})
-            }
-
+            this.loading = false;
+            this.purchase_order = {};
             this.$router.push('/@/purchases');
         },
         onError(response) {
+            this.loading = false;
             this.$buefy.notification.open({
                 message: response.data.message,
                 type: 'is-danger is-light',
-                duration: 3000
+                duration: 5000
             })
         }
     }
