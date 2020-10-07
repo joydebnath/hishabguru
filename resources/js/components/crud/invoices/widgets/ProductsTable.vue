@@ -44,22 +44,13 @@
             <b-table-column
                 label="Product"
                 v-slot="props"
-                width="150"
+                width="200"
                 cell-class="align-middle"
             >
                 <p class="m-0 flex flex-col">
                     <small class="text-xs">{{ props.row.code }}</small>
                     <span class="text-sm">{{ props.row.name }}</span>
                 </p>
-            </b-table-column>
-            <b-table-column label="Description" centered v-slot="props" width="150" cell-class="align-middle">
-                <EditableDescription
-                    placeholder="Write something..."
-                    :value="props.row.description"
-                    :id="props.row.id"
-                    :editable="props.row.edit"
-                    @on-input="handleEditDescription"
-                />
             </b-table-column>
             <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle">
                 <EditableInput
@@ -71,17 +62,26 @@
                 />
             </b-table-column>
             <b-table-column
-                label="Unit Cost"
+                label="Unit Price"
                 centered
                 v-slot="props"
                 cell-class="align-middle"
             >
+                <span class="text-sm">{{ props.row.selling_unit_price }}</span>
+            </b-table-column>
+            <b-table-column
+                label="Disc %"
+                centered
+                v-slot="props"
+                width="80"
+                cell-class="align-middle"
+            >
                 <EditableInput
                     placeholder="0.0%"
-                    :value="props.row.buying_unit_cost"
+                    :value="props.row.discount"
                     :id="props.row.id"
                     :editable="props.row.edit"
-                    @on-input="handleEditUnitCost"
+                    @on-input="handleEditDiscount"
                 />
             </b-table-column>
             <b-table-column label="Tax" centered v-slot="props" width="80" cell-class="align-middle">
@@ -90,12 +90,11 @@
                     :value="props.row.tax_rate"
                     :id="props.row.id"
                     :editable="props.row.edit"
-                    unit="%"
                     @on-input="handleEditTaxRate"
                 />
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle">
-                <span class="text-sm">{{ props.row.total_buying_cost }}</span>
+                <span class="text-sm">{{ props.row.total_selling_cost }}</span>
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle" v-if="!read_only">
                 <div class="flex justify-end">
@@ -216,17 +215,17 @@ export default {
             this.data[INDEX] = {
                 ...this.data[INDEX],
                 quantity: new_quantity,
-                total_buying_cost: new_quantity * this.data[INDEX].buying_unit_cost,
+                total_selling_cost: new_quantity * this.data[INDEX].selling_unit_price,
             }
             this.data = [...this.data];
         },
         handleEditQuantity(value, product_id) {
-            const invoices = _.findIndex(this.data, value => value.id == product_id)
-            if (invoices !== -1) {
-                this.data[invoices] = {
-                    ...this.data[invoices],
+            const INDEX = _.findIndex(this.data, value => value.id == product_id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {
+                    ...this.data[INDEX],
                     quantity: value,
-                    total_buying_cost: this.calculateProductTotalPrice(value, this.data[invoices].buying_unit_cost)
+                    total_selling_cost: this.calculateProductTotalPrice(value, this.data[INDEX].selling_unit_price)
                 }
                 this.data = [...this.data]
             }
@@ -236,8 +235,8 @@ export default {
             if (invoices !== -1) {
                 this.data[invoices] = {
                     ...this.data[invoices],
-                    buying_unit_cost: value,
-                    total_buying_cost: this.calculateProductTotalPrice(this.data[invoices].quantity, value)
+                    selling_unit_price: value,
+                    total_selling_cost: this.calculateProductTotalPrice(this.data[invoices].quantity, value)
                 }
                 this.data = [...this.data]
             }
@@ -249,10 +248,14 @@ export default {
                 this.data = [...this.data]
             }
         },
-        handleEditDescription(value, product_id) {
-            const invoices = _.findIndex(this.data, value => value.id == product_id)
-            if (invoices !== -1) {
-                this.data[invoices] = {...this.data[invoices], description: value}
+        handleEditDiscount(value, product_id) {
+            const bills = _.findIndex(this.data, value => value.id == product_id)
+            if (bills !== -1) {
+                this.data[bills] = {
+                    ...this.data[bills],
+                    discount: value,
+                    total_selling_cost: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].selling_unit_price, value)
+                }
                 this.data = [...this.data]
             }
         },
@@ -269,8 +272,8 @@ export default {
                 this.data = [...this.data]
             }
         },
-        calculateProductTotalPrice(quantity, buying_unit_cost) {
-            return _.round(buying_unit_cost * quantity, 2);
+        calculateProductTotalPrice(quantity, selling_unit_price) {
+            return _.round(selling_unit_price * quantity, 2);
         },
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]
@@ -281,12 +284,12 @@ export default {
             return this.data
         },
         sub_total() {
-            return _.round(_.sumBy(this.products, 'total_buying_cost'), 2);
+            return _.round(_.sumBy(this.products, 'total_selling_cost'), 2);
         },
         tax() {
             return _.sumBy(this.products, value => {
                 if (value.tax_rate) {
-                    return _.round(value.total_buying_cost * (value.tax_rate / 100), 2);
+                    return _.round(value.total_selling_cost * (value.tax_rate / 100), 2);
                 }
                 return 0.0;
             });

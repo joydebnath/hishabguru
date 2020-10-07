@@ -23,7 +23,9 @@
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
-            <Table @on-delete="handleDelete"/>
+            <keep-alive>
+                <Table @on-delete="handleDelete"/>
+            </keep-alive>
         </div>
     </div>
 </template>

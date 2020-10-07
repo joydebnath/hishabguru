@@ -8,9 +8,7 @@
             </h1>
         </header>
         <main class="py-4">
-            <keep-alive>
-                <router-view />
-            </keep-alive>
+            <router-view />
         </main>
     </div>
 </template>

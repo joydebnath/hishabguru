@@ -25,6 +25,7 @@
             label="Code"
             sortable
             v-slot="props"
+            header-class="text-sm"
         >
             {{ props.row.code }}
         </b-table-column>
@@ -34,6 +35,7 @@
             label="Product Name"
             sortable
             v-slot="props"
+            header-class="text-sm"
         >
             {{ props.row.name }}
         </b-table-column>
@@ -43,6 +45,7 @@
             sortable
             centered
             v-slot="props"
+            header-class="text-sm"
         >
                 <span>
                     {{ props.row.cost }}
@@ -54,18 +57,19 @@
             sortable
             centered
             v-slot="props"
+            header-class="text-sm"
         >
                 <span>
                     {{ props.row.sell }}
                 </span>
         </b-table-column>
 
-        <b-table-column label="Quantity" centered v-slot="props">
+        <b-table-column label="Quantity" centered v-slot="props" header-class="text-sm">
                 <span>
                     {{ props.row.quantity }}
                 </span>
         </b-table-column>
-        <b-table-column label="Category" centered v-slot="props">
+        <b-table-column label="Category" centered v-slot="props" header-class="text-sm">
                 <span>
                     {{ props.row.category.name }}
                 </span>

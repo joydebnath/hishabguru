@@ -26,6 +26,7 @@
                 label="Name"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.name }}
                 <p class="text-xs text-gray-700"> {{ props.row.formatted_address }} </p>
@@ -36,6 +37,7 @@
                 label="Mobile"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.mobile }}
             </b-table-column>
@@ -45,11 +47,12 @@
                 label="Email"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Owe You" v-slot="props">
+            <b-table-column label="Owe You" v-slot="props" header-class="text-sm">
                 {{ props.row.they_owe_you }}
             </b-table-column>
             <b-table-column v-slot="props" >

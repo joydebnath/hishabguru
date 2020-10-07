@@ -27,6 +27,7 @@
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
+                header-class="text-sm"
             >
                 {{ props.row.quotation_number }}
             </b-table-column>
@@ -37,6 +38,7 @@
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
+                header-class="text-sm"
             >
                 {{ props.row.reference_number }}
             </b-table-column>
@@ -46,6 +48,7 @@
                 label="Client"
                 v-slot="props"
                 cell-class="align-middle"
+                header-class="text-sm"
             >
                 {{ props.row.customer_name }}
             </b-table-column>
@@ -56,20 +59,21 @@
                 sortable
                 v-slot="props"
                 cell-class="align-middle"
+                header-class="text-sm"
             >
                 {{ props.row.create_date }}
             </b-table-column>
 
-            <b-table-column field="expiry_date" sortable label="Expiry" v-slot="props" cell-class="align-middle">
+            <b-table-column field="expiry_date" sortable label="Expiry" v-slot="props" cell-class="align-middle" header-class="text-sm">
                 {{ props.row.expiry_date }}
             </b-table-column>
-            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle">
+            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
                     {{ props.row.status }}
                 </b-tag>
             </b-table-column>
             <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
-                            cell-class="align-middle">
+                            cell-class="align-middle" header-class="text-sm">
                 {{ props.row.total_amount }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">

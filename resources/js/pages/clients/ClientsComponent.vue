@@ -14,7 +14,9 @@
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
-            <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-read="handleReadProfile"/>
+            <keep-alive>
+                <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-read="handleReadProfile"/>
+            </keep-alive>
         </div>
         <ItemCRUD
             :show="show_modal"

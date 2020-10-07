@@ -37,10 +37,9 @@ class InvoicesController extends Controller
             foreach ($request->products as $product) {
                 $invoice->products()->attach($product['id'], [
                     'quantity' => intval($product['quantity']),
-                    'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'description' => $product['description'] ? $product['description'] : null,
+                    'discount' => doubleval($product['discount']),
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total_buying_cost']),
+                    'total' => doubleval($product['total_selling_cost']),
                 ]);
             }
 
@@ -69,10 +68,9 @@ class InvoicesController extends Controller
             foreach ($request->products as $product) {
                 $syncable[$product['id']] = [
                     'quantity' => intval($product['quantity']),
-                    'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'description' => $product['description'] ? $product['description'] : null,
+                    'discount' => doubleval($product['discount']),
                     'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total_buying_cost']),
+                    'total' => doubleval($product['total_selling_cost']),
                 ];
             }
             $invoice->products()->sync($syncable);
@@ -89,7 +87,7 @@ class InvoicesController extends Controller
         try {
             $invoice->payable()->delete();
             $invoice->delete();
-            return response(['message' => 'Bill is deleted']);
+            return response(['message' => 'Invoice is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

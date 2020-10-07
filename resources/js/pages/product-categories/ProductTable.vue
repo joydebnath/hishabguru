@@ -24,6 +24,7 @@
                 label="#"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.id }}
             </b-table-column>
@@ -33,6 +34,7 @@
                 label="Category Name"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.name }}
             </b-table-column>
@@ -42,12 +44,13 @@
                 label="Parent Category"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 <span>
                     {{ props.row.parent_category }}
                 </span>
             </b-table-column>
-            <b-table-column label="Created date" centered v-slot="props">
+            <b-table-column label="Created date" centered v-slot="props" header-class="text-sm">
                 <span>
                     {{ props.row.formatted_created_at }}
                 </span>

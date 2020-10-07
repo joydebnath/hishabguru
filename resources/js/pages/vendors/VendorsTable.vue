@@ -26,6 +26,7 @@
                 label="Name"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.name }}
                 <p class="text-xs text-gray-700"> {{ props.row.formatted_address }} </p>
@@ -36,6 +37,7 @@
                 label="Mobile"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.mobile }}
             </b-table-column>
@@ -45,17 +47,14 @@
                 label="Email"
                 sortable
                 v-slot="props"
+                header-class="text-sm"
             >
                 {{ props.row.email }}
             </b-table-column>
-
-            <!--            <b-table-column label="Owe You" v-slot="props">-->
-            <!--                {{ props.row.they_owe_you }}-->
-            <!--            </b-table-column>-->
-            <b-table-column label="You Owe" v-slot="props">
+            <b-table-column label="You Owe" v-slot="props" header-class="text-sm">
                 {{ props.row.you_owe_them }}
             </b-table-column>
-            <b-table-column v-slot="props">
+            <b-table-column v-slot="props" header-class="text-sm">
                 <div class="flex justify-end">
                     <b-dropdown aria-role="list">
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>

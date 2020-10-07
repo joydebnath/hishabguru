@@ -3,7 +3,7 @@
         <b-tag
             v-if="$props.selected"
             attached
-            :closable="$props.read_only"
+            :closable="!$props.read_only"
             size="is-medium"
             class="w-100"
             type="is-dark"

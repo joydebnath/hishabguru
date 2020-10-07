@@ -15,7 +15,7 @@
                             type="is-danger"
                             size="is-small"
                             :auto-close="true"
-                            :duration="2000"
+                            :duration="4000"
                             v-model="error_container"
                         >
                             <span class="tracking-wider" v-text="error_message"></span>
