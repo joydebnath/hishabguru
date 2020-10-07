@@ -4,6 +4,7 @@
             <b-field grouped custom-class="dates">
                 <b-field
                     label="Issue Date"
+                    custom-class="text-sm"
                     :type="has_issue_date ? 'is-danger' :null"
                     :message="has_issue_date ? 'This field is required' : null"
                 >
@@ -17,7 +18,7 @@
                     />
                 </b-field>
                 <span class="px-2"></span>
-                <b-field label="Due Date">
+                <b-field label="Due Date" custom-class="text-sm">
                     <b-datepicker
                         v-model="order.due_date"
                         :show-week-number="false"
@@ -42,13 +43,14 @@
                 v-slot="props"
                 width="150"
                 cell-class="align-middle"
+                header-class="text-sm"
             >
                 <p class="m-0 flex flex-col">
                     <small class="text-xs">{{ props.row.code }}</small>
                     <span class="text-sm">{{ props.row.name }}</span>
                 </p>
             </b-table-column>
-            <b-table-column label="Description" centered v-slot="props" width="150" cell-class="align-middle">
+            <b-table-column label="Description" centered v-slot="props" width="150" cell-class="align-middle" header-class="text-sm">
                 <EditableDescription
                     placeholder="Write something..."
                     :value="props.row.description"
@@ -57,7 +59,7 @@
                     @on-input="handleEditDescription"
                 />
             </b-table-column>
-            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle">
+            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
                 <EditableInput
                     placeholder="#"
                     :value="props.row.quantity"
@@ -71,6 +73,7 @@
                 centered
                 v-slot="props"
                 cell-class="align-middle"
+                header-class="text-sm"
             >
                 <EditableInput
                     placeholder="0.0%"
@@ -80,7 +83,7 @@
                     @on-input="handleEditUnitCost"
                 />
             </b-table-column>
-            <b-table-column label="Tax" centered v-slot="props" width="80" cell-class="align-middle">
+            <b-table-column label="Tax" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
                 <EditableInput
                     placeholder="0.0"
                     :value="props.row.tax_rate"
@@ -90,7 +93,7 @@
                     @on-input="handleEditTaxRate"
                 />
             </b-table-column>
-            <b-table-column label="Total" centered v-slot="props" cell-class="align-middle">
+            <b-table-column label="Total" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
                 <span class="text-sm">{{ props.row.total_buying_cost }}</span>
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle" v-if="!read_only">

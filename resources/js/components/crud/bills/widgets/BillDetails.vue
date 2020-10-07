@@ -3,7 +3,7 @@
         <div class="relative w-full c-name mb-2">
             <b-field
                 label="Supplier's Name"
-                custom-class="w-full"
+                custom-class="w-full text-sm"
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
@@ -16,16 +16,17 @@
         </div>
         <b-field
             label="Bill Number"
+            custom-class="text-sm"
             required
             :type="has_bill_number ? 'is-danger' :null"
             :message="has_bill_number ? 'This field is required' : null"
         >
             <b-input custom-class="uppercase" v-model="bill.bill_number"/>
         </b-field>
-        <b-field label="Reference Number">
+        <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="bill.reference_number"/>
         </b-field>
-        <b-field label="Note">
+        <b-field label="Note" custom-class="text-sm">
             <b-input type="textarea" v-model="bill.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>

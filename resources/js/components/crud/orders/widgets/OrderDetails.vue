@@ -3,7 +3,7 @@
         <div class="relative w-full c-name mb-2">
             <b-field
                 label="Client's Name"
-                custom-class="w-full"
+                custom-class="w-full text-sm"
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
@@ -11,23 +11,23 @@
             </b-field>
         </div>
         <b-field
-            label="Order Number"
+            label="Order Number" custom-class="text-sm"
             required
             :type="has_order_number ? 'is-danger' :null"
             :message="has_order_number ? 'This field is required' : null"
         >
             <b-input v-model="order.order_number"/>
         </b-field>
-        <b-field label="Reference Number">
+        <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="order.reference_number"/>
         </b-field>
         <template >
-            <b-field label="Contact Number" v-if="contact">
+            <b-field label="Contact Number" custom-class="text-sm" v-if="contact">
                 <b-input v-model="order.delivery_contact_number" />
             </b-field>
             <div class="field" v-if="contact">
                 <div class="flex flex-row justify-content-between align-items-center">
-                    <label class="label">Delivery Address</label>
+                    <label class="label text-sm">Delivery Address</label>
                     <b-button type="is-text" size="is-small" v-show="false">change</b-button>
                 </div>
                 <article class="message">
@@ -40,10 +40,10 @@
                     </section>
                 </article>
             </div>
-            <b-field label="Delivery Instructions" >
+            <b-field label="Delivery Instructions"  custom-class="text-sm">
                 <b-input type="textarea" v-model="order.delivery_instructions" rows="3"/>
             </b-field>
-            <b-field label="Extra Note">
+            <b-field label="Extra Note" custom-class="text-sm">
                 <b-input type="textarea" v-model="order.note" rows="2"/>
             </b-field>
         </template>

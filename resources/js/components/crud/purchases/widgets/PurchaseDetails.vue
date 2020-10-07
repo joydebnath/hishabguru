@@ -3,7 +3,7 @@
         <div class="relative w-full c-name mb-2">
             <b-field
                 label="Supplier's Name"
-                custom-class="w-full"
+                custom-class="w-full text-sm"
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
@@ -16,18 +16,19 @@
         </div>
         <b-field
             label="Purchase Order Number"
+            custom-class="text-sm"
             required
             :type="has_purchase_order_number ? 'is-danger' :null"
             :message="has_purchase_order_number ? 'This field is required' : null"
         >
             <b-input custom-class="uppercase" v-model="purchase_order.purchase_order_number"/>
         </b-field>
-        <b-field label="Reference Number">
+        <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="purchase_order.reference_number"/>
         </b-field>
         <div class="field">
             <div class="flex flex-row justify-content-between align-items-center">
-                <label class="label">Delivery Address</label>
+                <label class="label text-sm">Delivery Address</label>
                 <b-button v-if="is_changeable_inventory" type="is-text" size="is-small" @click="handleChangeAddress">
                     change
                 </b-button>
@@ -50,7 +51,7 @@
                 </section>
             </article>
         </div>
-        <b-field label="Note">
+        <b-field label="Note" custom-class="text-sm">
             <b-input type="textarea" v-model="purchase_order.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>

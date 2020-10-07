@@ -3,7 +3,7 @@
         <div class="relative w-full c-name mb-2">
             <b-field
                 label="Client's Name"
-                custom-class="w-full"
+                custom-class="w-full text-sm"
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
@@ -16,17 +16,19 @@
         </div>
         <b-field
             label="Quotation Number"
+            custom-class="text-sm"
             required
             :type="has_quotation_number ? 'is-danger' :null"
             :message="has_quotation_number ? 'This field is required' : null"
         >
             <b-input v-model="quotation.quotation_number"/>
         </b-field>
-        <b-field label="Reference Number">
+        <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="quotation.reference_number"/>
         </b-field>
         <b-field
             label="Payment Condition"
+            custom-class="text-sm"
             :type="has_payment_condition ? 'is-danger' :null"
             :message="has_payment_condition ? 'This field is required' : null"
         >
@@ -45,6 +47,7 @@
         <b-field
             v-if="(quotation.payment_condition === 'partial')"
             label="Minimum Payment Amount"
+            custom-class="text-sm"
             :type="has_minimum_payment_amount ? 'is-danger' :null"
             :message="has_minimum_payment_amount ? 'This field is required' : null"
         >
@@ -53,7 +56,7 @@
                 required
             />
         </b-field>
-        <b-field label="Extra Note">
+        <b-field label="Extra Note" custom-class="text-sm">
             <b-input type="textarea" v-model="quotation.note"/>
         </b-field>
     </div>

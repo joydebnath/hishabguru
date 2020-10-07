@@ -2,16 +2,17 @@
     <div class="mr-4">
         <b-field
             label="Expense Number"
+            custom-class="text-sm"
             required
             :type="has_expense_number ? 'is-danger' :null"
             :message="has_expense_number ? 'This field is required' : null"
         >
             <b-input custom-class="uppercase" v-model="expense.expense_number"/>
         </b-field>
-        <b-field label="Reference Number">
+        <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="expense.reference_number"/>
         </b-field>
-        <b-field label="Note">
+        <b-field label="Note" custom-class="text-sm">
             <b-input type="textarea" v-model="expense.note" rows="3"/>
         </b-field>
     </div>
