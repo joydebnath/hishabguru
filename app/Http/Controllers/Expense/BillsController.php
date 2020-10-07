@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Expense;
 
+use App\Enums\Status\PaymentStatus;
 use App\Filters\Expense\BillFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Expense\BillRequest;
@@ -76,6 +77,7 @@ class BillsController extends Controller
                 ];
             }
             $bill->products()->sync($syncable);
+            $this->updateTotalDue($bill, $bill->payable);
 
             return new BillResource($bill->load('contact'));
         } catch (Exception $exception) {
@@ -99,5 +101,15 @@ class BillsController extends Controller
         $fillable = $request->validated();
         unset($fillable['products']);
         return $fillable;
+    }
+
+    private function updateTotalDue($expense, $paymentHistories): void
+    {
+        $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
+
+        $expense->update([
+            'total_due' => abs($expense->total_amount - $totalPaid),
+            'status' => $totalPaid >= $expense->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
+        ]);
     }
 }

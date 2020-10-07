@@ -7,49 +7,53 @@
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
-                <SupplierLookupInput :selected="contact" :read_only="bill.read_only" @on-select="handleSupplierSelect"/>
+                <ClientLookupInput
+                    :selected="contact"
+                    :read_only="invoice.read_only"
+                    @on-select="handleSupplierSelect"
+                />
             </b-field>
         </div>
         <b-field
             label="Invoice Number"
             required
-            :type="has_bill_number ? 'is-danger' :null"
-            :message="has_bill_number ? 'This field is required' : null"
+            :type="has_invoice_number ? 'is-danger' :null"
+            :message="has_invoice_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase" v-model="bill.bill_number"/>
+            <b-input custom-class="uppercase" v-model="invoice.invoice_number"/>
         </b-field>
         <b-field label="Reference Number">
-            <b-input v-model="bill.reference_number"/>
+            <b-input v-model="invoice.reference_number"/>
         </b-field>
         <b-field label="Message">
-            <b-input type="textarea" v-model="bill.note" rows="3"/>
+            <b-input type="textarea" v-model="invoice.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>
     </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
-import SupplierLookupInput from "@/components/global/lookup/suppliers/SupplierLookupInput";
+
+import ClientLookupInput from "@/components/global/lookup/clients/ClientLookupInput";
 import UploadedFiles from "./UploadedFiles";
 
 export default {
     name: "InvoiceDetails",
-    components: {UploadedFiles, SupplierLookupInput},
+    components: {UploadedFiles, ClientLookupInput},
     props: {
         item: Object | Array
     },
     data() {
         return {
-            bill: {
+            invoice: {
                 contact_id: null,
-                bill_number: null,
+                invoice_number: null,
                 reference_number: null,
                 note: null,
             },
             required_fields: {
                 contact_id: true,
-                bill_number: true,
+                invoice_number: true,
             },
             errors: {},
             contact: null,
@@ -59,8 +63,8 @@ export default {
     methods: {
         validation() {
             let error_bag = {}
-            for (let value in this.bill) {
-                if (this.required_fields[value] !== undefined && this.bill[value] == null) {
+            for (let value in this.invoice) {
+                if (this.required_fields[value] !== undefined && this.invoice[value] == null) {
                     error_bag[value] = true
                 }
             }
@@ -73,14 +77,14 @@ export default {
             }
             return {
                 data: {
-                    ...this.bill,
+                    ...this.invoice,
                 },
                 errors: this.errors
             }
         },
         handleSupplierSelect(supplier) {
-            this.bill = {
-                ...this.bill,
+            this.invoice = {
+                ...this.invoice,
                 contact_id: supplier ? supplier.id : null,
             }
             this.contact = supplier
@@ -93,13 +97,13 @@ export default {
         has_contact_id() {
             return this.errors.contact_id !== undefined
         },
-        has_bill_number() {
-            return this.errors.bill_number !== undefined
+        has_invoice_number() {
+            return this.errors.invoice_number !== undefined
         },
     },
     watch: {
         item(value) {
-            this.bill = value;
+            this.invoice = value;
             this.contact = value.contact ? {...value.contact} : null
         }
     }

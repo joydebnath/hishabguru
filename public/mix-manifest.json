@@ -43,5 +43,6 @@
     "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/purchase.js": "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/purchase.js",
     "/js/create-invoice.js": "/js/create-invoice.js",
     "/js/create-invoice~js/invoice.js": "/js/create-invoice~js/invoice.js",
-    "/js/invoice.js": "/js/invoice.js"
+    "/js/invoice.js": "/js/invoice.js",
+    "/js/create-invoice~js/create-order~js/create-quotation~js/invoice~js/order~js/quotation.js": "/js/create-invoice~js/create-order~js/create-quotation~js/invoice~js/order~js/quotation.js"
 }
