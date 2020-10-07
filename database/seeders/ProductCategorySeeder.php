@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\ProductCategory;
 
@@ -13,16 +15,16 @@ class ProductCategorySeeder extends Seeder
     public function run()
     {
         ProductCategory::create([
-            'name'=>'Salwar',
-            'tenant_id'=>2
+            'name' => 'Salwar',
+            'tenant_id' => 2
         ]);
         ProductCategory::create([
-            'name'=>'Kurti',
-            'tenant_id'=>2
+            'name' => 'Kurti',
+            'tenant_id' => 2
         ]);
         ProductCategory::create([
-            'name'=>'Tops',
-            'tenant_id'=>2
+            'name' => 'Tops',
+            'tenant_id' => 2
         ]);
     }
 }

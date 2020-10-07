@@ -1,12 +1,14 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\ContactDetail;
 
-class ClientsSeeder extends Seeder
+class SuppliersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +23,7 @@ class ClientsSeeder extends Seeder
                 'name' => $faker->name,
                 'tenant_id' => 2,
                 'note' => $faker->paragraph,
-                'type' => \App\Enums\Contact\ContactType::CLIENT
+                'type' => \App\Enums\Contact\ContactType::SUPPLIER
             ]);
 
             Address::create([
@@ -33,7 +35,7 @@ class ClientsSeeder extends Seeder
                 'postcode' => $faker->postcode,
                 'state' => $faker->state,
                 'country' => $faker->country,
-                'address_type' => \App\Enums\Address\AddressType::HOME
+                'address_type' => \App\Enums\Address\AddressType::HQ
             ]);
 
             ContactDetail::create([
@@ -47,6 +49,27 @@ class ClientsSeeder extends Seeder
                 'key' => \App\Enums\Contact\ContactDetailsType::EMAIL,
                 'value' => $faker->email
             ]);
+
+            $primaryContact = Contact::create([
+                'name' => $faker->name,
+                'tenant_id' => 2,
+                'note' => $faker->paragraph,
+                'type' => \App\Enums\Contact\ContactType::SUPPLIER_PRIMARY_PERSON
+            ]);
+
+            ContactDetail::create([
+                'contact_id' => $primaryContact->id,
+                'key' => \App\Enums\Contact\ContactDetailsType::MOBILE,
+                'value' => $faker->phoneNumber
+            ]);
+
+            ContactDetail::create([
+                'contact_id' => $primaryContact->id,
+                'key' => \App\Enums\Contact\ContactDetailsType::EMAIL,
+                'value' => $faker->email
+            ]);
+
+            $contact->child_contacts()->attach($primaryContact->id);
         }
     }
 }
