@@ -23,6 +23,15 @@
                 </div>
             </b-dropdown-item>
         </router-link>
+        <router-link to="/@/invoices/create">
+            <b-dropdown-item class="py-3" aria-role="listitem" custom-class="outline-none">
+                <div class="media">
+                    <div class="media-content">
+                        <h3>New Invoice</h3>
+                    </div>
+                </div>
+            </b-dropdown-item>
+        </router-link>
         <router-link to="/@/purchases/create">
             <b-dropdown-item class="py-3" aria-role="listitem" custom-class="outline-none">
                 <div class="media">

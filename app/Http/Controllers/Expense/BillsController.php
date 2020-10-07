@@ -86,6 +86,7 @@ class BillsController extends Controller
     public function destroy(Bill $bill)
     {
         try {
+            $bill->payable()->delete();
             $bill->delete();
             return response(['message' => 'Bill is deleted']);
         } catch (Exception $exception) {

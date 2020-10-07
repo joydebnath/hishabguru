@@ -2,7 +2,7 @@
     <div class="mr-4">
         <div class="relative w-full c-name mb-2">
             <b-field
-                label="Client Name"
+                label="Client's Name"
                 custom-class="w-full"
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"

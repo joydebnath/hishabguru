@@ -2,7 +2,7 @@
     <div class="mr-4">
         <div class="relative w-full c-name mb-2">
             <b-field
-                label="Supplier's Name"
+                label="Client's Name"
                 custom-class="w-full"
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
@@ -11,7 +11,7 @@
             </b-field>
         </div>
         <b-field
-            label="Bill Number"
+            label="Invoice Number"
             required
             :type="has_bill_number ? 'is-danger' :null"
             :message="has_bill_number ? 'This field is required' : null"
@@ -21,7 +21,7 @@
         <b-field label="Reference Number">
             <b-input v-model="bill.reference_number"/>
         </b-field>
-        <b-field label="Note">
+        <b-field label="Message">
             <b-input type="textarea" v-model="bill.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>
@@ -34,7 +34,7 @@ import SupplierLookupInput from "@/components/global/lookup/suppliers/SupplierLo
 import UploadedFiles from "./UploadedFiles";
 
 export default {
-    name: "BillDetails",
+    name: "InvoiceDetails",
     components: {UploadedFiles, SupplierLookupInput},
     props: {
         item: Object | Array
