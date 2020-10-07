@@ -26,7 +26,7 @@ const histories = {
         },
         handleDeletePH({id, amount}) {
             this.expense = {...this.expense, total_due: parseFloat(this.expense.total_due) + parseFloat(amount)}
-            this.payment_histories = [..._.filter(value => value.id !== id)]
+            this.payment_histories = [..._.filter(this.payment_histories, value => value.id != id)]
         }
     }
 }
