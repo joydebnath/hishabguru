@@ -2,6 +2,7 @@
 
 namespace App\Services\Expense;
 
+use App\Enums\Status\PaymentStatus;
 use App\Models\OtherExpenseItem;
 use App\Models\PaymentHistory;
 use Carbon\Carbon;
@@ -53,7 +54,8 @@ class OtherExpenseService
         $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
 
         $expense->update([
-            'total_due' => abs($expense->total_amount - $totalPaid)
+            'total_due' => abs($expense->total_amount - $totalPaid),
+            'status' => $totalPaid >= $expense->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
         ]);
     }
 

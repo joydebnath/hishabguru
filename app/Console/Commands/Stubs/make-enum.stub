@@ -1,0 +1,8 @@
+<?php
+
+namespace {{namespace}};
+
+final class {{enum}}
+{
+    const OPTION =   0;
+}

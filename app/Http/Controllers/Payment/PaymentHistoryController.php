@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\Enums\Status\PaymentStatus;
 use App\Filters\Payment\PaymentHistoryFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentHistoryRequest;
@@ -66,7 +67,8 @@ class PaymentHistoryController extends Controller
     {
         $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
         $payable->update([
-            'total_due' => abs($payable->total_amount - $totalPaid)
+            'total_due' => abs($payable->total_amount - $totalPaid),
+            'status' => $totalPaid >= $payable->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
         ]);
     }
 }

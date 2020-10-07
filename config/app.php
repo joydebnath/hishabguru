@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        BaoPham\DynamoDb\DynamoDbServiceProvider::class,
 
         /*
          * Application Service Providers...

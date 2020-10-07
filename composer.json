@@ -10,14 +10,15 @@
     "require": {
         "php": "^7.2.5",
         "aws/aws-sdk-php": "^3.155",
-        "bensampo/laravel-enum": "^2.2",
+        "baopham/dynamodb": "^6.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.5.5",
         "laravel/framework": "^7.0",
         "laravel/passport": "^9.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "bref/bref": "^0.5.31",
