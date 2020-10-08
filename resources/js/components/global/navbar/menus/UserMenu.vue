@@ -14,11 +14,7 @@
             <div class="media">
                 <div class="media-content">
                     <p class="mb-0" v-for="tenant in tenants">
-                        <b-icon
-                            pack="far" v-if="tenant.id === current_tenant"
-                            custom-class="text-xs text-teal-600"
-                            icon="check-circle"
-                        />
+                        <CheckCircleIcon v-if="tenant.id === current_tenant"/>
                         {{ tenant.name }}
                     </p>
                 </div>
@@ -49,9 +45,11 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import CheckCircleIcon from "@/components/icons/CheckCircleIcon";
 
 export default {
     name: "UserMenu",
+    components: {CheckCircleIcon},
     methods: {
         handleLogout() {
             document.getElementById('logout-form').submit();

@@ -14,16 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/CheckCircleIcon.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/FilterIcon.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/filter/Filter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/filter/Filter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/TopNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/TopNavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/spa.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/spa.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/UserMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/UserMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/icons/CheckCircleIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/icons/CheckCircleIcon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -770,6 +765,7 @@
       <workItem from="1602042495949" duration="8939000" />
       <workItem from="1602067632042" duration="9513000" />
       <workItem from="1602149108288" duration="8483000" />
+      <workItem from="1602159023899" duration="821000" />
     </task>
     <servers />
   </component>

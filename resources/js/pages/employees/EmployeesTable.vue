@@ -15,8 +15,6 @@
             default-sort-direction="asc"
             sort-icon="arrow-up"
             sort-icon-size="is-small"
-            :checked-rows.sync="checkedRows"
-            checkable
             default-sort="code"
             backend-sorting
             @sort="onSort"
@@ -31,7 +29,9 @@
                 {{ props.row.name }}
                 <p class="text-xs text-gray-700"> {{ props.row.formatted_address }} </p>
             </b-table-column>
-
+            <b-table-column label="Job Title" v-slot="props" header-class="text-sm">
+                Active
+            </b-table-column>
             <b-table-column
                 field="mobile"
                 label="Mobile"
@@ -53,9 +53,6 @@
             </b-table-column>
 
             <b-table-column label="Status" v-slot="props" header-class="text-sm">
-                Active
-            </b-table-column>
-            <b-table-column label="Job Title" v-slot="props" header-class="text-sm">
                 Active
             </b-table-column>
             <b-table-column v-slot="props">
