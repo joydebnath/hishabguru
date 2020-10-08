@@ -8,7 +8,7 @@
             </h1>
         </header>
         <main class="py-4">
-            <router-view />
+            <router-view/>
         </main>
     </div>
 </template>
@@ -25,14 +25,19 @@ export default {
         TopNavBar
     },
     name: "App",
+    props: {
+        logo: String
+    },
     mounted() {
         this.setPageType({type: this.$route.meta.type})
         this.setTitle({title: this.$route.name})
+        this.setLogo({url: this.$props.logo})
         this.$store.dispatch('init')
     },
     methods: {
         ...mapMutations({
             setTitle: 'setTitle',
+            setLogo: 'setLogo',
             setPageType: 'setPageType',
             setUser: 'setUser',
         })

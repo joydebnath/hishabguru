@@ -2,7 +2,9 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand flex flex-row items-center p-0">
-                <img src="/images/logo.png" alt="logo" class="d-inline" style="width: 110px">
+                <template v-if="logo">
+                    <b-image :src="logo" alt="logo" class="d-inline" style="width: 110px"/>
+                </template>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -11,7 +13,7 @@
             </button>
             <div class="flex flex-row items-center">
                 <AddNewItemMenu/>
-                <UserMenu />
+                <UserMenu/>
             </div>
         </div>
     </nav>
@@ -26,6 +28,11 @@ export default {
     components: {
         AddNewItemMenu, UserMenu
     },
+    computed: {
+        logo() {
+            return this.$store.getters.getLogo
+        }
+    }
 }
 </script>
 

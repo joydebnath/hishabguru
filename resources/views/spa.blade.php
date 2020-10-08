@@ -21,6 +21,8 @@
     <link href="{{ asset('css/buefy.css') }}" rel="stylesheet">
     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 
+    <link rel="preload" href="{{asset('/images/logo.png')}}" as="image" media="(min-width: 100px)">
+
     <style>
         #app {
             min-height: 100vh;
@@ -29,7 +31,7 @@
 </head>
 <body>
 <div id="app">
-    <app/>
+    <app logo="{{asset('/images/logo.png')}}"/>
 </div>
 @auth
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -47,17 +47,20 @@ const store = new Vuex.Store({
         title: '',
         page_type: '',
         user: null,
-        loading_user: false
+        loading_user: false,
+        logo: ''
     },
     getters: {
         getPerPage: state => state.per_page,
         getTitle: state => state.title,
+        getLogo: state => state.logo,
         getPageType: state => state.page_type,
         getUser: state => state.user,
         getLoadingUser: state => state.loading_user,
     },
     mutations: {
         setTitle: (state, {title}) => state.title = title,
+        setLogo: (state, {url}) => state.logo = url,
         setPageType: (state, {type}) => state.page_type = type,
         setUser: (state, {user}) => state.user = user,
         setLoadingUser: (state, value) => state.loading_user = value,

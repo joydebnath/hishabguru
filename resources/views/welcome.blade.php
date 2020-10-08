@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
-
+        <link rel="preload" href="{{asset('/images/logo.png')}}" as="image" media="(min-width: 100px)">
         <!-- Styles -->
         <style>
             html, body {

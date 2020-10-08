@@ -45,14 +45,14 @@
                 </b-field>
                 <div class="grid grid-cols-2 my-4">
                     <b-switch
-                        v-model="computed_item.is_sellable"
+                        v-model="is_sellable"
                         :true-value="1"
                         :false-value="0"
                     >
                         <strong>{{ sell_message }}</strong>
                     </b-switch>
                     <b-switch
-                        v-model="computed_item.is_purchasable"
+                        v-model="is_purchasable"
                         :true-value="1"
                         :false-value="0"
                     >
@@ -85,6 +85,8 @@ export default {
     data() {
         return {
             product: {},
+            is_purchasable: 1,
+            is_sellable: 1,
         }
     },
     methods: {
@@ -109,7 +111,9 @@ export default {
             axios
                 .put('/products/' + this.computed_item.id, {
                     ...this.computed_item,
-                    tenant_id: this.tenant_id
+                    tenant_id: this.tenant_id,
+                    is_sellable : this.is_sellable,
+                    is_purchasable : this.is_purchasable,
                 })
                 .then(({data}) => {
                     this.$store.commit('products/update', {product: data.data})
@@ -125,7 +129,9 @@ export default {
             axios
                 .post('/products', {
                     ...this.computed_item,
-                    tenant_id: this.tenant_id
+                    tenant_id: this.tenant_id,
+                    is_sellable : this.is_sellable,
+                    is_purchasable : this.is_purchasable,
                 })
                 .then(({data}) => {
                     this.onSuccess('Product is created')
@@ -170,6 +176,8 @@ export default {
         computed_item() {
             if (this.$props.item) {
                 this.product = {...this.$props.item}
+                this.is_sellable = this.$props.item.is_sellable;
+                this.is_purchasable = this.$props.item.is_purchasable;
             }
             return this.product
         },
@@ -180,10 +188,10 @@ export default {
             return {}
         },
         sell_message(){
-            return this.computed_item.is_sellable ? "I Sell the Item" : "I Don't Sell the Item"
+            return this.is_sellable ? "I Sell the Item" : "I Don't Sell the Item"
         },
         purchase_message(){
-            return this.computed_item.is_purchasable ? "I Purchase the Item" : "I Don't Purchase the Item"
+            return this.is_purchasable ? "I Purchase the Item" : "I Don't Purchase the Item"
         }
     },
 };
