@@ -80,7 +80,7 @@
                     </b-field>
                 </b-field>
                 <b-field label="Note" custom-class="text-sm">
-                    <b-input type="textarea" v-model="computed_item.note"></b-input>
+                    <b-input type="textarea" :rows="2" v-model="computed_item.note"></b-input>
                 </b-field>
             </section>
             <footer class="modal-card-foot flex justify-content-end">

@@ -23,8 +23,38 @@ class EmployeeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'tenant_id' => 'required|numeric',
+            'name' => 'required|string',
+            'mobile' => 'string|required',
+            'phone' => 'string|nullable',
+            'employee_id' => 'string|nullable',
+            'job_title' => 'string|nullable',
+            'currently_working' => 'boolean|nullable',
+            'email' => 'email|nullable',
+            'address_line_1' => 'required|string',
+            'address_line_2' => 'string|nullable',
+            'city' => 'required|string',
+            'postcode' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'note' => 'string|nullable',
+            'address_type' => 'string',
         ];
+
+        $rules = $this->appendRulesBasedOnHTTPMethod($rules);
+
+        return $rules;
+    }
+
+    private function appendRulesBasedOnHTTPMethod($rules)
+    {
+        if ($this->isMethod('POST')) {
+            $rules['address_type'] = 'required|' . $rules['address_type'];
+        } else {
+            $rules['address_type'] = $rules['address_type'] . '|nullable';
+        }
+
+        return $rules;
     }
 }

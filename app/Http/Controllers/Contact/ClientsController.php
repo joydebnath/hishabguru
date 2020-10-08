@@ -41,8 +41,8 @@ class ClientsController extends Controller
     {
         try {
             $storeable = $request->validated();
-            $contact = $this->contactService->create($storeable,ContactType::CLIENT);
-            return new Client($contact->fresh('contact_details', 'addresses'));
+            $contact = $this->contactService->create($storeable, ContactType::CLIENT);
+            return new Client($contact->fresh('emails', 'mobiles', 'addresses'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -62,7 +62,7 @@ class ClientsController extends Controller
         try {
             $updateable = $request->validated();
             $contact = $this->contactService->update($contactId, $updateable, AddressType::HOME);
-            return new Client($contact->fresh('contact_details', 'addresses'));
+            return new Client($contact->fresh('emails', 'mobiles', 'addresses'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], $exception->getCode());
         }

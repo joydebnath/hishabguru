@@ -5,12 +5,15 @@ namespace App\Models;
 use App\Enums\Address\Addressable;
 use App\Enums\Address\AddressType;
 use App\Enums\Contact\ContactDetailsType;
+use App\Enums\EmployeeDetailsType;
+use App\Traits\Contact\Employable;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
     use Filterable;
+    use Employable;
 
     protected $guarded = ['id'];
 
