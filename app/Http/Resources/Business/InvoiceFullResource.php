@@ -25,6 +25,7 @@ class InvoiceFullResource extends JsonResource
             'status' => $this->status,
             'note' => $this->note,
             'products' => self::products($this->products),
+            'total_due' => $this->total_due,
             'read_only'=> true
         ];
     }

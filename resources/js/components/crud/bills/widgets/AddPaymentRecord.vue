@@ -43,6 +43,7 @@
                         placeholder="e.g. 1000"
                         :min="0"
                         :max="$props.due_amount"
+                        :step=".01"
                     >
                     </b-input>
                 </b-field>

@@ -1,6 +1,6 @@
 <template>
     <section>
-        <b-button size="is-small" class="mb-1" type="is-info is-light" @click="show_table = !show_table">
+        <b-button size="is-small" class="font-medium tracking-wider mb-1" type="is-info is-light" @click="show_table = !show_table">
             <span v-if="show_table">Hide</span>
             <span v-else>Show</span>
             Payment Histories

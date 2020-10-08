@@ -43,6 +43,7 @@
                         placeholder="e.g. 1000"
                         :min="0"
                         :max="$props.due_amount"
+                        :step=".01"
                     >
                     </b-input>
                 </b-field>
@@ -101,7 +102,7 @@ export default {
                 .post('/payment-histories', {
                     ...this.payment_record,
                     payment_date: this.payment_record.payment_date ? this.payment_record.payment_date.toLocaleDateString() : null,
-                    payable_type: 'bills',
+                    payable_type: 'invoices',
                     payable_id: this.$route.params.id,
                 })
                 .then(({data}) => {

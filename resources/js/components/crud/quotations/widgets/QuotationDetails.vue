@@ -56,7 +56,7 @@
                 required
             />
         </b-field>
-        <b-field label="Extra Note" custom-class="text-sm">
+        <b-field label="Extra Note" custom-class="text-smce">
             <b-input type="textarea" v-model="quotation.note"/>
         </b-field>
     </div>
