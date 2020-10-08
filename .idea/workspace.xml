@@ -14,16 +14,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeeFilters.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/employees/modals/ItemCRUD.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/route/employees.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/stores/employees.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/InvoiceFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/InvoiceFullResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/BillComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/BillComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/AddPaymentRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/AddPaymentRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/InvoiceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/InvoiceComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/AddPaymentRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/AddPaymentRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/AddPaymentRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/AddPaymentRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/modals/ItemCRUD.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/modals/Profile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/product-categories/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/product-categories/modals/ItemCRUD.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/modals/Profile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/vendors/modals/ItemCRUD.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/modals/Profile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/route/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/clients.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/clients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/marketplace.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/marketplace.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/other-expenses.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/other-expenses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/product-categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/product-categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/promo-codes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/promo-codes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/suppliers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/suppliers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -562,7 +583,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/route" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -575,19 +596,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/route" />
+      <recent name="$PROJECT_DIR$/resources/js/stores" />
+      <recent name="$PROJECT_DIR$/resources/js/pages" />
+      <recent name="$PROJECT_DIR$/resources/js/components/crud" />
+      <recent name="$PROJECT_DIR$/resources/js/repos" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/pages" />
       <recent name="$PROJECT_DIR$/resources/js/repos" />
       <recent name="$PROJECT_DIR$/resources/js/components/crud/purchases/purchases.js" />
       <recent name="$PROJECT_DIR$/resources/js/components/global/lookup" />
       <recent name="$PROJECT_DIR$/resources/js/route" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/crud" />
-      <recent name="$PROJECT_DIR$/resources/js/repos" />
-      <recent name="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets" />
-      <recent name="$PROJECT_DIR$/resources/js/route" />
-      <recent name="$PROJECT_DIR$/resources/js/components/global/input" />
     </key>
   </component>
   <component name="RunManager">
@@ -769,7 +790,7 @@
       <workItem from="1602024255342" duration="823000" />
       <workItem from="1602042495949" duration="8939000" />
       <workItem from="1602067632042" duration="9513000" />
-      <workItem from="1602149108288" duration="2287000" />
+      <workItem from="1602149108288" duration="6770000" />
     </task>
     <servers />
   </component>
@@ -797,12 +818,12 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2683" y="318" width="374" height="457" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599473751410" />
-    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602071727591">
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602154025491">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601027813801" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600167207332" />
-    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602071727591" />
+    <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602154025491" />
     <state x="4523" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601360824932" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601126665694" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1601869331158" />
@@ -877,14 +898,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1602151711806">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1602154105539">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601029633495" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602151711806" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602154105539" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601357362901" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601869073108" />

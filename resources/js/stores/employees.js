@@ -1,18 +1,19 @@
-import {NotificationProgrammatic as Notification} from "buefy";
+import {NotificationProgrammatic as Notification} from 'buefy'
 
 const store = {
     namespaced: true,
     state: {
         total: '',
-        url: '/other-expenses',
-        expenses: [],
+        url: '/employees',
+        employees: [],
+        checked_employees: [],
         loading: false,
         current_page: 1,
-        filters: {},
-        checked_expenses: [],
+        filters: {}
     },
     getters: {
-        getExpenses: state => state.expenses,
+        getEmployees: state => state.employees,
+        getCheckedEmployees: state => state.checked_employees,
         getUrl: state => state.url,
         getTotal: state => state.total,
         getLoading: state => state.loading,
@@ -22,15 +23,14 @@ const store = {
                 ...state.filters,
                 tenant_id: rootGetters['tenancy/getCurrentTenant']
             }
-        },
-        getCheckedExpenses: state => state.checked_expenses,
+        }
     },
     mutations: {
-        setExpenses: (state, {expenses}) => {
-            state.expenses = expenses
+        setEmployees: (state, {employees}) => {
+            state.employees = employees
         },
-        setCheckedExpenses: (state, {expenses}) => {
-            state.checked_expenses = expenses
+        setCheckedEmployees: (state, {employees}) => {
+            state.checked_employees = employees
         },
         setLoading: (state, {loading}) => {
             state.loading = loading
@@ -43,6 +43,13 @@ const store = {
         },
         setFilters: (state, {filters}) => {
             state.filters = {...state.filters, ...filters}
+        },
+        update: (state, {employee}) => {
+            const index = _.findIndex(state.employees, value => value.id == employee.id)
+            if (index !== -1) {
+                state.employees[index] = employee;
+                state.employees = [...state.employees]
+            }
         }
     },
     actions: {
@@ -54,7 +61,7 @@ const store = {
                 })
                 .then(({data}) => {
                     commit('setLoading', {loading: false})
-                    commit('setExpenses', {expenses: data.data})
+                    commit('setEmployees', {employees: data.data})
                     commit('setTotal', {total: data.meta.total})
                     commit('setCurrentPage', {current_page: data.meta.current_page})
                 })
@@ -63,32 +70,22 @@ const store = {
                     commit('setLoading', {loading: false})
                 })
         },
-        delete({commit, getters, dispatch}, {expense}) {
+        delete({commit, getters, dispatch}) {
             commit('setLoading', {loading: true})
-            axios
-                .delete(getters.getUrl + '/' + expense.id)
-                .then(({data}) => {
-                    commit('setLoading', {loading: false})
-                    Notification.open({
-                        message: data.message,
-                        type: 'is-success is-light',
-                        duration: 5000
-                    });
-                    dispatch('loadData', {page: getters.getCurrentPage})
+            dispatch('loadData', {page: getters.getCurrentPage})
+            Notification.open({
+                message: data.message,
+                type: 'is-success'
+            });
+            // ====== //
+            if (err.response) {
+                Notification.open({
+                    message: err.response.data.message,
+                    type: 'is-danger'
                 })
-                .catch(err => {
-                    console.log(err)
-                    if (err.response) {
-                        Notification.open({
-                            message: err.response.data.message,
-                            type: 'is-danger is-light',
-                            duration: 5000
-                        })
-                    }
-                    commit('setLoading', {loading: false})
-                })
+            }
         }
     }
 }
 
-export default store
+export default store;

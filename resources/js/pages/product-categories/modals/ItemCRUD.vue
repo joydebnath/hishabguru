@@ -132,7 +132,7 @@ export default {
         },
         computed_item() {
             if (this.$props.item) {
-                return {...this.$props.item}
+                this.category = {...this.$props.item}
             }
             return this.category
         },

@@ -27,7 +27,6 @@ class SuppliersController extends Controller
     {
         return new SupplierCollection(
             Contact::filter($filters)
-                ->where('tenant_id', 2)
                 ->where('type', ContactType::SUPPLIER)
                 ->with('emails', 'mobiles', 'addresses')
                 ->paginate()

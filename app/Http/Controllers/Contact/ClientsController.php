@@ -28,7 +28,6 @@ class ClientsController extends Controller
         try {
             return new ClientCollection(
                 Contact::filter($filters)
-                    ->where('tenant_id', 2)
                     ->where('type', ContactType::CLIENT)
                     ->with('emails', 'mobiles', 'addresses')
                     ->paginate()

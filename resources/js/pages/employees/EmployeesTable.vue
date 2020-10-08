@@ -52,13 +52,17 @@
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Owe You" v-slot="props" header-class="text-sm">
-                {{ props.row.they_owe_you }}
+            <b-table-column label="Status" v-slot="props" header-class="text-sm">
+                Active
             </b-table-column>
-            <b-table-column v-slot="props" >
+            <b-table-column label="Job Title" v-slot="props" header-class="text-sm">
+                Active
+            </b-table-column>
+            <b-table-column v-slot="props">
                 <div class="flex justify-end">
                     <b-dropdown aria-role="list">
-                        <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
+                        <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
+                                  slot="trigger"/>
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" class="text-red-600"
@@ -70,7 +74,7 @@
             <template slot="footer">
                 <EmptyTable v-if="!data.length"/>
                 <div v-else class="has-text-right text-gray-700 font-medium -mb-4 tracking-wider">
-                    Total clients: {{ total }}
+                    Total employees: {{ total }}
                 </div>
             </template>
         </b-table>
@@ -91,11 +95,11 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch('clients/loadData', {page: 1})
+        this.$store.dispatch('employees/loadData', {page: 1})
     },
     methods: {
         onPageChange(page_no) {
-            this.$store.dispatch('clients/loadData', {page: page_no})
+            this.$store.dispatch('employees/loadData', {page: page_no})
         },
         onSort(field_name, order) {
             console.log(field_name, order)
@@ -103,10 +107,10 @@ export default {
     },
     computed: {
         ...mapGetters({
-            loading: 'clients/getLoading',
-            data: 'clients/getClients',
-            current_page: 'clients/getCurrentPage',
-            total: 'clients/getTotal',
+            loading: 'employees/getLoading',
+            data: 'employees/getEmployees',
+            current_page: 'employees/getCurrentPage',
+            total: 'employees/getTotal',
             per_page: 'getPerPage'
         })
     }

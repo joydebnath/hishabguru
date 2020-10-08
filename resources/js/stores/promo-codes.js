@@ -16,7 +16,12 @@ const store = {
         getTotal: state => state.total,
         getLoading: state => state.loading,
         getCurrentPage: state => state.current_page,
-        getFilters: state => state.filters
+        getFilters: (state, getters, rootState, rootGetters) => {
+            return {
+                ...state.filters,
+                tenant_id: rootGetters['tenancy/getCurrentTenant']
+            }
+        }
     },
     mutations: {
         setPromoCodes: (state, {promo_codes}) => {

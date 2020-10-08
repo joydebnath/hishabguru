@@ -15,6 +15,7 @@ import invoicesModule from './invoices'
 import dashboardModule from './dashboard'
 import clientsModule from './clients'
 import suppliersModule from './suppliers'
+import employeesModule from './employees'
 import tenancyModule from "./tenancy";
 import marketplaceModule from './marketplace'
 import otherExpensesModule from './other-expenses'
@@ -35,6 +36,7 @@ const store = new Vuex.Store({
         dashboard: dashboardModule,
         clients: clientsModule,
         suppliers: suppliersModule,
+        employees: employeesModule,
         tenancy: tenancyModule,
         marketplace: marketplaceModule,
         other_expenses: otherExpensesModule,

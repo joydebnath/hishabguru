@@ -15,20 +15,44 @@
                 <button type="button" class="delete" @click="$emit('on-close')"></button>
             </header>
             <section class="modal-card-body">
-                <b-field label="Full Name">
+                <b-field label="Full Name" custom-class="text-sm">
                     <b-input v-model="computed_item.name"></b-input>
                 </b-field>
                 <b-field grouped>
-                    <b-field label="Mobile">
+                    <b-field label="Mobile" custom-class="text-sm">
                         <b-input v-model="computed_item.mobile"></b-input>
                     </b-field>
-                    <b-field label="Phone">
+                    <b-field label="Phone" custom-class="text-sm">
                         <b-input v-model="computed_item.phone"></b-input>
                     </b-field>
                 </b-field>
-                <b-field label="Emaill address">
-                    <b-input v-model="computed_item.email"></b-input>
+
+                <b-field grouped>
+                    <b-field label="Email address" custom-class="text-sm">
+                        <b-input v-model="computed_item.email"></b-input>
+                    </b-field>
+                    <b-field label="Employee ID" custom-class="text-sm">
+                        <b-input v-model="computed_item.employee_id"></b-input>
+                    </b-field>
                 </b-field>
+
+                <b-field grouped>
+                    <b-field label="Job Title" custom-class="text-sm">
+                        <b-input v-model="computed_item.job_title"></b-input>
+                    </b-field>
+                    <b-field label="Currently Working?" custom-class="text-sm">
+                        <b-switch
+                            class="mt-2 ml-2"
+                            v-model="currently_working"
+                            :true-value="1"
+                            :false-value="0"
+                        >
+                            <span v-if="currently_working">Yes</span>
+                            <span v-else>No</span>
+                        </b-switch>
+                    </b-field>
+                </b-field>
+
                 <p class="font-semibold mt-4 my-3 ">
                     <span class="mr-2">Contact address <b-tag>Home</b-tag></span>
                 </p>
@@ -55,7 +79,7 @@
                         <b-input placeholder="Country" value="Bangladesh" v-model="computed_item.country"></b-input>
                     </b-field>
                 </b-field>
-                <b-field label="Note">
+                <b-field label="Note" custom-class="text-sm">
                     <b-input type="textarea" v-model="computed_item.note"></b-input>
                 </b-field>
             </section>
@@ -78,12 +102,14 @@ export default {
     },
     data() {
         return {
-            client: {
+            employee: {
                 id: '',
                 name: '',
                 mobile: '',
                 phone: '',
                 email: '',
+                employee_id: '',
+                job_title: '',
                 address_line_1: '',
                 address_line_2: '',
                 city: '',
@@ -91,7 +117,8 @@ export default {
                 state: '',
                 country: '',
                 note: '',
-            }
+            },
+            currently_working: 1,
         }
     },
     methods: {
@@ -108,66 +135,78 @@ export default {
         update() {
             this.loading_event(true);
             axios
-                .put('/clients/' + this.computed_item.id, this.computed_item)
+                .put('/employees/' + this.computed_item.id, {
+                    ...this.computed_item,
+                    currently_working: this.currently_working
+                })
                 .then(({data}) => {
                     this.loading_event(false);
-                    this.$store.commit('clients/update', {client: data.data})
-                    this.client = data.data
+                    this.$store.commit('employees/update', {employee: data.data})
+                    this.employee = data.data
                     this.$emit('on-close')
                     this.$buefy.notification.open({
-                        message: 'Client has been updated',
-                        type: 'is-success'
+                        message: 'Employee has been updated',
+                        type: 'is-success is-light',
+                        duration: 5000
                     })
                 })
                 .catch(err => {
                     this.loading_event(false);
                     this.$buefy.notification.open({
-                        message: 'Client update failed',
-                        type: 'is-danger'
+                        message: 'Employee update failed',
+                        type: 'is-danger is-light',
+                        duration: 5000
                     })
                 })
         },
         create() {
             this.loading_event(true);
             axios
-                .post('/clients', {...this.computed_item, address_type: 'home'})
+                .post('/employees', {
+                    ...this.computed_item,
+                    currently_working: this.currently_working,
+                    address_type: 'home'
+                })
                 .then(({data}) => {
                     this.loading_event(false);
-                    this.client = {};
+                    this.employee = {};
                     this.$emit('on-close');
                     this.$buefy.notification.open({
-                        message: 'Client is created',
-                        type: 'is-success'
+                        message: 'Employee is created',
+                        type: 'is-success is-light',
+                        duration: 5000
                     })
                     if (this.total < this.per_page) {
-                        this.$store.dispatch('clients/loadData', {page: 1})
+                        this.$store.dispatch('employees/loadData', {page: 1})
                     }
                 })
                 .catch(err => {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Whoops! Something went wrong...',
-                        type: 'is-danger'
+                        type: 'is-danger is-light',
+                        duration: 5000
                     })
                 })
         }
     },
     computed: {
         ...mapGetters({
-            total: 'clients/getTotal',
+            total: 'employees/getTotal',
             per_page: 'getPerPage',
             current_tenant_id: 'tenancy/getCurrentTenant'
         }),
         title() {
             return this.$props.action_type == "edit"
-                ? "Edit Client"
-                : "Add new Client";
+                ? "Edit Employee"
+                : "Add new Employee";
         },
         computed_item() {
             if (this.$props.item) {
-                this.client = this.$props.item;
+                this.employee = this.$props.item;
+                this.is_working = this.$props.item.currently_working
             }
-            return {...this.client, tenant_id: this.current_tenant_id}
+            return {...this.employee, tenant_id: this.current_tenant_id}
         }
     }
 };

@@ -8,7 +8,12 @@ const store = {
         suppliers: [],
         loading: false,
         current_page: 1,
-        filters: {}
+        getFilters: (state, getters, rootState, rootGetters) => {
+            return {
+                ...state.filters,
+                tenant_id: rootGetters['tenancy/getCurrentTenant']
+            }
+        }
     },
     getters: {
         getSuppliers: state => state.suppliers,

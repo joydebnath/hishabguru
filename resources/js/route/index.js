@@ -15,6 +15,7 @@ import InvoiceRoutes from './invoices'
 import PurchaseRoutes from './purchases'
 import BillsRoutes from './bills'
 import OtherExpenseRoutes from './other-expenses'
+import EmployeesRoutes from './employees'
 
 const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
 
@@ -72,12 +73,7 @@ const router = new VueRouter({
             meta: {type: 'contacts'},
             component: SuppliersComponent,
         },
-        {
-            path: '/@/employees',
-            name: 'employees',
-            meta: {type: 'teams'},
-            component: ExampleComponent,
-        },
+        ...EmployeesRoutes,
         {
             path: '/@/leave-management',
             name: 'leave management',

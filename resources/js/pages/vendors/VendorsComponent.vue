@@ -15,7 +15,7 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-read="handleReadProfile"/>
+                <Table @on-edit="handleEdit" @on-delete="handleDelete"/>
             </keep-alive>
         </div>
         <ItemCRUD
@@ -26,12 +26,6 @@
             @on-close="handleToggleModal"
             @on-loading="handleToggleLoading"
         />
-        <Profile
-            :show="show_profile_modal"
-            :loading="computed_loading"
-            @on-close="handleToggleProfileModal"
-            @on-loading="handleToggleLoading"
-        />
     </div>
 </template>
 
@@ -40,7 +34,6 @@ import SearchBox from '@/components/global/SearchBox'
 import Table from "./VendorsTable.vue";
 import Filters from "./VendorsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
-import Profile from "./modals/Profile";
 import {mapMutations} from "vuex";
 
 export default {
@@ -49,12 +42,10 @@ export default {
         ItemCRUD,
         Table,
         SearchBox,
-        Profile
     },
     data() {
         return {
             show_modal: false,
-            show_profile_modal: false,
             action_type: 'add',
             loading: false,
             supplier: {}
@@ -124,12 +115,6 @@ export default {
                 }
             })
         },
-        handleReadProfile() {
-            this.handleToggleProfileModal()
-        },
-        handleToggleProfileModal() {
-            this.show_profile_modal = !this.show_profile_modal
-        }
     },
     computed: {
         action_name() {

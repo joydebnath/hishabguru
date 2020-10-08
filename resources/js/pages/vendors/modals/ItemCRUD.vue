@@ -209,9 +209,9 @@ export default {
         },
         computed_item() {
             if (this.$props.item) {
-                return {...this.$props.item, tenant_id: this.current_tenant_id}
+                this.supplier = this.$props.item;
             }
-            return {...this.client, tenant_id: this.current_tenant_id}
+            return {...this.supplier, tenant_id: this.current_tenant_id}
         },
         computed_primary_contact_checkbox: {
             get() {

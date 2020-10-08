@@ -58,8 +58,6 @@
                 <div class="flex justify-end">
                     <b-dropdown aria-role="list">
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
-                        <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">Profile
-                        </b-dropdown-item>
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" class="text-red-600"

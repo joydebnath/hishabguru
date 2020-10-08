@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/product-categories', 'Product\ProductCategoriesController');
     Route::resource('/suppliers', 'Contact\SuppliersController');
     Route::resource('/clients', 'Contact\ClientsController');
+    Route::resource('/employees', 'Team\EmployeeController');
     Route::resource('/quotations', 'Quotation\QuotationsController');
     Route::resource('/purchases', 'Expense\PurchasesController');
     Route::resource('/bills', 'Expense\BillsController');
