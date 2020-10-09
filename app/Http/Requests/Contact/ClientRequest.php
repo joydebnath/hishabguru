@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Contact;
 
+use App\Enums\Address\Addressable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ClientRequest extends FormRequest
@@ -37,6 +38,7 @@ class ClientRequest extends FormRequest
             'country' => 'required|string',
             'note' => 'string|nullable',
             'address_type' => 'string',
+            'addressable_type' => 'string',
         ];
 
         $rules = $this->appendRulesBasedOnHTTPMethod($rules);
@@ -53,5 +55,12 @@ class ClientRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'addressable_type' => Addressable::CONTACT
+        ]);
     }
 }

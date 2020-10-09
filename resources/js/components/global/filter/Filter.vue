@@ -1,48 +1,53 @@
 <template>
-    <div class="custom-filter">
-        <b-dropdown aria-role="list" :close-on-click="false">
-            <button
-                class="button text-gray-800 is-outlined is-info hover:text-white focus:text-white text-blue-600"
-                slot="trigger"
-            >
-                <FilterIcon/>
-                <span class="ml-2">Filters</span>
-            </button>
+    <section>
+        <button
+            class="button text-gray-800 tracking-wide is-outlined is-info hover:text-white focus:text-white text-blue-600"
+            @click="open = true"
+        >
+            <FilterIcon/>
+            <span class="ml-1">Filters</span>
+        </button>
+        <b-sidebar
+            :fullheight="true"
+            :fullwidth="false"
+            :overlay="false"
+            v-model="open"
+            class="custom-filter"
+        >
             <div class="modal-card w-full">
+                <header class="modal-card-head bg-white p-4 flex justify-content-between">
+                    <button class="button rounded-md is-light font-medium tracking-wider is-small" @click="$emit('clear')">
+                        Clear
+                    </button>
+                    <button class="button rounded-md is-dark font-medium tracking-wider is-small" @click="$emit('apply')">
+                        Apply
+                    </button>
+                </header>
                 <section class="modal-card-body">
                     <slot></slot>
                 </section>
-                <footer class="modal-card-foot bg-white p-4 flex justify-content-end">
-                    <button class="button is-primary" @click="$emit('apply')">
-                        Apply
-                    </button>
-                    <button class="button is-light" @click="$emit('clear')">
-                        Clear
-                    </button>
-                </footer>
             </div>
-        </b-dropdown>
-    </div>
+        </b-sidebar>
+    </section>
 </template>
 
 <script>
-import FilterIcon from "../../icons/FilterIcon";
+import FilterIcon from "@/components/icons/FilterIcon";
+
 export default {
     components: {FilterIcon},
     data() {
         return {
-            checkboxGroup: []
+            checkboxGroup: [],
+            open: false
         };
     }
 };
 </script>
 
 <style>
-.custom-filter .dropdown-menu {
-    padding: 0 !important;
-    width: 500px;
-}
-.custom-filter .dropdown-content {
-    padding: 0;
+.custom-filter .sidebar-content {
+    width: 360px;
+    background-color: white;
 }
 </style>

@@ -110,7 +110,7 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'save';
+                order['status'] = 'ordered';
                 this.updateOrder(order, 'Order is updated')
             }
         },

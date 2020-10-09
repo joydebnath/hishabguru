@@ -91,12 +91,12 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                quotation['status'] = 'save';
+                quotation['status'] = 'open';
                 this.createQuotation(quotation, 'Quotation is created')
             }
         },
         handleSaveForApproval() {
-            console.log('approve')
+            console.log('awaiting-approval')
         },
         createQuotation(quotation, message) {
             this.loading = true;

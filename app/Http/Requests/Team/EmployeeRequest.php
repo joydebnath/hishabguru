@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Team;
 
+use App\Enums\Address\Addressable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EmployeeRequest extends FormRequest
@@ -23,14 +24,14 @@ class EmployeeRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'tenant_id' => 'required|numeric',
             'name' => 'required|string',
             'mobile' => 'string|required',
             'phone' => 'string|nullable',
             'employee_id' => 'string|nullable',
             'job_title' => 'string|nullable',
-            'currently_working' => 'boolean|nullable',
+            'currently_working' => 'string|nullable',
             'email' => 'email|nullable',
             'address_line_1' => 'required|string',
             'address_line_2' => 'string|nullable',
@@ -39,22 +40,15 @@ class EmployeeRequest extends FormRequest
             'state' => 'required|string',
             'country' => 'required|string',
             'note' => 'string|nullable',
-            'address_type' => 'string',
+            'address_type' => 'required|string',
+            'addressable_type' => 'required|string',
         ];
-
-        $rules = $this->appendRulesBasedOnHTTPMethod($rules);
-
-        return $rules;
     }
 
-    private function appendRulesBasedOnHTTPMethod($rules)
+    protected function prepareForValidation()
     {
-        if ($this->isMethod('POST')) {
-            $rules['address_type'] = 'required|' . $rules['address_type'];
-        } else {
-            $rules['address_type'] = $rules['address_type'] . '|nullable';
-        }
-
-        return $rules;
+        $this->merge([
+            'addressable_type' => Addressable::CONTACT
+        ]);
     }
 }

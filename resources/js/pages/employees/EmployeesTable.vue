@@ -30,7 +30,7 @@
                 <p class="text-xs text-gray-700"> {{ props.row.formatted_address }} </p>
             </b-table-column>
             <b-table-column label="Job Title" v-slot="props" header-class="text-sm">
-                Active
+                {{ props.row.job_title }}
             </b-table-column>
             <b-table-column
                 field="mobile"
@@ -52,8 +52,8 @@
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Status" v-slot="props" header-class="text-sm">
-                Active
+            <b-table-column label="Is Active" v-slot="props" header-class="text-sm">
+                {{ props.row.currently_working }}
             </b-table-column>
             <b-table-column v-slot="props">
                 <div class="flex justify-end">
@@ -61,6 +61,7 @@
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                   slot="trigger"/>
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
+<!--                        <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Add Role</b-dropdown-item>-->
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" class="text-red-600"
                                          @click="$emit('on-delete', props.row)">Delete

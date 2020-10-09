@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Contact;
 
+use App\Enums\Address\Addressable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SupplierRequest extends FormRequest
@@ -37,6 +38,7 @@ class SupplierRequest extends FormRequest
             'country' => 'required|string',
             'note' => 'string|nullable',
             'address_type' => 'string',
+            'addressable_type' => 'string',
             'has_primary_contact' => 'boolean',
             'primary_contact_person_id' => 'nullable',
             'primary_contact_person_name' => 'string|required_unless:has_primary_contact,false',
@@ -59,5 +61,12 @@ class SupplierRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'addressable_type' => Addressable::CONTACT
+        ]);
     }
 }

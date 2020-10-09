@@ -33,7 +33,7 @@ class ClientsController extends Controller
                     ->paginate()
             );
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -53,7 +53,7 @@ class ClientsController extends Controller
         try {
             return new ClientResource(Contact::find($contactId)->load('contact_details', 'addresses'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -64,7 +64,7 @@ class ClientsController extends Controller
             $contact = $this->contactService->update($contactId, $updateable, AddressType::HOME);
             return new Client($contact->fresh('emails', 'mobiles', 'addresses'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -74,7 +74,7 @@ class ClientsController extends Controller
             Contact::find($contactId)->delete();
             return response(['message' => 'Client is deleted!']);
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 }

@@ -92,7 +92,7 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                order['status'] = 'save';
+                order['status'] = 'ordered';
                 this.createOrder(order, 'Order is created')
             }
         },

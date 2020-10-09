@@ -110,12 +110,12 @@ export default {
             }
 
             if (_.isEmpty(error_bag)) {
-                quotation['status'] = 'save';
+                quotation['status'] = 'open';
                 this.updateQuotation(quotation, 'Quotation is updated')
             }
         },
         handleSaveForApproval() {
-            console.log('approve')
+            console.log('awaiting-approval')
         },
         updateQuotation(quotation, message) {
             update(quotation.id, {...quotation, tenant_id: this.tenant_id})

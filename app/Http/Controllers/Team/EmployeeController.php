@@ -35,7 +35,7 @@ class EmployeeController extends Controller
                     ->paginate()
             );
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -57,7 +57,7 @@ class EmployeeController extends Controller
         try {
             return new EmployeeFullResource(Contact::find($contact)->load('contact_details', 'addresses'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -70,7 +70,7 @@ class EmployeeController extends Controller
 
             return new Employee($contact->fresh('emails', 'mobiles', 'jobTitle', 'currentlyWorking', 'addresses'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -80,7 +80,7 @@ class EmployeeController extends Controller
             Contact::find($contact)->delete();
             return response(['message' => 'Employee is deleted!']);
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 }

@@ -25,12 +25,16 @@ class SuppliersController extends Controller
 
     public function index(SupplierFilter $filters)
     {
-        return new SupplierCollection(
-            Contact::filter($filters)
-                ->where('type', ContactType::SUPPLIER)
-                ->with('emails', 'mobiles', 'addresses')
-                ->paginate()
-        );
+        try {
+            return new SupplierCollection(
+                Contact::filter($filters)
+                    ->where('type', ContactType::SUPPLIER)
+                    ->with('emails', 'mobiles', 'addresses')
+                    ->paginate()
+            );
+        } catch (Exception $exception) {
+            return response(['message' => $exception->getMessage()], 500);
+        }
     }
 
     public function store(SupplierRequest $request)
@@ -49,7 +53,7 @@ class SuppliersController extends Controller
         try {
             return new SupplierResource(Contact::find($contactId)->load('contact_details', 'addresses', 'child_contacts.contact_details'));
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 
@@ -70,7 +74,7 @@ class SuppliersController extends Controller
             Contact::find($contactId)->delete();
             return response(['message' => 'Supplier is deleted!']);
         } catch (Exception $exception) {
-            return response(['message' => $exception->getMessage()], $exception->getCode());
+            return response(['message' => $exception->getMessage()], 500);
         }
     }
 }

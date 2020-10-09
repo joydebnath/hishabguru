@@ -1,7 +1,6 @@
 <template>
     <b-field>
         <b-input
-            icon="magnify"
             custom-class="is-info"
             v-model="string"
             :placeholder="$props.placeholder"
@@ -11,9 +10,9 @@
             icon-right-clickable
         />
         <p class="control">
-            <button class="button is-info" @click="handleSearchEmit" >
-                Search
-            </button>
+            <b-button type="is-info" @click="handleSearchEmit" >
+                <b-icon icon="magnify"/>
+            </b-button>
         </p>
     </b-field>
 </template>

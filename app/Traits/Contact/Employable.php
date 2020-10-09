@@ -18,6 +18,6 @@ trait Employable
 
     public function currentlyWorking()
     {
-        return $this->contact_details()->where('key', EmployeeDetailsType::JOB_TITLE)->limit(1);
+        return $this->contact_details()->where('key', EmployeeDetailsType::CURRENTLY_WORKING)->limit(1);
     }
 }

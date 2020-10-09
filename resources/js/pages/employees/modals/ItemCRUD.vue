@@ -44,11 +44,10 @@
                         <b-switch
                             class="mt-2 ml-2"
                             v-model="currently_working"
-                            :true-value="1"
-                            :false-value="0"
+                            true-value="yes"
+                            false-value="no"
                         >
-                            <span v-if="currently_working">Yes</span>
-                            <span v-else>No</span>
+                            <span class="text-capitalize">{{ currently_working }}</span>
                         </b-switch>
                     </b-field>
                 </b-field>
@@ -118,7 +117,7 @@ export default {
                 country: '',
                 note: '',
             },
-            currently_working: 1,
+            currently_working: 'yes',
         }
     },
     methods: {
@@ -137,7 +136,8 @@ export default {
             axios
                 .put('/employees/' + this.computed_item.id, {
                     ...this.computed_item,
-                    currently_working: this.currently_working
+                    currently_working: this.currently_working,
+                    address_type: 'home'
                 })
                 .then(({data}) => {
                     this.loading_event(false);

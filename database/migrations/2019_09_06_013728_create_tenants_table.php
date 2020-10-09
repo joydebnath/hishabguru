@@ -17,6 +17,9 @@ class CreateTenantsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('setup_complete_flag')->default(false)->nullable();
+            $table->string('business_type')->nullable();
+            $table->string('country_of_operation')->nullable();
+            $table->string('default_currency')->nullable();
             $table->timestamps();
         });
     }

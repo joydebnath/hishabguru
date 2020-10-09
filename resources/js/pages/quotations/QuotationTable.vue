@@ -129,13 +129,13 @@ export default {
         status_type(value) {
             let type = '';
             switch (value) {
-                case 'save':
+                case 'open':
                     type = 'is-success'
                     break;
                 case 'draft':
                     type = 'is-light'
                     break
-                case 'save-for-approval':
+                case 'awaiting-approval':
                     type = 'is-warning'
                     break
             }
