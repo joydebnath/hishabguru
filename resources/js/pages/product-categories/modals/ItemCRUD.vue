@@ -18,18 +18,6 @@
                 <b-field label="Category Name">
                     <b-input v-model="computed_item.name"></b-input>
                 </b-field>
-
-                <b-field label="Parent Category Name">
-                    <b-select placeholder="Select Parent Category" expanded v-model="computed_item.parent_id">
-                        <option
-                            v-for="product_category in computed_product_categories"
-                            :key="product_category.id"
-                            :value="product_category.id"
-                            v-text="product_category.name"
-                        ></option>
-                    </b-select>
-                </b-field>
-
                 <b-field label="Note">
                     <b-input type="textarea" v-model="computed_item.note"></b-input>
                 </b-field>
@@ -56,7 +44,6 @@ export default {
             category: {
                 id: '',
                 name: '',
-                parent_id: '',
                 note: ''
             },
         }
@@ -75,7 +62,10 @@ export default {
         update() {
             this.loading_event(true);
             axios
-                .put('/product-categories/' + this.computed_item.id, this.computed_item)
+                .put('/product-categories/' + this.computed_item.id, {
+                    ...this.computed_item,
+                    tenant_id: this.tenant_id
+                })
                 .then(({data}) => {
                     this.loading_event(false);
                     this.$store.commit('product_categories/update', {product_category: data.data})
@@ -83,28 +73,34 @@ export default {
                     this.$emit('on-close')
                     this.$buefy.notification.open({
                         message: 'Product Category has been updated',
-                        type: 'is-success'
+                        type: 'is-success is-light',
+                        duration: 5000
                     })
                 })
                 .catch(err => {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Product Category update failed',
-                        type: 'is-danger'
+                        type: 'is-danger is-light',
+                        duration: 5000
                     })
                 })
         },
         create() {
             this.loading_event(true);
+            console.log(this.computed_item)
             axios
-                .post('/product-categories', this.computed_item)
+                .post('/product-categories', {
+                    ...this.computed_item,
+                    tenant_id: this.tenant_id
+                })
                 .then(({data}) => {
                     this.loading_event(false);
-                    this.product_categories = [];
                     this.$emit('on-close');
                     this.$buefy.notification.open({
                         message: 'Product Category is created',
-                        type: 'is-success'
+                        type: 'is-success is-light',
+                        duration: 5000
                     })
                     if (this.total < this.per_page) {
                         this.$store.dispatch('product_categories/loadData', {page: 1})
@@ -114,16 +110,17 @@ export default {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Whoops! Something went wrong...',
-                        type: 'is-danger'
+                        type: 'is-danger is-light',
+                        duration: 5000
                     })
                 })
         }
     },
     computed: {
         ...mapGetters({
-            product_categories: 'filters/getProductCategories',
             total: 'product_categories/getTotal',
-            per_page:'getPerPage'
+            per_page: 'getPerPage',
+            tenant_id: 'tenancy/getCurrentTenant'
         }),
         title() {
             return this.$props.action_type == "edit"
@@ -134,14 +131,8 @@ export default {
             if (this.$props.item) {
                 this.category = {...this.$props.item}
             }
-            return this.category
+            return {...this.category}
         },
-        computed_product_categories() {
-            if (this.$props.item) {
-                return _.filter(this.product_categories, value => value.id !== this.$props.item.id)
-            }
-            return this.product_categories
-        }
     },
 };
 </script>

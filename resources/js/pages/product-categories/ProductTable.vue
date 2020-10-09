@@ -40,14 +40,14 @@
             </b-table-column>
 
             <b-table-column
-                field="parent_category"
-                label="Parent Category"
+                field="note"
+                label="Note"
                 sortable
                 v-slot="props"
                 header-class="text-sm"
             >
                 <span>
-                    {{ props.row.parent_category }}
+                    {{ props.row.note }}
                 </span>
             </b-table-column>
             <b-table-column label="Created date" centered v-slot="props" header-class="text-sm">
@@ -60,7 +60,7 @@
                 <div class="flex justify-end">
                     <b-dropdown aria-role="list">
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
-                        <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">Statistics</b-dropdown-item>
+<!--                        <b-dropdown-item aria-role="listitem" @click="$emit('on-read',props.row)">Statistics</b-dropdown-item>-->
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" class="text-red-600"

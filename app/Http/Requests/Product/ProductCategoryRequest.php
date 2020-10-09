@@ -26,16 +26,7 @@ class ProductCategoryRequest extends FormRequest
         return [
             'name' => 'string|required',
             'tenant_id' => 'numeric|required',
-            'parent_id' => 'numeric|nullable',
             'note' => 'string|nullable'
         ];
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'parent_id' => $this->parent_id ? intval($this->parent_id) : null,
-            'tenant_id' => 2
-        ]);
     }
 }

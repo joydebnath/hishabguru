@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductCategoryRequest;
 use App\Http\Resources\Product\ProductCategoryCollection;
 use App\Models\ProductCategory;
-use Illuminate\Http\Request;
 use App\Http\Resources\Product\ProductCategory as CategoryResource;
 use Exception;
 

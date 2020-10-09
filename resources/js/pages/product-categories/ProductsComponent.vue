@@ -94,14 +94,16 @@ export default {
                             })
                             this.$buefy.notification.open({
                                 message: data.message,
-                                type: 'is-success is-light'
+                                type: 'is-success is-light',
+                                duration: 5000
                             })
                         })
                         .catch(err => {
                             if (err.response) {
                                 this.$buefy.notification.open({
                                     message: err.response.data.message,
-                                    type: 'is-danger is-light'
+                                    type: 'is-danger is-light',
+                                    duration: 5000
                                 })
                             }
                         })

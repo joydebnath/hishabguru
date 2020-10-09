@@ -18,9 +18,7 @@ class ProductCategory extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'parent_category' => $this->parent_category ? $this->parent_category->name : null,
-            'parent_id' => $this->parent_category ? $this->parent_category->id : null,
-            'formatted_created_at' => Carbon::parse($this->created_at)->format('d M, Y'),
+            'formatted_created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             'note'=> $this->note,
         ];
     }

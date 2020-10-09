@@ -17,11 +17,9 @@ class CreateProductCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('note')->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('tenant_id');
             $table->timestamps();
 
-            $table->foreign('parent_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
         });
     }

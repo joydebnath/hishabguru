@@ -179,7 +179,7 @@ export default {
                 this.is_sellable = this.$props.item.is_sellable;
                 this.is_purchasable = this.$props.item.is_purchasable;
             }
-            return this.product
+            return {...this.product}
         },
         computed_category() {
             if (this.$props.item.category) {
