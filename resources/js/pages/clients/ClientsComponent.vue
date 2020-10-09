@@ -8,9 +8,16 @@
                         &nbsp;&nbsp;&nbsp;
                         <Filters/>
                     </b-field>
-                    <button class="button field is-info text-sm" @click="handleAdd">
-                        <span>New Client</span>
-                    </button>
+                    <section>
+                        <button class="button field is-info text-sm" @click="handleAdd">
+                            <span>New Client</span>
+                        </button>
+                        <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
+                            <button class="button field text-sm px-2">
+                                <RefreshIcon/>
+                            </button>
+                        </b-tooltip>
+                    </section>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
@@ -34,9 +41,11 @@ import SearchBox from '@/components/global/SearchBox'
 import Table from "./ClientsTable.vue";
 import Filters from "./ClientsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
+import RefreshIcon from "../../components/icons/RefreshIcon";
 
 export default {
     components: {
+        RefreshIcon,
         Filters,
         ItemCRUD,
         Table,

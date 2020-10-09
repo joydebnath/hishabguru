@@ -15,11 +15,19 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <router-link to="/@/invoices/create">
-                        <button class="button field is-info text-sm">
-                            <span>New Invoice</span>
-                        </button>
-                    </router-link>
+
+                    <section>
+                        <router-link to="/@/invoices/create">
+                            <button class="button field mr-3 is-info text-sm">
+                                <span>New Invoice</span>
+                            </button>
+                        </router-link>
+                        <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
+                            <button class="button field text-sm px-2">
+                                <RefreshIcon/>
+                            </button>
+                        </b-tooltip>
+                    </section>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
@@ -35,9 +43,11 @@ import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
 import Table from "./InvoicesTable";
 import Filters from "./InvoicesFilters";
+import RefreshIcon from "../../components/icons/RefreshIcon";
 
 export default {
     components: {
+        RefreshIcon,
         Filters,
         Table,
         SearchBox

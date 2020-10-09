@@ -112,8 +112,9 @@ export default {
                 .put('/products/' + this.computed_item.id, {
                     ...this.computed_item,
                     tenant_id: this.tenant_id,
-                    is_sellable : this.is_sellable,
-                    is_purchasable : this.is_purchasable,
+                    is_sellable: this.is_sellable,
+                    is_purchasable: this.is_purchasable,
+                    inventory_site_id: this.first_inventory_id
                 })
                 .then(({data}) => {
                     this.$store.commit('products/update', {product: data.data})
@@ -130,8 +131,9 @@ export default {
                 .post('/products', {
                     ...this.computed_item,
                     tenant_id: this.tenant_id,
-                    is_sellable : this.is_sellable,
-                    is_purchasable : this.is_purchasable,
+                    is_sellable: this.is_sellable,
+                    is_purchasable: this.is_purchasable,
+                    inventory_site_id: this.first_inventory_id
                 })
                 .then(({data}) => {
                     this.onSuccess('Product is created')
@@ -150,14 +152,16 @@ export default {
             this.$emit('on-close')
             this.$buefy.notification.open({
                 message: 'Product ',
-                type: 'is-success is-light'
+                type: 'is-success is-light',
+                duration: 5000
             })
         },
         onError(message) {
             this.loading_event(false);
             this.$buefy.notification.open({
                 message: message,
-                type: 'is-danger is-light'
+                type: 'is-danger is-light',
+                duration: 5000
             })
         },
 
@@ -166,7 +170,8 @@ export default {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
             total: 'products/getTotal',
-            per_page: 'getPerPage'
+            per_page: 'getPerPage',
+            inventory_sites: 'tenancy/getCurrentInventories'
         }),
         title() {
             return this.$props.action_type == "edit"
@@ -187,11 +192,15 @@ export default {
             }
             return {}
         },
-        sell_message(){
+        sell_message() {
             return this.is_sellable ? "I Sell the Item" : "I Don't Sell the Item"
         },
-        purchase_message(){
+        purchase_message() {
             return this.is_purchasable ? "I Purchase the Item" : "I Don't Purchase the Item"
+        },
+        first_inventory_id() {
+            const FIRST = _.first(this.inventory_sites);
+            return FIRST !== undefined ? FIRST.id : null
         }
     },
 };

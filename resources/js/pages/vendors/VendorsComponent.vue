@@ -8,9 +8,16 @@
                         &nbsp;&nbsp;&nbsp;
                         <Filters/>
                     </b-field>
-                    <button class="button field is-info text-sm" @click="handleAdd">
-                        <span>New Supplier</span>
-                    </button>
+                    <section>
+                        <button class="button field is-info text-sm" @click="handleAdd">
+                            <span>New Supplier</span>
+                        </button>
+                        <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
+                            <button class="button field text-sm px-2">
+                                <RefreshIcon/>
+                            </button>
+                        </b-tooltip>
+                    </section>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
@@ -35,9 +42,11 @@ import Table from "./VendorsTable.vue";
 import Filters from "./VendorsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
 import {mapMutations} from "vuex";
+import RefreshIcon from "../../components/icons/RefreshIcon";
 
 export default {
     components: {
+        RefreshIcon,
         Filters,
         ItemCRUD,
         Table,

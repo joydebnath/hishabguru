@@ -3,7 +3,7 @@
         <div class="box pt-6">
             <b-field grouped group-multiline>
                 <div class="flex flex-row align-items-center justify-between pb-4 w-full">
-                    <template v-if="show_bulk_actions" >
+                    <template v-if="show_bulk_actions">
                         <div>
                             <b-button size="is-small" type="is-light" class="mr-2">Mark as Inactive</b-button>
                             <b-button size="is-small" type="is-danger is-light">Delete</b-button>
@@ -16,9 +16,16 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <button class="button field is-info text-sm" @click="handleAdd">
-                        <span>New Product</span>
-                    </button>
+                    <section>
+                        <button class="button field is-info text-sm" @click="handleAdd">
+                            <span>New Product</span>
+                        </button>
+                        <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
+                            <button class="button field text-sm px-2">
+                                <RefreshIcon/>
+                            </button>
+                        </b-tooltip>
+                    </section>
                 </div>
             </b-field>
             <div class="border-b my-4"></div>
@@ -44,9 +51,11 @@ import SearchBox from '@/components/global/SearchBox'
 import Table from "./ProductTable.vue";
 import Filters from "./ProductFilters";
 import ItemCRUD from "./modals/ItemCRUD";
+import RefreshIcon from "../../components/icons/RefreshIcon";
 
 export default {
     components: {
+        RefreshIcon,
         Filters,
         ItemCRUD,
         Table,
@@ -121,7 +130,7 @@ export default {
                 }
             })
         },
-        handleUpdateSelectedProduct(product){
+        handleUpdateSelectedProduct(product) {
             this.product = product
         },
         handleToggleLoading(value) {
@@ -130,7 +139,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            checked_products: 'products/getCheckedProducts'
+            checked_products: 'products/getCheckedProducts',
         }),
         show_bulk_actions() {
             return this.checked_products.length

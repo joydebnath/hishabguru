@@ -22,4 +22,10 @@ class Product extends Model
         return $this->belongsToMany(Image::class, 'product_images', 'product_id', 'image_id')
             ->withPivot('sort_order')->withTimestamps();
     }
+
+    public function inventories()
+    {
+        return $this->belongsToMany(InventorySite::class, 'inventory_products_stock', 'product_id', 'inventory_site_id')
+            ->withPivot('total_stock', 'reserved_stock', 'remaining_stock')->withTimestamps();
+    }
 }
