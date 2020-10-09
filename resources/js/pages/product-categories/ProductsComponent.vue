@@ -6,7 +6,7 @@
                     <b-field>
                         <SearchBox placeholder="Search by name" @search="handleSearch"/>
                     </b-field>
-                    <button class="button field is-info" @click="handleAdd">
+                    <button class="button field is-info text-sm" @click="handleAdd">
                         <span>New Category</span>
                     </button>
                 </div>

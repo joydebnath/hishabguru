@@ -8,7 +8,7 @@
                         &nbsp;&nbsp;&nbsp;
                         <Filters/>
                     </b-field>
-                    <button class="button field is-info" @click="handleAdd">
+                    <button class="button field is-info text-sm" @click="handleAdd">
                         <span>New Client</span>
                     </button>
                 </div>

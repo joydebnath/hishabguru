@@ -33,9 +33,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('/me', 'User\UserController@index');
     Route::post('/current-tenant', 'User\TenancyController@store');
-    Route::get('/filters', 'FiltersController@index');
     Route::get('/lookup/clients', 'Lookup\ClientLookupController@index');
-    Route::post('/lookup/clients', 'Lookup\ClientLookupController@store');
     Route::get('/lookup/suppliers', 'Lookup\SupplierLookupController@index');
     Route::get('/lookup/products', 'Lookup\ProductLookupController@index');
     Route::get('/lookup/product-categories', 'Lookup\ProductLookupController@categories');

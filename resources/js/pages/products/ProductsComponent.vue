@@ -16,7 +16,7 @@
                             <Filters/>
                         </b-field>
                     </template>
-                    <button class="button field is-info" @click="handleAdd">
+                    <button class="button field is-info text-sm" @click="handleAdd">
                         <span>New Product</span>
                     </button>
                 </div>

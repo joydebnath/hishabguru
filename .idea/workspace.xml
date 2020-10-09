@@ -15,14 +15,34 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductCategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductCategoriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Product/ProductCategoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Product/ProductCategoryRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Product/ProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Product/ProductCategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_162628_create_product_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_162628_create_product_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FiltersController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/SearchBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/SearchBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/filter/Filter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/filter/Filter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrdersComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/product-categories/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/product-categories/modals/ItemCRUD.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchasesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchasesComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/filters.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/tenancy.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/tenancy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -770,7 +790,7 @@
       <workItem from="1602067632042" duration="9513000" />
       <workItem from="1602149108288" duration="8483000" />
       <workItem from="1602159023899" duration="3717000" />
-      <workItem from="1602191240816" duration="14173000" />
+      <workItem from="1602191240816" duration="16713000" />
     </task>
     <servers />
   </component>
@@ -882,7 +902,7 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1602218518506">
+    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1602221512611">
       <screen x="72" y="27" width="5688" height="1053" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
@@ -894,7 +914,7 @@
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601357362901" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601869073108" />
     <state x="2308" y="191" width="1371" height="678" key="search.everywhere.popup/72.27.3768.1053@72.27.3768.1053" timestamp="1602199119666" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1602218518506" />
+    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1602221512611" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

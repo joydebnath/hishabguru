@@ -16,7 +16,7 @@
                         </b-field>
                     </template>
                     <router-link to="/@/other-expenses/create">
-                        <button class="button field is-info">
+                        <button class="button field is-info text-sm">
                             <span>New expense</span>
                         </button>
                     </router-link>

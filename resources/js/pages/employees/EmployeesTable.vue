@@ -25,6 +25,7 @@
                 sortable
                 v-slot="props"
                 header-class="text-sm"
+                cell-class="text-sm"
             >
                 {{ props.row.name }}
                 <p class="text-xs text-gray-700"> {{ props.row.formatted_address }} </p>
@@ -38,6 +39,7 @@
                 sortable
                 v-slot="props"
                 header-class="text-sm"
+                cell-class="text-sm"
             >
                 {{ props.row.mobile }}
             </b-table-column>
@@ -48,11 +50,12 @@
                 sortable
                 v-slot="props"
                 header-class="text-sm"
+                cell-class="text-sm"
             >
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Is Active" v-slot="props" header-class="text-sm">
+            <b-table-column label="Is Active" v-slot="props" header-class="text-sm" cell-class="text-sm">
                 {{ props.row.currently_working }}
             </b-table-column>
             <b-table-column v-slot="props">

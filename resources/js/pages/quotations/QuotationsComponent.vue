@@ -16,7 +16,7 @@
                         </b-field>
                     </template>
                     <router-link to="/@/quotations/create">
-                        <button class="button field is-info">
+                        <button class="button field is-info text-sm">
                             <span>New Quotation</span>
                         </button>
                     </router-link>

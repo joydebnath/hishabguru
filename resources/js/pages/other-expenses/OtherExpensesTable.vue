@@ -26,7 +26,7 @@
                 label="Number"
                 sortable
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.expense_number }}
@@ -37,7 +37,7 @@
                 label="Ref."
                 sortable
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.reference_number }}
@@ -47,26 +47,26 @@
                 label="Issued"
                 sortable
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.issue_date }}
             </b-table-column>
 
-            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.due_date }}
             </b-table-column>
-            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
                     {{ props.row.status }}
                 </b-tag>
             </b-table-column>
             <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
-                            cell-class="align-middle" header-class="text-sm">
+                            cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_amount }}
             </b-table-column>
             <b-table-column field="total_amount" sortable label="Remaining" centered v-slot="props"
-                            cell-class="align-middle" header-class="text-sm">
+                            cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_due }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">

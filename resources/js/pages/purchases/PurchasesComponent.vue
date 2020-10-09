@@ -16,7 +16,7 @@
                         </b-field>
                     </template>
                     <router-link to="/@/purchases/create">
-                        <button class="button field is-info">
+                        <button class="button field is-info text-sm">
                             <span>New purchase</span>
                         </button>
                     </router-link>

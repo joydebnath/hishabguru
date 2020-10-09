@@ -1,7 +1,7 @@
 <template>
     <section>
         <button
-            class="button text-gray-800 tracking-wide is-outlined is-info hover:text-white focus:text-white text-blue-600"
+            class="button text-gray-800 text-sm tracking-wide is-outlined is-info hover:text-white focus:text-white text-blue-600"
             @click="open = true"
         >
             <FilterIcon/>

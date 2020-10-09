@@ -26,7 +26,7 @@
                 label="Number"
                 sortable
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.bill_number }}
@@ -37,7 +37,7 @@
                 label="Ref."
                 sortable
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.reference_number }}
@@ -47,7 +47,7 @@
                 field="supplier_name"
                 label="Supplier"
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.supplier_name }}
@@ -58,38 +58,36 @@
                 label="Issued"
                 sortable
                 v-slot="props"
-                cell-class="align-middle"
+                cell-class="align-middle text-sm"
                 header-class="text-sm"
             >
                 {{ props.row.issue_date }}
             </b-table-column>
 
-            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.due_date }}
             </b-table-column>
-            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_amount }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
                 <div class="flex justify-end">
-                    <b-tooltip label="Actions" position="is-right" type="is-dark">
-                        <b-dropdown aria-role="list">
-                            <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
-                                      slot="trigger"/>
-                            <router-link :to="'/@/bills/' + props.row.id">
-                                <b-dropdown-item >
-                                    View
-                                </b-dropdown-item>
-                            </router-link>
-                            <hr class="dropdown-divider">
-                            <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
-                                <span class="text-red-600">Delete</span>
+                    <b-dropdown aria-role="list">
+                        <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
+                                  slot="trigger"/>
+                        <router-link :to="'/@/bills/' + props.row.id">
+                            <b-dropdown-item >
+                                View
                             </b-dropdown-item>
-                        </b-dropdown>
-                    </b-tooltip>
+                        </router-link>
+                        <hr class="dropdown-divider">
+                        <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
+                            <span class="text-red-600">Delete</span>
+                        </b-dropdown-item>
+                    </b-dropdown>
                 </div>
             </b-table-column>
             <template slot="footer">

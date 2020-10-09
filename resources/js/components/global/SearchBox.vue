@@ -1,17 +1,17 @@
 <template>
     <b-field>
         <b-input
-            custom-class="is-info"
+            custom-class="is-info text-sm"
             v-model="string"
             :placeholder="$props.placeholder"
             @keyup.enter.native="handleSearchEmit"
             @icon-right-click="handleClear"
-            icon-right="close text-xs"
+            icon-right="close text-xs -mt-1"
             icon-right-clickable
         />
         <p class="control">
-            <b-button type="is-info" @click="handleSearchEmit" >
-                <b-icon icon="magnify"/>
+            <b-button class="text-sm" type="is-info" @click="handleSearchEmit" >
+                <b-icon icon="magnify" custom-class="-mb-3"/>
             </b-button>
         </p>
     </b-field>

@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import filtersModule from './filters'
 import productsModule from './products'
 import productCategoriesModule from '../stores/product-categories'
 import inventorySitesModule from '../stores/inventory-sites'
@@ -26,7 +25,6 @@ const store = new Vuex.Store({
     modules: {
         bills: billsModule,
         products: productsModule,
-        filters: filtersModule,
         product_categories: productCategoriesModule,
         quotations: quotationsModule,
         orders: ordersModule,
@@ -75,7 +73,8 @@ const store = new Vuex.Store({
                     commit('tenancy/setTenants', {tenants: data.data.tenants})
 
                     const FIRST = _.first(data.data.tenants);
-                    commit('tenancy/setCurrentTenant', {current_tenant: FIRST ? FIRST.id : null})
+                    commit('tenancy/setCurrentTenant', {current_tenant_id: FIRST ? FIRST.id : null})
+                    commit('tenancy/setCurrentTenantData', {current_tenant: FIRST ? FIRST : null})
                     commit('tenancy/setUserRoles', {roles: FIRST ? FIRST.user_roles : []})
 
                     if (FIRST) {
