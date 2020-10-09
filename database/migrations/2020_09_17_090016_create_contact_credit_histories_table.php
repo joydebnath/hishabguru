@@ -13,10 +13,15 @@ class CreateContactCreditHistoriesTable extends Migration
      */
     public function up()
     {
-//        Schema::create('contact_credit_histories', function (Blueprint $table) {
-//            $table->id();
-//            $table->timestamps();
-//        });
+        Schema::create('contact_credit_histories', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('contact_id');
+            $table->decimal('total_amount');
+            $table->enum('type', ['creditor', 'debtor']);
+            $table->timestamps();
+
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,6 +31,6 @@ class CreateContactCreditHistoriesTable extends Migration
      */
     public function down()
     {
-//        Schema::dropIfExists('contact_credit_histories');
+        Schema::dropIfExists('contact_credit_histories');
     }
 }

@@ -19277,3 +19277,8 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
   border-color: #4099ff !important;
 }
 
+.b-checkbox.checkbox input[type=checkbox] + .check {
+  width: 1em;
+  height: 1em;
+}
+
