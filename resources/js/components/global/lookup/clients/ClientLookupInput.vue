@@ -14,6 +14,7 @@
         <b-autocomplete
             v-else
             v-model="client_name"
+            custom-class="text-sm"
             :data="search_results"
             placeholder="Search by name or mobile no"
             field="name"

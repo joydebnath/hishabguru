@@ -21,10 +21,10 @@
             :type="has_quotation_number ? 'is-danger' :null"
             :message="has_quotation_number ? 'This field is required' : null"
         >
-            <b-input v-model="quotation.quotation_number"/>
+            <b-input v-model="quotation.quotation_number" custom-class="text-sm"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
-            <b-input v-model="quotation.reference_number"/>
+            <b-input v-model="quotation.reference_number" custom-class="text-sm"/>
         </b-field>
         <b-field
             label="Payment Condition"
@@ -36,7 +36,7 @@
                 @input="handlePaymentCondition"
                 placeholder="Select one"
                 v-model="quotation.payment_condition"
-                class="w-full payment-condition"
+                class="w-full payment-condition text-sm"
             >
                 <option value="partial">Partial Payment</option>
                 <option value="full">Full Payment</option>
@@ -53,11 +53,12 @@
         >
             <b-input
                 v-model="quotation.minimum_payment_amount"
+                custom-class="text-sm"
                 required
             />
         </b-field>
         <b-field label="Extra Note" custom-class="text-smce">
-            <b-input type="textarea" v-model="quotation.note"/>
+            <b-input type="textarea" v-model="quotation.note" custom-class="text-sm"/>
         </b-field>
     </div>
 </template>

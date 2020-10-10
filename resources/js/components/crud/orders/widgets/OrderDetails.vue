@@ -16,14 +16,14 @@
             :type="has_order_number ? 'is-danger' :null"
             :message="has_order_number ? 'This field is required' : null"
         >
-            <b-input v-model="order.order_number"/>
+            <b-input custom-class="text-sm" v-model="order.order_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="order.reference_number"/>
         </b-field>
         <template >
             <b-field label="Contact Number" custom-class="text-sm" v-if="contact">
-                <b-input v-model="order.delivery_contact_number" />
+                <b-input custom-class="text-sm" v-model="order.delivery_contact_number" />
             </b-field>
             <div class="field" v-if="contact">
                 <div class="flex flex-row justify-content-between align-items-center">
@@ -41,10 +41,10 @@
                 </article>
             </div>
             <b-field label="Delivery Instructions"  custom-class="text-sm">
-                <b-input type="textarea" v-model="order.delivery_instructions" rows="3"/>
+                <b-input custom-class="text-sm" type="textarea" v-model="order.delivery_instructions" rows="3"/>
             </b-field>
             <b-field label="Extra Note" custom-class="text-sm">
-                <b-input type="textarea" v-model="order.note" rows="2"/>
+                <b-input custom-class="text-sm" type="textarea" v-model="order.note" rows="2"/>
             </b-field>
         </template>
     </div>

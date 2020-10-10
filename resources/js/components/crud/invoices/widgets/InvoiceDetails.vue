@@ -21,13 +21,13 @@
             :type="has_invoice_number ? 'is-danger' :null"
             :message="has_invoice_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase" v-model="invoice.invoice_number"/>
+            <b-input custom-class="uppercase text-sm" v-model="invoice.invoice_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
-            <b-input v-model="invoice.reference_number"/>
+            <b-input custom-class="text-sm" v-model="invoice.reference_number"/>
         </b-field>
         <b-field label="Message" custom-class="text-sm">
-            <b-input type="textarea" v-model="invoice.note" rows="3"/>
+            <b-input custom-class="text-sm" type="textarea" v-model="invoice.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>
     </div>

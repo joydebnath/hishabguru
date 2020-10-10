@@ -15,6 +15,7 @@
                         placeholder="Click to select..."
                         icon="calendar-today"
                         trap-focus
+                        custom-class="text-sm"
                     />
                 </b-field>
                 <span class="px-2"></span>
@@ -31,6 +32,7 @@
                         placeholder="Click to select..."
                         icon="calendar-today"
                         trap-focus
+                        custom-class="text-sm"
                     />
                 </b-field>
             </b-field>
@@ -65,7 +67,7 @@
                 />
             </b-table-column>
             <b-table-column
-                label="Unit Price"
+                label="Price"
                 centered
                 v-slot="props"
                 cell-class="align-middle"
@@ -89,7 +91,7 @@
                     @on-input="handleEditDiscount"
                 />
             </b-table-column>
-            <b-table-column label="Tax" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Tax %" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
                 <EditableInput
                     placeholder="0.0"
                     :value="props.row.tax_rate"

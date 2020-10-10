@@ -4,11 +4,11 @@
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <HeaderActions v-if="false" :show_option="false" :show_print="false"/>
-            <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-1">
+            <div class="grid grid-cols-7 gap-2">
+                <div class="col-span-2">
                     <InvoiceDetails ref="part1" :item="computed_item"/>
                 </div>
-                <div class="col-span-2 ml-4">
+                <div class="col-span-5 ml-4">
                     <ProductsTable ref="part2" :item="computed_item"/>
                     <div class="mx-12 mt-4">
                         <b-message

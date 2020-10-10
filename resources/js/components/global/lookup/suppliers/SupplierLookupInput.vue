@@ -18,6 +18,7 @@
             placeholder="Search by name or mobile no"
             field="name"
             :loading="loading"
+            custom-class="text-sm"
             clear-on-select
             @typing="searchSuppliers"
             @select="handleClientSelected">

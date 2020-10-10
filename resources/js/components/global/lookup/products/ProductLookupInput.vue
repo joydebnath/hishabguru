@@ -8,6 +8,7 @@
         :loading="loading"
         @typing="searchProducts"
         @select="handleProductSelected"
+        custom-class="text-sm"
     >
         <template slot-scope="props">
             <ProductTile :product="props"/>

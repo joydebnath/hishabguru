@@ -21,10 +21,10 @@
             :type="has_purchase_order_number ? 'is-danger' :null"
             :message="has_purchase_order_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase" v-model="purchase_order.purchase_order_number"/>
+            <b-input custom-class="uppercase text-sm" v-model="purchase_order.purchase_order_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
-            <b-input v-model="purchase_order.reference_number"/>
+            <b-input custom-class="text-sm" v-model="purchase_order.reference_number"/>
         </b-field>
         <div class="field">
             <div class="flex flex-row justify-content-between align-items-center">
@@ -52,7 +52,7 @@
             </article>
         </div>
         <b-field label="Note" custom-class="text-sm">
-            <b-input type="textarea" v-model="purchase_order.note" rows="3"/>
+            <b-input type="textarea" custom-class="text-sm" v-model="purchase_order.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>
         <SelectDeliverySite

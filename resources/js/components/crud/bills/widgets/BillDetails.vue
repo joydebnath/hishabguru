@@ -21,13 +21,13 @@
             :type="has_bill_number ? 'is-danger' :null"
             :message="has_bill_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase" v-model="bill.bill_number"/>
+            <b-input custom-class="uppercase text-sm" v-model="bill.bill_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
-            <b-input v-model="bill.reference_number"/>
+            <b-input custom-class="text-sm" v-model="bill.reference_number"/>
         </b-field>
         <b-field label="Note" custom-class="text-sm">
-            <b-input type="textarea" v-model="bill.note" rows="3"/>
+            <b-input custom-class="text-sm" type="textarea" v-model="bill.note" rows="3"/>
         </b-field>
         <UploadedFiles v-if="false"/>
     </div>
