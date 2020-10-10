@@ -28,9 +28,12 @@ return [
     'total_taxes'     => 'Total taxes',
     'tax_rate'        => 'Tax rate',
     'total_amount'    => 'Total amount',
-    'pay_until'       => 'Due date',
+    'pay_until'       => 'Pay until date',
     'amount_in_words' => 'Amount in words',
-    'notes'           => 'Message',
+    'notes'           => 'Notes',
     'shipping'        => 'Shipping',
-
+    'message'         => 'Message',
+    'delivery_date'   => 'Delivery date',
+    'expiry_date'     => 'Expiry date',
+    'due_date'        => 'Due date',
 ];
