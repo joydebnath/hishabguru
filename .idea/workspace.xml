@@ -14,34 +14,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/print/bill.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print/invoice.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print/order.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print/purchase.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print/quotation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/meghomitra.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meghomitra.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/BillComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/BillComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/CreateBillComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/CreateBillComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/BillDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/BillDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/CreateInvoiceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/CreateInvoiceComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/InvoiceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/InvoiceComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/InvoiceDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/InvoiceDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/CreateOrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/CreateOrderComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/OrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/OrderComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/OrderDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/OrderDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/CreateOtherExpenseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/CreateOtherExpenseComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ExpenseDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ExpenseDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/CreatePurchaseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/CreatePurchaseComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/PurchaseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/PurchaseComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/PurchaseDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/PurchaseDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/CreateQuotationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/CreateQuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/QuotationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/QuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/lookup/clients/ClientLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/lookup/clients/ClientLookupInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/lookup/products/ProductLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/lookup/products/ProductLookupInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/lookup/suppliers/SupplierLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/lookup/suppliers/SupplierLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -567,6 +550,12 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
       <path value="$PROJECT_DIR$/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/laraveldaily/laravel-invoices" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
     </include_path>
   </component>
   <component name="ProjectId" id="1gTrurrO9K1Pfs6lOvh6nyMtABi" />
@@ -580,7 +569,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/print" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -593,19 +582,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/route" />
-      <recent name="$PROJECT_DIR$/resources/js/stores" />
-      <recent name="$PROJECT_DIR$/resources/js/pages" />
-      <recent name="$PROJECT_DIR$/resources/js/components/crud" />
-      <recent name="$PROJECT_DIR$/resources/js/repos" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/pages" />
       <recent name="$PROJECT_DIR$/resources/js/repos" />
       <recent name="$PROJECT_DIR$/resources/js/components/crud/purchases/purchases.js" />
       <recent name="$PROJECT_DIR$/resources/js/components/global/lookup" />
       <recent name="$PROJECT_DIR$/resources/js/route" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/print" />
+      <recent name="$PROJECT_DIR$/resources/js/route" />
+      <recent name="$PROJECT_DIR$/resources/js/stores" />
+      <recent name="$PROJECT_DIR$/resources/js/pages" />
+      <recent name="$PROJECT_DIR$/resources/js/components/crud" />
     </key>
   </component>
   <component name="RunManager">
@@ -791,7 +780,7 @@
       <workItem from="1602159023899" duration="3717000" />
       <workItem from="1602191240816" duration="20365000" />
       <workItem from="1602252891113" duration="5976000" />
-      <workItem from="1602285514441" duration="2279000" />
+      <workItem from="1602285514441" duration="9555000" />
     </task>
     <servers />
   </component>
@@ -875,12 +864,12 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="758" y="273" width="465" height="568" key="NewPhpClassDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1600095765568" />
-    <state x="2667" y="464" width="399" height="156" key="NewPhpFileDialog" timestamp="1600577248482">
+    <state x="2667" y="464" width="399" height="156" key="NewPhpFileDialog" timestamp="1602310825602">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2667" y="464" key="NewPhpFileDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599894164209" />
     <state x="791" y="479" width="399" height="156" key="NewPhpFileDialog/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1598190552866" />
-    <state x="2667" y="464" key="NewPhpFileDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600577248482" />
+    <state x="2667" y="464" width="399" height="156" key="NewPhpFileDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602310825602" />
     <state x="791" y="479" width="399" height="156" key="NewPhpFileDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1599742187105" />
     <state x="2686" y="477" width="387" height="133" key="ReplaceDuplicatesPrompt" timestamp="1601028349160">
       <screen x="1920" y="0" width="1920" height="1080" />
@@ -894,6 +883,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602157132785" />
+    <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602310833946">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602310833946" />
     <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1601906259445">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -903,14 +896,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1602305917149">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1602311257062">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601029633495" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602305917149" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602311257062" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1601357362901" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601869073108" />
