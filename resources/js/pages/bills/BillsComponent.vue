@@ -34,6 +34,11 @@
                 <Table @on-delete="handleDelete"/>
             </keep-alive>
         </div>
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -42,17 +47,23 @@ import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
 import Table from "./BillsTable.vue";
 import Filters from "./BillsFilters";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
+import {remove} from '@/repos/bills'
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         Table,
         SearchBox
     },
     data() {
-        return {};
+        return {
+            delete_popup: false,
+            tobe_deleted_bill: {}
+        };
     },
     methods: {
         handleSearch(value) {
@@ -64,20 +75,44 @@ export default {
             this.$store.dispatch('bills/loadData', {page: 1})
         },
         handleDelete(bill) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Bill</h5>Are you sure you want to delete <b>' + bill.bill_number + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    this.$store.dispatch('bills/delete', {bill})
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_bill = bill;
         },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_bill = {};
+        },
+        onConfirmDelete() {
+            this.$store.commit('bills/setLoading', {loading: true});
+            remove(this.tobe_deleted_bill.id)
+                .then(({data}) => {
+                    this.$store.commit('bills/setLoading', {loading: false})
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.$store.dispatch('bills/loadData', {page: this.current_page});
+                    this.handleDeleteClose();
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        })
+                    }
+                    this.$store.commit('bills/setLoading', {loading: false});
+                    this.handleDeleteClose();
+                })
+        }
     },
     computed: {
         ...mapGetters({
-            checked_products: 'bills/getCheckedBills'
+            checked_products: 'bills/getCheckedBills',
+            current_page: 'bills/getCurrentPage',
         }),
         show_bulk_actions() {
             return this.checked_products.length

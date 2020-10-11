@@ -35,6 +35,11 @@
                 <Table @on-delete="handleDelete"/>
             </keep-alive>
         </div>
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -43,17 +48,23 @@ import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
 import Table from "./PurchaseTable.vue";
 import Filters from "./PurchasesFilters";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
+import {remove} from '@/repos/purchases'
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         Table,
         SearchBox
     },
     data() {
-        return {};
+        return {
+            delete_popup: false,
+            tobe_deleted_other_purchase: {}
+        };
     },
     methods: {
         handleSearch(value) {
@@ -65,20 +76,44 @@ export default {
             this.$store.dispatch('purchases/loadData', {page: 1})
         },
         handleDelete(purchase_order) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Purchase Order</h5>Are you sure you want to delete the purchase order: <b>' + purchase_order.purchase_order_number + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    this.$store.dispatch('purchases/delete', {purchase_order})
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_other_purchase = purchase_order;
         },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_other_purchase = {};
+        },
+        onConfirmDelete() {
+            this.$store.commit('purchases/setLoading', {loading: true})
+            remove(this.tobe_deleted_other_purchase.id)
+                .then(({data}) => {
+                    this.$store.commit('purchases/setLoading', {loading: false})
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.$store.dispatch('purchases/loadData', {page: this.current_page});
+                    this.handleDeleteClose();
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        })
+                    }
+                    this.$store.commit('purchases/setLoading', {loading: false});
+                    this.handleDeleteClose();
+                })
+        }
     },
     computed: {
         ...mapGetters({
-            checked_products: 'purchases/getCheckedPurchases'
+            checked_products: 'purchases/getCheckedPurchases',
+            current_page: 'purchases/getCurrentPage',
         }),
         show_bulk_actions() {
             return this.checked_products.length

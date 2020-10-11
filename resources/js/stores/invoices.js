@@ -1,5 +1,3 @@
-import {NotificationProgrammatic as Notification} from 'buefy'
-
 const store = {
     namespaced: true,
     state: {
@@ -63,31 +61,6 @@ const store = {
                     commit('setLoading', {loading: false})
                 })
         },
-        delete({commit, getters, dispatch}, {invoice}) {
-            commit('setLoading', {loading: true})
-            axios
-                .delete(getters.getUrl + '/' + invoice.id)
-                .then(({data}) => {
-                    commit('setLoading', {loading: false})
-                    Notification.open({
-                        message: data.message,
-                        type: 'is-success is-light',
-                        duration: 5000
-                    });
-                    dispatch('loadData', {page: getters.getCurrentPage})
-                })
-                .catch(err => {
-                    console.log(err)
-                    if (err.response) {
-                        Notification.open({
-                            message: err.response.data.message,
-                            type: 'is-danger is-light',
-                            duration: 5000
-                        })
-                    }
-                    commit('setLoading', {loading: false})
-                })
-        }
     }
 };
 

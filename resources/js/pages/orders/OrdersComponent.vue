@@ -35,6 +35,11 @@
                 <Table @on-delete="handleDelete"/>
             </keep-alive>
         </div>
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -43,17 +48,23 @@ import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
 import Table from "./OrderTable.vue";
 import Filters from "./OrdersFilters";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
+import {remove} from '@/repos/orders'
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         Table,
         SearchBox
     },
     data() {
-        return {};
+        return {
+            delete_popup: false,
+            tobe_deleted_order: {}
+        };
     },
     methods: {
         handleSearch(value) {
@@ -65,20 +76,44 @@ export default {
             this.$store.dispatch('orders/loadData', {page: 1})
         },
         handleDelete(order) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Order</h5>Are you sure you want to delete the order: <b>' + order.order_number + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    this.$store.dispatch('orders/delete', {order})
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_order = order;
         },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_order = {};
+        },
+        onConfirmDelete(){
+            this.$store.commit('orders/setLoading', {loading: true})
+            remove(this.tobe_deleted_order.id)
+                .then(({data}) => {
+                    this.$store.commit('orders/setLoading', {loading: false})
+                    Notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.$store.dispatch('orders/loadData', {page: this.current_page});
+                    this.handleDeleteClose();
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        Notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        })
+                    }
+                    this.$store.commit('orders/setLoading', {loading: false});
+                    this.handleDeleteClose();
+                })
+        }
     },
     computed: {
         ...mapGetters({
-            checked_products: 'orders/getCheckedOrders'
+            checked_products: 'orders/getCheckedOrders',
+            current_page: 'orders/getCurrentPage',
         }),
         show_bulk_actions() {
             return this.checked_products.length

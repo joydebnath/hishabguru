@@ -36,4 +36,5 @@ return [
     'delivery_date'   => 'Delivery date',
     'expiry_date'     => 'Expiry date',
     'due_date'        => 'Due date',
+    'delivery_details'        => 'Delivery Details',
 ];

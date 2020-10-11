@@ -22,7 +22,7 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-edit="handleEdit" @on-delete="handleDelete" />
+                <Table @on-edit="handleEdit" @on-delete="handleDelete"/>
             </keep-alive>
         </div>
         <ItemCRUD
@@ -33,6 +33,11 @@
             @on-close="handleToggleModal"
             @on-loading="handleToggleLoading"
         />
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 <script>
@@ -41,10 +46,12 @@ import SearchBox from '@/components/global/SearchBox'
 import Table from "./EmployeesTable.vue";
 import Filters from "./EmployeeFilters";
 import ItemCRUD from "./modals/ItemCRUD";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         ItemCRUD,
@@ -56,7 +63,9 @@ export default {
             show_modal: false,
             action_type: 'add',
             loading: false,
-            employee: {}
+            employee: {},
+            delete_popup: false,
+            tobe_deleted_employee: {}
         };
     },
     methods: {
@@ -92,35 +101,37 @@ export default {
                 })
         },
         handleDelete(employee) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Employee</h5>Are you sure you want to delete the employee: <b>' + employee.name + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    axios
-                        .delete('/employees/' + employee.id)
-                        .then(({data}) => {
-                            this.$store.dispatch('employees/loadData', {
-                                page: this.$store.getters['employees/getCurrentPage']
-                            })
-                            this.$buefy.notification.open({
-                                message: data.message,
-                                type: 'is-success is-light',
-                                duration: 5000
-                            })
-                        })
-                        .catch(err => {
-                            if (err.response) {
-                                this.$buefy.notification.open({
-                                    message: err.response.data.message,
-                                    type: 'is-danger is-light',
-                                    duration: 5000
-                                })
-                            }
-                        })
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_employee = employee
+        },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_employee = {}
+        },
+        onConfirmDelete() {
+            axios
+                .delete('/employees/' + this.tobe_deleted_employee.id)
+                .then(({data}) => {
+                    this.$store.dispatch('employees/loadData', {
+                        page: this.$store.getters['employees/getCurrentPage']
+                    })
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.handleDeleteClose()
+                })
+                .catch(err => {
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        });
+                        this.handleDeleteClose()
+                    }
+                })
         },
         handleToggleLoading(value) {
             this.loading = value

@@ -33,6 +33,11 @@
             @on-close="handleToggleModal"
             @on-loading="handleToggleLoading"
         />
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -42,10 +47,12 @@ import Table from "./VendorsTable.vue";
 import Filters from "./VendorsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
 import {mapMutations} from "vuex";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         ItemCRUD,
@@ -57,7 +64,9 @@ export default {
             show_modal: false,
             action_type: 'add',
             loading: false,
-            supplier: {}
+            supplier: {},
+            delete_popup: false,
+            tobe_deleted_supplier: {}
         };
     },
     methods: {
@@ -96,34 +105,39 @@ export default {
                 })
         },
         handleDelete(supplier) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Supplier</h5>Are you sure you want to delete <b>' + supplier.name + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    axios
-                        .delete('/suppliers/' + supplier.id)
-                        .then(({data}) => {
-                            this.$store.dispatch('suppliers/loadData', {
-                                page: this.$store.getters['suppliers/getCurrentPage']
-                            })
-                            this.$buefy.notification.open({
-                                message: data.message,
-                                type: 'is-success is-light'
-                            })
-                        })
-                        .catch(err => {
-                            if (err.response) {
-                                this.$buefy.notification.open({
-                                    message: err.response.data.message,
-                                    type: 'is-danger is-light'
-                                })
-                            }
-                        })
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_supplier = supplier;
         },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_supplier = {};
+        },
+
+        onConfirmDelete(){
+            axios
+                .delete('/suppliers/' + this.tobe_deleted_supplier.id)
+                .then(({data}) => {
+                    this.$store.dispatch('suppliers/loadData', {
+                        page: this.$store.getters['suppliers/getCurrentPage']
+                    })
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.handleDeleteClose();
+                })
+                .catch(err => {
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        })
+                    };
+                    this.handleDeleteClose();
+                })
+        }
     },
     computed: {
         action_name() {

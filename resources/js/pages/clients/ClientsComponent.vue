@@ -22,7 +22,7 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-edit="handleEdit" @on-delete="handleDelete" />
+                <Table @on-edit="handleEdit" @on-delete="handleDelete"/>
             </keep-alive>
         </div>
         <ItemCRUD
@@ -33,6 +33,11 @@
             @on-close="handleToggleModal"
             @on-loading="handleToggleLoading"
         />
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleCloseDelete"
+        />
     </div>
 </template>
 <script>
@@ -41,10 +46,12 @@ import SearchBox from '@/components/global/SearchBox'
 import Table from "./ClientsTable.vue";
 import Filters from "./ClientsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         ItemCRUD,
@@ -56,7 +63,9 @@ export default {
             show_modal: false,
             action_type: 'add',
             loading: false,
-            client: {}
+            client: {},
+            delete_popup: false,
+            tobe_deleted_client: {}
         };
     },
     methods: {
@@ -92,33 +101,37 @@ export default {
                 })
         },
         handleDelete(client) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Client</h5>Are you sure you want to delete the client: <b>' + client.name + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    axios
-                        .delete('/clients/' + client.id)
-                        .then(({data}) => {
-                            this.$store.dispatch('clients/loadData', {
-                                page: this.$store.getters['clients/getCurrentPage']
-                            })
-                            this.$buefy.notification.open({
-                                message: data.message,
-                                type: 'is-success is-light'
-                            })
+            this.delete_popup = true;
+            this.tobe_deleted_client = client;
+        },
+        onConfirmDelete() {
+            axios
+                .delete('/clients/' + this.tobe_deleted_client.id)
+                .then(({data}) => {
+                    this.$store.dispatch('clients/loadData', {
+                        page: this.$store.getters['clients/getCurrentPage']
+                    })
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    })
+                    this.handleCloseDelete();
+                })
+                .catch(err => {
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
                         })
-                        .catch(err => {
-                            if (err.response) {
-                                this.$buefy.notification.open({
-                                    message: err.response.data.message,
-                                    type: 'is-danger is-light'
-                                })
-                            }
-                        })
-                }
-            })
+                    }
+                    this.handleCloseDelete();
+                })
+        },
+        handleCloseDelete() {
+            this.delete_popup = false;
+            this.tobe_deleted_client = {};
         },
         handleToggleLoading(value) {
             this.loading = value

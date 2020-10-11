@@ -24,6 +24,11 @@
             @on-close="handleToggleModal"
             @on-loading="handleToggleLoading"
         />
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -32,9 +37,11 @@ import {mapMutations} from "vuex";
 import SearchBox from '@/components/global/SearchBox'
 import Table from "./ProductTable.vue";
 import ItemCRUD from "./modals/ItemCRUD";
+import DeleteBox from "@/components/global/popups/DeleteBox";
 
 export default {
     components: {
+        DeleteBox,
         ItemCRUD,
         Table,
         SearchBox
@@ -44,7 +51,9 @@ export default {
             show_modal: false,
             action_type: 'add',
             loading: false,
-            product_category: []
+            product_category: [],
+            delete_popup: false,
+            tobe_deleted_product_category: {}
         };
     },
     methods: {
@@ -80,35 +89,37 @@ export default {
                 })
         },
         handleDelete(product_category) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Category</h5>Are you sure you want to delete <b>'+ product_category.name + '</b> ?',
-                confirmText: 'Delete Category',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    axios
-                        .delete('/product-categories/' + product_category.id)
-                        .then(({data}) => {
-                            this.$store.dispatch('product_categories/loadData', {
-                                page: this.$store.getters['product_categories/getCurrentPage']
-                            })
-                            this.$buefy.notification.open({
-                                message: data.message,
-                                type: 'is-success is-light',
-                                duration: 5000
-                            })
-                        })
-                        .catch(err => {
-                            if (err.response) {
-                                this.$buefy.notification.open({
-                                    message: err.response.data.message,
-                                    type: 'is-danger is-light',
-                                    duration: 5000
-                                })
-                            }
-                        })
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_product_category = product_category;
+        },
+        handleDeleteClose(product_category) {
+            this.delete_popup = false;
+            this.tobe_deleted_product_category = {};
+        },
+        onConfirmDelete(){
+            axios
+                .delete('/product-categories/' + this.tobe_deleted_product_category.id)
+                .then(({data}) => {
+                    this.$store.dispatch('product_categories/loadData', {
+                        page: this.$store.getters['product_categories/getCurrentPage']
+                    })
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.handleDeleteClose();
+                })
+                .catch(err => {
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        });
+                        this.handleDeleteClose();
+                    }
+                })
         },
         handleToggleLoading(value) {
             this.loading = value

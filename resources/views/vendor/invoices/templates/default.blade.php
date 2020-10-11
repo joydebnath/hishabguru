@@ -422,7 +422,7 @@
                 <h1 class="text-uppercase font-medium mb-0 tracing-wider"
                     style="font-family: Verdana, Geneva, sans-serif !important; margin: 0"
                 >
-                    Delivery Details
+                    {{trans('invoices::invoice.delivery_details')}}
                 </h1>
             </th>
         </tr>

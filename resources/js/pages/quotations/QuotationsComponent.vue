@@ -35,6 +35,11 @@
                 <Table @on-delete="handleDelete"/>
             </keep-alive>
         </div>
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -43,14 +48,23 @@ import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
 import Table from "./QuotationTable.vue";
 import Filters from "./QuotationsFilters";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
+import {remove} from '@/repos/quotations'
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         Table,
         SearchBox
+    },
+    data() {
+        return {
+            delete_popup: false,
+            tobe_deleted_other_quotation: {}
+        };
     },
     methods: {
         handleSearch(value) {
@@ -62,20 +76,44 @@ export default {
             this.$store.dispatch('quotations/loadData', {page: 1})
         },
         handleDelete(quotation) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Quotation</h5>Are you sure you want to delete <b>' + quotation.quotation_number + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    this.$store.dispatch('quotations/delete', {quotation})
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_other_quotation = quotation;
         },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_other_quotation = {};
+        },
+        onConfirmDelete() {
+            this.$store.commit('quotations/setLoading', {loading: true})
+            remove(this.tobe_deleted_other_quotation.id)
+                .then(({data}) => {
+                    this.$store.commit('quotations/setLoading', {loading: false})
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.$store.dispatch('quotations/loadData', {page: this.current_page});
+                    this.handleDeleteClose()
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        })
+                    }
+                    this.$store.commit('quotations/setLoading', {loading: false});
+                    this.handleDeleteClose()
+                })
+        }
     },
     computed: {
         ...mapGetters({
-            checked_products: 'quotations/getCheckedQuotations'
+            checked_products: 'quotations/getCheckedQuotations',
+            current_page: 'quotations/getCurrentPage',
         }),
         show_bulk_actions() {
             return this.checked_products.length

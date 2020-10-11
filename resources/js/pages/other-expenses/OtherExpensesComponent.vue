@@ -35,6 +35,11 @@
                 <Table @on-delete="handleDelete"/>
             </keep-alive>
         </div>
+        <DeleteBox
+            :show="delete_popup"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </div>
 </template>
 
@@ -43,17 +48,23 @@ import {mapGetters} from 'vuex';
 import SearchBox from '@/components/global/SearchBox';
 import Table from "./OtherExpensesTable.vue";
 import Filters from "./OtherExpensesFilters";
-import RefreshIcon from "../../components/icons/RefreshIcon";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
+import {remove} from '@/repos/other-expenses'
 
 export default {
     components: {
+        DeleteBox,
         RefreshIcon,
         Filters,
         Table,
         SearchBox
     },
     data() {
-        return {};
+        return {
+            delete_popup: false,
+            tobe_deleted_other_expense: {}
+        };
     },
     methods: {
         handleSearch(value) {
@@ -65,20 +76,44 @@ export default {
             this.$store.dispatch('other_expenses/loadData', {page: 1})
         },
         handleDelete(expense) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Expense</h5>Are you sure you want to delete the expense: <b>' + expense.expense_number + '</b> ?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                hasIcon: true,
-                onConfirm: () => {
-                    this.$store.dispatch('other_expenses/delete', {expense})
-                }
-            })
+            this.delete_popup = true;
+            this.tobe_deleted_other_expense = expense;
         },
+        handleDeleteClose() {
+            this.delete_popup = false;
+            this.tobe_deleted_other_expense = {};
+        },
+        onConfirmDelete(){
+            this.$store.commit('other_expenses/setLoading', {loading: true})
+            remove(this.tobe_deleted_other_expense.id)
+                .then(({data}) => {
+                    this.$store.commit('other_expenses/setLoading', {loading: false})
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.$store.dispatch('other_expenses/loadData', {page: this.current_page});
+                    this.handleDeleteClose();
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response) {
+                        this.$buefy.notification.open({
+                            message: err.response.data.message,
+                            type: 'is-danger is-light',
+                            duration: 5000
+                        })
+                    }
+                    this.$store.commit('other_expenses/setLoading', {loading: false});
+                    this.handleDeleteClose();
+                })
+        }
     },
     computed: {
         ...mapGetters({
-            checked_products: 'other_expenses/getCheckedExpenses'
+            checked_products: 'other_expenses/getCheckedExpenses',
+            current_page: 'other_expenses/getCurrentPage',
         }),
         show_bulk_actions() {
             return this.checked_products.length
