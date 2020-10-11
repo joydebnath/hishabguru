@@ -19,6 +19,7 @@ Route::get('/', 'GuestPageController@index');
 Route::get('/almost-there', 'GuestPageController@welcome');
 Route::get('/is-void-account', 'GuestPageController@hasNoTenacy');
 Route::get('/print', 'PrintDoc\PrintController@show');
+Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@print');
 
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/init', 'Setup\InventoryController@create');

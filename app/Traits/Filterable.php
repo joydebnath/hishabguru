@@ -13,12 +13,6 @@ trait Filterable
      */
     public function scopeFilter(Builder $builder, QueryFilter $filter)
     {
-        if($this->indexConfigurator){
-            $index = $this->search(request()->search);
-            $builder->when($index && $index->count(), function($query) use ($index) {
-                $query->whereIn('id', $index->get()->pluck('id'));
-            });
-        }
         return $filter->apply($builder);
     }
 }
