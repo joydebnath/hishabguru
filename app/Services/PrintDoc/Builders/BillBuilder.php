@@ -1,40 +1,86 @@
 <?php
 
-
 namespace App\Services\PrintDoc\Builders;
 
-
 use App\Models\Bill;
+use App\Services\PrintDoc\ExtendedInvoice;
+use App\Services\PrintDoc\PrintDocService;
+use Carbon\Carbon;
 
 class BillBuilder implements PDFBuilder
 {
+    protected $pdfBuilder, $bill, $printService;
+
     public function __construct($billId)
     {
-        Bill::find($billId);
+        $this->printService = new PrintDocService();
+        $this->bill = Bill::with('contact', 'products', 'tenant')->findOrFail($billId);
+        $this->pdfBuilder =
+            ExtendedInvoice::make('Bill')
+                ->dateFormat('d/m/Y')
+                ->currencySymbol('BDT')
+                ->currencyCode('BDT')
+                ->currencyFormat('{VALUE} {SYMBOL}')
+                ->currencyThousandsSeparator(',')
+                ->currencyDecimalPoint('.');
+    }
+
+
+    public function build()
+    {
+        $this->builderHeader();
+
+        $this->buildProductsTable();
+
+        $this->buildFooter();
+
+        return $this->generatePDF();
     }
 
     public function builderHeader()
     {
-        // TODO: Implement builderHeader() method.
+        $this->pdfBuilder
+            ->sequence($this->bill->bill_number)
+            ->serialNumberFormat('{SEQUENCE}')
+            ->seller($this->printService->contact($this->bill->contact))
+            ->buyer($this->printService->contact($this->bill->contact)) // Business
+            ->date(Carbon::parse($this->bill->issue_date))
+            ->addDueDate($this->bill->due_date ? Carbon::parse($this->bill->due_date) : Carbon::now()->addDays(14))
+            ->logo('https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg');
     }
 
     public function buildProductsTable()
     {
-        // TODO: Implement buildProductsTable() method.
+        $this->pdfBuilder->addItems($this->getProducts());
     }
 
     public function buildFooter()
     {
-        // TODO: Implement buildFooter() method.
+        if ($this->bill->note) {
+            $this->pdfBuilder->notes($this->bill->note);
+        }
+        $this->pdfBuilder->addMessage("<strong style='font-size:12px'>This is not a tax invoice</strong>");
     }
 
-    public function build()
-    {
-        // TODO: Implement build() method.
-    }
 
     public function generatePDF()
     {
-        // TODO: Implement generatePDF() method.
+        $this->pdfBuilder->filename($this->bill->bill_number)->save('public');
+
+        return $this->pdfBuilder->stream();
+    }
+
+    private function getProducts()
+    {
+        return collect($this->bill->products)->map(function ($product) {
+            $pivot = collect($product->pivot);
+            return (new ProductBuilder([
+                'name' => $product->name,
+                'code' => $product->code,
+                'price_per_unit' => doubleval($pivot->get('buying_unit_cost', 0)),
+                'quantity' => doubleval($pivot->get('quantity', 0)),
+                'tax_rate' => doubleval($pivot->get('tax_rate', 0)),
+            ]))->apply();
+        })->toArray();
     }
 }

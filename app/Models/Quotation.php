@@ -19,6 +19,11 @@ class Quotation extends Model
             ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total');
     }
 
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);

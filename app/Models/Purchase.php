@@ -19,6 +19,11 @@ class Purchase extends Model
             ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total', 'buying_unit_cost');
     }
 
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);

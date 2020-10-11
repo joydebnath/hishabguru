@@ -15,14 +15,27 @@ class PrintFactory
 {
     public static function getEngineer($type, $id): PDFBuilder
     {
-        $map = [
-            'quotation' => new QuotationBuilder($id),
-            'order' => new OrderBuilder($id),
-            'invoice' => new InvoiceBuilder($id),
-            'purchase' => new PurchaseBuilder($id),
-            'bill' => new BillBuilder($id),
-        ];
+        $builder = null;
+        switch ($type) {
+            case 'quotation':
+                $builder = new QuotationBuilder($id);
+                break;
+            case 'order':
+                $builder = new OrderBuilder($id);
+                break;
+            case 'invoice':
+                $builder = new InvoiceBuilder($id);
+                break;
+            case 'purchase':
+                $builder = new PurchaseBuilder($id);
+                break;
+            case 'bill':
+                $builder = new BillBuilder($id);
+                break;
+            default:
+                throw new \Exception('Unsupported PDF type');
+        }
 
-        return $map[$type];
+        return $builder;
     }
 }

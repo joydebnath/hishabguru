@@ -20,6 +20,11 @@ class Order extends Model
             ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total');
     }
 
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);
@@ -35,7 +40,7 @@ class Order extends Model
         return $this->belongsTo(User::class, 'approved_by');
     }
 
-    public function deliveryDetails() : HasOne
+    public function deliveryDetails(): HasOne
     {
         return $this->hasOne(OrderDeliveryDetails::class);
     }
