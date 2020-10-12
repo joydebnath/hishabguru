@@ -21,6 +21,7 @@ const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" *
 
 const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../pages/clients/ClientsComponent");
 const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/vendors/VendorsComponent");
+const BusinessSettingComponent = () => import(/* webpackChunkName: "js/business-settings" */  "../pages/business-settings/BusinessSettingComponent");
 
 const router = new VueRouter({
     mode: 'history',
@@ -75,10 +76,10 @@ const router = new VueRouter({
         },
         ...EmployeesRoutes,
         {
-            path: '/@/leave-management',
-            name: 'leave management',
-            meta: {type: 'teams'},
-            component: ExampleComponent,
+            path: '/@/business-settings',
+            name: 'business settings',
+            meta: {type: 'business'},
+            component: BusinessSettingComponent,
         },
     ],
 });

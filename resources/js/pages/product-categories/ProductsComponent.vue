@@ -74,12 +74,12 @@ export default {
             this.action_type = 'add';
             this.handleToggleModal()
         },
-        handleEdit(category_id) {
+        handleEdit(category) {
             this.action_type = 'edit';
             this.handleToggleModal()
             this.loading = true;
             axios
-                .get('/product-categories/' + category_id)
+                .get('/product-categories/' + category.id)
                 .then(({data}) => {
                     this.loading = false;
                     this.product_category = data.data

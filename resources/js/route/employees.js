@@ -15,4 +15,10 @@ export default [
     //     meta: {type: 'teams'},
     //     component: EmployeeComponent,
     // },
+    // {
+    //     path: '/@/leave-management',
+    //     name: 'leave management',
+    //     meta: {type: 'teams'},
+    //     component: ExampleComponent,
+    // },
 ]
