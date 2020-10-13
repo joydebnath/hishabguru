@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="mb-8">
         <div class="hidden sm:block" v-if="$props.show_top_divider">
             <div class="pb-8">
                 <div class="border-t border-gray-200"></div>
@@ -20,14 +20,10 @@
                 <form>
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="grid grid-cols-6 gap-6">
-                                <slot></slot>
-                            </div>
+                            <slot></slot>
                         </div>
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="$emit('on-save')">
-                                Save
-                            </b-button>
+                            <slot name="footer"></slot>
                         </div>
                     </div>
                 </form>

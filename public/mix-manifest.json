@@ -11,6 +11,7 @@
     "/js/bill~js/create-bill.js": "/js/bill~js/create-bill.js",
     "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js": "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js",
     "/js/bill~js/create-bill~js/create-purchase~js/purchase.js": "/js/bill~js/create-bill~js/create-purchase~js/purchase.js",
+    "/js/business-settings.js": "/js/business-settings.js",
     "/js/clients.js": "/js/clients.js",
     "/js/create-bill.js": "/js/create-bill.js",
     "/js/create-invoice.js": "/js/create-invoice.js",
@@ -40,6 +41,5 @@
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotation.js": "/js/quotation.js",
     "/js/quotations.js": "/js/quotations.js",
-    "/js/suppliers.js": "/js/suppliers.js",
-    "/js/business-settings.js": "/js/business-settings.js"
+    "/js/suppliers.js": "/js/suppliers.js"
 }
