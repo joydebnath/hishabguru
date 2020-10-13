@@ -22,6 +22,7 @@ const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" *
 const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../pages/clients/ClientsComponent");
 const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/vendors/VendorsComponent");
 const BusinessSettingComponent = () => import(/* webpackChunkName: "js/business-settings" */  "../pages/business-settings/BusinessSettingComponent");
+const ProfileSettingsComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/profile-settings/ProfileSettingsComponent");
 
 const router = new VueRouter({
     mode: 'history',
@@ -80,6 +81,12 @@ const router = new VueRouter({
             name: 'business settings',
             meta: {type: 'business'},
             component: BusinessSettingComponent,
+        },
+        {
+            path: '/@/profile',
+            name: 'profile settings',
+            meta: {type: 'profile'},
+            component: ProfileSettingsComponent,
         },
     ],
 });

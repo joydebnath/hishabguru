@@ -41,5 +41,6 @@
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotation.js": "/js/quotation.js",
     "/js/quotations.js": "/js/quotations.js",
-    "/js/suppliers.js": "/js/suppliers.js"
+    "/js/suppliers.js": "/js/suppliers.js",
+    "/js/profile-settings.js": "/js/profile-settings.js"
 }
