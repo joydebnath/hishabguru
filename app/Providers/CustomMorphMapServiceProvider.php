@@ -28,6 +28,9 @@ class CustomMorphMapServiceProvider extends ServiceProvider
             'bills' => 'App\Models\Bill',
             'other-expenses' => 'App\Models\OtherExpense',
             'invoices' => 'App\Models\Invoice',
+            'tenants' => 'App\Models\Tenant',
+            'images' => 'App\Models\Image',
+            'users' => 'App\Models\User',
         ]);
     }
 }

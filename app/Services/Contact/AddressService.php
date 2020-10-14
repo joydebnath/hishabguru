@@ -12,6 +12,8 @@ class AddressService
             Address::create([
                 'addressable_type' => $addressableType,
                 'addressable_id' => $addressableId,
+                'name' => isset($storeable['name']) ? $storeable['name'] : null,
+                'unit' => isset($storeable['unit']) ? $storeable['unit'] : null,
                 'address_line_1' => $storeable['address_line_1'],
                 'address_line_2' => isset($storeable['address_line_2']) ? $storeable['address_line_2'] : null,
                 'city' => $storeable['city'],
@@ -26,6 +28,8 @@ class AddressService
     {
         return
             Address::find($addressId)->update([
+                'name' => isset($storeable['name']) ? $storeable['name'] : null,
+                'unit' => isset($storeable['unit']) ? $storeable['unit'] : null,
                 'address_line_1' => $updateable['address_line_1'],
                 'address_line_2' => $updateable['address_line_2'],
                 'city' => $updateable['city'],

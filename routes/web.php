@@ -18,14 +18,14 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'GuestPageController@index');
 Route::get('/almost-there', 'GuestPageController@welcome');
 Route::get('/is-void-account', 'GuestPageController@hasNoTenacy');
-Route::get('/print', 'PrintDoc\PrintController@show');
-Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
+Route::get('/print', 'PrintDoc\PrintController@publicAccess');
 
 Route::group(['middleware' => ['auth','verified']], function () {
-    Route::get('/init', 'Setup\InventoryController@create');
-    Route::post('/init', 'Setup\InventoryController@store');
+    Route::get('/init', 'Tenancy\SetupController@create');
+    Route::post('/init', 'Tenancy\SetupController@store');
     Route::get('/@/dashboard', 'PagesController@index')->name('home');
     Route::get('/@/{any}', 'PagesController@index')->where('any', '.*');
+    Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
 });
 
 

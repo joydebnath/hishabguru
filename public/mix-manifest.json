@@ -36,11 +36,11 @@
     "/js/other-expenses.js": "/js/other-expenses.js",
     "/js/product-categories.js": "/js/product-categories.js",
     "/js/products.js": "/js/products.js",
+    "/js/profile-settings.js": "/js/profile-settings.js",
     "/js/promo-codes.js": "/js/promo-codes.js",
     "/js/purchase.js": "/js/purchase.js",
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotation.js": "/js/quotation.js",
     "/js/quotations.js": "/js/quotations.js",
-    "/js/suppliers.js": "/js/suppliers.js",
-    "/js/profile-settings.js": "/js/profile-settings.js"
+    "/js/suppliers.js": "/js/suppliers.js"
 }

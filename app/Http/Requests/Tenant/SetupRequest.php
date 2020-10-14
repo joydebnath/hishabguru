@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Inventory;
+namespace App\Http\Requests\Tenant;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InventoryRequest extends FormRequest
+class SetupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,9 @@ class InventoryRequest extends FormRequest
             'postcode' => 'required|string',
             'state' => 'required|string',
             'country' => 'required|string',
-            'description' => 'nullable|string',
+            'operation_country' => 'required|string',
+            'operation_currency' => 'required|string',
+            'tfn' => 'nullable|string'
         ];
     }
 }

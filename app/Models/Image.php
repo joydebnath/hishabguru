@@ -13,4 +13,9 @@ class Image extends Model
         return $this->belongsToMany(Product::class, 'product_images', 'image_id', 'product_id')
             ->withPivot('sort_order')->withTimestamps();
     }
+
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

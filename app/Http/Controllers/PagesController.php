@@ -2,50 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use App\Services\Tenant\ValidateTenantService;
 use App\Services\User\CheckUserRolesService;
 use App\Services\User\SystemUserCacheService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\UnauthorizedException;
+use Exception;
 
 class PagesController extends Controller
 {
-    protected $userCache, $checkUserRoles, $tenantValidation;
+    protected $userCache;
 
-    public function __construct(SystemUserCacheService $cacheService, CheckUserRolesService $checkUserRoles, ValidateTenantService $tenantValidation)
+    public function __construct(SystemUserCacheService $cacheService)
     {
         $this->userCache = $cacheService;
-        $this->checkUserRoles = $checkUserRoles;
-        $this->tenantValidation = $tenantValidation;
     }
 
     public function index()
     {
+        dd(Auth::user()->current_tenant->addresses->firstWhere('address_type','headquarter'));
         try {
-            if ($this->userHasSetupTenancy()) {
-                return redirect('/init');
+            if ($this->userTenancyIsNotComplete()) {
+                return redirect('/init?tid=' . base64_encode(Auth::user()->current_tenant_id));
             }
+
             return view('spa');
         } catch (\Exception $exception) {
             return redirect('/is-void-account');
         }
     }
 
-    public function userHasSetupTenancy()
+    public function userTenancyIsNotComplete()
     {
-        $userRoles = $this->userCache->getUserRoles(Auth::user());
-        $currentTenantId = array_key_first($userRoles);
+        $user = Auth::user()->load('current_tenant');
 
-        if ($currentTenantId === null) {
-            throw new \Exception('User has no tenancy');
+        if (collect($user->current_tenant)->isEmpty()) {
+            throw new Exception('User has no tenancy');
         }
 
-        $userIsAdmin = $this->checkUserRoles->isTenantAdmin($userRoles, $currentTenantId);
-
-        if (!$userIsAdmin) {
-            return true;
+        if (!$this->userIsAdminInCurrentTenancy($user)) {
+            return false;
         }
 
-        return !$this->tenantValidation->setupCompleted($userRoles[$currentTenantId]);
+        return $user->current_tenant->setup_complete_flag == false;
+    }
+
+    private function userIsAdminInCurrentTenancy($user)
+    {
+        return $user->admin_roles->where('pivot.tenant_id', $user->current_tenant_id)->first() !== null;
     }
 }

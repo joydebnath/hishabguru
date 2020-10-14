@@ -51,5 +51,4 @@ class Invoice extends Model
     {
         return $this->morphMany(PaymentHistory::class, 'payable');
     }
-
 }

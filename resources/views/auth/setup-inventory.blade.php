@@ -24,7 +24,16 @@
                         <div class="field">
                             <label class="label">Site Name</label>
                             <div class="control">
-                                <input class="input" name="name" type="text" value="{{ old('name') }}" placeholder="e.g. Online Store">
+                                <input class="input {{$errors->has('name') ? 'is-danger': ''}}" name="name" type="text"
+                                       value="{{ old('name') }}"
+                                       placeholder="e.g. Online Store">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Tax Identification Number <small
+                                    class="text-xs">Optional</small></label>
+                            <div class="control">
+                                <input class="input" name="tfn" type="text" value="{{ old('tfn') }}">
                             </div>
                         </div>
                         <p class="font-semibold mt-4 my-3 ">
@@ -37,37 +46,58 @@
                         </p>
                         <div class="field">
                             <div class="control mb-3">
-                                <input class="input mb-3" type="text" name="address_line_1"
+                                <input class="input mb-3 {{$errors->has('address_line_1') ? 'is-danger': ''}}"
+                                       type="text" name="address_line_1"
                                        placeholder="Address line 1" value="{{ old('address_line_1') }}">
-                                <input class="input" type="text" name="address_line_2" placeholder="Address line 2" value="{{ old('address_line_2') }}">
+                                <input class="input" type="text" name="address_line_2" placeholder="Address line 2"
+                                       value="{{ old('address_line_2') }}">
                             </div>
                             <div class="field-body mb-3">
                                 <div class="field is-grouped">
                                     <div class="control is-clearfix">
-                                        <input type="text" placeholder="City/Town" name="city" class="input" value="{{ old('city') }}">
+                                        <input type="text" placeholder="City" name="city"
+                                               class="input {{$errors->has('city') ? 'is-danger': ''}}"
+                                               value="{{ old('city') }}">
                                     </div>
                                     <div class="control is-clearfix">
-                                        <input type="text" placeholder="Postal/Zip Code" name="postcode" class="input" value="{{ old('postcode') }}">
+                                        <input type="text" placeholder="Post Code" name="postcode"
+                                               class="input {{$errors->has('postcode') ? 'is-danger': ''}}"
+                                               value="{{ old('postcode') }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="field-body ">
                                 <div class="field is-grouped">
                                     <div class="control is-clearfix">
-                                        <input type="text" placeholder="Division" name="state" class="input" value="{{ old('state') }}">
+                                        <input type="text" placeholder="State/Division" name="state"
+                                               class="input {{$errors->has('state') ? 'is-danger': ''}}"
+                                               value="{{ old('state') }}">
                                     </div>
                                     <div class="control is-clearfix">
-                                        <input type="text" name="country" value="Bangladesh" placeholder="Country"
-                                               class="input" >
+                                        <input type="text" name="country" value="Bangladesh"
+                                               placeholder="Country {{$errors->has('country') ? 'is-danger': ''}}"
+                                               class="input">
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Description</label>
-                            <div class="control">
-                                <textarea class="textarea" name="description"
-                                          placeholder="Write something..." value="{{ old('description') }}"></textarea>
+                            <p class="font-semibold mt-4 my-3 ">
+                                <span class="mr-2">
+                                    Operation Details
+                                </span>
+                            </p>
+                            <div class="field">
+                                <div class="field is-grouped">
+                                    <div class="control">
+                                        <input type="text" placeholder="Business Country" value="Bangladesh"
+                                               name="operation_country"
+                                               class="input {{$errors->has('operation_country') ? 'is-danger': ''}}">
+                                    </div>
+                                    <div class="control">
+                                        <input type="text" name="operation_currency" value="BDT"
+                                               placeholder="Operation Currency"
+                                               class="input {{$errors->has('operation_currency') ? 'is-danger': ''}}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -87,6 +117,13 @@
                         </button>
                     </div>
                 </div>
+                <section class="mx-4 my-2">
+                    @foreach($errors->all() as $err)
+                        <div class="notification is-danger mb-2 py-2 text-sm text-capitalize">
+                            {{$err}}
+                        </div>
+                    @endforeach
+                </section>
             </div>
 
         </div>

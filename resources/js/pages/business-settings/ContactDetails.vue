@@ -2,8 +2,6 @@
     <ActionForm action_name="Contact Details" action_description="Keep your business contact details upto date">
         <PhysicalAddress/>
         <div class="grid grid-cols-5 border-b my-4"></div>
-        <PostalAddress/>
-        <div class="grid grid-cols-5 border-b mb-4"></div>
         <div class="grid grid-cols-5">
             <div class="col-span-3">
                 <b-field label="Phone Number" custom-class="text-sm">

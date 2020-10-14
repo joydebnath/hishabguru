@@ -11,26 +11,26 @@ class TenantController extends Controller
 {
     public function index()
     {
-        //
+        abort(405);
     }
 
     public function store(Request $request)
     {
-        //
+        abort(405);
     }
 
     public function show(Tenant $tenant)
     {
-        return new TenantResource($tenant->load('inventorySites.address'));
+        return new TenantResource($tenant->load('addresses'));
     }
 
     public function update(Request $request, Tenant $tenant)
     {
-        //
+        abort(405);
     }
 
     public function destroy(Tenant $tenant)
     {
-        //
+        abort(405);
     }
 }

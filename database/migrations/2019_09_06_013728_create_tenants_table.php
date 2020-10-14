@@ -16,10 +16,12 @@ class CreateTenantsTable extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('tax_file_number')->nullable();
             $table->boolean('setup_complete_flag')->default(false)->nullable();
             $table->string('business_type')->nullable();
             $table->string('country_of_operation')->nullable();
-            $table->string('default_currency')->nullable();
+            $table->string('currency_of_operation')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

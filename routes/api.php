@@ -28,8 +28,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/orders', 'Order\OrdersController');
     Route::resource('/promo-codes', 'Promo\PromoCodesController');
     Route::resource('/tenants', 'Tenancy\TenantController');
-    Route::resource('/inventories', 'Inventory\InventoryController');
     Route::resource('/payment-histories', 'Payment\PaymentHistoryController');
+    Route::resource('/business-settings', 'Setting\BusinessSettingsController')->only('show','update');
+    Route::resource('/profile-settings', 'Setting\ProfileSettingsController')->only('show','update');
 
     Route::get('/me', 'User\UserController@index');
     Route::post('/current-tenant', 'User\TenancyController@store');

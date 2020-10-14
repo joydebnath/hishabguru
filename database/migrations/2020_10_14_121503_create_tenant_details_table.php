@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventorySitesTable extends Migration
+class CreateTenantDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateInventorySitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_sites', function (Blueprint $table) {
+        Schema::create('tenant_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedBigInteger('tenant_id');
-            $table->longText('description')->nullable();
+            $table->string('key');
+            $table->string('value');
             $table->timestamps();
 
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateInventorySitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_sites');
+        Schema::dropIfExists('tenant_details');
     }
 }

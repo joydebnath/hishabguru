@@ -3,7 +3,7 @@
         <div class="col-span-3">
             <div class="field">
                 <b-switch size="is-small" type="is-info" v-model="same_as_physical_address" true-value="Yes" false-value="No">
-                    <strong class="tracking-wide text-orange-500">Same as Physical address</strong>
+                    <strong class="tracking-wide text-orange-500">Same as Headquarter address</strong>
                 </b-switch>
             </div>
             <label class="label text-gray-700">Postal Address</label>

@@ -16,8 +16,8 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $guarded = [
+        'id',
     ];
 
     /**
@@ -40,11 +40,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class,'tenant_users')->withPivot('tenant_id');
+        return $this->belongsToMany(Role::class, 'tenant_users')->withPivot('tenant_id');
+    }
+
+    public function admin_roles()
+    {
+        return $this->roles()->where('slug','admin');
     }
 
     public function tenants()
     {
         return $this->belongsToMany(Tenant::class, 'tenant_users')->withPivot('role_id')->withTimestamps();
+    }
+
+    public function current_tenant()
+    {
+        return $this->belongsTo(Tenant::class,'current_tenant_id');
     }
 }
