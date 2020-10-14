@@ -8,10 +8,10 @@
                 <div class="col-span-4">
                     <b-field grouped>
                         <b-field label="Business Country" custom-class="text-sm">
-                            <b-input custom-class="text-sm"></b-input>
+                            <b-input custom-class="text-sm" v-model="computed_items.country"></b-input>
                         </b-field>
                         <b-field label="Currency" custom-class="text-sm">
-                            <b-input custom-class="text-sm"></b-input>
+                            <b-input custom-class="text-sm" v-model="computed_items.currency"></b-input>
                         </b-field>
                     </b-field>
                 </div>
@@ -30,7 +30,23 @@ import ActionForm from "@/components/global/form/ActionForm";
 
 export default {
     name: "BusinessDetails",
-    components: {ActionForm}
+    components: {ActionForm},
+    props: {
+        fields: Object | Array
+    },
+    data() {
+        return {
+            items: {}
+        }
+    },
+    computed: {
+        computed_items() {
+            if (this.$props.fields) {
+                this.items = {...this.$props.fields}
+            }
+            return this.items
+        }
+    }
 }
 </script>
 

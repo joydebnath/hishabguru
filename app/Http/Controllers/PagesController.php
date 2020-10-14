@@ -20,7 +20,6 @@ class PagesController extends Controller
 
     public function index()
     {
-        dd(Auth::user()->current_tenant->addresses->firstWhere('address_type','headquarter'));
         try {
             if ($this->userTenancyIsNotComplete()) {
                 return redirect('/init?tid=' . base64_encode(Auth::user()->current_tenant_id));

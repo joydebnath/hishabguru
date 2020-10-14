@@ -31,7 +31,23 @@ import ActionForm from "@/components/global/form/ActionForm";
 
 export default {
     name: "BusinessDetails",
-    components: {ActionForm}
+    components: {ActionForm},
+    props:{
+        fields: Object | Array
+    },
+    data() {
+        return {
+            items: {}
+        }
+    },
+    computed: {
+        computed_items() {
+            if (this.$props.fields) {
+                this.items = {...this.$props.fields}
+            }
+            return this.items
+        }
+    }
 }
 </script>
 

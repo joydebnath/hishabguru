@@ -26,9 +26,9 @@ class BusinessResource extends JsonResource
             'contact_details' => [
                 'headquarter' => $this->getHQ(),
                 'postal' => $this->getPostal(),
-                'phone' => '',
-                'email' => '',
-                'website' => '',
+                'phone' => $this->phones->first() ? $this->phones->first()->value : null,
+                'email' => $this->emails->first() ? $this->emails->first()->value : null,
+                'website' => $this->websites->first() ? $this->websites->first()->value : null,
             ],
             'operation_details' => [
                 'country' => $this->country_of_operation,
@@ -45,7 +45,7 @@ class BusinessResource extends JsonResource
 
     private function getPostal()
     {
-        $postal = $this->addresses->firstWhere('address_type', 'postal')->first();
+        $postal = $this->addresses->firstWhere('address_type', 'postal');
         return $postal === null ? [] : new Address($postal);
     }
 }

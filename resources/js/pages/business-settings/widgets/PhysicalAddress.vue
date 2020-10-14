@@ -9,7 +9,7 @@
                 <b-input custom-class="text-sm"></b-input>
             </b-field>
             <b-field grouped>
-                <b-field label="City/Town" custom-class="text-sm">
+                <b-field label="City" custom-class="text-sm">
                     <b-input custom-class="text-sm"></b-input>
                 </b-field>
                 <b-field label="Postal Code" custom-class="text-sm">
@@ -17,7 +17,7 @@
                 </b-field>
             </b-field>
             <b-field grouped>
-                <b-field label="Division" custom-class="text-sm">
+                <b-field label="State/Division" custom-class="text-sm">
                     <b-input custom-class="text-sm"></b-input>
                 </b-field>
                 <b-field label="Country" custom-class="text-sm">

@@ -30,7 +30,23 @@ import PhysicalAddress from "./widgets/PhysicalAddress";
 
 export default {
     name: "BusinessDetails",
-    components: {PhysicalAddress, PostalAddress, ActionForm}
+    components: {PhysicalAddress, PostalAddress, ActionForm},
+    props:{
+        fields: Object | Array
+    },
+    data() {
+        return {
+            items: {}
+        }
+    },
+    computed: {
+        computed_items() {
+            if (this.$props.fields) {
+                this.items = {...this.$props.fields}
+            }
+            return this.items
+        }
+    }
 }
 </script>
 

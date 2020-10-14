@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Address\Addressable;
+use App\Enums\Address\AddressType;
 use App\Enums\Contact\ContactDetailsType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -21,6 +22,11 @@ class Tenant extends Model
         return $this->hasMany(Address::class, 'addressable_id')->where('addressable_type', Addressable::TENANT);
     }
 
+    public function headquarter()
+    {
+        return $this->addresses()->firstWhere('address_type', AddressType::HQ);
+    }
+
     public function details()
     {
         return $this->hasMany(TenantDetail::class);
@@ -31,17 +37,12 @@ class Tenant extends Model
         return $this->details()->where('key', ContactDetailsType::EMAIL);
     }
 
-    public function mobiles()
-    {
-        return $this->details()->where('key', ContactDetailsType::MOBILE);
-    }
-
     public function phones()
     {
         return $this->details()->where('key', ContactDetailsType::PHONE);
     }
 
-    public function website()
+    public function websites()
     {
         return $this->details()->where('key', ContactDetailsType::WEBSITE);
     }

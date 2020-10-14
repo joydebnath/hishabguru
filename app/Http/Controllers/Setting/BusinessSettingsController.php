@@ -12,7 +12,7 @@ class BusinessSettingsController extends Controller
     public function show($id)
     {
         try {
-            $tenant = Tenant::with('addresses', 'imageable')->find($id);
+            $tenant = Tenant::with('addresses', 'imageable', 'emails', 'phones', 'websites')->find($id);
             return new BusinessResource($tenant);
         } catch (\Exception $exception) {
             return response(['error' => $exception->getMessage()], 500);
@@ -21,6 +21,6 @@ class BusinessSettingsController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $type = $request->type;
     }
 }
