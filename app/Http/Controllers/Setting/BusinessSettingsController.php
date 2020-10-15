@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Setting\BusinessResource;
 use App\Models\Tenant;
+use App\Services\Setting\BusinessSettingFactory;
 use Illuminate\Http\Request;
 
 class BusinessSettingsController extends Controller
@@ -21,6 +22,6 @@ class BusinessSettingsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $type = $request->type;
+        return BusinessSettingFactory::getFactory($request->type)->update($id, $request);
     }
 }

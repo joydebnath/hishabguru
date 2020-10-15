@@ -18,8 +18,11 @@
             </div>
         </template>
         <template #footer>
-            <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="$emit('on-save')">
-                Save
+            <b-button type="is-info"
+                      :loading="loading"
+                      class="text-sm rounded tracking-wider font-medium" @click="handleUpdate"
+            >
+                Update
             </b-button>
         </template>
     </ActionForm>
@@ -27,6 +30,7 @@
 
 <script>
 import ActionForm from "@/components/global/form/ActionForm";
+import {mapGetters} from "vuex";
 
 export default {
     name: "BusinessDetails",
@@ -36,10 +40,29 @@ export default {
     },
     data() {
         return {
-            items: {}
+            items: {},
+            loading: false
+        }
+    },
+    methods: {
+        handleUpdate() {
+            this.loading = true;
+            axios
+                .patch('/business-settings/' + this.tenant_id, {...this.computed_items, type: 'operation-details'})
+                .then(({data}) => {
+                    this.$emit('on-update', data.data);
+                    this.loading = false;
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.loading = false;
+                })
         }
     },
     computed: {
+        ...mapGetters({
+            tenant_id: 'tenancy/getCurrentTenant'
+        }),
         computed_items() {
             if (this.$props.fields) {
                 this.items = {...this.$props.fields}
