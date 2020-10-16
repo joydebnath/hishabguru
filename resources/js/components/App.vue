@@ -28,7 +28,7 @@ export default {
     props: {
         logo: String
     },
-    mounted() {
+    beforeMount() {
         this.setPageType({type: this.$route.meta.type})
         this.setTitle({title: this.$route.name})
         this.setLogo({url: this.$props.logo})

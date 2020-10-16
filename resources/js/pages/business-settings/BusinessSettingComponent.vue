@@ -24,21 +24,23 @@ export default {
         }),
     },
     mounted() {
-        this.loading = true;
-        axios
-            .get('/business-settings/' + this.tenant_id)
-            .then(({data}) => {
-                const {logo, business_details, contact_details, operation_details} = data.data;
-                this.logo = logo;
-                this.business_details = business_details;
-                this.contact_details = contact_details;
-                this.operation_details = operation_details;
-                this.loading = false;
-            })
-            .catch(err => {
-                console.log(err)
-                this.loading = false;
-            })
+        if (this.tenant_id) {
+            this.loading = true;
+            axios
+                .get('/business-settings/' + this.tenant_id)
+                .then(({data}) => {
+                    const {logo, business_details, contact_details, operation_details} = data.data;
+                    this.logo = logo;
+                    this.business_details = business_details;
+                    this.contact_details = contact_details;
+                    this.operation_details = operation_details;
+                    this.loading = false;
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.loading = false;
+                })
+        }
     },
     data() {
         return {

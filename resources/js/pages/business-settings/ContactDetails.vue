@@ -1,6 +1,6 @@
 <template>
     <ActionForm action_name="Contact Details" action_description="Keep your business contact details upto date">
-        <PhysicalAddress :address="computed_items.headquarter"/>
+        <PhysicalAddress :address="computed_items.headquarter" ref="hq"/>
         <div class="grid grid-cols-5 border-b my-4"></div>
         <div class="grid grid-cols-5">
             <div class="col-span-3">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <template #footer>
-            <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="$emit('on-save')">
+            <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="handleUpdate">
                 Save
             </b-button>
         </template>
@@ -44,7 +44,11 @@ export default {
         handleUpdate() {
             this.loading = true;
             axios
-                .post('/business-settings/' + this.tenant_id, {...this.computed_items, type: 'contact-details'})
+                .patch('/business-settings/' + this.tenant_id, {
+                    ...this.computed_items,
+                    headquarter: {...this.$refs.hq.collect()},
+                    type: 'contact-details'
+                })
                 .then(({data}) => {
                     this.$emit('on-update', data.data);
                     this.loading = false;
