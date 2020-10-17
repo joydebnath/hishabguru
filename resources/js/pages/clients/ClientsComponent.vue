@@ -13,7 +13,7 @@
                             <span>New Client</span>
                         </button>
                         <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
-                            <button class="button field text-sm px-2">
+                            <button class="button field text-sm px-2" @click="handleRefresh">
                                 <RefreshIcon/>
                             </button>
                         </b-tooltip>
@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-import {mapMutations} from "vuex";
+import {mapMutations, mapGetters} from "vuex";
 import SearchBox from '@/components/global/SearchBox'
 import Table from "./ClientsTable.vue";
 import Filters from "./ClientsFilters";
@@ -81,6 +81,9 @@ export default {
                 filters: {search: value}
             })
             this.$store.dispatch('clients/loadData', {page: 1})
+        },
+        handleRefresh(){
+            this.$store.dispatch('clients/loadData', {page: this.current_page})
         },
         handleAdd() {
             this.action_type = 'add';
@@ -138,6 +141,9 @@ export default {
         },
     },
     computed: {
+        ...mapGetters({
+            current_page: 'clients/getCurrentPage'
+        }),
         action_name() {
             return this.action_type
         },

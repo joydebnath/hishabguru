@@ -23,7 +23,7 @@
                             </button>
                         </router-link>
                         <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
-                            <button class="button field text-sm px-2">
+                            <button class="button field text-sm px-2" @click="handleRefresh">
                                 <RefreshIcon/>
                             </button>
                         </b-tooltip>
@@ -74,6 +74,9 @@ export default {
                 }
             });
             this.$store.dispatch('other_expenses/loadData', {page: 1})
+        },
+        handleRefresh(){
+            this.$store.dispatch('other_expenses/loadData', {page: this.current_page})
         },
         handleDelete(expense) {
             this.delete_popup = true;

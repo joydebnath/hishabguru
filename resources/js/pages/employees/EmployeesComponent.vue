@@ -13,7 +13,7 @@
                             <span>New Employee</span>
                         </button>
                         <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
-                            <button class="button field text-sm px-2">
+                            <button class="button field text-sm px-2" @click="handleRefresh">
                                 <RefreshIcon/>
                             </button>
                         </b-tooltip>
@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-import {mapMutations} from "vuex";
+import {mapMutations, mapGetters} from "vuex";
 import SearchBox from '@/components/global/SearchBox'
 import Table from "./EmployeesTable.vue";
 import Filters from "./EmployeeFilters";
@@ -82,6 +82,9 @@ export default {
             })
             this.$store.dispatch('employees/loadData', {page: 1})
         },
+        handleRefresh(){
+            this.$store.dispatch('employees/loadData', {page: this.current_page})
+        },
         handleAdd() {
             this.action_type = 'add';
             this.handleToggleModal()
@@ -113,7 +116,7 @@ export default {
                 .delete('/employees/' + this.tobe_deleted_employee.id)
                 .then(({data}) => {
                     this.$store.dispatch('employees/loadData', {
-                        page: this.$store.getters['employees/getCurrentPage']
+                        page: this.current_page
                     })
                     this.$buefy.notification.open({
                         message: data.message,
@@ -138,6 +141,9 @@ export default {
         },
     },
     computed: {
+        ...mapGetters({
+            current_page: 'employees/getCurrentPage'
+        }),
         action_name() {
             return this.action_type
         },

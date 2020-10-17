@@ -13,7 +13,7 @@
                             <span>New Supplier</span>
                         </button>
                         <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
-                            <button class="button field text-sm px-2">
+                            <button class="button field text-sm px-2" @click="handleRefresh">
                                 <RefreshIcon/>
                             </button>
                         </b-tooltip>
@@ -42,13 +42,13 @@
 </template>
 
 <script>
+import {mapMutations, mapGetters} from "vuex";
 import SearchBox from '@/components/global/SearchBox'
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import DeleteBox from "@/components/global/popups/DeleteBox";
 import Table from "./VendorsTable.vue";
 import Filters from "./VendorsFilters";
 import ItemCRUD from "./modals/ItemCRUD";
-import {mapMutations} from "vuex";
-import RefreshIcon from "@/components/icons/RefreshIcon";
-import DeleteBox from "@/components/global/popups/DeleteBox";
 
 export default {
     components: {
@@ -86,6 +86,9 @@ export default {
             })
             this.$store.dispatch('suppliers/loadData', {page: 1})
         },
+        handleRefresh() {
+            this.$store.dispatch('suppliers/loadData', {page: this.current_page})
+        },
         handleAdd() {
             this.action_type = 'add';
             this.handleToggleModal()
@@ -112,13 +115,12 @@ export default {
             this.delete_popup = false;
             this.tobe_deleted_supplier = {};
         },
-
-        onConfirmDelete(){
+        onConfirmDelete() {
             axios
                 .delete('/suppliers/' + this.tobe_deleted_supplier.id)
                 .then(({data}) => {
                     this.$store.dispatch('suppliers/loadData', {
-                        page: this.$store.getters['suppliers/getCurrentPage']
+                        page: this.current_page
                     })
                     this.$buefy.notification.open({
                         message: data.message,
@@ -134,12 +136,16 @@ export default {
                             type: 'is-danger is-light',
                             duration: 5000
                         })
-                    };
+                    }
+                    ;
                     this.handleDeleteClose();
                 })
         }
     },
     computed: {
+        ...mapGetters({
+            current_page: 'suppliers/getCurrentPage'
+        }),
         action_name() {
             return this.action_type
         },

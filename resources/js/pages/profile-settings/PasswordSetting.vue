@@ -7,15 +7,20 @@
                     <b-input custom-class="text-sm" type="password" password-reveal v-model="current_password"/>
                 </b-field>
                 <b-field label="New Password" custom-class="text-sm" class="pwd">
-                    <b-input custom-class="text-sm" type="password" password-reveal v-model="new_password"/>
+                    <b-input custom-class="text-sm" type="password" password-reveal v-model="new_password" minlength="6"/>
                 </b-field>
                 <b-field label="Confirm New Password" custom-class="text-sm" class="pwd">
-                    <b-input custom-class="text-sm" type="password" password-reveal v-model="new_password_confirmed"/>
+                    <b-input custom-class="text-sm" type="password" password-reveal
+                             v-model="new_password_confirmation" minlength="6"/>
                 </b-field>
             </div>
         </div>
         <template #footer>
-            <b-button :loading="loading" type="is-info" class="text-sm rounded tracking-wider font-medium" @click="handleUpdate">
+            <b-button :loading="loading"
+                      class="text-sm rounded tracking-wider font-medium"
+                      type="is-info"
+                      @click="handleUpdate"
+            >
                 Update
             </b-button>
         </template>
@@ -32,7 +37,7 @@ export default {
         return {
             current_password: '',
             new_password: '',
-            new_password_confirmed: '',
+            new_password_confirmation: '',
             loading: false
         }
     },
@@ -43,18 +48,44 @@ export default {
                 .patch('/change-password', {
                     current_password: this.current_password,
                     new_password: this.new_password,
-                    new_password_confirmed: this.new_password_confirmed,
+                    new_password_confirmation: this.new_password_confirmation,
                 })
                 .then(({data}) => {
                     this.loading = false;
                     this.current_password = '';
                     this.new_password = '';
-                    this.new_password_confirmed = '';
+                    this.new_password_confirmation = '';
+                    this.$buefy.snackbar.open({
+                        duration: 5000,
+                        message: data.data.message,
+                        type: 'is-success',
+                        position: 'is-top'
+                    })
                 })
                 .catch(err => {
                     console.log(err)
                     this.loading = false;
+                    if (err.response.data) {
+                        this.errorBox(err)
+                    }
                 })
+        },
+        errorBox(err) {
+            if (err.strong === 401) {
+                this.$buefy.snackbar.open({
+                    duration: 5000,
+                    message: err.response.data.message,
+                    type: 'is-danger',
+                    position: 'is-bottom'
+                })
+            } else {
+                this.$buefy.snackbar.open({
+                    duration: 5000,
+                    message: 'Password confirmation does not match',
+                    type: 'is-danger',
+                    position: 'is-bottom'
+                })
+            }
         }
     }
 }

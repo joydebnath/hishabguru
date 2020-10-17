@@ -21,7 +21,7 @@
                             <span>New Product</span>
                         </button>
                         <b-tooltip label="Refresh" type="is-dark" content-class="tracking-wider">
-                            <button class="button field text-sm px-2">
+                            <button class="button field text-sm px-2" @click="handleRefresh">
                                 <RefreshIcon/>
                             </button>
                         </b-tooltip>
@@ -92,6 +92,9 @@ export default {
             })
             this.$store.dispatch('products/loadData', {page: 1})
         },
+        handleRefresh(){
+            this.$store.dispatch('products/loadData', {page: this.current_page})
+        },
         handleAdd() {
             this.action_type = 'add';
             this.handleToggleModal()
@@ -123,7 +126,7 @@ export default {
                 .delete('/products/' + product.id)
                 .then(({data}) => {
                     this.$store.dispatch('products/loadData', {
-                        page: this.$store.getters['products/getCurrentPage']
+                        page: this.current_page
                     })
                     this.$buefy.notification.open({
                         message: data.message,
@@ -153,6 +156,7 @@ export default {
     computed: {
         ...mapGetters({
             checked_products: 'products/getCheckedProducts',
+            current_page: 'products/getCurrentPage'
         }),
         show_bulk_actions() {
             return this.checked_products.length
