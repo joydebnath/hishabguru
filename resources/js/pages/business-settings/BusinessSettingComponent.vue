@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-6xl m-auto w-full">
         <b-loading :is-full-page="true" v-model="loading" :can-cancel="false"></b-loading>
-        <BusinessLogo :logo="logo" @on-update="handleUpdateLogo"/>
+        <BusinessLogo :logo="logo" :loading="loading" @on-update="handleUpdateLogo"/>
         <BusinessDetails :fields="business_details" @on-update="handleBusinessDetails"/>
         <ContactDetails :fields="contact_details" @on-update="handleContactDetails"/>
         <OperationDetails :fields="operation_details" @on-update="handleOperationDetails"/>
