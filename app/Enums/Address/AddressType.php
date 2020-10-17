@@ -9,5 +9,6 @@ final class AddressType
     const HOME =   'home';
     const MAIN =   'main';
     const HQ = 'headquarter';
+    const POSTAL = 'postal';
     const BRANCH = 'branch';
 }

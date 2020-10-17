@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Setting;
 
+use App\Enums\Address\AddressType;
 use App\Http\Resources\Contact\Address;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -39,13 +40,13 @@ class BusinessResource extends JsonResource
 
     private function getHQ()
     {
-        $hq = $this->addresses->firstWhere('address_type', 'headquarter');
+        $hq = $this->addresses->firstWhere('address_type', AddressType::HQ);
         return $hq == null ? [] : new Address($hq);
     }
 
     private function getPostal()
     {
-        $postal = $this->addresses->firstWhere('address_type', 'postal');
+        $postal = $this->addresses->firstWhere('address_type', AddressType::POSTAL);
         return $postal === null ? [] : new Address($postal);
     }
 }

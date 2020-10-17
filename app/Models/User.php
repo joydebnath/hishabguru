@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Address\Addressable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,7 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
@@ -45,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function admin_roles()
     {
-        return $this->roles()->where('slug','admin');
+        return $this->roles()->where('slug', 'admin');
     }
 
     public function tenants()
@@ -55,6 +56,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function current_tenant()
     {
-        return $this->belongsTo(Tenant::class,'current_tenant_id');
+        return $this->belongsTo(Tenant::class, 'current_tenant_id');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class, 'addressable_id')->where('addressable_type', Addressable::USER);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(UserDetail::class);
     }
 }

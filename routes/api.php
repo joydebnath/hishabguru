@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/profile-settings', 'Setting\ProfileSettingsController')->only('show','update');
 
     Route::get('/me', 'User\UserController@index');
+    Route::patch('/change-password', 'User\UserController@update');
     Route::post('/current-tenant', 'User\TenancyController@store');
     Route::get('/lookup/clients', 'Lookup\ClientLookupController@index');
     Route::get('/lookup/suppliers', 'Lookup\SupplierLookupController@index');

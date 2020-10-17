@@ -17,7 +17,7 @@
         </div>
         <template #footer>
             <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="handleUpdate">
-                Save
+                Update
             </b-button>
         </template>
     </ActionForm>
