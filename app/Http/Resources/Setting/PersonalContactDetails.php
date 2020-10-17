@@ -16,10 +16,11 @@ class PersonalContactDetails extends JsonResource
      */
     public function toArray($request)
     {
-        $phone = collect($this->details)->firstWhere('key', ContactDetailsType::MOBILE);
+        $phone = collect($this->details)->firstWhere('key', ContactDetailsType::PHONE);
+        $addresses = collect($this->addresses);
         return [
             'contact_details' => [
-                'address' => collect($this->addresses)->isNotEmpty() ? new Address($this->addresses) : [],
+                'address' => $addresses->isNotEmpty() ? new Address($addresses->first()) : [],
                 'phone' => collect($phone)->get('value', null)
             ],
         ];

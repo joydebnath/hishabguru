@@ -4,25 +4,25 @@
             <div class="col-span-3">
                 <label class="label text-gray-700">Postal address</label>
                 <b-field label="Address line 1" custom-class="text-sm">
-                    <b-input custom-class="text-sm" v-model="computed_fields.address.address_line_1"></b-input>
+                    <b-input custom-class="text-sm" v-model="computed_fields.address.address_line_1" required></b-input>
                 </b-field>
                 <b-field label="Address line 2" custom-class="text-sm">
                     <b-input custom-class="text-sm" v-model="computed_fields.address.address_line_2"></b-input>
                 </b-field>
                 <b-field grouped>
-                    <b-field label="City/Town" custom-class="text-sm">
-                        <b-input custom-class="text-sm" v-model="computed_fields.address.city"></b-input>
+                    <b-field label="City" custom-class="text-sm">
+                        <b-input custom-class="text-sm" v-model="computed_fields.address.city" required></b-input>
                     </b-field>
                     <b-field label="Postal Code" custom-class="text-sm">
-                        <b-input custom-class="text-sm" v-model="computed_fields.address.postcode"></b-input>
+                        <b-input custom-class="text-sm" v-model="computed_fields.address.postcode" required></b-input>
                     </b-field>
                 </b-field>
                 <b-field grouped>
-                    <b-field label="Division" custom-class="text-sm">
-                        <b-input custom-class="text-sm" v-model="computed_fields.address.division"></b-input>
+                    <b-field label="State/Division" custom-class="text-sm">
+                        <b-input custom-class="text-sm" v-model="computed_fields.address.state" required></b-input>
                     </b-field>
                     <b-field label="Country" custom-class="text-sm">
-                        <b-input custom-class="text-sm" v-model="computed_fields.address.country"></b-input>
+                        <b-input custom-class="text-sm" v-model="computed_fields.address.country" required></b-input>
                     </b-field>
                 </b-field>
             </div>
@@ -36,7 +36,8 @@
             </div>
         </div>
         <template #footer>
-            <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="handleUpdate">
+            <b-button :loading="loading" type="is-info" class="text-sm rounded tracking-wider font-medium"
+                      @click="handleUpdate">
                 Update
             </b-button>
         </template>
@@ -76,10 +77,11 @@ export default {
     methods: {
         handleUpdate() {
             this.loading = true;
+            console.log({...this.computed_fields})
             axios
                 .patch('/profile-settings/' + this.tenant_id, {
-                    ...this.computed_items,
-                    headquarter: {...this.$refs.hq.collect()},
+                    ...this.computed_fields,
+                    address: {...this.computed_fields.address},
                     type: 'contact-details'
                 })
                 .then(({data}) => {

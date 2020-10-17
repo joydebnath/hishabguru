@@ -14,23 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Services/Setting/PasswordChange.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Setting/PersonalContactDetails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Setting/PersonalDetails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Setting/ProfileSettingFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Address/AddressType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Address/AddressType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Setting/ProfileSettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Setting/ProfileSettingsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Setting/BusinessResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Setting/BusinessResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/business-settings/ContactDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/business-settings/ContactDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Setting/PersonalContactDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Setting/PersonalContactDetails.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Setting/ProfileResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Setting/ProfileResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Setting/PersonalContactDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Setting/PersonalContactDetails.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/profile-settings/ContactSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/profile-settings/ContactSetting.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/profile-settings/PasswordSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/profile-settings/PasswordSetting.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/profile-settings/PersonalDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/profile-settings/PersonalDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/profile-settings/ProfileSettingsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/profile-settings/ProfileSettingsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -802,7 +792,7 @@
       <workItem from="1602743700478" duration="8838000" />
       <workItem from="1602799149485" duration="608000" />
       <workItem from="1602811215983" duration="1347000" />
-      <workItem from="1602842098464" duration="19468000" />
+      <workItem from="1602842098464" duration="22185000" />
     </task>
     <servers />
   </component>
@@ -840,7 +830,7 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2683" y="318" width="374" height="457" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599473751410" />
-    <state x="2094" y="311" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602898729947">
+    <state x="2094" y="311" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602899964748">
       <screen x="72" y="27" width="5688" height="1053" />
     </state>
     <state x="1082" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/1229.0.1920.1080@1229.0.1920.1080" timestamp="1602841989761" />
@@ -850,7 +840,7 @@
     <state x="4523" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601360824932" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1602389565320" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602848020998" />
-    <state x="2094" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.5688.1053@72.27.5688.1053" timestamp="1602898729947" />
+    <state x="2094" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.5688.1053@72.27.5688.1053" timestamp="1602899964748" />
     <state x="2568" y="271" width="413" height="452" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1602886084817">
       <screen x="72" y="27" width="5688" height="1053" />
     </state>
@@ -933,7 +923,7 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1602898624822">
+    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup" timestamp="1602901154629">
       <screen x="72" y="27" width="5688" height="1053" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
@@ -945,7 +935,7 @@
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1602388307038" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1602848566795" />
     <state x="2308" y="191" width="1371" height="678" key="search.everywhere.popup/72.27.3768.1053@72.27.3768.1053" timestamp="1602199119666" />
-    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1602898624822" />
+    <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1602901154629" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

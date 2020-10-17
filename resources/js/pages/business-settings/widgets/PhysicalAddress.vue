@@ -3,25 +3,25 @@
         <div class="col-span-3">
             <label class="label text-gray-700">Headquarter Address</label>
             <b-field label="Address line 1" custom-class="text-sm">
-                <b-input custom-class="text-sm" v-model="computed_items.address_line_1"></b-input>
+                <b-input custom-class="text-sm" v-model="computed_items.address_line_1" required></b-input>
             </b-field>
             <b-field label="Address line 2" custom-class="text-sm">
                 <b-input custom-class="text-sm" v-model="computed_items.address_line_2"></b-input>
             </b-field>
             <b-field grouped>
                 <b-field label="City" custom-class="text-sm">
-                    <b-input custom-class="text-sm" v-model="computed_items.city"></b-input>
+                    <b-input custom-class="text-sm" v-model="computed_items.city" required></b-input>
                 </b-field>
                 <b-field label="Postal Code" custom-class="text-sm">
-                    <b-input custom-class="text-sm" v-model="computed_items.postcode"></b-input>
+                    <b-input custom-class="text-sm" v-model="computed_items.postcode" required></b-input>
                 </b-field>
             </b-field>
             <b-field grouped>
                 <b-field label="State/Division" custom-class="text-sm">
-                    <b-input custom-class="text-sm" v-model="computed_items.state"></b-input>
+                    <b-input custom-class="text-sm" v-model="computed_items.state" required></b-input>
                 </b-field>
                 <b-field label="Country" custom-class="text-sm">
-                    <b-input custom-class="text-sm" v-model="computed_items.country"></b-input>
+                    <b-input custom-class="text-sm" v-model="computed_items.country" required></b-input>
                 </b-field>
             </b-field>
         </div>

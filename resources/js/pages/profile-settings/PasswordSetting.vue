@@ -15,7 +15,7 @@
             </div>
         </div>
         <template #footer>
-            <b-button type="is-info" class="text-sm rounded tracking-wider font-medium" @click="handleUpdate">
+            <b-button :loading="loading" type="is-info" class="text-sm rounded tracking-wider font-medium" @click="handleUpdate">
                 Update
             </b-button>
         </template>
