@@ -26,7 +26,7 @@ const tenancy = {
             axios
                 .get('/tenants/' + getters.getCurrentTenant)
                 .then(({data}) => {
-                    commit('setCurrentInventories', {inventories: data.data.inventories})
+                    commit('setCurrentInventories', {inventories: data.data.addresses})
                 })
                 .catch(err => {
                     console.error(err)

@@ -19,6 +19,7 @@ class UserResource extends JsonResource
                 'id' => $this->id,
                 'name' => $this->name,
                 'email' => $this->email,
+                'current_tenant_id' => $this->current_tenant_id,
             ],
             'tenants' => new TenancyCollection($this->tenants)
         ];

@@ -72,13 +72,14 @@ const store = new Vuex.Store({
                     commit('setUser', {user: data.data.user})
                     commit('tenancy/setTenants', {tenants: data.data.tenants})
 
-                    const FIRST = _.first(data.data.tenants);
-                    commit('tenancy/setCurrentTenant', {current_tenant_id: FIRST ? FIRST.id : null})
-                    commit('tenancy/setCurrentTenantData', {current_tenant: FIRST ? FIRST : null})
-                    commit('tenancy/setUserRoles', {roles: FIRST ? FIRST.user_roles : []})
-
-                    if (FIRST) {
-                        dispatch('tenancy/loadCurrentTenancyData')
+                    if (data.data.user.current_tenant_id) {
+                        commit('tenancy/setCurrentTenant', {current_tenant_id: data.data.user.current_tenant_id})
+                        const CURRENT_TENANT = _.find(data.data.tenants, value => value.id === data.data.user.current_tenant_id);
+                        commit('tenancy/setCurrentTenantData', {current_tenant: CURRENT_TENANT ? CURRENT_TENANT : null})
+                        commit('tenancy/setUserRoles', {roles: CURRENT_TENANT ? CURRENT_TENANT.user_roles : []})
+                        if (CURRENT_TENANT) {
+                            dispatch('tenancy/loadCurrentTenancyData')
+                        }
                     }
 
                     commit('setLoadingUser', false)

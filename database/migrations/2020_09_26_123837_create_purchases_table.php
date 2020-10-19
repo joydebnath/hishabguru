@@ -38,6 +38,7 @@ class CreatePurchasesTable extends Migration
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('approved_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('delivery_site_id')->references('id')->on('addresses')->onDelete('cascade');
         });
     }
 

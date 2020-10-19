@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Tenancy;
 
+use App\Http\Resources\Business\AddressCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TenantResource extends JsonResource
@@ -15,7 +16,7 @@ class TenantResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'addresses' => $this->addresses,
+            'addresses' => new AddressCollection($this->addresses) ,
         ];
     }
 }

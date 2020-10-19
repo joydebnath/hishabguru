@@ -18,7 +18,7 @@ class TenancyController extends Controller
                 ['current_tenant_id' => $request->tenant_id]
             );
             return new TenantResource(
-                Tenant::with('inventorySites.address')->find($request->tenant_id)
+                Tenant::with('addresses')->find($request->tenant_id)
             );
         } catch (\Exception $exception) {
             return response([
