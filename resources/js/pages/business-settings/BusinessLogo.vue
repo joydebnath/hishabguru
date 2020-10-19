@@ -1,8 +1,8 @@
 <template>
     <ActionForm action_name="Brand Logo" action_description="Brand Logo makes your document look professional.">
         <template>
-            <div class="grid grid-cols-5 gap-4">
-                <div class="col-span-2 m-auto">
+            <div class="grid grid-cols-5 gap-4 h-56">
+                <div class="col-span-2 m-auto flex flex-row items-center">
                     <b-field class="file is-light" :class="{'has-name': !!image}">
                         <b-upload type="file" v-model="image" class="file-label"
                                   accept="image/png,image/jpg,image/jpeg">
@@ -13,13 +13,13 @@
                         </b-upload>
                     </b-field>
                 </div>
-                <div class="col-span-3 px-16">
+                <div class="col-span-3 px-16 flex flex-row items-center" :class="[computed_logo ? 'border' : '']">
                     <b-skeleton height="195px" v-if="$props.loading"/>
                     <template v-else>
                         <b-image
                             v-if="computed_logo"
                             :src="computed_logo"
-                            ratio="3by2"
+                            class=""
                         />
                         <div v-else
                              class="border text-center p-16 text-capitalize flex m-auto flex-col align-items-center">
@@ -78,8 +78,11 @@ export default {
     },
     methods: {
         handleRemove() {
-            this.image = null
-            this.image_data = null
+            this.image = null;
+            this.image_data = null;
+            if (this.$props.logo) {
+                this.image_data = this.$props.logo;
+            }
         },
         handleSave() {
             let formData = new FormData();
@@ -123,7 +126,6 @@ export default {
         },
         image(file) {
             if (file && this.isValidFileSize(file)) {
-                console.log(file)
                 this.image_data = URL.createObjectURL(file);
                 return 0;
             }
