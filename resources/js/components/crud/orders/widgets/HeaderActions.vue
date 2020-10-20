@@ -8,6 +8,7 @@
             <b-dropdown-item aria-role="listitem">
                 Copy To
             </b-dropdown-item>
+            <span class="dropdown-divider"></span>
             <b-dropdown-item class="text-red-700" aria-role="listitem">
                 Delete
             </b-dropdown-item>

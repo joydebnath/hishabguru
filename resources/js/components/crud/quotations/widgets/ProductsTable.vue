@@ -30,6 +30,10 @@
                         trap-focus
                     />
                 </b-field>
+                <span class="px-2"></span>
+                <b-field label="Status" custom-class="text-sm" v-if="item.status">
+                    <b-tag class="tracking-wider font-medium text-uppercase" type="is-info">{{item.status}}</b-tag>
+                </b-field>
             </b-field>
         </div>
         <div class="pl-4 mb-4 relative border-t pt-4">

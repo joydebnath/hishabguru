@@ -64,7 +64,14 @@ class PurchaseBuilder implements PDFBuilder
 
     public function generatePDF()
     {
-        $this->pdfBuilder->filename($this->purchase->purchase_number)->save('public');
+        $this->pdfBuilder->filename($this->purchase->purchase_number);
+
+        return $this->pdfBuilder->download();
+    }
+
+    public function streamPDF()
+    {
+        $this->pdfBuilder->filename($this->purchase->purchase_number);
 
         return $this->pdfBuilder->stream();
     }

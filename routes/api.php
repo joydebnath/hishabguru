@@ -37,11 +37,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/lookup/suppliers', 'Lookup\SupplierLookupController@index');
     Route::get('/lookup/products', 'Lookup\ProductLookupController@index');
     Route::get('/lookup/product-categories', 'Lookup\ProductLookupController@categories');
+    Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
+
 
     Route::post('/current-tenant', 'User\TenancyController@store');
     Route::post('/upload/image', 'File\ImageUploadController@store');
 
     Route::patch('/change-password', 'User\UserController@update');
+    Route::patch('/status/{type}/{id}', 'Status\UpdateStatusController@update');
 });
 
 

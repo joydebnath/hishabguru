@@ -223,7 +223,7 @@
 <table class="table">
     <tbody>
     <tr>
-        <td class="px-0 border-0" width="40%">
+        <td class="px-0 border-0" >
             <p class="party-header mb-1"><strong>{{ __('invoices::invoice.seller') }}</strong></p>
             @if($invoice->seller->name)
                 <p class="seller-name mb-1">

@@ -65,7 +65,14 @@ class BillBuilder implements PDFBuilder
 
     public function generatePDF()
     {
-        $this->pdfBuilder->filename($this->bill->bill_number)->save('public');
+        $this->pdfBuilder->filename($this->bill->bill_number);
+
+        return $this->pdfBuilder->download();
+    }
+
+    public function streamPDF()
+    {
+        $this->pdfBuilder->filename($this->bill->bill_number);
 
         return $this->pdfBuilder->stream();
     }

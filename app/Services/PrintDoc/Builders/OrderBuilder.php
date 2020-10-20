@@ -65,7 +65,14 @@ class OrderBuilder implements PDFBuilder
 
     public function generatePDF()
     {
-        $this->pdfBuilder->filename($this->order->order_number)->save('public');
+        $this->pdfBuilder->filename($this->order->order_number);
+
+        return $this->pdfBuilder->download();
+    }
+
+    public function streamPDF()
+    {
+        $this->pdfBuilder->filename($this->order->order_number);
 
         return $this->pdfBuilder->stream();
     }

@@ -47,7 +47,8 @@ export default {
         return {
             error_container: false,
             error_message: '',
-            quotation: {}
+            quotation: {},
+            loading: false
         }
     },
     computed: {

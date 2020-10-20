@@ -38,6 +38,17 @@ class QuotationBuilder implements PDFBuilder
         return $this->generatePDF();
     }
 
+    public function download()
+    {
+        $this->builderHeader();
+
+        $this->buildProductsTable();
+
+        $this->buildFooter();
+
+        return $this->generatePDF();
+    }
+
     public function builderHeader()
     {
         $this->pdfBuilder
@@ -65,7 +76,14 @@ class QuotationBuilder implements PDFBuilder
 
     public function generatePDF()
     {
-        $this->pdfBuilder->filename($this->quotation->quotation_number)->save('public');
+        $this->pdfBuilder->filename($this->quotation->id.'-'.$this->quotation->quotation_number);
+
+        return $this->pdfBuilder->download();
+    }
+
+    public function streamPDF()
+    {
+        $this->pdfBuilder->filename($this->quotation->id.'-'.$this->quotation->quotation_number);
 
         return $this->pdfBuilder->stream();
     }

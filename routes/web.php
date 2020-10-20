@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::post('/init', 'Tenancy\SetupController@store');
     Route::get('/@/dashboard', 'PagesController@index')->name('home');
     Route::get('/@/{any}', 'PagesController@index')->where('any', '.*');
-    Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
+//    Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
 });
 
 

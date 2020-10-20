@@ -65,7 +65,14 @@ class InvoiceBuilder implements PDFBuilder
 
     public function generatePDF()
     {
-        $this->pdfBuilder->filename($this->invoice->invoice_number)->save('public');
+        $this->pdfBuilder->filename($this->invoice->invoice_number);
+
+        return $this->pdfBuilder->download();
+    }
+
+    public function streamPDF()
+    {
+        $this->pdfBuilder->filename($this->invoice->invoice_number);
 
         return $this->pdfBuilder->stream();
     }
