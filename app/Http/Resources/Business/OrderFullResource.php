@@ -36,13 +36,24 @@ class OrderFullResource extends JsonResource
                 'name' => $product->name,
                 'code' => $product->code,
                 'selling_unit_price' => doubleval($product->selling_unit_price),
-                'quantity' => doubleval($pivot->get('quantity', null)),
-                'discount' => doubleval($pivot->get('discount', null)),
-                'tax_rate' => doubleval($pivot->get('tax_rate', null)),
-                'total_selling_cost' => doubleval($pivot->get('total', null)),
+                'profit' => self::getProfitPercentage(
+                    doubleval($pivot->get('total', 0)),
+                    doubleval($product->buying_unit_cost),
+                    doubleval($pivot->get('quantity', 0))
+                ),
+                'quantity' => doubleval($pivot->get('quantity', 0)),
+                'discount' => doubleval($pivot->get('discount', 0)),
+                'tax_rate' => doubleval($pivot->get('tax_rate', 0)),
+                'total_selling_cost' => doubleval($pivot->get('total', 0)),
                 'edit' => false
             ];
         });
+    }
+
+    private static function getProfitPercentage($total_selling_price, $buying_price, $quantity)
+    {
+        $total_buying_cost = $buying_price * $quantity;
+        return round((($total_selling_price - $total_buying_cost) / $total_buying_cost) * 100, 2);
     }
 
     private static function deliveryDetails($details)

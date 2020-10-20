@@ -31,9 +31,9 @@
                     <b-button type="is-text" size="is-small" v-show="false">change</b-button>
                 </div>
                 <article class="message">
-                    <section class="message-body py-3">
+                    <section class="message-body p-3">
                         <div class="media">
-                            <div class="media-content">
+                            <div class="media-content text-sm">
                                 {{ contact.address ? contact.address : '---' }}
                             </div>
                         </div>
