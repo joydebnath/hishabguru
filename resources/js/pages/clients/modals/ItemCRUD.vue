@@ -116,14 +116,16 @@ export default {
                     this.$emit('on-close')
                     this.$buefy.notification.open({
                         message: 'Client has been updated',
-                        type: 'is-success'
+                        type: 'is-success is-light',
+                        duration: 5000
                     })
                 })
                 .catch(err => {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Client update failed',
-                        type: 'is-danger'
+                        type: 'is-danger is-light',
+                        duration: 5000
                     })
                 })
         },
@@ -137,7 +139,8 @@ export default {
                     this.$emit('on-close');
                     this.$buefy.notification.open({
                         message: 'Client is created',
-                        type: 'is-success'
+                        type: 'is-success is-light',
+                        duration: 5000
                     })
                     if (this.total < this.per_page) {
                         this.$store.dispatch('clients/loadData', {page: 1})
@@ -147,7 +150,8 @@ export default {
                     this.loading_event(false);
                     this.$buefy.notification.open({
                         message: 'Whoops! Something went wrong...',
-                        type: 'is-danger'
+                        type: 'is-danger is-light',
+                        duration: 5000
                     })
                 })
         }
