@@ -20,7 +20,7 @@ class ProfileSettingsController extends Controller
                         $query->where('tenant_id', $id)->orWhere('tenant_id', null);
                     },
                     'addresses' => function ($query) {
-                        $query->firstWhere('address_type', AddressType::HOME);
+                        $query->where('address_type', AddressType::HOME);
                     }
                 ])
             );

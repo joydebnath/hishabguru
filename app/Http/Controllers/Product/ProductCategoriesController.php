@@ -14,14 +14,14 @@ class ProductCategoriesController extends Controller
 {
     public function index(ProductCategoriesFilter $filters)
     {
-        return new ProductCategoryCollection(ProductCategory::filter($filters)->with('parent_category')->paginate());
+        return new ProductCategoryCollection(ProductCategory::filter($filters)->paginate());
     }
 
     public function store(ProductCategoryRequest $request)
     {
         try {
             $productCategory = ProductCategory::create($request->validated());
-            return new CategoryResource($productCategory->fresh('parent_category'));
+            return new CategoryResource($productCategory);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], $exception->getCode());
         }

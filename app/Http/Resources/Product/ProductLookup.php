@@ -27,6 +27,12 @@ class ProductLookup extends JsonResource
             'tax_rate' => doubleval($this->tax_rat),
             'edit' => false,
             'description' => $this->description,
+            'profit' => $this->getProfitPercentage(),
         ];
+    }
+
+    private function getProfitPercentage()
+    {
+        return ((doubleval($this->selling_unit_price) - doubleval($this->buying_unit_cost)) / doubleval($this->buying_unit_cost)) * 100;
     }
 }

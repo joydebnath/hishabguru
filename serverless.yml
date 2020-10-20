@@ -2,10 +2,8 @@ service: laravel
 
 provider:
     name: aws
-    # The AWS region in which to deploy (us-east-1 is the default)
-    region: us-east-1
-    # The stage of the application, e.g. dev, production, staging… ('dev' is the default)
-    stage: dev
+    region: ap-south-1
+    stage: production
     runtime: provided
 
 package:
@@ -16,6 +14,9 @@ package:
         - resources/assets/**
         - storage/**
         - tests/**
+    include:
+      - storage/oauth-private.key
+      - storage/oauth-public.key
 
 functions:
     # This function runs the Laravel website/API

@@ -53,7 +53,8 @@
                     <span class="text-sm">{{ props.row.name }}</span>
                 </p>
             </b-table-column>
-            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle"
+                            header-class="text-sm">
                 <EditableInput
                     placeholder="#"
                     :value="props.row.quantity"
@@ -87,7 +88,8 @@
                     @on-input="handleEditDiscount"
                 />
             </b-table-column>
-            <b-table-column label="Tax %" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Tax %" centered v-slot="props" width="80" cell-class="align-middle"
+                            header-class="text-sm">
                 <EditableInput
                     placeholder="0.0"
                     :value="props.row.tax_rate"
@@ -95,6 +97,12 @@
                     :editable="props.row.edit"
                     @on-input="handleEditTaxRate"
                 />
+            </b-table-column>
+            <b-table-column label="Profit %" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+                <span class="text-sm tracking-wide font-medium"
+                      :class="[props.row.profit > 0 ? 'text-green-600' : 'text-red-600']">
+                    {{ props.row.profit }}
+                </span>
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
                 <span class="text-sm">{{ props.row.total_selling_cost }}</span>
@@ -226,6 +234,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     quantity: value,
+                    profit: this.calculateProductProfit(value, this.data[bills].selling_unit_price, this.data[bills].buying_unit_cost, this.data[bills].discount),
                     total_selling_cost: this.calculateProductTotalPrice(value, this.data[bills].selling_unit_price, this.data[bills].discount)
                 }
                 this.data = [...this.data]
@@ -237,6 +246,7 @@ export default {
                 this.data[bills] = {
                     ...this.data[bills],
                     discount: value,
+                    profit: this.calculateProductProfit(this.data[bills].quantity, this.data[bills].selling_unit_price, this.data[bills].buying_unit_cost, value),
                     total_selling_cost: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].selling_unit_price, value)
                 }
                 this.data = [...this.data]
@@ -263,11 +273,19 @@ export default {
             }
         },
         calculateProductTotalPrice(quantity, selling_unit_price, discount) {
+            if (quantity <= 0) {
+                return 0
+            }
             let total = selling_unit_price * quantity
             if (discount) {
                 total = total - (total * (discount / 100));
             }
             return _.round(total, 2);
+        },
+        calculateProductProfit(quantity, selling_unit_price, buying_unit_cost, discount) {
+            const TOTAL_SELLING_PRINCE = this.calculateProductTotalPrice(quantity, selling_unit_price, discount);
+            const TOTAL_BUYING_COST = _.round(quantity * buying_unit_cost, 2);
+            return _.round(((TOTAL_SELLING_PRINCE - TOTAL_BUYING_COST) / TOTAL_BUYING_COST) * 100, 2);
         },
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]
