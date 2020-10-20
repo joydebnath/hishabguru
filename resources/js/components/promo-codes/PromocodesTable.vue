@@ -9,13 +9,20 @@
             :default-sort-direction="defaultSortDirection"
             :sort-icon="sortIcon"
             :sort-icon-size="sortIconSize"
-            :checked-rows.sync="checkedRows"
-            checkable
-            default-sort="user.first_name"
+
             aria-next-label="Next page"
             aria-previous-label="Previous page"
             aria-page-label="Page"
             aria-current-label="Current page"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            :checked-rows.sync="checked_rows"
+            checkable
+            default-sort="user.first_name"
+            backend-sorting
+            @sort="{}"
         >
             <b-table-column
                 field="id"
@@ -117,7 +124,7 @@ export default {
             sortIcon: "arrow-up",
             sortIconSize: "is-small",
             currentPage: 1,
-            checkedRows: []
+            checked_rows: []
         };
     }
 };

@@ -14,29 +14,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/global/popups/DownloadingBox.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/global/popups/UpdateStatusBox.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/BillBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/BillBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/InvoiceBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/InvoiceBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/OrderBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/OrderBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PurchaseBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PurchaseBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/QuotationBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/QuotationBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/buefy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/tailwind.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/vendor/cropperjs/src/bg.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/HeaderActions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/CreateQuotationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/CreateQuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/QuotationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/QuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/invoices/templates/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/invoices/templates/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendors~js/business-settings.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendors~js/clients.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendors~js/quotations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/promo-codes/PromocodesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/promo-codes/PromocodesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -816,7 +814,7 @@
       <workItem from="1603070088772" duration="652000" />
       <workItem from="1603084596285" duration="5619000" />
       <workItem from="1603153849688" duration="7676000" />
-      <workItem from="1603181753807" duration="10477000" />
+      <workItem from="1603181753807" duration="11470000" />
     </task>
     <servers />
   </component>

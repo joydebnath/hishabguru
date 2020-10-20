@@ -4,21 +4,12 @@
         :paginated="true"
         :per-page="per_page"
         :loading="loading"
-        paginated
-        backend-pagination
-        :total="total"
-        @page-change="onPageChange"
-
         :current-page="current_page"
+        :total="total"
+        paginated
         pagination-position="bottom"
-        default-sort-direction="asc"
-        sort-icon="arrow-up"
-        sort-icon-size="is-small"
-        :checked-rows.sync="checked_products"
-        checkable
-        default-sort="code"
-        backend-sorting
-        @sort="onSort"
+        backend-pagination
+        @page-change="onPageChange"
     >
         <b-table-column
             field="code"
