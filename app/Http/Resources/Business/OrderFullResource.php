@@ -19,6 +19,7 @@ class OrderFullResource extends JsonResource
             'contact' => isset($this->contact) ? ['id' => $this->contact->id, 'name' => $this->contact->name] : null,
             'contact_id' => $this->contact_id,
             'order_number' => $this->order_number,
+            'status' => $this->status,
             'reference_number' => $this->reference_number,
             'delivery_details' => self::deliveryDetails($this->deliveryDetails),
             'create_date' => $this->create_date,

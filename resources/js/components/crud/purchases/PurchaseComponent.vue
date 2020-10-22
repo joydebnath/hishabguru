@@ -3,7 +3,7 @@
         <Breadcrumb :active_link_name="breadcrumb_link_name"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
-            <HeaderActions v-if="false"/>
+            <HeaderActions :purchase="computed_item" @on-loading="handleLoading" @on-update="handleUpdate"/>
             <div class="grid grid-cols-7 gap-2">
                 <div class="col-span-2">
                     <PurchaseDetails ref="part1" :item="computed_item"/>
@@ -79,6 +79,12 @@ export default {
         }
     },
     methods: {
+        handleLoading(value) {
+            this.loading = value
+        },
+        handleUpdate(data){
+            this.purchase_order = {...data}
+        },
         handleDraft() {
             let order = {};
             _.forEach(this.$refs, value => {

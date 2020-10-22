@@ -3,7 +3,7 @@
         <Breadcrumb :active_link_name="breadcrumb_link_name"/>
         <div class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
-            <HeaderActions v-if="false"/>
+            <HeaderActions :order="computed_item" @on-loading="handleLoading" @on-update="handleUpdate"/>
             <div class="grid grid-cols-7 gap-2">
                 <div class="col-span-2">
                     <OrderDetails ref="part1" :item="computed_item"/>
@@ -25,6 +25,7 @@
             </div>
             <FooterActions
                 cancel_route="/@/orders"
+                :hide_draft="computed_item.status != 'draft'"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"
                 @on-save-for-approval="handleSaveForApproval"
@@ -80,6 +81,12 @@ export default {
         }
     },
     methods: {
+        handleLoading(value) {
+            this.loading = value
+        },
+        handleUpdate(data){
+            this.order = {...data}
+        },
         handleDraft() {
             let order = {};
             _.forEach(this.$refs, value => {

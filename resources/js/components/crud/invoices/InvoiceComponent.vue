@@ -3,7 +3,13 @@
         <Breadcrumb :active_link_name="breadcrumb_link_name"/>
         <section class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
-            <HeaderActions @on-add-payment="handleAddPayment" @on-delete="handleDelete"/>
+            <HeaderActions
+                :invoice="computed_item"
+                @on-loading="handleLoading"
+                @on-update="handleUpdate"
+                @on-add-payment="handleAddPayment"
+                @on-delete="handleDelete"
+            />
             <div class="grid grid-cols-7 gap-2">
                 <div class="col-span-2">
                     <InvoiceDetails ref="part1" :item="computed_item"/>
@@ -126,6 +132,12 @@ export default {
         },
     },
     methods: {
+        handleLoading(value) {
+            this.loading = value
+        },
+        handleUpdate(data){
+            this.invoice = {...data}
+        },
         handleDraft() {
             let invoice = {};
             _.forEach(this.$refs, value => {

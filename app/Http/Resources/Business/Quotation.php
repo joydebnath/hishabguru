@@ -23,7 +23,7 @@ class Quotation extends JsonResource
             'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/Y') : null,
             'expiry_date' => $this->expiry_date ? Carbon::parse($this->expiry_date)->format('d/m/Y') : null,
             'status' => $this->status,
-            'total_amount' => $this->total_amount
+            'total_amount' => number_format($this->total_amount,2)
         ];
     }
 }

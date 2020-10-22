@@ -42,5 +42,9 @@
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotation.js": "/js/quotation.js",
     "/js/quotations.js": "/js/quotations.js",
-    "/js/suppliers.js": "/js/suppliers.js"
+    "/js/suppliers.js": "/js/suppliers.js",
+    "/js/bills~js/clients~js/employees~js/invoices~js/order~js/orders~js/other-expenses~js/product-categor~fc2798cc.js": "/js/bills~js/clients~js/employees~js/invoices~js/order~js/orders~js/other-expenses~js/product-categor~fc2798cc.js",
+    "/js/order~js/quotation.js": "/js/order~js/quotation.js",
+    "/js/bills~js/clients~js/create-purchase~js/employees~js/invoices~js/order~js/orders~js/other-expenses~731b5871.js": "/js/bills~js/clients~js/create-purchase~js/employees~js/invoices~js/order~js/orders~js/other-expenses~731b5871.js",
+    "/js/create-purchase~js/order~js/purchase~js/quotation.js": "/js/create-purchase~js/order~js/purchase~js/quotation.js"
 }

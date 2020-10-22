@@ -74,12 +74,9 @@
                                 View
                             </b-dropdown-item>
                         </router-link>
-                        <b-dropdown-item @click="$emit('on-copy', props.row)">
-                            Copy to Invoice
-                        </b-dropdown-item>
-                        <b-dropdown-item @click="$emit('on-download', props.row)">
-                            Download PDF
-                        </b-dropdown-item>
+<!--                        <b-dropdown-item @click="$emit('on-copy', props.row)">-->
+<!--                            Copy to Invoice-->
+<!--                        </b-dropdown-item>-->
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
                             <span class="text-red-600">Delete</span>

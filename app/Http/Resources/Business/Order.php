@@ -23,7 +23,7 @@ class Order extends JsonResource
             'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/Y') : null,
             'delivery_date' => $this->delivery_date ? Carbon::parse($this->delivery_date)->format('d/m/Y') : null,
             'status' => $this->status,
-            'total_amount' => $this->total_amount
+            'total_amount' => number_format($this->total_amount,2)
         ];
     }
 }
