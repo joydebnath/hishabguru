@@ -81,7 +81,9 @@ export default {
         EmptyTable
     },
     mounted() {
-        this.$store.dispatch('product_categories/loadData', {page: 1})
+        if(this.data.length === 0) {
+            this.$store.dispatch('product_categories/loadData', {page: 1})
+        }
     },
     methods: {
         onPageChange(page_no) {

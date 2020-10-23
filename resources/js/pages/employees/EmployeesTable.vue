@@ -89,7 +89,9 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch('employees/loadData', {page: 1})
+        if(this.data.length === 0) {
+            this.$store.dispatch('employees/loadData', {page: 1})
+        }
     },
     methods: {
         onPageChange(page_no) {

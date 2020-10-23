@@ -85,7 +85,9 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch('clients/loadData', {page: 1})
+        if(this.data.length === 0) {
+            this.$store.dispatch('clients/loadData', {page: 1})
+        }
     },
     methods: {
         onPageChange(page_no) {

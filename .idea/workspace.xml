@@ -15,8 +15,17 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/product-categories/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/vendors/VendorsTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -804,7 +813,7 @@
       <workItem from="1603369706319" duration="2136000" />
       <workItem from="1603372022755" duration="4000" />
       <workItem from="1603405361292" duration="605000" />
-      <workItem from="1603443904075" duration="13652000" />
+      <workItem from="1603443904075" duration="14388000" />
     </task>
     <servers />
   </component>
