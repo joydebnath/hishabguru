@@ -7,6 +7,7 @@
                 :invoice="computed_item"
                 @on-loading="handleLoading"
                 @on-update="handleUpdate"
+                @on-add-payment="handleAddPayment"
             />
             <div class="grid grid-cols-7 gap-2">
                 <div class="col-span-2">
@@ -172,6 +173,9 @@ export default {
         },
         handleSaveForApproval() {
             console.log('approve')
+        },
+        handleAddPayment() {
+            this.show_add_payment = true
         },
         updateOrder(invoice, message) {
             this.loading = true;

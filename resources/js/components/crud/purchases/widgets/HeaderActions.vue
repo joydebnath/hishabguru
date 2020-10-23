@@ -51,7 +51,6 @@ export default {
             show_status_update: false,
             show_delete: false,
             statuses: [
-                {name: 'Awaiting Approval', value: 'awaiting-approval'},
                 {name: 'Approved', value: 'approved'},
                 {name: 'Billed', value: 'billed'},
             ]

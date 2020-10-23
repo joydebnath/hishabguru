@@ -41,7 +41,7 @@ class Purchase extends Model
 
     public function delivery_site(): BelongsTo
     {
-        return $this->belongsTo(InventorySite::class, 'delivery_site_id');
+        return $this->belongsTo(Address::class, 'delivery_site_id');
     }
 
     public function totalBuyingCost()

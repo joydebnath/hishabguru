@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Expense;
 
+use App\Http\Resources\Business\Address;
 use App\Http\Resources\Business\InventorySite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,10 +21,11 @@ class PurchaseFullResource extends JsonResource
             'contact' => isset($this->contact) ? ['id' => $this->contact->id, 'name' => $this->contact->name] : null,
             'contact_id' => $this->contact_id,
             'purchase_order_number' => $this->purchase_order_number,
+            'status' => $this->status,
             'reference_number' => $this->reference_number,
             'create_date' => $this->create_date,
             'delivery_date' => $this->delivery_date,
-            'delivery_site' => new InventorySite($this->delivery_site),
+            'delivery_site' => new Address($this->delivery_site),
             'products' => self::products($this->products),
         ];
     }

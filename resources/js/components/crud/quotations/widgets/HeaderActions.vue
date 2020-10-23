@@ -54,8 +54,6 @@ export default {
                 {name: 'Accepted', value: 'accepted'},
                 {name: 'Declined', value: 'declined'},
                 {name: 'Expired', value: 'expired'},
-                // {name:'Invoiced', value:'invoiced'},
-                // {name:'Sent', value:'sent'},
             ]
         }
     },

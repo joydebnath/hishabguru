@@ -45,5 +45,8 @@
     "/js/quotations.js": "/js/quotations.js",
     "/js/suppliers.js": "/js/suppliers.js",
     "/js/bills~js/clients~js/create-invoice~js/create-purchase~js/employees~js/invoice~js/invoices~js/orde~4e499b41.js": "/js/bills~js/clients~js/create-invoice~js/create-purchase~js/employees~js/invoice~js/invoices~js/orde~4e499b41.js",
-    "/js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js": "/js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js"
+    "/js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js": "/js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~3c10aa23.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~3c10aa23.js",
+    "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js": "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~4460a7ef.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~4460a7ef.js"
 }

@@ -1,6 +1,7 @@
 <template>
     <section>
-        <b-button size="is-small" class="font-medium tracking-wider mb-1" type="is-info is-light" @click="show_table = !show_table">
+        <b-button size="is-small" class="font-medium tracking-wider mb-1" type="is-info is-light"
+                  @click="show_table = !show_table">
             <span v-if="show_table">Hide</span>
             <span v-else>Show</span>
             Payment Histories
@@ -31,12 +32,20 @@
                 </template>
             </b-table>
         </template>
+        <DeleteBox
+            :show="show_delete"
+            :handler="onConfirmDelete"
+            @on-close="handleDeleteClose"
+        />
     </section>
 </template>
 
 <script>
+import DeleteBox from "@/components/global/popups/DeleteBox";
+
 export default {
     name: "PaymentHistories",
+    components: {DeleteBox},
     props: {
         currency: {
             type: String,
@@ -47,29 +56,32 @@ export default {
     data() {
         return {
             loading: false,
-            show_table: false
+            show_table: false,
+            selected: null,
+            show_delete: false
         }
     },
     methods: {
         handleDelete(record) {
-            this.$buefy.dialog.confirm({
-                message: '<h5 class="mb-2 font-medium text-xl">Deleting Payment Record</h5>Are you sure you want to delete?',
-                confirmText: 'Delete',
-                type: 'is-danger',
-                onConfirm: () => {
-                    this.loading = true;
-                    axios
-                        .delete('/payment-histories/' + record.id)
-                        .then(({data}) => {
-                            this.$emit('on-delete', record);
-                            this.loading = false;
-                        })
-                        .catch(err => {
-                            this.loading = false;
-                            console.log(err)
-                        })
-                }
-            })
+            this.selected = record
+            this.show_delete = true
+        },
+        handleDeleteClose() {
+            this.selected = null
+            this.show_delete = false
+        },
+        onConfirmDelete() {
+            this.loading = true;
+            axios
+                .delete('/payment-histories/' + this.selected.id)
+                .then(({data}) => {
+                    this.$emit('on-delete', this.selected);
+                    this.loading = false;
+                })
+                .catch(err => {
+                    this.loading = false;
+                    console.log(err)
+                })
         }
     }
 }

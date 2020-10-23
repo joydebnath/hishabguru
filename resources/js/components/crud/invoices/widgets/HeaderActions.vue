@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row justify-content-end mb-2" v-show="false">
         <b-tooltip label="Add Payment Record" position="is-right" type="is-dark">
-            <b-button size="is-small" class="mx-2 font-semibold rounded-md" @click="handleAddPayment">
+            <b-button size="is-small" class="mx-2 font-semibold rounded-md" @click="$emit('on-add-payment')">
                 + Payment
             </b-button>
         </b-tooltip>
@@ -68,9 +68,6 @@ export default {
         }
     },
     methods: {
-        handleAddPayment() {
-            this.show_add_payment = true
-        },
         handleShowUploader() {
             this.show_uploader = true
         },

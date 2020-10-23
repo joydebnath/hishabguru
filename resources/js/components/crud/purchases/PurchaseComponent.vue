@@ -24,6 +24,7 @@
                 </div>
             </div>
             <FooterActions
+                :hide_draft="computed_item.status !==  'draft'"
                 cancel_route="/@/purchases"
                 @on-save-as-draft="handleDraft"
                 @on-save="handleSave"

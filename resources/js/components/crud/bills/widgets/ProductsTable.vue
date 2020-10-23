@@ -107,22 +107,22 @@
                     <b-button
                         v-if="props.row.edit"
                         type="is-success is-light "
-                        class="text-lg h-8 w-8 p-4"
-                        icon-right="check"
+                        class="text-lg h-8 w-8 p-3"
+                        icon-right="check sm-icon"
                         @click="()=>handleSaveRecord(props.row)"
                     />
                     <b-button
                         v-else
                         type="is-info is-light "
-                        class="text-lg h-8 w-8 p-4"
-                        icon-right="lead-pencil"
+                        class="text-lg h-8 w-8 p-3"
+                        icon-right="lead-pencil sm-icon"
                         @click="()=>handleEditRecord(props.row)"
                     />
                     &nbsp; &nbsp;
                     <b-button
                         type="is-danger is-light"
-                        class="text-lg h-8 w-8 p-4"
-                        icon-right="trash-can-outline"
+                        class="text-lg h-8 w-8 p-3"
+                        icon-right="trash-can-outline sm-icon"
                         @click="()=>deleteSelectedProducts(props.row)"
                     />
                 </div>
@@ -338,5 +338,9 @@ export default {
 
 .dates .dropdown-item.active, .dropdown-item:active {
     background-color: transparent !important;
+}
+
+.sm-icon{
+    font-size: 15px;
 }
 </style>
