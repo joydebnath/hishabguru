@@ -23,6 +23,7 @@ class OtherExpenseFullResource extends JsonResource
             'due_date' => $this->due_date,
             'note' => $this->note,
             'status' => $this->status,
+            'read_only' => $this->status !== 'draft',
             'products' => self::items($this->items),
             'payment_histories' => $this->payable ? new PaymentHistoryCollection($this->payable) : [],
             'total_due' => $this->total_due

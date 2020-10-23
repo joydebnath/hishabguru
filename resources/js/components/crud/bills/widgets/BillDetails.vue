@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 import SupplierLookupInput from "@/components/global/lookup/suppliers/SupplierLookupInput";
 import UploadedFiles from "./UploadedFiles";
 

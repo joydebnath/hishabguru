@@ -20,7 +20,8 @@ class PaymentHistoryResource extends JsonResource
             'amount' => $this->amount,
             'payment_date' => $this->payment_date ? Carbon::parse($this->payment_date)->format('d/m/Y') : null,
             'payment_note' => $this->payment_note,
-            'total_due' => $this->payable->total_due
+            'total_due' => $this->payable->total_due,
+            'status' => $this->payable->total_due > 0 ? 'due' : 'paid'
         ];
     }
 }

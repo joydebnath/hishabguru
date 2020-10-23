@@ -20,6 +20,7 @@ class OrderFullResource extends JsonResource
             'contact_id' => $this->contact_id,
             'order_number' => $this->order_number,
             'status' => $this->status,
+            'read_only' => $this->status !== 'draft',
             'reference_number' => $this->reference_number,
             'delivery_details' => self::deliveryDetails($this->deliveryDetails),
             'create_date' => $this->create_date,

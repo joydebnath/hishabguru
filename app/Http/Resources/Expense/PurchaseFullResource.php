@@ -22,6 +22,7 @@ class PurchaseFullResource extends JsonResource
             'contact_id' => $this->contact_id,
             'purchase_order_number' => $this->purchase_order_number,
             'status' => $this->status,
+            'read_only' => $this->status !== 'draft',
             'reference_number' => $this->reference_number,
             'create_date' => $this->create_date,
             'delivery_date' => $this->delivery_date,

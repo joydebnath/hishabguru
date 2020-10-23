@@ -1,7 +1,10 @@
 <template>
     <section>
         <b-table :data="$props.histories">
-            <b-loading :is-full-page="false" v-model="$props.loading" :can-cancel="false"/>
+            <p v-if="$props.loading">
+                <b-skeleton active/>
+                <b-skeleton height="80px"/>
+            </p>
             <b-table-column label="Payment Records" v-slot="props" v-if="!$props.loading">
                 <p class="flex flex-row justify-content-between mb-1">
                     <span>{{ props.row.amount }} BDT</span>

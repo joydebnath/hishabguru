@@ -1,7 +1,10 @@
 <template>
     <section>
         <b-table :data="$props.histories">
-            <b-loading :is-full-page="false" v-model="$props.loading" :can-cancel="false"/>
+            <p v-if="$props.loading">
+                <b-skeleton active/>
+                <b-skeleton height="80px"/>
+            </p>
             <b-table-column label="Payment Records" v-slot="props" v-if="!$props.loading">
                 <p class="flex flex-row justify-content-between mb-1">
                     <span>{{ props.row.amount }} BDT</span>
@@ -39,11 +42,11 @@ export default {
         loading: Boolean,
         histories: Object | Array
     },
-    data(){
-      return {
-          selected: null,
-          show_delete: false
-      }
+    data() {
+        return {
+            selected: null,
+            show_delete: false
+        }
     },
     methods: {
         handleDelete(record) {
@@ -54,7 +57,7 @@ export default {
             this.selected = null
             this.show_delete = false
         },
-        onConfirmDelete(){
+        onConfirmDelete() {
             this.$emit('on-loading', true);
             axios
                 .delete('/payment-histories/' + this.selected.id)

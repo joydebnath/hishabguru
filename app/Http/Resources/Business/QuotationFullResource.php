@@ -24,6 +24,7 @@ class QuotationFullResource extends JsonResource
             'minimum_payment_amount' => $this->minimum_payment_amount,
             'note' => $this->note,
             'status' => $this->status,
+            'read_only' => $this->status !== 'draft',
             'create_date' => $this->create_date,
             'expiry_date' => $this->expiry_date,
             'products' => self::products($this->products)

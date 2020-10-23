@@ -24,6 +24,7 @@ class BillFullResource extends JsonResource
             'due_date' => $this->due_date,
             'note' => $this->note,
             'status' => $this->status,
+            'read_only' => $this->status !== 'draft',
             'products' => self::products($this->products),
             'total_due' => $this->total_due
         ];

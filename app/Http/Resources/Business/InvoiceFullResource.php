@@ -23,10 +23,10 @@ class InvoiceFullResource extends JsonResource
             'issue_date' => $this->issue_date,
             'due_date' => $this->due_date,
             'status' => $this->status,
+            'read_only' => $this->status !== 'draft',
             'note' => $this->note,
             'products' => self::products($this->products),
             'total_due' => $this->total_due,
-            'read_only'=> true
         ];
     }
 
