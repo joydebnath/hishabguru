@@ -12,7 +12,7 @@
         <router-link to="/@/products">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
                 <div class="flex flex-row">
-                    <Timeline custom_class="h-5 w-5 text-indigo-600" />
+                    <Timeline custom_class="h-5 w-5" />
                     <div class="flex flex-col pl-3">
                         <p class="text-sm leading-6 font-medium text-gray-900">Products</p>
                         <p class="text-xs leading-5 text-gray-500">List of all of your products and service</p>
@@ -23,7 +23,7 @@
         <router-link to="/@/product-categories">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
                 <div class="flex flex-row">
-                    <Shopping custom_class="h-5 w-5 text-indigo-600" />
+                    <Shopping custom_class="h-5 w-5" />
                     <div class="flex flex-col pl-3">
                         <p class="text-sm leading-6 font-medium text-gray-900">Product Categories</p>
                         <p class="text-xs leading-5 text-gray-500">List of your categories to classify products</p>

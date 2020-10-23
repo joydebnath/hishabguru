@@ -11,18 +11,36 @@
        </span>
         <router-link to="/@/quotations">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Quotations
+                <div class="flex flex-row">
+                    <ShoppingBag custom_class="h-5 w-5"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Quotations</p>
+                        <p class="text-xs leading-5 text-gray-500">Keep track of all of your purchase requests</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
         <router-link to="/@/orders">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Orders
+                <div class="flex flex-row">
+                    <ShoppingCart custom_class="h-5 w-5"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Orders</p>
+                        <p class="text-xs leading-5 text-gray-500">Organize and keep track of all of your orders</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
         <span class="dropdown-divider"></span>
         <router-link to="/@/invoices">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Invoices
+                <div class="flex flex-row">
+                    <PaperNote custom_class="h-5 w-5"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Invoices</p>
+                        <p class="text-xs leading-5 text-gray-500">List of all of your invoices</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
 <!--        <span class="dropdown-divider"></span>-->
@@ -41,8 +59,13 @@
 </template>
 
 <script>
+import ShoppingBag from "@/components/icons/ShoppingBag";
+import ShoppingCart from "@/components/icons/ShoppingCart";
+import PaperNote from "@/components/icons/PaperNote";
+
 export default {
     name: "BusinessMenu",
+    components: {ShoppingCart, ShoppingBag, PaperNote},
     props: {
         active: String
     },

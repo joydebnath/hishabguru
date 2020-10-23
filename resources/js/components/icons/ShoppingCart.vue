@@ -1,0 +1,26 @@
+<template>
+    <svg :class="$props.custom_class" width="24" height="24" viewBox="0 0 24 24" fill="none"
+         xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+        <circle cx="10" cy="20" r="1" stroke="#000" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round"></circle>
+        <circle cx="18" cy="20" r="1" stroke="#000" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round"></circle>
+        <path
+            d="M2 3H5.5C5.5 3 5.91294 4.82843 6.17753 6C6.70622 8.34099 7.43235 11.5562 7.85836 13.4425C8.0643 14.3543 8.87398 15 9.8088 15H18.3957C19.3331 15 20.1447 14.3489 20.348 13.4339L22 6"
+            stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M22 6H6.5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+</template>
+
+<script>
+export default {
+    name: "ShoppingCart",
+    props: {
+        custom_class: String
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

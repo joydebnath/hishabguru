@@ -11,26 +11,49 @@
     </span>
         <router-link to="/@/bills">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Bills to pay
+                <div class="flex flex-row">
+                    <CreditCard custom_class="h-5 w-5 text-indigo-600"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Bills to pay</p>
+                        <p class="text-xs leading-5 text-gray-500">Keep track of all of your bills.</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
         <span class="dropdown-divider"></span>
         <router-link to="/@/purchases">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Purchases
+                <div class="flex flex-row">
+                    <Store custom_class="h-5 w-5"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Purchases</p>
+                        <p class="text-xs leading-5 text-gray-500">Organize all of your Purchase orders</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
         <router-link to="/@/other-expenses">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Other expenses
+                <div class="flex flex-row">
+                    <Wallet custom_class="h-5 w-5"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Other expenses</p>
+                        <p class="text-xs leading-5 text-gray-500">Keep track of all of your other expenses</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
     </b-dropdown>
 </template>
 
 <script>
+import CreditCard from "@/components/icons/CreditCard";
+import Store from "@/components/icons/Store";
+import Wallet from "@/components/icons/Wallet";
+
 export default {
     name: "AccountingMenu",
+    components: {Wallet, Store, CreditCard},
     props: {
         active: String
     },

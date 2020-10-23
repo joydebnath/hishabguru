@@ -11,7 +11,13 @@
         </span>
         <router-link to="/@/employees">
             <b-dropdown-item class="py-2 focus:outline-none" aria-role="listitem">
-                Employees
+                <div class="flex flex-row">
+                    <WorkBag custom_class="h-5 w-5"/>
+                    <div class="flex flex-col pl-3">
+                        <p class="text-sm leading-6 font-medium text-gray-900">Employees</p>
+                        <p class="text-xs leading-5 text-gray-500">List of all of your employees</p>
+                    </div>
+                </div>
             </b-dropdown-item>
         </router-link>
 <!--        <router-link to="/@/leave-management">-->
@@ -23,8 +29,10 @@
 </template>
 
 <script>
+import WorkBag from "@/components/icons/WorkBag";
 export default {
     name: "TeamsMenu",
+    components: {WorkBag},
     props: {
         active: String
     },
