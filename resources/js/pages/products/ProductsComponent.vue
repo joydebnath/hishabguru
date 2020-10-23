@@ -92,10 +92,14 @@ export default {
             })
             this.$store.dispatch('products/loadData', {page: 1})
         },
-        handleRefresh(){
+        handleRefresh() {
             this.$store.dispatch('products/loadData', {page: this.current_page})
         },
         handleAdd() {
+            if (this.categories_count === 1) {
+                this.noCategoryWarning();
+                return;
+            }
             this.action_type = 'add';
             this.handleToggleModal()
         },
@@ -121,7 +125,7 @@ export default {
             this.delete_popup = false;
             this.tobe_deleted_product = {};
         },
-        onConfirmDelete(){
+        onConfirmDelete() {
             axios
                 .delete('/products/' + product.id)
                 .then(({data}) => {
@@ -131,7 +135,7 @@ export default {
                     this.$buefy.notification.open({
                         message: data.message,
                         type: 'is-success',
-                        duration:5000
+                        duration: 5000
                     });
                     this.handleDeleteClose();
                 })
@@ -140,7 +144,7 @@ export default {
                         this.$buefy.notification.open({
                             message: err.response.data.message,
                             type: 'is-danger',
-                            duration:5000
+                            duration: 5000
                         });
                         this.handleDeleteClose();
                     }
@@ -152,11 +156,24 @@ export default {
         handleToggleLoading(value) {
             this.loading = value
         },
+        noCategoryWarning() {
+            this.$buefy.snackbar.open({
+                message: 'You need to create a product category first',
+                type: 'is-warning',
+                position: 'is-top',
+                actionText: 'Go to',
+                indefinite: true,
+                onAction: () => {
+                    this.$router.push('/@/product-categories');
+                }
+            })
+        }
     },
     computed: {
         ...mapGetters({
             checked_products: 'products/getCheckedProducts',
-            current_page: 'products/getCurrentPage'
+            current_page: 'products/getCurrentPage',
+            categories_count: 'products/getProductCategoriesCount',
         }),
         show_bulk_actions() {
             return this.checked_products.length

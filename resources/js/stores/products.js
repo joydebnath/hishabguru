@@ -9,11 +9,13 @@ const products = {
         loading: false,
         current_page: 1,
         filters: {},
-        checked_products: []
+        checked_products: [],
+        product_categories_count: 0
     },
     getters: {
         getProducts: state => state.products,
         getCheckedProducts: state => state.checked_products,
+        getProductCategoriesCount: state => state.product_categories_count,
         getUrl: state => state.url,
         getTotal: state => state.total,
         getLoading: state => state.loading,
@@ -28,6 +30,9 @@ const products = {
     mutations: {
         setProducts: (state, {products}) => {
             state.products = products
+        },
+        setProductCategoriesCount: (state, {count}) => {
+            state.product_categories_count = count
         },
         setCheckedProducts: (state, {products}) => {
             state.checked_products = products
@@ -64,6 +69,7 @@ const products = {
                     commit('setProducts', {products: data.data})
                     commit('setTotal', {total: data.meta.total})
                     commit('setCurrentPage', {current_page: data.meta.current_page})
+                    commit('setProductCategoriesCount', {count: data.count.product_categories_count})
                 })
                 .catch(err => {
                     console.log(err)
