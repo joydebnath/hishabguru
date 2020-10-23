@@ -23,8 +23,11 @@
                         <b-input v-model="computed_item.code"></b-input>
                     </b-field>
                     <b-field label="Category">
-                        <ProductCategory :name="computed_category.name" @on-add="handleAddCategory"
-                                         @on-remove="handleRemoveCategory"/>
+                        <ProductCategory
+                            :name="computed_category.name"
+                            @on-add="handleAddCategory"
+                            @on-remove="handleRemoveCategory"
+                        />
                     </b-field>
                 </b-field>
                 <b-field grouped>

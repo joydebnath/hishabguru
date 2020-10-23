@@ -2,7 +2,7 @@
     <b-tag
         v-if="name"
         class="p-1 w-32"
-        type="is-light"
+        type="is-dark"
         attached
         size="is-medium"
         closable
@@ -13,16 +13,21 @@
 
     <b-autocomplete
         v-else
-        @typing="getCategories"
         :data="categories"
         placeholder="Search by name"
         field="name"
+        @typing="getCategories"
         @select="handleAddCategory"
+        @input="handleInput"
     >
-        <template slot="footer" v-if="fetching_categories">
-            <b-skeleton width="100%" :animated="true"/>
+        <template slot="empty">
+            <span v-if="fetching_categories">
+                <b-skeleton width="100%" :animated="true"/>
+            </span>
+            <span v-else>
+                No results found
+            </span>
         </template>
-        <template slot="empty">No results found</template>
     </b-autocomplete>
 </template>
 
@@ -43,15 +48,19 @@ export default {
     ...mapGetters({
         tenant_id: 'tenancy/getCurrentTenant',
     }),
-    methods:{
-        handleRemoveCategory(){
+    methods: {
+        handleRemoveCategory() {
             this.$emit('on-remove')
         },
-        handleAddCategory(value){
+        handleAddCategory(value) {
             this.$emit('on-add', value)
         },
-        getCategories(value) {
-            this.fetching_categories = true;
+        handleInput(value) {
+            if (value) {
+                this.fetching_categories = true
+            }
+        },
+        getCategories: _.debounce(function (value) {
             this.categories = []
             axios
                 .get('/lookup/product-categories', {
@@ -68,7 +77,7 @@ export default {
                     this.fetching_categories = false;
                     console.log('getCategories', err)
                 })
-        }
+        }, 800)
     }
 }
 </script>
