@@ -21,7 +21,9 @@
             :loading="loading"
             clear-on-select
             @typing="searchClients"
-            @select="handleClientSelected">
+            @select="handleClientSelected"
+            @input="handleInput"
+        >
             <template slot-scope="props">
                 <ClientTile :client="props"/>
             </template>
@@ -30,7 +32,12 @@
                 <!--                    + Add Client {{ client_name }}-->
                 <!--                </p>-->
                 <p class="mb-0 py-2 cursor-pointer text-gray-700">
-                    Client {{ client_name }} not found
+                    <template v-if="loading">
+                        Loading ...
+                    </template>
+                    <template v-else>
+                        Client {{ client_name }} not found
+                    </template>
                 </p>
             </template>
         </b-autocomplete>
@@ -80,8 +87,7 @@ export default {
         })
     },
     methods: {
-        searchClients(value) {
-            this.loading = true;
+        searchClients: _.debounce(function (value) {
             axios.get('/lookup/clients', {
                 params: {
                     search: value,
@@ -97,9 +103,14 @@ export default {
                     this.loading = false;
                     console.log('searchClients => ', err)
                 })
-        },
+        }, 800),
         showAddNewClient() {
             this.show_add_new = true;
+        },
+        handleInput(value) {
+            if (value) {
+                this.loading = true
+            }
         },
         handleAddNewClient({name, mobile}) {
             //axios call to create a client
@@ -113,9 +124,10 @@ export default {
         },
         handleClientSelected(client) {
             if (client) {
-                this.$emit('on-select', client)
+                this.loading = false;
+                this.$emit('on-select', client);
             }
-            this.client_name = ''
+            this.client_name = '';
         }
     },
 }

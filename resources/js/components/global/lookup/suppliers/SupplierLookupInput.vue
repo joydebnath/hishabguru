@@ -21,7 +21,9 @@
             custom-class="text-sm"
             clear-on-select
             @typing="searchSuppliers"
-            @select="handleClientSelected">
+            @select="handleClientSelected"
+            @input="handleInput"
+        >
             <template slot-scope="props">
                 <SupplierTile :supplier="props"/>
             </template>
@@ -80,8 +82,7 @@ export default {
         })
     },
     methods: {
-        searchSuppliers(value) {
-            this.loading = true;
+        searchSuppliers: _.debounce(function (value) {
             axios.get('/lookup/suppliers', {
                 params: {
                     search: value,
@@ -97,9 +98,14 @@ export default {
                     this.loading = false;
                     console.log('searchSuppliers => ', err)
                 })
-        },
+        }, 800),
         showAddNewClient() {
             this.show_add_new = true;
+        },
+        handleInput(value) {
+            if (value) {
+                this.loading = true
+            }
         },
         handleAddNewClient({name, mobile}) {
             //axios call to create a supplier
@@ -113,9 +119,10 @@ export default {
         },
         handleClientSelected(supplier) {
             if (supplier) {
-                this.$emit('on-select', supplier)
+                this.loading = false;
+                this.$emit('on-select', supplier);
             }
-            this.supplier_name = ''
+            this.supplier_name = '';
         }
     },
 }

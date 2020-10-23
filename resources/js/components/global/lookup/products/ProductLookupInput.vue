@@ -8,6 +8,7 @@
         :loading="loading"
         @typing="searchProducts"
         @select="handleProductSelected"
+        @input="handleInput"
         custom-class="text-sm"
     >
         <template slot-scope="props">
@@ -36,26 +37,31 @@ export default {
     methods: {
         handleProductSelected(product) {
             if (product) {
+                this.loading = false;
                 this.$emit('on-select', product)
             }
         },
-        searchProducts(value) {
-            this.loading = true;
+        searchProducts: _.debounce(function (value) {
             axios
-              .get('/lookup/products', {
-                  params: {
-                      search: value,
-                      tenant_id: this.tenant_id
-                  }
-              })
-              .then(({data}) => {
-                  this.loading = false;
-                  this.search_results = data.data;
-              })
-              .catch(err => {
-                  this.loading = false;
-                  console.log('searchProducts => ', err)
-              })
+                .get('/lookup/products', {
+                    params: {
+                        search: value,
+                        tenant_id: this.tenant_id
+                    }
+                })
+                .then(({data}) => {
+                    this.loading = false;
+                    this.search_results = data.data;
+                })
+                .catch(err => {
+                    this.loading = false;
+                    console.log('searchProducts => ', err)
+                })
+        }, 800),
+        handleInput(value){
+            if(value){
+                this.loading = true
+            }
         }
     }
 }

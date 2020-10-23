@@ -143,6 +143,10 @@
                                     <td class="border-t-0 border-b text-base font-normal">Sub Total</td>
                                     <td class="border-t-0 border-b text-base font-normal">{{ sub_total }}</td>
                                 </tr>
+                                <tr v-if="total_discount">
+                                    <td class="border-t-0 border-b text-base font-normal">Total Discount</td>
+                                    <td class="border-t-0 border-b text-base font-normal">{{ total_discount }}</td>
+                                </tr>
                                 <tr>
                                     <td class="border-t-0 border-b text-base font-normal">Total Tax</td>
                                     <td class="border-t-0 border-b text-base font-normal">{{ tax }}</td>
@@ -300,6 +304,11 @@ export default {
         },
         sub_total() {
             return _.round(_.sumBy(this.products, 'total_selling_cost'), 2);
+        },
+        total_discount() {
+            return _.round(_.sumBy(this.products, (value)=>{
+                return value.total_selling_cost * _.round(value.discount / 100, 2)
+            }), 2);
         },
         tax() {
             return _.sumBy(this.products, value => {
