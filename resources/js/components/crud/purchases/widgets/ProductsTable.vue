@@ -141,16 +141,16 @@
                             <table class="table is-narrow w-full">
                                 <tbody>
                                 <tr>
-                                    <td class="border-t-0 border-b text-base font-normal">Sub Total</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ sub_total }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Sub Total</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ sub_total }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border-t-0 border-b text-base font-normal">Total Tax</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ tax }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Tax</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ tax }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border-t-0 text-lg">Total</td>
-                                    <td class="border-t-0 text-lg">{{ total }}</td>
+                                    <td class="border-t-0 text-base">Total</td>
+                                    <td class="border-t-0 text-base text-right">{{ total }}</td>
                                 </tr>
                                 </tbody>
                             </table>

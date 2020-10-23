@@ -37,7 +37,7 @@
                 </b-field>
                 <span class="px-2"></span>
                 <b-field label="Status" custom-class="text-sm" v-if="item.status">
-                    <b-tag class="tracking-wider font-medium text-uppercase" type="is-info">{{item.status}}</b-tag>
+                    <b-tag class="tracking-wider font-medium text-uppercase" type="is-info">{{ item.status }}</b-tag>
                 </b-field>
             </b-field>
         </div>
@@ -61,7 +61,8 @@
                     <span class="text-sm">{{ props.row.name }}</span>
                 </p>
             </b-table-column>
-            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Qty" centered v-slot="props" width="80" cell-class="align-middle"
+                            header-class="text-sm">
                 <EditableInput
                     placeholder="#"
                     :value="props.row.quantity"
@@ -95,7 +96,8 @@
                     @on-input="handleEditDiscount"
                 />
             </b-table-column>
-            <b-table-column label="Tax %" centered v-slot="props" width="80" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Tax %" centered v-slot="props" width="80" cell-class="align-middle"
+                            header-class="text-sm">
                 <EditableInput
                     placeholder="0.0"
                     :value="props.row.tax_rate"
@@ -103,6 +105,12 @@
                     :editable="props.row.edit"
                     @on-input="handleEditTaxRate"
                 />
+            </b-table-column>
+            <b-table-column label="Profit %" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+                <span class="text-sm tracking-wide font-medium"
+                      :class="[props.row.profit > 0 ? 'text-green-600' : 'text-red-600']">
+                    {{ props.row.profit }}
+                </span>
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
                 <span class="text-sm">{{ props.row.total_selling_cost }}</span>
@@ -140,20 +148,20 @@
                             <table class="table is-narrow w-full">
                                 <tbody>
                                 <tr>
-                                    <td class="border-t-0 border-b text-base font-normal">Sub Total</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ sub_total }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Sub Total</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ sub_total }}</td>
                                 </tr>
                                 <tr v-if="total_discount">
-                                    <td class="border-t-0 border-b text-base font-normal">Total Discount</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ total_discount }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Discount</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ total_discount }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border-t-0 border-b text-base font-normal">Total Tax</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ tax }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Tax</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ tax }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border-t-0 text-lg">Total</td>
-                                    <td class="border-t-0 text-lg">{{ total }}</td>
+                                    <td class="border-t-0 text-base">Total</td>
+                                    <td class="border-t-0 text-base text-right">{{ total }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -287,7 +295,7 @@ export default {
                 this.data = [...this.data]
             }
         },
-        calculateProductTotalPrice(quantity, selling_unit_price,discount) {
+        calculateProductTotalPrice(quantity, selling_unit_price, discount) {
             let total = selling_unit_price * quantity
             if (discount) {
                 total = total - (total * (discount / 100));
@@ -306,8 +314,8 @@ export default {
             return _.round(_.sumBy(this.products, 'total_selling_cost'), 2);
         },
         total_discount() {
-            return _.round(_.sumBy(this.products, (value)=>{
-                return value.total_selling_cost * _.round(value.discount / 100, 2)
+            return _.round(_.sumBy(this.products, (value) => {
+                return (value.selling_unit_price * value.quantity) * _.round(value.discount / 100, 2)
             }), 2);
         },
         tax() {

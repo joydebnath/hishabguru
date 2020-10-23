@@ -141,20 +141,20 @@
                             <table class="table is-narrow w-full">
                                 <tbody>
                                 <tr>
-                                    <td class="border-t-0 border-b text-base font-normal">Sub Total</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ sub_total }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Sub Total</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ sub_total }}</td>
                                 </tr>
                                 <tr v-if="total_discount">
-                                    <td class="border-t-0 border-b text-base font-normal">Total Discount</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ total_discount }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Discount</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ total_discount }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border-t-0 border-b text-base font-normal">Total Tax</td>
-                                    <td class="border-t-0 border-b text-base font-normal">{{ tax }}</td>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Tax</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ tax }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border-t-0 text-lg">Total</td>
-                                    <td class="border-t-0 text-lg">{{ total }}</td>
+                                    <td class="border-t-0 text-base">Total</td>
+                                    <td class="border-t-0 text-base text-right">{{ total }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -302,7 +302,7 @@ export default {
         },
         total_discount() {
             return _.round(_.sumBy(this.products, (value)=>{
-                return value.total_selling_cost * _.round(value.discount / 100, 2)
+                return (value.selling_unit_price * value.quantity) * _.round(value.discount / 100, 2)
             }), 2);
         },
         tax() {

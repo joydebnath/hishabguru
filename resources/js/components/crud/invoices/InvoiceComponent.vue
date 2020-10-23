@@ -7,8 +7,6 @@
                 :invoice="computed_item"
                 @on-loading="handleLoading"
                 @on-update="handleUpdate"
-                @on-add-payment="handleAddPayment"
-                @on-delete="handleDelete"
             />
             <div class="grid grid-cols-7 gap-2">
                 <div class="col-span-2">
@@ -86,7 +84,7 @@ import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 import PaymentHistories from "./widgets/PaymentHistories";
 import AddPaymentRecord from "./widgets/AddPaymentRecord";
-import headerActionsMixin from './mixins/header-actions'
+
 import PaymentHistoriesMixin from './mixins/payment-histories'
 
 export default {
@@ -94,7 +92,7 @@ export default {
     components: {
         AddPaymentRecord, PaymentHistories, Breadcrumb, FooterActions, HeaderActions, ProductsTable, InvoiceDetails
     },
-    mixins: [headerActionsMixin, PaymentHistoriesMixin],
+    mixins: [PaymentHistoriesMixin],
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
@@ -135,7 +133,7 @@ export default {
         handleLoading(value) {
             this.loading = value
         },
-        handleUpdate(data){
+        handleUpdate(data) {
             this.invoice = {...data}
         },
         handleDraft() {
