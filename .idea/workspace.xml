@@ -14,26 +14,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/CreditCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/OfficeBuilding.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/PaperNote.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/ShoppingBag.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/ShoppingCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/Store.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/UserGroup.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/Wallet.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/WorkBag.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/BusinessMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/BusinessMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/ContactsMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/ContactsMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/ExpenseMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/ExpenseMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/InventoryMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/InventoryMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/TeamsMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/navbar/menus/TeamsMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/icons/CameraIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/icons/CameraIcon.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/icons/Shopping.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/icons/Shopping.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/icons/Timeline.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/icons/Timeline.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PrintDoc/PrintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PrintDoc/PrintController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tenant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tenant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/BillBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/BillBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/InvoiceBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/InvoiceBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/OrderBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/OrderBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PDFBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PDFBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PurchaseBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PurchaseBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/QuotationBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/QuotationBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/PrintDocService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/PrintDocService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/route/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/invoices/templates/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/invoices/templates/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -823,7 +819,7 @@
       <workItem from="1603405361292" duration="605000" />
       <workItem from="1603443904075" duration="14708000" />
       <workItem from="1603462336314" duration="1977000" />
-      <workItem from="1603491422096" duration="3581000" />
+      <workItem from="1603491422096" duration="8424000" />
     </task>
     <servers />
   </component>
@@ -847,10 +843,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="1128" y="359" width="640" height="403" key="#com.intellij.fileTypes.FileTypeChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1599742342890" />
-    <state x="2267" y="234" width="411" height="652" key="#com.intellij.ide.util.MemberChooser" timestamp="1602888692122">
-      <screen x="72" y="27" width="5688" height="1053" />
+    <state x="2661" y="212" width="411" height="652" key="#com.intellij.ide.util.MemberChooser" timestamp="1603500578147">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2661" y="212" width="411" height="652" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602760757787" />
+    <state x="2661" y="212" width="411" height="652" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603500578147" />
     <state x="785" y="234" width="421" height="645" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1602392469965" />
     <state x="2267" y="234" key="#com.intellij.ide.util.MemberChooser/72.27.5688.1053@72.27.5688.1053" timestamp="1602888692122" />
     <state x="1944" y="349" width="525" height="423" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1602888710284">
@@ -953,23 +949,23 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="600" height="428" key="javadoc.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603177516719" />
-    <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1603188581263">
+    <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1603497584421">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="624" y="245" key="run.anything.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599363128410" />
     <state x="673" y="245" key="run.anything.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1599561357024" />
-    <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603188581263" />
+    <state x="2544" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603497584421" />
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1603457248144">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1603501998014">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1603367950776" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603457248144" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603501998014" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1603153911358" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1603211904398" />

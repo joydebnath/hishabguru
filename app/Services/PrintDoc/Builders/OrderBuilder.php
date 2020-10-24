@@ -16,12 +16,12 @@ class OrderBuilder implements PDFBuilder
     public function __construct($orderId)
     {
         $this->printService = new PrintDocService();
-        $this->order = Order::with('contact', 'products', 'tenant')->findOrFail($orderId);
+        $this->order = Order::with('contact', 'products', 'tenant.imageable')->findOrFail($orderId);
         $this->pdfBuilder =
             ExtendedInvoice::make('Order')
                 ->dateFormat('d/m/Y')
-                ->currencySymbol('BDT')
-                ->currencyCode('BDT')
+                ->currencySymbol($this->order->tenant->currency_of_operation)
+                ->currencyCode($this->order->tenant->currency_of_operation)
                 ->currencyFormat('{VALUE} {SYMBOL}')
                 ->currencyThousandsSeparator(',')
                 ->currencyDecimalPoint('.');
@@ -43,11 +43,16 @@ class OrderBuilder implements PDFBuilder
         $this->pdfBuilder
             ->sequence($this->order->order_number)
             ->serialNumberFormat('{SEQUENCE}')
-            ->seller($this->printService->contact($this->order->contact))
-            ->buyer($this->printService->contact($this->order->contact)) // Business
+            ->buyer($this->printService->contact($this->order->contact))
+            ->seller($this->printService->tenant($this->order->tenant))
             ->date(Carbon::parse($this->order->create_date))
-            ->addDeliveryDate($this->order->delivery_date ? Carbon::parse($this->order->delivery_date) : null)
-            ->logo('https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg');
+            ->addDeliveryDate($this->order->delivery_date ? Carbon::parse($this->order->delivery_date) : null);
+
+        if ($this->order->tenant->imageable) {
+            $source = $this->order->tenant->imageable->source;
+            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
+//            $this->pdfBuilder->logo($source);
+        }
     }
 
     public function buildProductsTable()
@@ -89,5 +94,16 @@ class OrderBuilder implements PDFBuilder
                 'tax_rate' => doubleval($pivot->get('tax_rate', 0)),
             ]))->apply();
         })->toArray();
+    }
+
+    public function stream()
+    {
+        $this->builderHeader();
+
+        $this->buildProductsTable();
+
+        $this->buildFooter();
+
+        return $this->streamPDF();
     }
 }

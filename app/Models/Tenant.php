@@ -24,7 +24,7 @@ class Tenant extends Model
 
     public function headquarter()
     {
-        return $this->addresses()->firstWhere('address_type', AddressType::HQ);
+        return $this->addresses()->where('address_type', AddressType::HQ);
     }
 
     public function details()

@@ -118,10 +118,22 @@ export default {
             let type = '';
             switch (value) {
                 case 'ordered':
+                    type = 'is-link'
+                    break;
+                case 'fulfilled':
                     type = 'is-success'
+                    break;
+                case 'shipped':
+                    type = 'is-info'
                     break;
                 case 'draft':
                     type= 'is-light'
+                    break
+                case 'cancelled':
+                    type= 'is-danger'
+                    break
+                case 'returned':
+                    type= 'is-danger is-light'
                     break
                 case 'awaiting-approval':
                     type = 'is-warning'

@@ -1,13 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
-
-const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "../pages/products/ProductsComponent");
-const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "../pages/product-categories/ProductsComponent");
-const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
-const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "../components/ExampleComponent");
-
 
 import QuotationRoutes from './quotations'
 import OrderRoutes from './orders'
@@ -17,12 +10,16 @@ import BillsRoutes from './bills'
 import OtherExpenseRoutes from './other-expenses'
 import EmployeesRoutes from './employees'
 
+const DashboardComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/dashboard/DashboardComponent");
+const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "../pages/products/ProductsComponent");
+const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "../pages/product-categories/ProductsComponent");
+const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
 const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
-
 const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../pages/clients/ClientsComponent");
 const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/vendors/VendorsComponent");
 const BusinessSettingComponent = () => import(/* webpackChunkName: "js/business-settings" */  "../pages/business-settings/BusinessSettingComponent");
 const ProfileSettingsComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/profile-settings/ProfileSettingsComponent");
+// const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "../components/ExampleComponent");
 
 const router = new VueRouter({
     mode: 'history',
@@ -30,7 +27,7 @@ const router = new VueRouter({
         {
             path: '/@/dashboard',
             name: 'dashboard',
-            component: ExampleComponent,
+            component: DashboardComponent,
             meta: {type: 'dashboard'}
         },
         {

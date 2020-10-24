@@ -189,7 +189,7 @@
 <body>
 {{-- Header --}}
 @if($invoice->logo)
-    <img src="{{ $invoice->getLogo() }}" alt="logo" height="70">
+    <img src="{{ $invoice->getLogo() }}" alt="logo" style="max-height: 65px; min-height: 50px">
 @endif
 <table class="table mt-5">
     <tbody>
@@ -203,16 +203,19 @@
             <p class="mb-1">{{ __('invoices::invoice.serial') }} <strong>{{ $invoice->getSerialNumber() }}</strong></p>
             <p class="mb-1">{{ __('invoices::invoice.date') }}: <strong>{{ $invoice->getDate() }}</strong></p>
             @if(isset($invoice->due_date))
-                <p class="mb-1">{{ trans('invoices::invoice.due_date') }}: <strong
-                        style="color: #403f3f">{{ $invoice->getDueDate() }}</strong></p>
+                <p class="mb-1">{{ trans('invoices::invoice.due_date') }}:
+                    <strong style="color: #403f3f">{{ $invoice->getDueDate() }}</strong>
+                </p>
             @endif
             @if(isset($invoice->expiry_date))
-                <p class="mb-1">{{ trans('invoices::invoice.expiry_date') }}: <strong
-                        style="color: #403f3f">{{ $invoice->getExpiryDate() }}</strong></p>
+                <p class="mb-1">{{ trans('invoices::invoice.expiry_date') }}:
+                    <strong style="color: #403f3f">{{ $invoice->getExpiryDate() }}</strong>
+                </p>
             @endif
             @if(isset($invoice->delivery_date))
-                <p class="mb-1">{{ trans('invoices::invoice.delivery_date') }}: <strong
-                        style="color: #403f3f">{{ $invoice->getDeliveryDate() }}</strong></p>
+                <p class="mb-1">{{ trans('invoices::invoice.delivery_date') }}:
+                    <strong style="color: #403f3f">{{ $invoice->getDeliveryDate() }}</strong>
+                </p>
             @endif
         </td>
     </tr>
@@ -223,7 +226,7 @@
 <table class="table">
     <tbody>
     <tr>
-        <td class="px-0 border-0" >
+        <td class="px-0 border-0">
             <p class="party-header mb-1"><strong>{{ __('invoices::invoice.seller') }}</strong></p>
             @if($invoice->seller->name)
                 <p class="seller-name mb-1">
@@ -484,14 +487,6 @@
         $y = $pdf->get_height() - 35;
         $pdf->page_text($x, $y, $text, $font, $size);
     }
-
-
-
-
-
-
-
-
 </script>
 
 </body>

@@ -91,4 +91,9 @@ class InvoiceBuilder implements PDFBuilder
             ]))->apply();
         })->toArray();
     }
+
+    public function stream()
+    {
+        // TODO: Implement stream() method.
+    }
 }

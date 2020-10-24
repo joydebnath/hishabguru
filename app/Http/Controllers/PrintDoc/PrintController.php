@@ -22,4 +22,9 @@ class PrintController extends Controller
     {
         return PrintFactory::getEngineer($type, $id)->build();
     }
+
+    public function stream($type, $id)
+    {
+        return PrintFactory::getEngineer($type, $id)->stream();
+    }
 }
