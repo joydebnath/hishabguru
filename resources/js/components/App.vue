@@ -1,15 +1,18 @@
 <template>
     <div>
-        <TopNavBar/>
-        <TopMenuBar :active="active_page_type"/>
-        <header class="max-w-6xl mx-auto pt-5" v-if="title">
-            <h1 class="text-xl font-medium tracking-wider leading-tight px-2 text-gray-700 uppercase">
-                {{ title }}
-            </h1>
-        </header>
-        <main class="py-4">
-            <router-view/>
-        </main>
+        <b-loading :is-full-page="true" v-model="loadingUser" :can-cancel="false"></b-loading>
+        <template v-if="!loadingUser">
+            <TopNavBar/>
+            <TopMenuBar :active="active_page_type"/>
+            <header class="max-w-6xl mx-auto pt-5" v-if="title">
+                <h1 class="text-xl font-medium tracking-wider leading-tight px-2 text-gray-700 uppercase">
+                    {{ title }}
+                </h1>
+            </header>
+            <main class="py-4">
+                <router-view/>
+            </main>
+        </template>
     </div>
 </template>
 
@@ -46,6 +49,7 @@ export default {
         ...mapGetters({
             title: 'getTitle',
             active_page_type: 'getPageType',
+            loadingUser: 'getLoadingUser'
         }),
     },
     watch: {

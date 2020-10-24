@@ -96,7 +96,7 @@ export default {
             this.$store.dispatch('products/loadData', {page: this.current_page})
         },
         handleAdd() {
-            if (this.categories_count === 1) {
+            if (this.categories_count === 0) {
                 this.noCategoryWarning();
                 return;
             }
