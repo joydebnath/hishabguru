@@ -39,7 +39,7 @@ class Purchase extends Model
         return $this->belongsTo(User::class, 'approved_by');
     }
 
-    public function delivery_site(): BelongsTo
+    public function deliverySite(): BelongsTo
     {
         return $this->belongsTo(Address::class, 'delivery_site_id');
     }

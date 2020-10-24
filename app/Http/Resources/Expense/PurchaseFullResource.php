@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Expense;
 
 use App\Http\Resources\Business\Address;
-use App\Http\Resources\Business\InventorySite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PurchaseFullResource extends JsonResource
@@ -26,7 +25,7 @@ class PurchaseFullResource extends JsonResource
             'reference_number' => $this->reference_number,
             'create_date' => $this->create_date,
             'delivery_date' => $this->delivery_date,
-            'delivery_site' => new Address($this->delivery_site),
+            'delivery_site' => new Address($this->deliverySite),
             'products' => self::products($this->products),
         ];
     }

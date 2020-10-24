@@ -16,12 +16,12 @@ class InvoiceBuilder implements PDFBuilder
     public function __construct($invoiceId)
     {
         $this->printService = new PrintDocService();
-        $this->invoice = Invoice::with('contact', 'products', 'tenant')->findOrFail($invoiceId);
+        $this->invoice = Invoice::with('contact', 'products', 'tenant.imageable')->findOrFail($invoiceId);
         $this->pdfBuilder =
             ExtendedInvoice::make('Invoice')
                 ->dateFormat('d/m/Y')
-                ->currencySymbol('BDT')
-                ->currencyCode('BDT')
+                ->currencySymbol($this->invoice->tenant->currency_of_operation)
+                ->currencyCode($this->invoice->tenant->currency_of_operation)
                 ->currencyFormat('{VALUE} {SYMBOL}')
                 ->currencyThousandsSeparator(',')
                 ->currencyDecimalPoint('.');
@@ -43,11 +43,17 @@ class InvoiceBuilder implements PDFBuilder
         $this->pdfBuilder
             ->sequence($this->invoice->invoice_number)
             ->serialNumberFormat('{SEQUENCE}')
-            ->seller($this->printService->contact($this->invoice->contact))
             ->buyer($this->printService->contact($this->invoice->contact))
+            ->seller($this->printService->tenant($this->invoice->tenant))
             ->date(Carbon::parse($this->invoice->issue_date))
-            ->addDueDate($this->invoice->due_date ? Carbon::parse($this->invoice->due_date) : Carbon::now()->addDays(14))
-            ->logo('https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg');
+
+            ->addDueDate($this->invoice->due_date ? Carbon::parse($this->invoice->due_date) : Carbon::now()->addDays(14));
+
+        if ($this->invoice->tenant->imageable) {
+            $source = $this->invoice->tenant->imageable->source;
+            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
+//            $this->pdfBuilder->logo($source);
+        }
     }
 
     public function buildProductsTable()
@@ -94,6 +100,12 @@ class InvoiceBuilder implements PDFBuilder
 
     public function stream()
     {
-        // TODO: Implement stream() method.
+        $this->builderHeader();
+
+        $this->buildProductsTable();
+
+        $this->buildFooter();
+
+        return $this->streamPDF();
     }
 }

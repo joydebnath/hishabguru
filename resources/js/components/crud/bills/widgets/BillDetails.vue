@@ -9,7 +9,7 @@
             >
                 <SupplierLookupInput
                     :selected="contact"
-                    :read_only="bill.read_only ? bill.read_only: false"
+                    :read_only="bill.read_only"
                     @on-select="handleSupplierSelect"
                 />
             </b-field>

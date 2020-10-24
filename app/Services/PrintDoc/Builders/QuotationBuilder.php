@@ -38,17 +38,6 @@ class QuotationBuilder implements PDFBuilder
         return $this->generatePDF();
     }
 
-    public function download()
-    {
-        $this->builderHeader();
-
-        $this->buildProductsTable();
-
-        $this->buildFooter();
-
-        return $this->generatePDF();
-    }
-
     public function builderHeader()
     {
         $this->pdfBuilder
@@ -69,7 +58,6 @@ class QuotationBuilder implements PDFBuilder
     public function buildProductsTable()
     {
         $this->pdfBuilder->addItems($this->getProducts());
-
     }
 
     public function buildFooter()

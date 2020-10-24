@@ -49,7 +49,7 @@ class PurchasesController extends Controller
     public function show(Purchase $purchase)
     {
         try {
-            return new PurchaseFullResource($purchase->load('contact', 'products','delivery_site'));
+            return new PurchaseFullResource($purchase->load('contact', 'products','deliverySite'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

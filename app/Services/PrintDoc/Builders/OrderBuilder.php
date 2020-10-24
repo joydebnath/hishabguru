@@ -16,7 +16,7 @@ class OrderBuilder implements PDFBuilder
     public function __construct($orderId)
     {
         $this->printService = new PrintDocService();
-        $this->order = Order::with('contact', 'products', 'tenant.imageable')->findOrFail($orderId);
+        $this->order = Order::with('contact', 'products', 'tenant.imageable', 'deliveryDetails')->findOrFail($orderId);
         $this->pdfBuilder =
             ExtendedInvoice::make('Order')
                 ->dateFormat('d/m/Y')
@@ -65,7 +65,20 @@ class OrderBuilder implements PDFBuilder
         if ($this->order->note) {
             $this->pdfBuilder->notes($this->order->note);
         }
-        //delivery
+
+        if (($deliveryDetails = $this->order->deliveryDetails)) {
+            $this->pdfBuilder->addDeliveryDetails(
+                $this->printService->delivery([
+                    'delivery_address' => [
+                        'address' => $deliveryDetails->address,
+                    ],
+                    'delivery_instructions' => $deliveryDetails->instructions,
+                    'other_details' => [
+                        'phone' => $deliveryDetails->contact_number
+                    ],
+                ])
+            );
+        }
     }
 
     public function generatePDF()

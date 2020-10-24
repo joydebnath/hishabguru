@@ -7,7 +7,7 @@
                 :type="has_contact_id ? 'is-danger' :null"
                 :message="has_contact_id ? 'This field is required' : null"
             >
-                <ClientLookupInput :selected="contact" @on-select="handleClientSelect"/>
+                <ClientLookupInput :selected="contact" :read_only="order.read_only" @on-select="handleClientSelect"/>
             </b-field>
         </div>
         <b-field

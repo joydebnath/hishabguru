@@ -29,30 +29,19 @@ class PrintDocService
     {
         $contact = $tenant->load('headquarter', 'phones');
         $address = collect($tenant->headquarter)->first();
-        $phones = collect($tenant->phones)->first();
+        $phone = collect($tenant->phones)->first();
 
         return new Party([
             'name' => $contact->name,
             'address' => $address ? $address->address_line_1 . ', ' . $address->city . ', ' . $address->postcode : '',
             'custom_fields' => [
-                'Phone' => $phones ? $phones->value : null,
+                'Phone' => $phone ? $phone->value : null,
             ],
         ]);
     }
 
-    public function delivery()
+    public function delivery($details)
     {
-        return new DeliveryDetails([
-            'delivery_address' => [
-                'address' => '23 Main Street',
-                'city' => 'Marineville',
-                'state' => 'NSW',
-                'postcode' => '2000'
-            ],
-            'delivery_instructions' => 'Regular order - deliver to Warehouse',
-            'other_details' => [
-                'phone' => '02 99998888'
-            ],
-        ]);
+        return new DeliveryDetails($details);
     }
 }

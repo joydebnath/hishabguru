@@ -119,7 +119,6 @@
 
         * {
             font-family: "DejaVu Sans";
-
         }
 
         body, h1, h2, h3, h4, h5, h6, table, th, tr, td, p, div {
@@ -177,11 +176,10 @@
 
         .label {
             font-weight: 500;
-            font-size: 1.25em;
+            font-size: 1.15em;
             margin-bottom: 10px;
             display: block;
             letter-spacing: .02em;
-            font-family: Verdana, Geneva, sans-serif !important;
         }
     </style>
 </head>
@@ -417,16 +415,15 @@
 @if($invoice->delivery_details)
     <br>
     <br>
-    <br>
     <table class="table">
         <thead>
         <tr>
             <th colspan="3" style="border-bottom: none">
-                <h1 class="text-uppercase font-medium mb-0 tracing-wider"
-                    style="font-family: Verdana, Geneva, sans-serif !important; margin: 0"
+                <h2 class="text-uppercase font-medium mb-0 tracing-wider"
+                    style="margin: 0"
                 >
                     {{trans('invoices::invoice.delivery_details')}}
-                </h1>
+                </h2>
             </th>
         </tr>
         <tbody>
@@ -446,7 +443,7 @@
                 <td class="px-0 border-t-0 border-r-1 min-h-400">
                     <span class="label">Contact Details</span>
                     @foreach($invoice->delivery_details->other_details as $key => $value)
-                        <p class="mb-1 font-medium text-uppercase tracing-wider">{{$key}}</p>
+                        <p style="font-size: 1.05em" class="mb-1 font-medium tracing-wider text-capitalize">{{$key}}</p>
                         <p>{{$value}}</p>
                     @endforeach
                 </td>
@@ -471,7 +468,7 @@
 @endif
 
 @if($invoice->message)
-    <p style="font-size: 1.05em;letter-spacing: .05rem">
+    <p style="font-size: 1.05em;letter-spacing: .02rem">
         {{ trans('invoices::invoice.message') }}:
         {!! $invoice->message !!}
     </p>

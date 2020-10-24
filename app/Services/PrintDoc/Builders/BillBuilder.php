@@ -14,12 +14,12 @@ class BillBuilder implements PDFBuilder
     public function __construct($billId)
     {
         $this->printService = new PrintDocService();
-        $this->bill = Bill::with('contact', 'products', 'tenant')->findOrFail($billId);
+        $this->bill = Bill::with('contact', 'products', 'tenant.imageable')->findOrFail($billId);
         $this->pdfBuilder =
             ExtendedInvoice::make('Bill')
                 ->dateFormat('d/m/Y')
-                ->currencySymbol('BDT')
-                ->currencyCode('BDT')
+                ->currencySymbol($this->bill->tenant->currency_of_operation)
+                ->currencyCode($this->bill->tenant->currency_of_operation)
                 ->currencyFormat('{VALUE} {SYMBOL}')
                 ->currencyThousandsSeparator(',')
                 ->currencyDecimalPoint('.');
@@ -43,10 +43,15 @@ class BillBuilder implements PDFBuilder
             ->sequence($this->bill->bill_number)
             ->serialNumberFormat('{SEQUENCE}')
             ->seller($this->printService->contact($this->bill->contact))
-            ->buyer($this->printService->contact($this->bill->contact)) // Business
+            ->buyer($this->printService->tenant($this->bill->tenant))
             ->date(Carbon::parse($this->bill->issue_date))
-            ->addDueDate($this->bill->due_date ? Carbon::parse($this->bill->due_date) : Carbon::now()->addDays(14))
-            ->logo('https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg');
+            ->addDueDate($this->bill->due_date ? Carbon::parse($this->bill->due_date) : Carbon::now()->addDays(14));
+
+        if ($this->bill->tenant->imageable) {
+            $source = $this->bill->tenant->imageable->source;
+            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
+//            $this->pdfBuilder->logo($source);
+        }
     }
 
     public function buildProductsTable()
@@ -93,6 +98,12 @@ class BillBuilder implements PDFBuilder
 
     public function stream()
     {
-        // TODO: Implement stream() method.
+        $this->builderHeader();
+
+        $this->buildProductsTable();
+
+        $this->buildFooter();
+
+        return $this->streamPDF();
     }
 }

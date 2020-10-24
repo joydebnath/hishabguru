@@ -12,15 +12,24 @@ use Carbon\Carbon;
 class PurchaseBuilder implements PDFBuilder
 {
     protected $pdfBuilder, $purchase, $printService;
+
     public function __construct($purchaseId)
     {
         $this->printService = new PrintDocService();
-        $this->purchase = Purchase::with('contact', 'products', 'tenant')->findOrFail($purchaseId);
+        $this->purchase = Purchase::with([
+            'contact',
+            'products',
+            'tenant' => function ($query) {
+                $query->with('imageable', 'phones');
+            },
+            'deliverySite'
+        ])->findOrFail($purchaseId);
+
         $this->pdfBuilder =
             ExtendedInvoice::make('Purchase')
                 ->dateFormat('d/m/Y')
-                ->currencySymbol('BDT')
-                ->currencyCode('BDT')
+                ->currencySymbol($this->purchase->tenant->currency_of_operation)
+                ->currencyCode($this->purchase->tenant->currency_of_operation)
                 ->currencyFormat('{VALUE} {SYMBOL}')
                 ->currencyThousandsSeparator(',')
                 ->currencyDecimalPoint('.');
@@ -40,13 +49,18 @@ class PurchaseBuilder implements PDFBuilder
     public function builderHeader()
     {
         $this->pdfBuilder
-            ->sequence($this->purchase->purchase_number)
+            ->sequence($this->purchase->purchase_order_number)
             ->serialNumberFormat('{SEQUENCE}')
             ->seller($this->printService->contact($this->purchase->contact))
-            ->buyer($this->printService->contact($this->purchase->contact)) // Business
+            ->buyer($this->printService->tenant($this->purchase->tenant))
             ->date(Carbon::parse($this->purchase->create_date))
-            ->addDeliveryDate($this->purchase->delivery_date ? Carbon::parse($this->purchase->delivery_date) : null)
-            ->logo('https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg');
+            ->addDeliveryDate($this->purchase->delivery_date ? Carbon::parse($this->purchase->delivery_date) : null);
+
+        if ($this->purchase->tenant->imageable) {
+            $source = $this->purchase->tenant->imageable->source;
+            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
+//            $this->pdfBuilder->logo($source);
+        }
     }
 
     public function buildProductsTable()
@@ -59,19 +73,35 @@ class PurchaseBuilder implements PDFBuilder
         if ($this->purchase->note) {
             $this->pdfBuilder->notes($this->purchase->note);
         }
-        //delivery
+
+        if (($deliveryDetails = $this->purchase->deliverySite)) {
+            $phone = collect($this->purchase->tenant->phones)->first();
+            $this->pdfBuilder->addDeliveryDetails(
+                $this->printService->delivery([
+                    'delivery_address' => [
+                        'name' => $deliveryDetails->name,
+                        'address' => $deliveryDetails->address_line_1 . ' ' . $deliveryDetails->address_line_2 . ', ' . $deliveryDetails->city,
+                        'state' => $deliveryDetails->state,
+                        'postcode' => $deliveryDetails->postcode
+                    ],
+                    'other_details' => [
+                        'phone' => $phone ? $phone->value : 'Not provided'
+                    ],
+                ])
+            );
+        }
     }
 
     public function generatePDF()
     {
-        $this->pdfBuilder->filename($this->purchase->purchase_number);
+        $this->pdfBuilder->filename($this->purchase->purchase_order_number);
 
         return $this->pdfBuilder->download();
     }
 
     public function streamPDF()
     {
-        $this->pdfBuilder->filename($this->purchase->purchase_number);
+        $this->pdfBuilder->filename($this->purchase->purchase_order_number);
 
         return $this->pdfBuilder->stream();
     }
@@ -92,6 +122,12 @@ class PurchaseBuilder implements PDFBuilder
 
     public function stream()
     {
-        // TODO: Implement stream() method.
+        $this->builderHeader();
+
+        $this->buildProductsTable();
+
+        $this->buildFooter();
+
+        return $this->streamPDF();
     }
 }

@@ -9,7 +9,7 @@
             >
                 <ClientLookupInput
                     :selected="contact"
-                    :read-only="quotation.read_only ? quotation.read_only : false"
+                    :read_only="quotation.read_only"
                     @on-select="handleClientSelect"
                 />
             </b-field>
