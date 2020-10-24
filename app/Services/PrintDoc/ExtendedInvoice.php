@@ -14,6 +14,7 @@ class ExtendedInvoice extends Invoice
      * @var string
      */
     public $message;
+    public $status;
 
     /**
      * @var Collection
@@ -35,6 +36,12 @@ class ExtendedInvoice extends Invoice
     public function addMessage($message)
     {
         $this->message = $message;
+        return $this;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
         return $this;
     }
 

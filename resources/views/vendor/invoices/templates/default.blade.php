@@ -181,6 +181,13 @@
             display: block;
             letter-spacing: .02em;
         }
+
+        .tag {
+            font-size: 1.05em;
+            text-transform: uppercase;
+            color: #777787;
+            letter-spacing: .02em;
+        }
     </style>
 </head>
 
@@ -196,6 +203,11 @@
             <h4 class="text-gray-700" style="color: #363636;letter-spacing: .05em;">
                 <strong>{{ $invoice->name }}</strong>
             </h4>
+            @isset($invoice->status)
+            <span>
+                Status: <strong class="tag">{{$invoice->status}}</strong>
+            </span>
+            @endisset
         </td>
         <td class="border-0 pl-0">
             <p class="mb-1">{{ __('invoices::invoice.serial') }} <strong>{{ $invoice->getSerialNumber() }}</strong></p>
@@ -484,6 +496,8 @@
         $y = $pdf->get_height() - 35;
         $pdf->page_text($x, $y, $text, $font, $size);
     }
+
+
 </script>
 
 </body>

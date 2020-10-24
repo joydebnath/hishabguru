@@ -46,7 +46,7 @@ class InvoiceBuilder implements PDFBuilder
             ->buyer($this->printService->contact($this->invoice->contact))
             ->seller($this->printService->tenant($this->invoice->tenant))
             ->date(Carbon::parse($this->invoice->issue_date))
-
+            ->setStatus($this->invoice->status)
             ->addDueDate($this->invoice->due_date ? Carbon::parse($this->invoice->due_date) : Carbon::now()->addDays(14));
 
         if ($this->invoice->tenant->imageable) {

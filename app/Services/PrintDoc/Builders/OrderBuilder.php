@@ -45,6 +45,7 @@ class OrderBuilder implements PDFBuilder
             ->serialNumberFormat('{SEQUENCE}')
             ->buyer($this->printService->contact($this->order->contact))
             ->seller($this->printService->tenant($this->order->tenant))
+            ->setStatus($this->order->status)
             ->date(Carbon::parse($this->order->create_date))
             ->addDeliveryDate($this->order->delivery_date ? Carbon::parse($this->order->delivery_date) : null);
 

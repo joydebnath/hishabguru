@@ -44,6 +44,7 @@ class BillBuilder implements PDFBuilder
             ->serialNumberFormat('{SEQUENCE}')
             ->seller($this->printService->contact($this->bill->contact))
             ->buyer($this->printService->tenant($this->bill->tenant))
+            ->setStatus($this->bill->status)
             ->date(Carbon::parse($this->bill->issue_date))
             ->addDueDate($this->bill->due_date ? Carbon::parse($this->bill->due_date) : Carbon::now()->addDays(14));
 

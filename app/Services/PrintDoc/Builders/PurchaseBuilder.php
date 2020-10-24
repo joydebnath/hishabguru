@@ -54,6 +54,7 @@ class PurchaseBuilder implements PDFBuilder
             ->seller($this->printService->contact($this->purchase->contact))
             ->buyer($this->printService->tenant($this->purchase->tenant))
             ->date(Carbon::parse($this->purchase->create_date))
+            ->setStatus($this->purchase->status)
             ->addDeliveryDate($this->purchase->delivery_date ? Carbon::parse($this->purchase->delivery_date) : null);
 
         if ($this->purchase->tenant->imageable) {
