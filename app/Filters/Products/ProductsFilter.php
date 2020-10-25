@@ -30,4 +30,9 @@ class ProductsFilter extends QueryFilter
     {
         $this->builder->where('is_purchasable', '=', true);
     }
+
+    public function status(string $status)
+    {
+        $this->builder->where('status', '=', $status);
+    }
 }

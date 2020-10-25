@@ -5,7 +5,7 @@
                 <div class="flex flex-row align-items-center justify-between pb-4 w-full">
                     <template v-if="show_bulk_actions">
                         <div>
-                            <b-button size="is-small" type="is-light" class="mr-2">Mark as Inactive</b-button>
+                            <b-button size="is-small" type="is-light" class="mr-2">Toggle Status</b-button>
                             <b-button size="is-small" type="is-danger is-light">Delete</b-button>
                         </div>
                     </template>

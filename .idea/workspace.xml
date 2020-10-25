@@ -14,17 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/global/popups/ConfirmationBox.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Status/UpdateStatusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Status/UpdateStatusController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Product/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Product/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/popups/DeleteBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/popups/DeleteBox.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/popups/UpdateStatusBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/popups/UpdateStatusBox.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/products.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -816,7 +806,7 @@
       <workItem from="1603462336314" duration="1977000" />
       <workItem from="1603491422096" duration="17042000" />
       <workItem from="1603540803614" duration="4614000" />
-      <workItem from="1603581800248" duration="4642000" />
+      <workItem from="1603581800248" duration="4973000" />
     </task>
     <servers />
   </component>
