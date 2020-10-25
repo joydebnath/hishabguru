@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/@/dashboard', 'PagesController@index')->name('home');
     Route::get('/@/{any}', 'PagesController@index')->where('any', '.*');
     Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@stream');
+    Route::get('/share', 'GuestPageController@share');
 });
 
 

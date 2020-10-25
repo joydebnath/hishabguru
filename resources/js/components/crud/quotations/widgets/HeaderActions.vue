@@ -11,6 +11,9 @@
             <b-dropdown-item aria-role="listitem" @click="handleStatusUpdate">
                 Update Status
             </b-dropdown-item>
+            <b-dropdown-item aria-role="listitem" @click="handleCopy">
+                Copy To
+            </b-dropdown-item>
             <span class="dropdown-divider"></span>
             <b-dropdown-item class="text-red-700" aria-role="listitem" @click="handleDelete">
                 Delete
@@ -30,6 +33,14 @@
             :handler="onConfirmDelete"
             @on-close="handleDeleteClose"
         />
+        <RadioBox
+            title="Copy quotation to -"
+            :show="copy_to_popup"
+            :loading="loading_copy_to"
+            :options="copy_to_options"
+            :handler="handleCopyTo"
+            @on-close="handleCopyClose"
+        />
     </div>
 </template>
 
@@ -38,10 +49,11 @@ import DownloadingBox from "@/components/global/popups/DownloadingBox";
 import UpdateStatusBox from "@/components/global/popups/UpdateStatusBox";
 import DeleteBox from "@/components/global/popups/DeleteBox";
 import {remove} from '@/repos/quotations'
+import RadioBox from "@/components/global/popups/RadioBox";
 
 export default {
     name: "HeaderActions",
-    components: {DeleteBox, UpdateStatusBox, DownloadingBox},
+    components: {RadioBox, DeleteBox, UpdateStatusBox, DownloadingBox},
     props: {
         quotation: Object
     },
@@ -50,6 +62,13 @@ export default {
             downloading: false,
             show_status_update: false,
             show_delete: false,
+            tobe_copied_quotation: {},
+            copy_to_popup: false,
+            loading_copy_to: false,
+            copy_to_options: [
+                {value: 'order', name: 'Order'},
+                {value: 'invoice', name: 'Invoice'},
+            ],
             statuses: [
                 {name: 'Accepted', value: 'accepted'},
                 {name: 'Declined', value: 'declined'},
@@ -149,7 +168,33 @@ export default {
         },
         handleStatusUpdateClose() {
             this.show_status_update = false
-        }
+        },
+        handleCopy(quotation) {
+            this.copy_to_popup = true;
+            this.tobe_copied_quotation = quotation;
+        },
+        handleCopyClose() {
+            this.copy_to_popup = false;
+            this.tobe_copied_quotation = {};
+            this.loading_copy_to = false;
+        },
+        handleCopyTo(type) {
+            if (type) {
+                this.loading_copy_to = true;
+                axios
+                    .post('/copy-to', {
+                        from: 'quotation',
+                        to: type,
+                        copy_from_id: this.tobe_copied_quotation.id
+                    })
+                    .then(({data}) => {
+                        this.handleDeleteClose();
+                    })
+                    .catch(err => {
+                        this.handleDeleteClose();
+                    })
+            }
+        },
     }
 }
 </script>

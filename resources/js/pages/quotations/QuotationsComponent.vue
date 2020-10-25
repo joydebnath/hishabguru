@@ -32,13 +32,19 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-delete="handleDelete"/>
+                <Table @on-delete="handleDelete" @on-share="handleShare"/>
             </keep-alive>
         </div>
         <DeleteBox
             :show="delete_popup"
             :handler="onConfirmDelete"
             @on-close="handleDeleteClose"
+        />
+        <CopyUrlBox
+            title="Share Quotation Url"
+            :show="share_url!== ''"
+            :url="share_url"
+            @on-close="handleShareClose"
         />
     </div>
 </template>
@@ -50,10 +56,12 @@ import Table from "./QuotationTable.vue";
 import Filters from "./QuotationsFilters";
 import RefreshIcon from "@/components/icons/RefreshIcon";
 import DeleteBox from "@/components/global/popups/DeleteBox";
+import CopyUrlBox from "@/components/global/popups/CopyUrlBox";
 import {remove} from '@/repos/quotations'
 
 export default {
     components: {
+        CopyUrlBox,
         DeleteBox,
         RefreshIcon,
         Filters,
@@ -63,7 +71,9 @@ export default {
     data() {
         return {
             delete_popup: false,
-            tobe_deleted_other_quotation: {}
+            share_url: '',
+            tobe_deleted_quotation: {},
+            tobe_shared_quotation: {},
         };
     },
     methods: {
@@ -75,20 +85,31 @@ export default {
             });
             this.$store.dispatch('quotations/loadData', {page: 1})
         },
-        handleRefresh(){
+        handleRefresh() {
             this.$store.dispatch('quotations/loadData', {page: this.current_page})
         },
         handleDelete(quotation) {
             this.delete_popup = true;
-            this.tobe_deleted_other_quotation = quotation;
+            this.tobe_deleted_quotation = quotation;
         },
         handleDeleteClose() {
             this.delete_popup = false;
-            this.tobe_deleted_other_quotation = {};
+            this.tobe_deleted_quotation = {};
+        },
+        handleShare(quotation) {
+            const data = {
+                type: 'quotation',
+                id: quotation.id
+            }
+
+            this.share_url = 'www.hishabguru.com/share?q=' + btoa(JSON.stringify(data));
+        },
+        handleShareClose() {
+            this.share_url = ''
         },
         onConfirmDelete() {
             this.$store.commit('quotations/setLoading', {loading: true})
-            remove(this.tobe_deleted_other_quotation.id)
+            remove(this.tobe_deleted_quotation.id)
                 .then(({data}) => {
                     this.$store.commit('quotations/setLoading', {loading: false})
                     this.$buefy.notification.open({

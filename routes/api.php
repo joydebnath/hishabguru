@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/current-tenant', 'User\TenancyController@store');
     Route::post('/upload/image', 'File\ImageUploadController@store');
 
+    Route::post('/copy-to', 'Transform\CopyToController@store');
+
     Route::patch('/change-password', 'User\UserController@update');
     Route::patch('/status/{type}/{id}', 'Status\UpdateStatusController@update');
 });

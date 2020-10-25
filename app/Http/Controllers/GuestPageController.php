@@ -20,4 +20,21 @@ class GuestPageController extends Controller
     {
         return view('guest.void-account');
     }
+
+    public function share()
+    {
+        try {
+            $query_decoded = base64_decode(request()->get('q'));
+            $result = json_decode($query_decoded, true);
+
+            if ($result === null) {
+                abort(404);
+            }
+
+            $result['type'];
+            $result['id'];
+        } catch (\Exception $exception) {
+            abort(404);
+        }
+    }
 }

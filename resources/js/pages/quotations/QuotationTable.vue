@@ -79,9 +79,9 @@
                                 View
                             </b-dropdown-item>
                         </router-link>
-<!--                        <b-dropdown-item aria-role="listitem" @click="$emit('on-share', props.row)">-->
-<!--                            Share the link-->
-<!--                        </b-dropdown-item>-->
+                        <b-dropdown-item aria-role="listitem" @click="$emit('on-share', props.row)">
+                            Share
+                        </b-dropdown-item>
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-delete', props.row)">
                             <span class="text-red-600">Delete</span>
@@ -108,7 +108,7 @@ export default {
         EmptyTable
     },
     mounted() {
-        if(this.data.length === 0) {
+        if (this.data.length === 0) {
             this.$store.dispatch('quotations/loadData', {page: 1})
         }
     },
