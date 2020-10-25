@@ -15,14 +15,8 @@
             </div>
             <article class="media border-t">
                 <div class="media-content">
-                    <div class="content border-b px-4 pt-4 pb-0 text-sm">
-                        <section class="grid grid-cols-2 px-4">
-                            <div class="field" v-for="status in $props.statuses">
-                                <b-radio v-model="radio" :native-value="status.value">
-                                    {{ status.name }}
-                                </b-radio>
-                            </div>
-                        </section>
+                    <div class="content border-b p-4 text-sm">
+                        <p class="mb-1">{{ $props.message }}</p>
                     </div>
                     <nav class="level px-4">
                         <div class="level-left">
@@ -50,20 +44,18 @@
 
 <script>
 export default {
-    name: "UpdateStatusBox",
+    name: "ConfirmationBox",
     props: {
         show: false,
-        statuses: Object | Array,
         title: {
             type: String,
-            default: 'Update Status'
+            default: ''
+        },
+        message: {
+            type: String,
+            default: ''
         },
         handler: Function
-    },
-    data() {
-        return {
-            radio: null
-        }
     },
     methods: {
         handleConfirm() {

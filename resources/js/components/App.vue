@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <section>
         <b-loading :is-full-page="true" v-model="loadingUser" :can-cancel="false"></b-loading>
         <template v-if="!loadingUser">
             <TopNavBar/>
@@ -13,7 +13,7 @@
                 <router-view/>
             </main>
         </template>
-    </div>
+    </section>
 </template>
 
 <script>

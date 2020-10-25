@@ -54,29 +54,32 @@
             header-class="text-sm"
             cell-class="text-sm"
         >
-                <span>
-                    {{ props.row.sell }}
-                </span>
+            <span>{{ props.row.sell }}</span>
         </b-table-column>
 
         <b-table-column label="Quantity" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
-                <span>
-                    {{ props.row.quantity }}
-                </span>
+            <span>{{ props.row.quantity }}</span>
         </b-table-column>
         <b-table-column label="Category" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
-                <span>
-                    {{ props.row.category.name }}
-                </span>
+            <span>{{ props.row.category.name }}</span>
+        </b-table-column>
+        <b-table-column label="Status" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
+            <span class="text-capitalize">{{ props.row.status }}</span>
         </b-table-column>
         <b-table-column v-slot="props">
             <div class="flex justify-end">
                 <b-dropdown aria-role="list">
                     <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
                     <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
-<!--                    <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Mark Inactive</b-dropdown-item>-->
+                    <b-dropdown-item aria-role="listitem" @click="$emit('on-status-update',props.row)">
+                        Mark
+                        <span v-if="props.row.status === 'active'">Inactive</span>
+                        <span v-else>Active</span>
+                    </b-dropdown-item>
                     <hr class="dropdown-divider">
-                    <b-dropdown-item aria-role="listitem" class="text-red-600" @click="$emit('on-delete', props.row)">Delete</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem" class="text-red-600" @click="$emit('on-delete', props.row)">
+                        Delete
+                    </b-dropdown-item>
                 </b-dropdown>
             </div>
         </b-table-column>
@@ -98,7 +101,7 @@ export default {
         EmptyTable
     },
     mounted() {
-        if(this.data.length === 0){
+        if (this.data.length === 0) {
             this.$store.dispatch('products/loadData', {page: 1})
         }
     },

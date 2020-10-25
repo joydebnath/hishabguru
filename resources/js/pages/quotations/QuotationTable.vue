@@ -123,14 +123,23 @@ export default {
             let type = '';
             switch (value) {
                 case 'open':
+                    type = 'is-link'
+                    break;
+                case 'accepted':
                     type = 'is-success'
                     break;
                 case 'draft':
                     type = 'is-light'
-                    break
+                    break;
+                case 'expired':
+                    type = 'is-danger is-light'
+                    break;
+                case 'declined':
+                    type = 'is-danger'
+                    break;
                 case 'awaiting-approval':
                     type = 'is-warning'
-                    break
+                    break;
             }
             return type
         }

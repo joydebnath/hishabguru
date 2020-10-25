@@ -30,7 +30,7 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-edit="handleEdit" @on-delete="handleDelete"/>
+                <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-status-update="handleUpdateStatus"/>
             </keep-alive>
         </div>
         <ItemCRUD
@@ -47,6 +47,13 @@
             :handler="onConfirmDelete"
             @on-close="handleDeleteClose"
         />
+        <ConfirmationBox
+            title="Update Status"
+            message="This will change product's status. Are you sure?"
+            :show="show_confirm_modal"
+            :handler="onConfirmUpdateStatus"
+            @on-close="handleUpdateStatusClose"
+        />
     </div>
 </template>
 
@@ -58,9 +65,11 @@ import Filters from "./ProductFilters";
 import ItemCRUD from "./modals/ItemCRUD";
 import RefreshIcon from "@/components/icons/RefreshIcon";
 import DeleteBox from "@/components/global/popups/DeleteBox";
+import ConfirmationBox from "@/components/global/popups/ConfirmationBox";
 
 export default {
     components: {
+        ConfirmationBox,
         DeleteBox,
         RefreshIcon,
         Filters,
@@ -71,11 +80,13 @@ export default {
     data() {
         return {
             show_modal: false,
+            show_confirm_modal: false,
             action_type: 'add',
             loading: false,
             product: {},
             delete_popup: false,
-            tobe_deleted_product: {}
+            tobe_deleted_product: {},
+            tobe_updated_product: {},
         };
     },
     methods: {
@@ -134,7 +145,7 @@ export default {
                     })
                     this.$buefy.notification.open({
                         message: data.message,
-                        type: 'is-success',
+                        type: 'is-success is-light',
                         duration: 5000
                     });
                     this.handleDeleteClose();
@@ -143,7 +154,7 @@ export default {
                     if (err.response) {
                         this.$buefy.notification.open({
                             message: err.response.data.message,
-                            type: 'is-danger',
+                            type: 'is-danger is-light',
                             duration: 5000
                         });
                         this.handleDeleteClose();
@@ -155,6 +166,39 @@ export default {
         },
         handleToggleLoading(value) {
             this.loading = value
+        },
+        handleUpdateStatus(product) {
+            this.show_confirm_modal = true;
+            this.tobe_updated_product = product;
+        },
+        handleUpdateStatusClose() {
+            this.show_confirm_modal = false;
+            this.tobe_updated_product = {};
+        },
+        onConfirmUpdateStatus() {
+            const NEW_STATUS = this.tobe_updated_product.status === 'active' ? 'inactive' : 'active';
+            axios
+                .patch('/status/products/' + this.tobe_updated_product.id,
+                    {status: NEW_STATUS},
+                )
+                .then(({data}) => {
+                    this.$store.commit('products/update', {
+                        product: {...this.tobe_updated_product, status: NEW_STATUS}
+                    })
+                    this.$buefy.notification.open({
+                        message: data.message,
+                        type: 'is-success is-light',
+                        duration: 5000
+                    });
+                    this.handleUpdateStatusClose()
+                })
+                .catch(err => {
+                    this.$buefy.notification.open({
+                        message: 'Whoops! Something went wrong.',
+                        type: 'is-danger is-light',
+                        duration: 5000
+                    });
+                })
         },
         noCategoryWarning() {
             this.$buefy.snackbar.open({

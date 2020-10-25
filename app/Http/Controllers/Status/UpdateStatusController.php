@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bill;
 use App\Models\Order;
 use App\Models\OtherExpenseItem;
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Quotation;
 use Illuminate\Database\Eloquent\Model;
@@ -40,6 +41,8 @@ class UpdateStatusController extends Controller
             return new Bill;
         } elseif ($type == 'other-expense') {
             return new OtherExpenseItem;
+        } elseif ($type == 'products') {
+            return new Product;
         }
         throw new \Exception(b('Model not found'));
     }

@@ -1,5 +1,3 @@
-import {NotificationProgrammatic as Notification} from 'buefy'
-
 const products = {
     namespaced: true,
     state: {
