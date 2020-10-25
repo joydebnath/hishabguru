@@ -21,7 +21,7 @@
             :type="has_quotation_number ? 'is-danger' :null"
             :message="has_quotation_number ? 'This field is required' : null"
         >
-            <b-input v-model="quotation.quotation_number" custom-class="text-sm"/>
+            <b-input v-model="quotation.quotation_number" custom-class="text-sm" readonly/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="quotation.reference_number" custom-class="text-sm"/>

@@ -15,12 +15,12 @@
             </div>
             <article class="media border-t">
                 <div class="media-content">
-                    <div class="content border-b p-4 text-sm">
+                    <div class="content border-b px-4 pt-4 pb-1 text-sm">
                         <p class="-mb-1 -mt-2" v-if="loading">
                             <b-skeleton active/>
                             <b-skeleton height="50px"/>
                         </p>
-                        <section class="grid grid-cols-2 px-4" v-else>
+                        <section class="flex flex-col px-4" v-else>
                             <div class="field mb-0" v-for="status in $props.options">
                                 <b-radio v-model="radio" :native-value="status.value">
                                     {{ status.name }}

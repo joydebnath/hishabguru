@@ -34,7 +34,7 @@
             @on-close="handleDeleteClose"
         />
         <RadioBox
-            title="Copy quotation to -"
+            title="Copy quotation to,"
             :show="copy_to_popup"
             :loading="loading_copy_to"
             :options="copy_to_options"
@@ -66,8 +66,8 @@ export default {
             copy_to_popup: false,
             loading_copy_to: false,
             copy_to_options: [
-                {value: 'order', name: 'Order'},
-                {value: 'invoice', name: 'Invoice'},
+                {value: 'order', name: 'Copy the Quotation to a new Order'},
+                {value: 'invoice', name: 'Copy the Quotation to a new Invoice'},
             ],
             statuses: [
                 {name: 'Accepted', value: 'accepted'},
