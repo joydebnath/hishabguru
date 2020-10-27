@@ -14,15 +14,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/EmptyDashboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hishabguru.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hishabguru.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/BillDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/BillDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/InvoiceDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/InvoiceDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/OrderDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/OrderDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ExpenseDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ExpenseDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/PurchaseDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/PurchaseDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/QuotationDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/popups/RadioBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/popups/RadioBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -401,8 +403,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -421,7 +423,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
@@ -815,7 +816,12 @@
       <workItem from="1603491422096" duration="17042000" />
       <workItem from="1603540803614" duration="4614000" />
       <workItem from="1603581800248" duration="5511000" />
-      <workItem from="1603594856154" duration="20404000" />
+      <workItem from="1603594856154" duration="20707000" />
+      <workItem from="1603651525948" duration="1416000" />
+      <workItem from="1603676037738" duration="17000" />
+      <workItem from="1603688454173" duration="2040000" />
+      <workItem from="1603781350542" duration="10990000" />
+      <workItem from="1603835754972" duration="78000" />
     </task>
     <servers />
   </component>
