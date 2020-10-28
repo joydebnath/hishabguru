@@ -14,17 +14,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/EmptyDashboard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/CustomerDuePayments.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/DueBills.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysExpenses.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysProfit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysSales.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/OrderDueToday.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/SalesByCategories.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/hishabguru.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hishabguru.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendors~js/profile-settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendors~js/profile-settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/EmptyDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/EmptyDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -495,7 +499,6 @@
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
       <path value="$PROJECT_DIR$/vendor/brick/math" />
@@ -571,7 +574,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/global/popups" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/pages/dashboard/widgets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -585,19 +588,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/pages/dashboard/widgets" />
+      <recent name="$PROJECT_DIR$/resources/js/components/global/popups" />
+      <recent name="$PROJECT_DIR$/app/Services/Setting" />
+      <recent name="$PROJECT_DIR$/resources/js/pages/business-settings" />
+      <recent name="$PROJECT_DIR$/resources/views/print" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Resources/Setting" />
       <recent name="$PROJECT_DIR$/resources/js/pages" />
       <recent name="$PROJECT_DIR$/resources/js/repos" />
       <recent name="$PROJECT_DIR$/resources/js/components/crud/purchases/purchases.js" />
       <recent name="$PROJECT_DIR$/resources/js/components/global/lookup" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/global/popups" />
-      <recent name="$PROJECT_DIR$/app/Services/Setting" />
-      <recent name="$PROJECT_DIR$/resources/js/pages/business-settings" />
-      <recent name="$PROJECT_DIR$/resources/views/print" />
-      <recent name="$PROJECT_DIR$/resources/js/route" />
     </key>
   </component>
   <component name="RunManager">
@@ -822,6 +825,8 @@
       <workItem from="1603688454173" duration="2040000" />
       <workItem from="1603781350542" duration="10990000" />
       <workItem from="1603835754972" duration="78000" />
+      <workItem from="1603837190252" duration="113000" />
+      <workItem from="1603874084736" duration="8806000" />
     </task>
     <servers />
   </component>

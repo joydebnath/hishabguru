@@ -1,6 +1,6 @@
 <template>
     <vue-frappe
-        class="bg-white pt-4 shadow frappe"
+        class="bg-white pt-4 shadow frappe sm:rounded-lg"
         type="axis-mixed"
         id="one"
         :labels="labels"
@@ -67,6 +67,6 @@ function thousands_separators(num) {
 <style>
 .frappe .title {
     font-size: 14px;
-
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
 }
 </style>

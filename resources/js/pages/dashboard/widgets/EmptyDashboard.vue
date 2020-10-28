@@ -140,7 +140,3 @@ export default {
     name: "EmptyDashboard"
 }
 </script>
-
-<style scoped>
-
-</style>
