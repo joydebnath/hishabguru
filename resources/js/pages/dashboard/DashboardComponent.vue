@@ -36,7 +36,12 @@ export default {
         CustomerDuePayments,
         OrderDueToday,
         SalesByCategories,
-        Last30DaysProfits, Last30DaysExpenses, Last30DaysSales, MonthCashFlow, MonthStatistics,},
+        Last30DaysProfits,
+        Last30DaysExpenses,
+        Last30DaysSales,
+        MonthCashFlow,
+        MonthStatistics,
+    },
     data() {
         return {}
     }
