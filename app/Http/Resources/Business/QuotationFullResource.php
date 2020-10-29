@@ -28,10 +28,7 @@ class QuotationFullResource extends JsonResource
             'create_date' => $this->create_date,
             'expiry_date' => $this->expiry_date,
             'products' => self::products($this->products),
-            'copied' => [
-                'orders' => collect(collect($this->orders)->first())->get('id', null),
-                'invoices' => collect(collect($this->invoices)->first())->get('id', null),
-            ],
+            'copied' => $this->getCopiedLinks(),
         ];
     }
 
@@ -62,5 +59,22 @@ class QuotationFullResource extends JsonResource
     {
         $total_buying_cost = $buying_price * $quantity;
         return round((($total_selling_price - $total_buying_cost) / $total_buying_cost) * 100, 2);
+    }
+
+    private function getCopiedLinks()
+    {
+        $order = collect(collect($this->orders)->first())->get('id', null);
+        $invoice = collect(collect($this->invoices)->first())->get('id', null);
+        $copied = [];
+
+        if ($order !== null) {
+            $copied['order'] = '/@/orders/' . $order;
+        }
+
+        if ($invoice !== null) {
+            $copied['invoice'] = '/@/invoices/' . $invoice;
+        }
+
+        return $copied;
     }
 }

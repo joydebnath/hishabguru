@@ -1,48 +1,64 @@
 <template>
-    <div class="flex flex-row-reverse mb-1">
-        <b-dropdown aria-role="list" append-to-body size="is-small" v-if="true">
-            <button class="button px-2 is-small rounded-md" slot="trigger" slot-scope="{ active }">
-                <span class="font-semibold">Options</span>
-                <b-icon :icon="active ? 'menu-up' : 'menu-down'"/>
-            </button>
-            <!--            <b-dropdown-item aria-role="listitem">-->
-            <!--                Copy To-->
-            <!--            </b-dropdown-item>-->
-            <b-dropdown-item aria-role="listitem" @click="handleStatusUpdate">
-                Update Status
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" @click="handleCopy">
-                Copy To
-            </b-dropdown-item>
-            <span class="dropdown-divider"></span>
-            <b-dropdown-item class="text-red-700" aria-role="listitem" @click="handleDelete">
-                Delete
-            </b-dropdown-item>
-        </b-dropdown>
-        <b-button size="is-small" class="mx-2 font-semibold rounded-md" @click="handlePrint">Print</b-button>
-        <DownloadingBox :show="downloading"/>
-        <UpdateStatusBox
-            title="Update Quotation Status"
-            :statuses="statuses"
-            :show="show_status_update"
-            :handler="onConfirmStatusUpdate"
-            @on-close="handleStatusUpdateClose"
-        />
-        <DeleteBox
-            :show="show_delete"
-            :handler="onConfirmDelete"
-            @on-close="handleDeleteClose"
-        />
-        <CheckBox
-            ref="copy_to"
-            title="Copy quotation to,"
-            :show="copy_to_popup"
-            :loading="loading_copy_to"
-            :options="copy_to_options"
-            :handler="handleCopyTo"
-            @on-close="handleCopyClose"
-        />
-    </div>
+    <section class="grid grid-cols-2 gaps-4">
+        <div class="col-span-1">
+            <div class="mb-2 -mt-1">
+                <router-link v-for="(link,i) in $props.quotation.copied" :key="link" :to="link">
+                    <b-button type="is-link is-light" size="is-small"
+                              class="font-semibold rounded-md mr-2 text-uppercase tracking-wide">
+                        <b-icon
+                            pack="fas"
+                            icon="link"
+                            size="is-small"
+                        />
+                        &nbsp;&nbsp;{{ i }}
+                    </b-button>
+                </router-link>
+            </div>
+        </div>
+        <div class="col-span-1">
+            <div class="flex flex-row-reverse mb-1">
+                <b-dropdown aria-role="list" append-to-body size="is-small" v-if="true">
+                    <button class="button px-2 is-small rounded-md" slot="trigger" slot-scope="{ active }">
+                        <span class="font-semibold">Options</span>
+                        <b-icon :icon="active ? 'menu-up' : 'menu-down'"/>
+                    </button>
+                    <b-dropdown-item aria-role="listitem" @click="handleStatusUpdate">
+                        Update Status
+                    </b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem" @click="handleCopy" v-if="computed_copy_to_options.length">
+                        Copy To
+                    </b-dropdown-item>
+                    <span class="dropdown-divider"></span>
+                    <b-dropdown-item class="text-red-700" aria-role="listitem" @click="handleDelete">
+                        Delete
+                    </b-dropdown-item>
+                </b-dropdown>
+                <b-button size="is-small" class="mx-2 font-semibold rounded-md" @click="handlePrint">Print</b-button>
+                <DownloadingBox :show="downloading"/>
+                <UpdateStatusBox
+                    title="Update Quotation Status"
+                    :statuses="statuses"
+                    :show="show_status_update"
+                    :handler="onConfirmStatusUpdate"
+                    @on-close="handleStatusUpdateClose"
+                />
+                <DeleteBox
+                    :show="show_delete"
+                    :handler="onConfirmDelete"
+                    @on-close="handleDeleteClose"
+                />
+                <CheckBox
+                    ref="copy_to"
+                    title="Copy quotation to,"
+                    :show="copy_to_popup"
+                    :loading="loading_copy_to"
+                    :options="computed_copy_to_options"
+                    :handler="handleCopyTo"
+                    @on-close="handleCopyClose"
+                />
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -66,16 +82,27 @@ export default {
             tobe_copied_quotation: {},
             copy_to_popup: false,
             loading_copy_to: false,
-            copy_to_options: [
-                {value: 'orders', name: 'A new Order'},
-                {value: 'invoices', name: 'A new Invoice'},
-            ],
             statuses: [
                 {name: 'Accepted', value: 'accepted'},
                 {name: 'Declined', value: 'declined'},
                 {name: 'Expired', value: 'expired'},
                 {name: 'Invoiced', value: 'invoiced'},
             ]
+        }
+    },
+    computed:{
+        computed_copy_to_options(){
+            let copy_to_options = [
+                {value: 'orders', name: 'A new Order'},
+                {value: 'invoices', name: 'A new Invoice'},
+            ];
+            if(this.$props.quotation.copied && this.$props.quotation.copied.order){
+                copy_to_options = [..._.filter(item => item.value !== 'orders')]
+            }
+            if(this.$props.quotation.copied && this.$props.quotation.copied.invoice){
+                copy_to_options = [..._.filter(item => item.value !== 'invoices')]
+            }
+            return copy_to_options;
         }
     },
     methods: {

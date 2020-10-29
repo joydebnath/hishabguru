@@ -27,8 +27,8 @@ class CopyToController extends Controller
             foreach (request()->get('to') as $toType) {
                 $result = $copyService->store($toType, $from, Auth::id());
                 $results[$toType] = $this->getUrl($toType, $result);
-
-                $from->{$toType}()->attach($result->id, [
+                //$toType = orders | invoices | bills
+                $from->$toType()->attach($result->id, [
                     'copy_from_type' => request()->get('from'),
                     'copy_to_type' => $toType
                 ]);
