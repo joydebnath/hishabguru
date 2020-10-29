@@ -8,6 +8,7 @@ use App\Http\Requests\Business\OrderRequest;
 use App\Http\Resources\Business\OrderCollection;
 use App\Http\Resources\Business\OrderFullResource;
 use App\Http\Resources\Business\Order as OrderResource;
+use App\Models\CopyReference;
 use App\Models\Order;
 use App\Models\OrderDeliveryDetails;
 use Exception;
@@ -92,6 +93,7 @@ class OrdersController extends Controller
     public function destroy(Order $order)
     {
         try {
+            CopyReference::where('copy_to_id',$order->id)->where('copy_to_type','orders')->delete();
             $order->delete();
             return response(['message' => 'Order is deleted']);
         } catch (Exception $exception) {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Business\InvoiceRequest;
 use App\Http\Resources\Business\InvoiceCollection;
 use App\Http\Resources\Business\InvoiceFullResource;
+use App\Models\CopyReference;
 use App\Models\Invoice;
 use App\Http\Resources\Business\Invoice as InvoiceResource;
 use Exception;
@@ -85,6 +86,7 @@ class InvoicesController extends Controller
     public function destroy(Invoice $invoice)
     {
         try {
+            CopyReference::where('copy_to_id',$invoice->id)->where('copy_to_type','invoices')->delete();
             $invoice->payable()->delete();
             $invoice->delete();
             return response(['message' => 'Invoice is deleted']);

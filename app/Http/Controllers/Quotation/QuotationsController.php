@@ -82,6 +82,8 @@ class QuotationsController extends Controller
     public function destroy(Quotation $quotation)
     {
         try {
+            $quotation->invoices()->delete();
+            $quotation->orders()->delete();
             $quotation->delete();
             return response(['message' => 'Quotation is deleted']);
         } catch (Exception $exception) {

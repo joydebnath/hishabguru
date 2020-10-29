@@ -90,17 +90,17 @@ export default {
             ]
         }
     },
-    computed:{
-        computed_copy_to_options(){
+    computed: {
+        computed_copy_to_options() {
             let copy_to_options = [
                 {value: 'orders', name: 'A new Order'},
                 {value: 'invoices', name: 'A new Invoice'},
             ];
-            if(this.$props.quotation.copied && this.$props.quotation.copied.order){
-                copy_to_options = [..._.filter(item => item.value !== 'orders')]
+            if (this.$props.quotation.copied && this.$props.quotation.copied.order) {
+                copy_to_options = [..._.filter(copy_to_options, item => item.value !== 'orders')]
             }
-            if(this.$props.quotation.copied && this.$props.quotation.copied.invoice){
-                copy_to_options = [..._.filter(item => item.value !== 'invoices')]
+            if (this.$props.quotation.copied && this.$props.quotation.copied.invoice) {
+                copy_to_options = [..._.filter(copy_to_options, item => item.value !== 'invoices')]
             }
             return copy_to_options;
         }
