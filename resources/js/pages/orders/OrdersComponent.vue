@@ -91,7 +91,7 @@ export default {
             remove(this.tobe_deleted_order.id)
                 .then(({data}) => {
                     this.$store.commit('orders/setLoading', {loading: false})
-                    Notification.open({
+                    this.$buefy.notification.open({
                         message: data.message,
                         type: 'is-success is-light',
                         duration: 5000
@@ -102,7 +102,7 @@ export default {
                 .catch(err => {
                     console.log(err)
                     if (err.response) {
-                        Notification.open({
+                        this.$buefy.notification.open({
                             message: err.response.data.message,
                             type: 'is-danger is-light',
                             duration: 5000

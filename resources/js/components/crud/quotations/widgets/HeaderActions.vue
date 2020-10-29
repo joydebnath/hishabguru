@@ -33,7 +33,8 @@
             :handler="onConfirmDelete"
             @on-close="handleDeleteClose"
         />
-        <RadioBox
+        <CheckBox
+            ref="copy_to"
             title="Copy quotation to,"
             :show="copy_to_popup"
             :loading="loading_copy_to"
@@ -49,11 +50,11 @@ import DownloadingBox from "@/components/global/popups/DownloadingBox";
 import UpdateStatusBox from "@/components/global/popups/UpdateStatusBox";
 import DeleteBox from "@/components/global/popups/DeleteBox";
 import {remove} from '@/repos/quotations'
-import RadioBox from "@/components/global/popups/RadioBox";
+import CheckBox from "@/components/global/popups/CheckBox";
 
 export default {
     name: "HeaderActions",
-    components: {RadioBox, DeleteBox, UpdateStatusBox, DownloadingBox},
+    components: {CheckBox, DeleteBox, UpdateStatusBox, DownloadingBox},
     props: {
         quotation: Object
     },
@@ -66,13 +67,14 @@ export default {
             copy_to_popup: false,
             loading_copy_to: false,
             copy_to_options: [
-                {value: 'order', name: 'Copy the Quotation to a new Order'},
-                {value: 'invoice', name: 'Copy the Quotation to a new Invoice'},
+                {value: 'orders', name: 'A new Order'},
+                {value: 'invoices', name: 'A new Invoice'},
             ],
             statuses: [
                 {name: 'Accepted', value: 'accepted'},
                 {name: 'Declined', value: 'declined'},
                 {name: 'Expired', value: 'expired'},
+                {name: 'Invoiced', value: 'invoiced'},
             ]
         }
     },
@@ -144,13 +146,13 @@ export default {
         onConfirmStatusUpdate(status) {
             this.$emit('on-loading', true);
             axios
-                .patch('/status/quotation/' + this.quotation.id, {
+                .patch('/status/quotation/' + this.$props.quotation.id, {
                     status: status
                 })
                 .then(({data}) => {
                     this.$emit('on-loading', false);
                     this.handleStatusUpdateClose();
-                    this.$emit('on-update', {...this.quotation, status: status})
+                    this.$emit('on-update', {...this.$props.quotation, status: status})
                     this.$buefy.notification.open({
                         message: data.message,
                         type: 'is-success is-light',
@@ -169,13 +171,11 @@ export default {
         handleStatusUpdateClose() {
             this.show_status_update = false
         },
-        handleCopy(quotation) {
+        handleCopy() {
             this.copy_to_popup = true;
-            this.tobe_copied_quotation = quotation;
         },
         handleCopyClose() {
             this.copy_to_popup = false;
-            this.tobe_copied_quotation = {};
             this.loading_copy_to = false;
         },
         handleCopyTo(type) {
@@ -183,16 +183,20 @@ export default {
                 this.loading_copy_to = true;
                 axios
                     .post('/copy-to', {
-                        from: 'quotation',
+                        from: 'quotations',
                         to: type,
-                        copy_from_id: this.tobe_copied_quotation.id
+                        copy_from_id: this.$props.quotation.id
                     })
                     .then(({data}) => {
-                        this.handleDeleteClose();
+                        const FIRST = type.shift()
+                        const URL = data.data[FIRST]
+                        this.$router.push(URL);
+                        this.handleCopyClose();
                     })
                     .catch(err => {
-                        this.handleDeleteClose();
+                        this.handleCopyClose();
                     })
+                this.$refs.copy_to.clearCheckbox();
             }
         },
     }

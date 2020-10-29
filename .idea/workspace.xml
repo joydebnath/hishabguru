@@ -14,7 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/DashboardComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/global/popups/CheckBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Transform/CopyToController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Transform/CopyToController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Copy/CopyInvoiceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Copy/CopyInvoiceService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Copy/CopyOrderService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Copy/CopyOrderService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Copy/CopyPurchaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Copy/CopyPurchaseService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Copy/CopyQuotationService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Copy/CopyQuotationService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Copy/ICopyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Copy/ICopyService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/global/popups/RadioBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/popups/RadioBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrdersComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -560,7 +571,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/pages/dashboard/widgets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/global/popups" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -574,19 +585,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/pages/dashboard/widgets" />
-      <recent name="$PROJECT_DIR$/resources/js/components/global/popups" />
-      <recent name="$PROJECT_DIR$/app/Services/Setting" />
-      <recent name="$PROJECT_DIR$/resources/js/pages/business-settings" />
-      <recent name="$PROJECT_DIR$/resources/views/print" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Resources/Setting" />
       <recent name="$PROJECT_DIR$/resources/js/pages" />
       <recent name="$PROJECT_DIR$/resources/js/repos" />
       <recent name="$PROJECT_DIR$/resources/js/components/crud/purchases/purchases.js" />
       <recent name="$PROJECT_DIR$/resources/js/components/global/lookup" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/global/popups" />
+      <recent name="$PROJECT_DIR$/resources/js/pages/dashboard/widgets" />
+      <recent name="$PROJECT_DIR$/app/Services/Setting" />
+      <recent name="$PROJECT_DIR$/resources/js/pages/business-settings" />
+      <recent name="$PROJECT_DIR$/resources/views/print" />
     </key>
   </component>
   <component name="RunManager">
@@ -812,7 +823,8 @@
       <workItem from="1603781350542" duration="10990000" />
       <workItem from="1603835754972" duration="78000" />
       <workItem from="1603837190252" duration="113000" />
-      <workItem from="1603874084736" duration="9212000" />
+      <workItem from="1603874084736" duration="9231000" />
+      <workItem from="1603931509087" duration="14318000" />
     </task>
     <servers />
   </component>
@@ -854,27 +866,28 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603586287007" />
-    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603614175673">
+    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603967314787">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="1082" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/1229.0.1920.1080@1229.0.1920.1080" timestamp="1602841989761" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601027813801" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600167207332" />
-    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603614175673" />
+    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603967314787" />
     <state x="4523" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601360824932" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1602389565320" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602848020998" />
     <state x="2094" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.5688.1053@72.27.5688.1053" timestamp="1602899964748" />
-    <state x="2568" y="271" width="413" height="452" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1602886084817">
-      <screen x="72" y="27" width="5688" height="1053" />
+    <state x="2953" y="293" width="413" height="452" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1603971657310">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2953" y="293" width="413" height="463" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601379764860" />
+    <state x="2953" y="293" width="413" height="463" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603971657310" />
     <state x="1088" y="271" width="413" height="452" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/72.27.1848.1053@72.27.1848.1053" timestamp="1602844558987" />
     <state x="2568" y="271" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/72.27.5688.1053@72.27.5688.1053" timestamp="1602886084817" />
-    <state x="2668" y="229" width="413" height="629" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1601028346921">
+    <state x="2668" y="229" width="413" height="629" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1603967478060">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2668" y="229" width="413" height="629" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601028346921" />
+    <state x="2668" y="229" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603967478060" />
     <state x="2615" y="454" width="520" height="178" key="ComposerInitDialogKey" timestamp="1600045698148">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -934,10 +947,10 @@
       <screen x="72" y="27" width="3768" height="1053" />
     </state>
     <state x="2723" y="454" width="303" height="178" key="VCS.ChangelistChooser/72.27.3768.1053@72.27.3768.1053" timestamp="1603252129526" />
-    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603180089681">
+    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603955375860">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603180089681" />
+    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603955375860" />
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602310833946">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -955,14 +968,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1603629994829">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1603974903017">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1603367950776" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603629994829" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603974903017" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1603153911358" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1603211904398" />

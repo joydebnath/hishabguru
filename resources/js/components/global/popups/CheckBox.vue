@@ -3,7 +3,7 @@
         v-model="$props.show"
         has-modal-card
         trap-focus
-        :destroy-on-hide="false"
+        :destroy-on-hide="true"
         aria-role="dialog"
         aria-modal
         :width="500"
@@ -22,9 +22,9 @@
                         </p>
                         <section class="flex flex-col px-4" v-else>
                             <div class="field mb-0" v-for="status in $props.options">
-                                <b-radio v-model="radio" :native-value="status.value">
+                                <b-checkbox v-model="checkbox" :native-value="status.value">
                                     {{ status.name }}
-                                </b-radio>
+                                </b-checkbox>
                             </div>
                         </section>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="level-left">
                             <div class="level-item">
                                 <button class="button is-light text-sm text-uppercase tracing-wide"
-                                        @click="$emit('on-close')">
+                                        @click="$emit('on-close')" :disabled="loading">
                                     cancel
                                 </button>
                             </div>
@@ -40,7 +40,7 @@
                         <div class="level-right">
                             <div class="level-item">
                                 <button class="button is-info text-sm text-uppercase tracing-wide"
-                                        @click="handleConfirm">
+                                        @click="handleConfirm" :disabled="loading">
                                     confirm
                                 </button>
                             </div>
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-    name: "RadioBox",
+    name: "CheckBox",
     props: {
         show: false,
         options: Object | Array,
@@ -67,12 +67,15 @@ export default {
     },
     data() {
         return {
-            radio: null
+            checkbox: []
         }
     },
     methods: {
         handleConfirm() {
-            this.$props.handler(this.radio);
+            this.$props.handler(this.checkbox);
+        },
+        clearCheckbox() {
+            this.checkbox = []
         }
     }
 }

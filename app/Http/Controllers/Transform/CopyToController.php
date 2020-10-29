@@ -13,24 +13,37 @@ use App\Services\Copy\CopyQuotationService;
 use App\Services\Copy\ICopyService;
 use Illuminate\Database\Eloquent\Model;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class CopyToController extends Controller
 {
     public function store()
     {
-        $from = $this->getModel(request()->get('from'))::find(request()->get('copy_from_id'));
-        $to = $this->getModel(request()->get('to'));
+        try {
+            $from = $this->getModel(request()->get('from'))::find(request()->get('copy_from_id'));
+            $copyService = $this->getCopyService(request()->get('from'));
+
+            $results = [];
+            foreach (request()->get('to') as $item) {
+                $result = $copyService->store($item, $from, Auth::id());
+                $results[$item] = $this->getUrl($item, $result);
+            }
+
+            return response(['data' => $results], 201);
+        } catch (Exception $exception) {
+            return response(['error' => $exception->getMessage()], 500);
+        }
     }
 
     private function getModel($type): Model
     {
-        if ($type === 'quotation') {
+        if ($type === 'quotations') {
             return new Quotation;
-        } elseif ($type === 'order') {
+        } elseif ($type === 'orders') {
             return new Order;
-        } elseif ($type === 'purchase') {
+        } elseif ($type === 'purchases') {
             return new Purchase;
-        } elseif ($type === 'invoice') {
+        } elseif ($type === 'invoices') {
             return new Invoice;
         }
         throw new Exception('Unsupported model name');
@@ -38,14 +51,24 @@ class CopyToController extends Controller
 
     private function getCopyService($type): ICopyService
     {
-        if ($type === 'quotation') {
+        if ($type === 'quotations') {
             return new CopyQuotationService;
-        } elseif ($type === 'order') {
+        } elseif ($type === 'orders') {
             return new CopyOrderService;
-        } elseif ($type === 'purchase') {
+        } elseif ($type === 'purchases') {
             return new CopyPurchaseService;
         }
         throw new Exception('Unsupported model name');
+    }
+
+    /**
+     * @param $item
+     * @param $result
+     * @return string
+     */
+    private function getUrl($item, $result): string
+    {
+        return '/@/' . $item . '/' . $result->id;
     }
 
 }
