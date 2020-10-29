@@ -27,7 +27,11 @@ class QuotationFullResource extends JsonResource
             'read_only' => $this->status !== 'draft',
             'create_date' => $this->create_date,
             'expiry_date' => $this->expiry_date,
-            'products' => self::products($this->products)
+            'products' => self::products($this->products),
+            'copied' => [
+                'orders' => collect(collect($this->orders)->first())->get('id', null),
+                'invoices' => collect(collect($this->invoices)->first())->get('id', null),
+            ],
         ];
     }
 

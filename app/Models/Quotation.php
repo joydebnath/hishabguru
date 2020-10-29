@@ -19,6 +19,22 @@ class Quotation extends Model
             ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total');
     }
 
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class, 'copy_references', 'copy_from_id', 'copy_to_id')
+            ->wherePivot('copy_from_type', '=', 'quotations')
+            ->wherePivot('copy_to_type', '=', 'orders')
+            ->withTimestamps()->withPivot('copy_from_type', 'copy_to_type');
+    }
+
+    public function invoices(): BelongsToMany
+    {
+        return $this->belongsToMany(Invoice::class, 'copy_references', 'copy_from_id', 'copy_to_id')
+            ->wherePivot('copy_from_type', '=', 'quotations')
+            ->wherePivot('copy_to_type', '=', 'invoices')
+            ->withTimestamps()->withPivot('copy_from_type', 'copy_to_type');
+    }
+
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class);

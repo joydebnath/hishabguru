@@ -24,15 +24,10 @@ class ClientLookup extends JsonResource
             'mobile' => $mobile ? $mobile->value : null,
             'm_contact_details_id' => $mobile ? $mobile->id : null,
             'email' => $email ? $email->value : null,
-            'address' => $address ? $this->fullAddress($address) : null,
+            'address' => $address ? $address->formatted_address : null,
             'address_id' => $address ? $address->id : null,
             'formatted_address' => $address ? $this->formattedAddress($address) : null,
         ];
-    }
-
-    private function fullAddress($address)
-    {
-        return $address->address_line_1 . ' ' . $address->address_line_2 . ', ' . $address->city . ', ' . $address->postcode;
     }
 
     private function formattedAddress($address)
