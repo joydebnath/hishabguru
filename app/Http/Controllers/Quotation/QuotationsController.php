@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Business\QuotationRequest;
 use App\Http\Resources\Business\QuotationCollection;
 use App\Http\Resources\Business\QuotationFullResource;
+use App\Models\CopyReference;
 use App\Models\Quotation;
 use App\Http\Resources\Business\Quotation as QuotationResource;
 use Exception;
@@ -49,7 +50,7 @@ class QuotationsController extends Controller
     public function show(Quotation $quotation)
     {
         try {
-            return new QuotationFullResource($quotation->load('contact', 'products','orders.invoices','invoices'));
+            return new QuotationFullResource($quotation->load('contact', 'products', 'orders.invoices', 'invoices'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -82,13 +83,29 @@ class QuotationsController extends Controller
     public function destroy(Quotation $quotation)
     {
         try {
-            $quotation->invoices()->delete();
-            $quotation->orders()->delete();
+            $this->unlinkQuotation($quotation);
             $quotation->delete();
             return response(['message' => 'Quotation is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
+    }
+
+    private function unlinkQuotation(Quotation $quotation)
+    {
+        $orders = $quotation->orders;
+        $invoices = $quotation->invoices;
+        if (collect($orders)->isNotEmpty() && collect($invoices)->isNotEmpty()) {
+            $order = collect($orders)->first();
+            $invoice = collect($invoices)->first();
+            CopyReference::create([
+                'copy_from_type' => 'orders',
+                'copy_from_id' => collect($order)->get('id'),
+                'copy_to_type' => 'invoices',
+                'copy_to_id' => collect($invoice)->get('id'),
+            ]);
+        }
+        CopyReference::where('copy_from_id', $quotation->id)->where('copy_from_type', 'quotations')->delete();
     }
 
     /**

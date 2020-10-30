@@ -93,8 +93,7 @@ class OrdersController extends Controller
     public function destroy(Order $order)
     {
         try {
-            CopyReference::where('copy_to_id',$order->id)->where('copy_to_type','orders')->delete();
-            $order->invoices()->delete();
+            CopyReference::where('copy_from_id',$order->id)->where('copy_from_type','orders')->delete();
             $order->delete();
             return response(['message' => 'Order is deleted']);
         } catch (Exception $exception) {

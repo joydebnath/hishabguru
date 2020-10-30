@@ -8,6 +8,7 @@ use App\Http\Requests\Expense\PurchaseRequest;
 use App\Http\Resources\Expense\PurchaseCollection;
 use App\Http\Resources\Expense\Purchase as PurchaseResource;
 use App\Http\Resources\Expense\PurchaseFullResource;
+use App\Models\CopyReference;
 use App\Models\Purchase;
 use Exception;
 
@@ -82,7 +83,7 @@ class PurchasesController extends Controller
     public function destroy(Purchase $purchase)
     {
         try {
-            $purchase->bills()->delete();
+            CopyReference::where('copy_from_id', $purchase->id)->where('copy_from_type', 'purchases')->delete();
             $purchase->delete();
             return response(['message' => 'Purchase Order is deleted']);
         } catch (Exception $exception) {
