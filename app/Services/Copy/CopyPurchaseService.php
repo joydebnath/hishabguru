@@ -9,7 +9,7 @@ class CopyPurchaseService implements ICopyService
 {
     public function store($type, $purchaseOrder, $userId)
     {
-        if ($type === 'invoices') {
+        if ($type === 'bills') {
             return $this->copyToBill($purchaseOrder, $userId);
         }
         throw new \UnexpectedValueException('Can not copy purchase order to ' . $type);

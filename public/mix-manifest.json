@@ -44,5 +44,6 @@
     "/js/quotations.js": "/js/quotations.js",
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
-    "/js/order~js/quotation.js": "/js/order~js/quotation.js"
+    "/js/order~js/quotation.js": "/js/order~js/quotation.js",
+    "/js/create-purchase~js/order~js/purchase~js/quotation.js": "/js/create-purchase~js/order~js/purchase~js/quotation.js"
 }

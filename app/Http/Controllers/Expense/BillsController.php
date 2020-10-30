@@ -10,6 +10,7 @@ use App\Http\Resources\Expense\BillCollection;
 use App\Http\Resources\Expense\BillFullResource;
 use App\Models\Bill;
 use App\Http\Resources\Expense\Bill as BillResource;
+use App\Models\CopyReference;
 use Exception;
 
 class BillsController extends Controller
@@ -88,6 +89,7 @@ class BillsController extends Controller
     public function destroy(Bill $bill)
     {
         try {
+            CopyReference::where('copy_to_id', $bill->id)->where('copy_to_type', 'bills')->delete();
             $bill->payable()->delete();
             $bill->delete();
             return response(['message' => 'Bill is deleted']);

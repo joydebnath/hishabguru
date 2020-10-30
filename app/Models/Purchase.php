@@ -19,6 +19,15 @@ class Purchase extends Model
             ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total', 'buying_unit_cost');
     }
 
+    public function bills(): BelongsToMany
+    {
+        return $this->belongsToMany(Bill::class, 'copy_references', 'copy_from_id', 'copy_to_id')
+            ->wherePivot('copy_from_type', '=', 'purchases')
+            ->wherePivot('copy_to_type', '=', 'bills')
+            ->withPivot('copy_from_type', 'copy_to_type')
+            ->withTimestamps();
+    }
+
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class);

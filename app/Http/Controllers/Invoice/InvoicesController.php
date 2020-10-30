@@ -86,7 +86,7 @@ class InvoicesController extends Controller
     public function destroy(Invoice $invoice)
     {
         try {
-            CopyReference::where('copy_to_id',$invoice->id)->where('copy_to_type','invoices')->delete();
+            CopyReference::where('copy_to_id', $invoice->id)->where('copy_to_type', 'invoices')->delete();
             $invoice->payable()->delete();
             $invoice->delete();
             return response(['message' => 'Invoice is deleted']);

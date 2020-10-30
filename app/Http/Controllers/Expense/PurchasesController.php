@@ -49,7 +49,7 @@ class PurchasesController extends Controller
     public function show(Purchase $purchase)
     {
         try {
-            return new PurchaseFullResource($purchase->load('contact', 'products','deliverySite'));
+            return new PurchaseFullResource($purchase->load('contact', 'products', 'deliverySite', 'bills'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
@@ -82,6 +82,7 @@ class PurchasesController extends Controller
     public function destroy(Purchase $purchase)
     {
         try {
+            $purchase->bills()->delete();
             $purchase->delete();
             return response(['message' => 'Purchase Order is deleted']);
         } catch (Exception $exception) {

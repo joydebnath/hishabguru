@@ -94,6 +94,7 @@ class OrdersController extends Controller
     {
         try {
             CopyReference::where('copy_to_id',$order->id)->where('copy_to_type','orders')->delete();
+            $order->invoices()->delete();
             $order->delete();
             return response(['message' => 'Order is deleted']);
         } catch (Exception $exception) {

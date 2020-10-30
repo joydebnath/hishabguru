@@ -27,6 +27,7 @@ class PurchaseFullResource extends JsonResource
             'delivery_date' => $this->delivery_date,
             'delivery_site' => new Address($this->deliverySite),
             'products' => self::products($this->products),
+            'copied' => $this->getCopiedLinks()
         ];
     }
 
@@ -46,5 +47,17 @@ class PurchaseFullResource extends JsonResource
                 'edit' => false
             ];
         });
+    }
+
+    private function getCopiedLinks()
+    {
+        $copied = [];
+        $bill = collect(collect($this->bills)->first())->get('id', null);
+
+        if ($bill !== null) {
+            $copied['bill'] = '/@/bills/' . $bill;
+        }
+
+        return $copied;
     }
 }

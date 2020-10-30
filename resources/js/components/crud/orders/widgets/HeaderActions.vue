@@ -49,7 +49,7 @@
                 />
                 <CheckBox
                     ref="copy_to"
-                    title="Copy quotation to,"
+                    title="Copy Order To,"
                     :show="copy_to_popup"
                     :loading="loading_copy_to"
                     :options="computed_copy_to_options"
