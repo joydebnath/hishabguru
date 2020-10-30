@@ -49,7 +49,7 @@ class QuotationsController extends Controller
     public function show(Quotation $quotation)
     {
         try {
-            return new QuotationFullResource($quotation->load('contact', 'products','orders','invoices'));
+            return new QuotationFullResource($quotation->load('contact', 'products','orders.invoices','invoices'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

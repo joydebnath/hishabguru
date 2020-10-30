@@ -79,7 +79,6 @@ export default {
             downloading: false,
             show_status_update: false,
             show_delete: false,
-            tobe_copied_quotation: {},
             copy_to_popup: false,
             loading_copy_to: false,
             statuses: [

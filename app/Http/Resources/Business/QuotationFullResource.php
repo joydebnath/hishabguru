@@ -63,12 +63,19 @@ class QuotationFullResource extends JsonResource
 
     private function getCopiedLinks()
     {
-        $order = collect(collect($this->orders)->first())->get('id', null);
-        $invoice = collect(collect($this->invoices)->first())->get('id', null);
         $copied = [];
+        $order = collect($this->orders)->first();
+        $invoice = collect(collect($this->invoices)->first())->get('id', null);
 
-        if ($order !== null) {
-            $copied['order'] = '/@/orders/' . $order;
+        if (collect($order)->isNotEmpty()) {
+            $temp = collect($order)->get('invoices');
+            $inv = collect($temp)->first();
+
+            if ($inv) {
+                $copied['invoice'] = '/@/invoices/' . collect($inv)->get('id');
+            }
+
+            $copied['order'] = '/@/orders/' . collect($order)->get('id');
         }
 
         if ($invoice !== null) {
