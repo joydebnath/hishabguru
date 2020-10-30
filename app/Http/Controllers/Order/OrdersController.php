@@ -56,7 +56,7 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         try {
-            return new OrderFullResource($order->load('contact', 'products', 'deliveryDetails'));
+            return new OrderFullResource($order->load('contact', 'products', 'deliveryDetails','invoices','quotation_invoices'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }

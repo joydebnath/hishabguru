@@ -17,7 +17,29 @@ class Order extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')
-            ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total');
+            ->withPivot('quantity', 'discount', 'tax_rate', 'total')
+            ->withTimestamps();
+    }
+
+    public function invoices(): BelongsToMany
+    {
+        return $this->belongsToMany(Invoice::class, 'copy_references', 'copy_from_id', 'copy_to_id')
+            ->wherePivot('copy_from_type', '=', 'orders')
+            ->wherePivot('copy_to_type', '=', 'invoices')
+            ->withPivot('copy_from_type', 'copy_to_type')
+            ->withTimestamps();
+    }
+
+    public function quotations()
+    {
+        return $this->belongsToMany(Quotation::class, 'copy_references', 'copy_to_id', 'copy_from_id')
+            ->wherePivot('copy_from_type', '=', 'quotations')
+            ->wherePivot('copy_to_type', '=', 'orders');
+    }
+
+    public function quotation_invoices()
+    {
+        return $this->quotations()->with('invoices');
     }
 
     public function tenant(): BelongsTo

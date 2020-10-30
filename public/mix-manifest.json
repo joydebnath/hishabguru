@@ -43,7 +43,5 @@
     "/js/quotation.js": "/js/quotation.js",
     "/js/quotations.js": "/js/quotations.js",
     "/js/suppliers.js": "/js/suppliers.js",
-    "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
-    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~5f30aed3.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~5f30aed3.js",
-    "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase.js": "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase.js"
+    "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js"
 }

@@ -25,7 +25,8 @@ class OrderFullResource extends JsonResource
             'delivery_details' => self::deliveryDetails($this->deliveryDetails),
             'create_date' => $this->create_date,
             'delivery_date' => $this->delivery_date,
-            'products' => self::products($this->products)
+            'products' => self::products($this->products),
+            'copied' => $this->getCopiedLinks()
         ];
     }
 
@@ -69,5 +70,27 @@ class OrderFullResource extends JsonResource
             ];
         }
         return null;
+    }
+
+    /**
+     * @return array
+     */
+    private function getCopiedLinks(): array
+    {
+        $copied = [];
+        $invoice = collect($this->invoices)->first();
+
+        if (collect($invoice)->isEmpty()) {
+            $temp = collect(
+                collect($this->quotation_invoices)->first()
+            )->get('invoices', []);
+            $invoice = collect($temp)->first();
+        }
+
+        if ($invoice) {
+            $copied['invoice'] = '/@/invoices/' . collect($invoice)->get('id');
+        }
+
+        return $copied;
     }
 }

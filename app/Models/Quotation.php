@@ -16,7 +16,8 @@ class Quotation extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'quotation_products', 'quotation_id', 'product_id')
-            ->withTimestamps()->withPivot('quantity', 'discount', 'tax_rate', 'total');
+            ->withPivot('quantity', 'discount', 'tax_rate', 'total')
+            ->withTimestamps();
     }
 
     public function orders(): BelongsToMany
@@ -24,7 +25,8 @@ class Quotation extends Model
         return $this->belongsToMany(Order::class, 'copy_references', 'copy_from_id', 'copy_to_id')
             ->wherePivot('copy_from_type', '=', 'quotations')
             ->wherePivot('copy_to_type', '=', 'orders')
-            ->withTimestamps()->withPivot('copy_from_type', 'copy_to_type');
+            ->withPivot('copy_from_type', 'copy_to_type')
+            ->withTimestamps();
     }
 
     public function invoices(): BelongsToMany
@@ -32,7 +34,8 @@ class Quotation extends Model
         return $this->belongsToMany(Invoice::class, 'copy_references', 'copy_from_id', 'copy_to_id')
             ->wherePivot('copy_from_type', '=', 'quotations')
             ->wherePivot('copy_to_type', '=', 'invoices')
-            ->withTimestamps()->withPivot('copy_from_type', 'copy_to_type');
+            ->withPivot('copy_from_type', 'copy_to_type')
+            ->withTimestamps();
     }
 
     public function tenant(): BelongsTo

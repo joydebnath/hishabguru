@@ -20,6 +20,8 @@ class CreateCopyReferencesTable extends Migration
             $table->string('copy_to_type');
             $table->unsignedBigInteger('copy_to_id');
             $table->timestamps();
+
+            $table->index(['copy_from_id','copy_from_type']);
         });
     }
 
