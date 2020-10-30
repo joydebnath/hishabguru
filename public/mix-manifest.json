@@ -5,9 +5,9 @@
     "/css/tailwind.css": "/css/tailwind.css",
     "/js/bill.js": "/js/bill.js",
     "/js/bills.js": "/js/bills.js",
-    "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js": "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js",
-    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~83829058.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~83829058.js",
-    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~4460a7ef.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~4460a7ef.js",
+    "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/promo-cod~d494e960.js": "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/promo-cod~d494e960.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e01a9bfa.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e01a9bfa.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~de9acfc2.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~de9acfc2.js",
     "/js/bill~js/create-bill.js": "/js/bill~js/create-bill.js",
     "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js": "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js",
     "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js": "/js/bill~js/create-bill~js/create-invoice~js/create-purchase~js/invoice~js/order~js/purchase~js/quotation.js",
@@ -23,6 +23,7 @@
     "/js/create-other-expense.js": "/js/create-other-expense.js",
     "/js/create-other-expense~js/other-expense.js": "/js/create-other-expense~js/other-expense.js",
     "/js/create-purchase.js": "/js/create-purchase.js",
+    "/js/create-purchase~js/order~js/purchase~js/quotation.js": "/js/create-purchase~js/order~js/purchase~js/quotation.js",
     "/js/create-purchase~js/purchase.js": "/js/create-purchase~js/purchase.js",
     "/js/create-quotation.js": "/js/create-quotation.js",
     "/js/create-quotation~js/quotation.js": "/js/create-quotation~js/quotation.js",
@@ -34,8 +35,6 @@
     "/js/orders.js": "/js/orders.js",
     "/js/other-expense.js": "/js/other-expense.js",
     "/js/other-expenses.js": "/js/other-expenses.js",
-    "/js/product-categories.js": "/js/product-categories.js",
-    "/js/products.js": "/js/products.js",
     "/js/profile-settings.js": "/js/profile-settings.js",
     "/js/promo-codes.js": "/js/promo-codes.js",
     "/js/purchase.js": "/js/purchase.js",
@@ -44,6 +43,6 @@
     "/js/quotations.js": "/js/quotations.js",
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
-    "/js/order~js/quotation.js": "/js/order~js/quotation.js",
-    "/js/create-purchase~js/order~js/purchase~js/quotation.js": "/js/create-purchase~js/order~js/purchase~js/quotation.js"
+    "/js/client-stats.js": "/js/client-stats.js",
+    "/js/supplier-stats.js": "/js/supplier-stats.js"
 }

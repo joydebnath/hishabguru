@@ -14,10 +14,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/statistics/client/ClientStatComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/statistics/product/ProductStatComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/statistics/supplier/SupplierStatComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/route/clients.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/route/inventories.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/route/supplier.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Expense/PurchasesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Expense/PurchasesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Order/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Quotation/QuotationsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/route/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -396,8 +401,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -818,6 +823,8 @@
       <workItem from="1603874084736" duration="9231000" />
       <workItem from="1603931509087" duration="21983000" />
       <workItem from="1604020469885" duration="16032000" />
+      <workItem from="1604063226631" duration="1264000" />
+      <workItem from="1604065206605" duration="516000" />
     </task>
     <servers />
   </component>

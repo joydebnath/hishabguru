@@ -9,14 +9,13 @@ import PurchaseRoutes from './purchases'
 import BillsRoutes from './bills'
 import OtherExpenseRoutes from './other-expenses'
 import EmployeesRoutes from './employees'
+import ClientsRoutes from './clients'
+import SuppliersRoutes from './supplier'
+import InventoriesRoutes from './invoices'
 
 const DashboardComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/dashboard/DashboardComponent");
-const ProductsComponent = () => import(/* webpackChunkName: "js/products" */  "../pages/products/ProductsComponent");
-const ProductCategoriesComponent = () => import(/* webpackChunkName: "js/product-categories" */  "../pages/product-categories/ProductsComponent");
 const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
 const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
-const ClientsComponent = () => import(/* webpackChunkName: "js/clients" */  "../pages/clients/ClientsComponent");
-const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/vendors/VendorsComponent");
 const BusinessSettingComponent = () => import(/* webpackChunkName: "js/business-settings" */  "../pages/business-settings/BusinessSettingComponent");
 const ProfileSettingsComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/profile-settings/ProfileSettingsComponent");
 // const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "../components/ExampleComponent");
@@ -30,18 +29,7 @@ const router = new VueRouter({
             component: DashboardComponent,
             meta: {type: 'dashboard'}
         },
-        {
-            path: '/@/products',
-            name: 'products',
-            meta: {type: 'products'},
-            component: ProductsComponent,
-        },
-        {
-            path: '/@/product-categories',
-            name: 'product categories',
-            meta: {type: 'products'},
-            component: ProductCategoriesComponent,
-        },
+        ...InventoriesRoutes,
         ...QuotationRoutes,
         ...OrderRoutes,
         ...PurchaseRoutes,
@@ -60,18 +48,8 @@ const router = new VueRouter({
         ...InvoiceRoutes,
         ...BillsRoutes,
         ...OtherExpenseRoutes,
-        {
-            path: '/@/clients',
-            name: 'clients',
-            meta: {type: 'contacts'},
-            component: ClientsComponent,
-        },
-        {
-            path: '/@/suppliers',
-            name: 'suppliers',
-            meta: {type: 'contacts'},
-            component: SuppliersComponent,
-        },
+        ...ClientsRoutes,
+        ...SuppliersRoutes,
         ...EmployeesRoutes,
         {
             path: '/@/business-settings',
