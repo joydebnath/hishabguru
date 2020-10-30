@@ -48,5 +48,6 @@
     "/js/supplier-stats.js": "/js/supplier-stats.js",
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/client-stats~js/product-stats~js/profile-settings.js": "/vendors~js/client-stats~js/product-stats~js/profile-settings.js",
-    "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js"
+    "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
+    "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js"
 }

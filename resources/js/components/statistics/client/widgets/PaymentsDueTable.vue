@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    name: "PaymentDueTable",
+    name: "PaymentsDueTable",
     data() {
         return {
             date: null,
