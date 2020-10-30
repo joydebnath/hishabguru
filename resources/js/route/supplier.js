@@ -1,4 +1,4 @@
-const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/vendors/VendorsComponent");
+const SuppliersComponent = () => import(/* webpackChunkName: "js/suppliers" */  "../pages/suppliers/SuppliersComponent");
 const SupplierStatsComponent = () => import(/* webpackChunkName: "js/supplier-stats" */  "../components/statistics/supplier/SupplierStatComponent");
 
 export default [

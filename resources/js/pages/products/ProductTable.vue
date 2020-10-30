@@ -71,6 +71,11 @@
                 <b-dropdown aria-role="list">
                     <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
                     <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
+                    <router-link :to="'/@/stats/product/' + props.row.id">
+                        <b-dropdown-item >
+                            View
+                        </b-dropdown-item>
+                    </router-link>
                     <b-dropdown-item aria-role="listitem" @click="$emit('on-status-update',props.row)">
                         Mark
                         <span v-if="props.row.status === 'active'">Inactive</span>

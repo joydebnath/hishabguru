@@ -44,5 +44,15 @@
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
     "/js/client-stats.js": "/js/client-stats.js",
-    "/js/supplier-stats.js": "/js/supplier-stats.js"
+    "/js/supplier-stats.js": "/js/supplier-stats.js",
+    "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js": "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~83829058.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~83829058.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~4460a7ef.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~4460a7ef.js",
+    "/js/product-categories.js": "/js/product-categories.js",
+    "/js/product-stats.js": "/js/product-stats.js",
+    "/js/products.js": "/js/products.js",
+    "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~f46fdbe2.js": "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~f46fdbe2.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~05e4b0ce.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~05e4b0ce.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~a8430c81.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-purchase~js/employees~js/invo~a8430c81.js",
+    "/vendors~js/product-stats~js/profile-settings.js": "/vendors~js/product-stats~js/profile-settings.js"
 }

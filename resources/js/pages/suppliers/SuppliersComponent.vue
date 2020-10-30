@@ -46,8 +46,8 @@ import {mapMutations, mapGetters} from "vuex";
 import SearchBox from '@/components/global/SearchBox'
 import RefreshIcon from "@/components/icons/RefreshIcon";
 import DeleteBox from "@/components/global/popups/DeleteBox";
-import Table from "./VendorsTable.vue";
-import Filters from "./VendorsFilters";
+import Table from "./SuppliersTable.vue";
+import Filters from "./SuppliersFilters";
 import ItemCRUD from "./modals/ItemCRUD";
 
 export default {

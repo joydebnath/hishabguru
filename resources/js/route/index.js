@@ -11,7 +11,7 @@ import OtherExpenseRoutes from './other-expenses'
 import EmployeesRoutes from './employees'
 import ClientsRoutes from './clients'
 import SuppliersRoutes from './supplier'
-import InventoriesRoutes from './invoices'
+import InventoriesRoutes from './inventories'
 
 const DashboardComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/dashboard/DashboardComponent");
 const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
