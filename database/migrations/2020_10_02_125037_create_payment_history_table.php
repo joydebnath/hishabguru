@@ -19,7 +19,7 @@ class CreatePaymentHistoryTable extends Migration
             $table->decimal('amount');
             $table->dateTime('payment_date');
             $table->text('payment_note')->nullable();
-            $table->unsignedBigInteger('record_entered_by')->nullable();
+            $table->unsignedBigInteger('record_entered_by')->index()->nullable();
             $table->timestamps();
 
             $table->foreign('record_entered_by')->references('id')->on('users')->onDelete('cascade');

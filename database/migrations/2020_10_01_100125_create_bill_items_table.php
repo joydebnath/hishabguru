@@ -15,8 +15,8 @@ class CreateBillItemsTable extends Migration
     {
         Schema::create('bill_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('bill_id');
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('bill_id')->index();
+            $table->unsignedBigInteger('product_id')->index();
             $table->integer('quantity')->default(1);
             $table->unsignedDecimal('buying_unit_cost');
             $table->unsignedDecimal('tax_rate')->default(0)->nullable();

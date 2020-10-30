@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->text('name');
             $table->string('type');
-            $table->unsignedBigInteger('tenant_id');
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->longText('note')->nullable();
             $table->timestamps();
 

@@ -15,7 +15,7 @@ class CreateTenantDetailsTable extends Migration
     {
         Schema::create('tenant_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tenant_id');
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->string('key');
             $table->string('value');
             $table->timestamps();

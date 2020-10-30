@@ -22,10 +22,10 @@ class CreateQuotationsTable extends Migration
             $table->text('note')->nullable();
             $table->dateTime('create_date');
             $table->dateTime('expiry_date')->nullable();
-            $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('contact_id')->nullable()->comment('quotation is created for a contact');
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('approved_by')->nullable();
+            $table->unsignedBigInteger('tenant_id')->index();
+            $table->unsignedBigInteger('contact_id')->index()->nullable()->comment('quotation is created for a contact');
+            $table->unsignedBigInteger('created_by')->index();
+            $table->unsignedBigInteger('approved_by')->index()->nullable();
             $table->unsignedDecimal('total_amount')->nullable();
             $table->unsignedDecimal('sub_total')->nullable();
             $table->unsignedDecimal('total_tax')->nullable();

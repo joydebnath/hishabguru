@@ -16,7 +16,7 @@ class CreateOtherExpenseItemsTable extends Migration
         Schema::create('other_expense_items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('other_expense_id');
+            $table->unsignedBigInteger('other_expense_id')->index();
             $table->integer('quantity')->default(1);
             $table->unsignedDecimal('buying_unit_cost');
             $table->unsignedDecimal('tax_rate')->default(0)->nullable();

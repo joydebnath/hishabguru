@@ -26,9 +26,9 @@ class CreateOtherExpensesTable extends Migration
             $table->unsignedDecimal('total_tax')->nullable();
             $table->text('note')->nullable();
 
-            $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('approved_by')->nullable();
+            $table->unsignedBigInteger('tenant_id')->index();
+            $table->unsignedBigInteger('created_by')->index();
+            $table->unsignedBigInteger('approved_by')->index()->nullable();
 
             $table->timestamps();
 

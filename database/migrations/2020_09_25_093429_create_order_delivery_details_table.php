@@ -15,7 +15,7 @@ class CreateOrderDeliveryDetailsTable extends Migration
     {
         Schema::create('order_delivery_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('order_id')->index();
             $table->text('address')->nullable();
             $table->text('contact_number')->nullable();
             $table->text('instructions')->nullable();

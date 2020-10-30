@@ -15,9 +15,9 @@ class CreateTenantUsersTable extends Migration
     {
         Schema::create('tenant_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('tenant_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('role_id')->index();
             $table->boolean('is_active')->nullable();
             $table->timestamps();
 

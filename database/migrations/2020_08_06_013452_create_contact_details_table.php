@@ -15,7 +15,7 @@ class CreateContactDetailsTable extends Migration
     {
         Schema::create('contact_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contact_id');
+            $table->unsignedBigInteger('contact_id')->index();
             $table->string('key');
             $table->string('value');
             $table->timestamps();

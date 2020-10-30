@@ -15,8 +15,8 @@ class CreateContactContactsTable extends Migration
     {
         Schema::create('contact_contacts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('parent_contact_id');
-            $table->unsignedBigInteger('child_contact_id');
+            $table->unsignedBigInteger('parent_contact_id')->index();
+            $table->unsignedBigInteger('child_contact_id')->index();
             $table->timestamps();
 
             $table->foreign('parent_contact_id')->references('id')->on('contacts')->onDelete('cascade');

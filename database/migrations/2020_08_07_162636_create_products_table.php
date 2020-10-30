@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
-            $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('product_category_id');
+            $table->unsignedBigInteger('tenant_id')->index();
+            $table->unsignedBigInteger('product_category_id')->index();
             $table->string('buying_unit_cost')->nullable();
             $table->string('selling_unit_price')->nullable();
             $table->integer('quantity')->nullable()->comment('Total stock across all the sites');

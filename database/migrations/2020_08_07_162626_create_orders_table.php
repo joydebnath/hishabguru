@@ -24,10 +24,10 @@ class CreateOrdersTable extends Migration
             $table->unsignedDecimal('sub_total')->nullable();
             $table->unsignedDecimal('total_tax')->nullable();
 
-            $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('contact_id')->nullable()->comment('order is created for a contact');
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('approved_by')->nullable();
+            $table->unsignedBigInteger('tenant_id')->index();
+            $table->unsignedBigInteger('contact_id')->index()->nullable()->comment('order is created for a contact');
+            $table->unsignedBigInteger('created_by')->index();
+            $table->unsignedBigInteger('approved_by')->index()->nullable();
             $table->text('note')->nullable();
 
             $table->timestamps();

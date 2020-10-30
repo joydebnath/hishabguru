@@ -15,7 +15,7 @@ class CreateContactCreditHistoriesTable extends Migration
     {
         Schema::create('contact_credit_histories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contact_id');
+            $table->unsignedBigInteger('contact_id')->index();
             $table->decimal('total_amount');
             $table->enum('type', ['creditor', 'debtor']);
             $table->timestamps();
