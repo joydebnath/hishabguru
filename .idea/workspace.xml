@@ -15,9 +15,11 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsFilters.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesFilters.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesFilters.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/statistics/client/ClientStatComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/statistics/client/ClientStatComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/statistics/product/widgets/ProductCurrentState.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/statistics/product/widgets/ProductCurrentState.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/statistics/supplier/SupplierStatComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/statistics/supplier/SupplierStatComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/clients.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/clients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/suppliers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/suppliers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -821,7 +823,7 @@
       <workItem from="1604063226631" duration="1264000" />
       <workItem from="1604065206605" duration="5311000" />
       <workItem from="1604086675656" duration="17376000" />
-      <workItem from="1604110476765" duration="3506000" />
+      <workItem from="1604110476765" duration="5390000" />
     </task>
     <servers />
   </component>

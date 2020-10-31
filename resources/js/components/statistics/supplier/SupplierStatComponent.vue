@@ -1,5 +1,6 @@
 <template>
     <section class="max-w-6xl m-auto w-full mb-6 py-2">
+        <h2 class="heading text-right text-lg mb-2">Supplier Name</h2>
         <Last12MonthsChart/>
         <BillsDueTable/>
         <PurchaseHistoriesTable/>
