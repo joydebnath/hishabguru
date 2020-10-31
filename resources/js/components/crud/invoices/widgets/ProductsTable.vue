@@ -106,10 +106,10 @@
                     @on-input="handleEditTaxRate"
                 />
             </b-table-column>
-            <b-table-column label="Profit %" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Profit" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
                 <span class="text-sm tracking-wide font-medium"
                       :class="[props.row.profit > 0 ? 'text-green-600' : 'text-red-600']">
-                    {{ props.row.profit }}
+                    {{ props.row.profit }}%
                 </span>
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
@@ -158,6 +158,10 @@
                                 <tr>
                                     <td class="border-t-0 border-b text-sm font-normal">Total Tax</td>
                                     <td class="border-t-0 border-b text-sm font-normal text-right">{{ tax }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Profit</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ profit }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border-t-0 text-base">Total</td>
@@ -325,6 +329,17 @@ export default {
                 }
                 return 0.0;
             });
+        },
+        profit(){
+            const total_price = _.round(_.sumBy(this.products, (value) => {
+                return (value.selling_unit_price * value.quantity);
+            }), 2);
+
+            const total_cost = _.round(_.sumBy(this.products, (value) => {
+                return (value.buying_unit_cost * value.quantity);
+            }), 2);
+
+            return total_price - total_cost - this.total_discount
         },
         total() {
             return parseFloat(_.round(this.sub_total + this.tax, 2));

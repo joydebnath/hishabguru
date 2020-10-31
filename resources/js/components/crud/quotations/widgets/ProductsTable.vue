@@ -156,6 +156,10 @@
                                     <td class="border-t-0 border-b text-sm font-normal text-right">{{ tax }}</td>
                                 </tr>
                                 <tr>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Profit</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ profit }}</td>
+                                </tr>
+                                <tr>
                                     <td class="border-t-0 text-base">Total</td>
                                     <td class="border-t-0 text-base text-right">{{ total }}</td>
                                 </tr>
@@ -318,6 +322,17 @@ export default {
                 }
                 return 0.0;
             });
+        },
+        profit(){
+            const total_price = _.round(_.sumBy(this.products, (value) => {
+                return (value.selling_unit_price * value.quantity);
+            }), 2);
+
+            const total_cost = _.round(_.sumBy(this.products, (value) => {
+                return (value.buying_unit_cost * value.quantity);
+            }), 2);
+
+            return total_price - total_cost - this.total_discount
         },
         total() {
             return parseFloat(_.round(this.sub_total + this.tax, 2));

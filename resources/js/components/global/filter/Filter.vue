@@ -2,9 +2,10 @@
     <section>
         <button
             class="button text-gray-800 text-sm tracking-wide is-outlined is-info hover:text-white focus:text-white text-blue-600"
-            @click="open = true"
+            @click="toggleSlider"
         >
-            <FilterIcon/> <span class="ml-1">Filters</span>
+            <FilterIcon/>
+            <span class="ml-1">Filters</span>
         </button>
         <b-sidebar
             :fullheight="true"
@@ -12,17 +13,24 @@
             :overlay="false"
             v-model="open"
             class="custom-filter"
+            :can-cancel="['x']"
         >
             <div class="modal-card w-full">
                 <header class="modal-card-head bg-white p-4 flex justify-content-between">
                     <button class="button rounded-md border text-gray-800 is-light font-medium tracking-wider is-small"
-                            @click="$emit('clear')">
-                        Clear
+                            @click="toggleSlider">
+                        Close
                     </button>
-                    <button class="button rounded-md is-dark font-medium tracking-wider is-small"
-                            @click="$emit('apply')">
-                        Apply
-                    </button>
+                    <div>
+                        <button class="button rounded-md is-dark font-medium tracking-wider is-small"
+                                @click="$emit('apply')">
+                            Apply
+                        </button>
+                        <button class="button rounded-md border text-gray-800 font-medium tracking-wider is-small"
+                                @click="$emit('clear')">
+                            Clear
+                        </button>
+                    </div>
                 </header>
                 <section class="modal-card-body">
                     <slot></slot>
@@ -42,6 +50,11 @@ export default {
             checkboxGroup: [],
             open: false
         };
+    },
+    methods: {
+        toggleSlider() {
+            this.open = !this.open
+        }
     }
 };
 </script>

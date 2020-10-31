@@ -99,10 +99,10 @@
                     @on-input="handleEditTaxRate"
                 />
             </b-table-column>
-            <b-table-column label="Profit %" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
+            <b-table-column label="Profit" centered v-slot="props" cell-class="align-middle" header-class="text-sm">
                 <span class="text-sm tracking-wide font-medium"
                       :class="[props.row.profit > 0 ? 'text-green-600' : 'text-red-600']">
-                    {{ props.row.profit }}
+                    {{ props.row.profit }}%
                 </span>
             </b-table-column>
             <b-table-column label="Total" centered v-slot="props" cell-class="align-middle" header-class="text-sm">

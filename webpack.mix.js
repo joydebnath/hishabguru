@@ -38,6 +38,7 @@ if(mix.config.production){
 
 mix
     .js('resources/js/index.js', 'public/js')
+    .js('resources/js/setup-inventory.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/buefy.scss', 'public/css')
     .postCss('resources/css/tailwind.css', 'public/css', [
