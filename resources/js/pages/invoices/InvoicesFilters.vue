@@ -113,6 +113,10 @@ export default {
                     from: null,
                     to: null,
                 },
+                due: {
+                    from: null,
+                    to: null,
+                },
                 issue_date: [],
                 due_date: [],
             },
