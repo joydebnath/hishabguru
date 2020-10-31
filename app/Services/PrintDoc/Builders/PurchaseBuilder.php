@@ -49,8 +49,7 @@ class PurchaseBuilder implements PDFBuilder
     public function builderHeader()
     {
         $this->pdfBuilder
-            ->sequence($this->purchase->purchase_order_number)
-            ->serialNumberFormat('{SEQUENCE}')
+            ->addInvoiceNumber($this->purchase->purchase_order_number)
             ->seller($this->printService->contact($this->purchase->contact))
             ->buyer($this->printService->tenant($this->purchase->tenant))
             ->date(Carbon::parse($this->purchase->create_date))

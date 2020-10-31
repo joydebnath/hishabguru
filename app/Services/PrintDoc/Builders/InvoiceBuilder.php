@@ -41,8 +41,7 @@ class InvoiceBuilder implements PDFBuilder
     public function builderHeader()
     {
         $this->pdfBuilder
-            ->sequence($this->invoice->invoice_number)
-            ->serialNumberFormat('{SEQUENCE}')
+            ->addInvoiceNumber($this->invoice->invoice_number)
             ->buyer($this->printService->contact($this->invoice->contact))
             ->seller($this->printService->tenant($this->invoice->tenant))
             ->date(Carbon::parse($this->invoice->issue_date))

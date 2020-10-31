@@ -41,8 +41,7 @@ class QuotationBuilder implements PDFBuilder
     public function builderHeader()
     {
         $this->pdfBuilder
-            ->sequence($this->quotation->quotation_number)
-            ->serialNumberFormat('{SEQUENCE}')
+            ->addInvoiceNumber($this->quotation->quotation_number)
             ->buyer($this->printService->contact($this->quotation->contact))
             ->seller($this->printService->tenant($this->quotation->tenant))
             ->date(Carbon::parse($this->quotation->create_date))

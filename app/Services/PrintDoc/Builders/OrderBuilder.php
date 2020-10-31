@@ -41,8 +41,7 @@ class OrderBuilder implements PDFBuilder
     public function builderHeader()
     {
         $this->pdfBuilder
-            ->sequence($this->order->order_number)
-            ->serialNumberFormat('{SEQUENCE}')
+            ->addInvoiceNumber($this->order->order_number)
             ->buyer($this->printService->contact($this->order->contact))
             ->seller($this->printService->tenant($this->order->tenant))
             ->setStatus($this->order->status)

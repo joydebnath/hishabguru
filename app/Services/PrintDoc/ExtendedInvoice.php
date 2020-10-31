@@ -15,6 +15,7 @@ class ExtendedInvoice extends Invoice
      */
     public $message;
     public $status;
+    public $invoice_number;
 
     /**
      * @var Collection
@@ -36,6 +37,12 @@ class ExtendedInvoice extends Invoice
     public function addMessage($message)
     {
         $this->message = $message;
+        return $this;
+    }
+
+    public function addInvoiceNumber($number)
+    {
+        $this->invoice_number = $number;
         return $this;
     }
 
@@ -82,5 +89,10 @@ class ExtendedInvoice extends Invoice
     public function getExpiryDate()
     {
         return $this->expiry_date->format($this->date_format);
+    }
+
+    public function getInvoiceNumber()
+    {
+        return $this->invoice_number;
     }
 }

@@ -210,7 +210,7 @@
             @endisset
         </td>
         <td class="border-0 pl-0">
-            <p class="mb-1">{{ __('invoices::invoice.serial') }} <strong>{{ $invoice->getSerialNumber() }}</strong></p>
+            <p class="mb-1">{{ __('invoices::invoice.serial') }} <strong>{{ $invoice->getInvoiceNumber() }}</strong></p>
             <p class="mb-1">{{ __('invoices::invoice.date') }}: <strong>{{ $invoice->getDate() }}</strong></p>
             @if(isset($invoice->due_date))
                 <p class="mb-1">{{ trans('invoices::invoice.due_date') }}:

@@ -40,8 +40,7 @@ class BillBuilder implements PDFBuilder
     public function builderHeader()
     {
         $this->pdfBuilder
-            ->sequence($this->bill->bill_number)
-            ->serialNumberFormat('{SEQUENCE}')
+            ->addInvoiceNumber($this->bill->bill_number)
             ->seller($this->printService->contact($this->bill->contact))
             ->buyer($this->printService->tenant($this->bill->tenant))
             ->setStatus($this->bill->status)
