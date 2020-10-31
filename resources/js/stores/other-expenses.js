@@ -40,8 +40,8 @@ const store = {
             state.current_page = current_page
         },
         setFilters: (state, {filters}) => {
-            state.filters = {...state.filters, ...filters}
-        }
+            state.filters = {...filters}
+        },
     },
     actions: {
         loadData({commit, getters}, {page}) {
