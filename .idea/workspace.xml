@@ -14,25 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/setup/SetupInventory.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/setup-inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Filters/Business/InvoiceFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Business/InvoiceFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Filters/Business/OrderFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Business/OrderFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Filters/Business/QuotationFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Business/QuotationFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/InvoiceFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/InvoiceFullResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/QuotationFullResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/ProductsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/filter/Filter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/filter/Filter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesFilters.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrdersFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrdersFilters.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationsFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationsFilters.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/stores/quotations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/quotations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/setup-inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/setup-inventory.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsFilters.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchasesFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchasesFilters.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -836,7 +819,7 @@
       <workItem from="1604063226631" duration="1264000" />
       <workItem from="1604065206605" duration="5311000" />
       <workItem from="1604086675656" duration="17376000" />
-      <workItem from="1604110476765" duration="1274000" />
+      <workItem from="1604110476765" duration="1641000" />
     </task>
     <servers />
   </component>
@@ -980,7 +963,7 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1604111745971">
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1604112104512">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
@@ -990,7 +973,7 @@
     <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604110452828" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1603153911358" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1604111745971" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1604112104512" />
     <state x="2308" y="191" width="1371" height="678" key="search.everywhere.popup/72.27.3768.1053@72.27.3768.1053" timestamp="1602199119666" />
     <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1603258098430" />
   </component>
