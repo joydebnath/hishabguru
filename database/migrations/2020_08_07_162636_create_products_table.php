@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('code');
             $table->unsignedBigInteger('tenant_id')->index();
             $table->unsignedBigInteger('product_category_id')->index();
-            $table->string('buying_unit_cost')->nullable();
-            $table->string('selling_unit_price')->nullable();
+            $table->unsignedDecimal('buying_unit_cost')->nullable();
+            $table->unsignedDecimal('selling_unit_price')->nullable();
             $table->integer('quantity')->nullable()->comment('Total stock across all the sites');
             $table->integer('remaining')->nullable()->comment('Remaining stock across all the sites');
             $table->decimal('tax_rate')->default(0);

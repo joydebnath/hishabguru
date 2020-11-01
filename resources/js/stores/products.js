@@ -45,7 +45,7 @@ const products = {
             state.current_page = current_page
         },
         setFilters: (state, {filters}) => {
-            state.filters = {...state.filters, ...filters}
+            state.filters = {...filters}
         },
         update: (state, {product}) => {
             const index = _.findIndex(state.products, value => value.id == product.id)

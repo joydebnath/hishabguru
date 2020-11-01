@@ -1,34 +1,37 @@
 <template>
-    <b-tag
-        v-if="name"
-        class="p-1 w-32"
-        type="is-dark"
-        attached
-        size="is-medium"
-        closable
-        @close="handleRemoveCategory"
-    >
-        {{ name }}
-    </b-tag>
+    <div>
+        <b-tag
+            v-if="name"
+            class="p-1 w-32"
+            type="is-dark"
+            attached
+            size="is-medium"
+            closable
+            @close="handleRemoveCategory"
+        >
+            {{ name }}
+        </b-tag>
 
-    <b-autocomplete
-        v-else
-        :data="categories"
-        placeholder="Search by name"
-        field="name"
-        @typing="getCategories"
-        @select="handleAddCategory"
-        @input="handleInput"
-    >
-        <template slot="empty">
+        <b-autocomplete
+            v-else
+            :data="categories"
+            :size="$props.size"
+            placeholder="Search by name"
+            field="name"
+            @typing="getCategories"
+            @select="handleAddCategory"
+            @input="handleInput"
+        >
+            <template slot="empty">
             <span v-if="fetching_categories">
                 <b-skeleton width="100%" :animated="true"/>
             </span>
-            <span v-else>
+                <span v-else>
                 No results found
             </span>
-        </template>
-    </b-autocomplete>
+            </template>
+        </b-autocomplete>
+    </div>
 </template>
 
 <script>
@@ -37,7 +40,11 @@ import {mapGetters} from "vuex";
 export default {
     name: "ProductCategory",
     props: {
-        name: String
+        name: String,
+        size: {
+            type: String,
+            default: ''
+        }
     },
     data() {
         return {

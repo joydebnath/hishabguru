@@ -47,7 +47,7 @@
         </b-table-column>
         <b-table-column
             field="selling_price"
-            label="Sale Price"
+            label="Selling Price"
             sortable
             centered
             v-slot="props"
