@@ -17,7 +17,7 @@
                 <div class="bg-gray-50 px-4 py-5 ">
                     <form class="d-block mb-3" method="POST" action="/init" id="form">
                         <input hidden name="address_type" type="text" value="headquarter">
-                        <input hidden name="tenant_id" type="number" value="{{$props.tenant.id}}">
+                        <input hidden name="tenant_id" type="number" :value="$props.tenant.id">
                         <div class="field">
                             <label class="label">Business Address Type</label>
                             <div class="control">

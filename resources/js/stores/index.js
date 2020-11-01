@@ -4,8 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import productsModule from './products'
-import productCategoriesModule from '../stores/product-categories'
-import inventorySitesModule from '../stores/inventory-sites'
+import productCategoriesModule from './product-categories'
+// import inventorySitesModule from './inventory-sites'
 import quotationsModule from './quotations'
 import ordersModule from './orders'
 import purchasesModule from './purchases'
@@ -38,7 +38,7 @@ const store = new Vuex.Store({
         tenancy: tenancyModule,
         marketplace: marketplaceModule,
         other_expenses: otherExpensesModule,
-        inventory_sites: inventorySitesModule
+        // inventory_sites: inventorySitesModule
     },
     state: {
         per_page: 15,

@@ -144,6 +144,7 @@ export default {
                         type: 'is-success is-light',
                         duration: 5000
                     });
+                    this.$store.commit('purchases/remove',{purchase: this.$props.purchase})
                     this.handleDeleteClose()
                     this.$router.push('/@/purchases');
                 })

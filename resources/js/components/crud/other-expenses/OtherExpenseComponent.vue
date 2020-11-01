@@ -4,11 +4,10 @@
         <section class="box pt-6 pb-0">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
             <HeaderActions
-                :order="computed_item"
+                :expense="computed_item"
                 @on-loading="handleLoading"
                 @on-update="handleUpdate"
                 @on-add-payment="handleAddPayment"
-                @on-delete="handleDelete"
             />
             <div class="grid grid-cols-7 gap-2">
                 <div class="col-span-2">
@@ -76,16 +75,15 @@ import HeaderActions from "./widgets/HeaderActions";
 import Breadcrumb from "./widgets/Breadcrumb";
 import FooterActions from "@/components/global/crud/FooterActions";
 import AddPaymentRecord from "./widgets/AddPaymentRecord";
-import headerActionsMixin from './mixins/header-actions'
-import paymentHistoriesMixin from './mixins/payment-histories'
 import PaymentHistories from "./widgets/PaymentHistories";
+import paymentHistoriesMixin from './mixins/payment-histories'
 
 export default {
     name: "ExpenseComponent",
     components: {
         PaymentHistories, AddPaymentRecord, Breadcrumb, FooterActions, HeaderActions, ProductsTable, ExpenseDetails
     },
-    mixins: [headerActionsMixin, paymentHistoriesMixin],
+    mixins: [ paymentHistoriesMixin],
     mounted() {
         this.loading = true;
         read(this.$route.params.id)
@@ -177,6 +175,9 @@ export default {
                 }
                 this.updateOrder(expense, 'Expense is updated')
             }
+        },
+        handleAddPayment() {
+            this.show_add_payment = true
         },
         handleSaveForApproval() {
             console.log('save-for-approval')

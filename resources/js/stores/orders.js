@@ -42,6 +42,9 @@ const store = {
         setFilters: (state, {filters}) => {
             state.filters = {...filters}
         },
+        remove(state, {order}) {
+            state.orders = [..._.filter(state.orders, value => value.id !== order.id)]
+        }
     },
     actions: {
         loadData({commit, getters}, {page}) {

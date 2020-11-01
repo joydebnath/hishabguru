@@ -146,6 +146,7 @@ export default {
                         type: 'is-success is-light',
                         duration: 5000
                     });
+                    this.$store.commit('orders/remove', {order: this.$props.order})
                     this.handleDeleteClose()
                     this.$router.push('/@/orders');
                 })

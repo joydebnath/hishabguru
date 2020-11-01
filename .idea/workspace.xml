@@ -15,13 +15,27 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/BillBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/BillBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/InvoiceBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/InvoiceBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/OrderBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/OrderBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PurchaseBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/PurchaseBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/QuotationBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/Builders/QuotationBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PrintDoc/ExtendedInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PrintDoc/ExtendedInvoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/invoices/templates/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/invoices/templates/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Expense/OtherExpenseRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Expense/OtherExpenseRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/mixins/header-actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/mixins/header-actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/mixins/header-actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/mixins/header-actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/orders/widgets/HeaderActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/CreateOtherExpenseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/CreateOtherExpenseComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/OtherExpenseComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/mixins/header-actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ExpenseDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/ExpenseDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/HeaderActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/purchases/widgets/HeaderActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/quotations/widgets/HeaderActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/setup/SetupInventory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/setup/SetupInventory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/bills.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/bills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/inventory-sites.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/inventory-sites.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/invoices.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/invoices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/other-expenses.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/other-expenses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/purchases.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/purchases.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/quotations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/quotations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -826,7 +840,9 @@
       <workItem from="1604065206605" duration="5311000" />
       <workItem from="1604086675656" duration="17376000" />
       <workItem from="1604110476765" duration="5390000" />
-      <workItem from="1604121805559" duration="1716000" />
+      <workItem from="1604121805559" duration="2875000" />
+      <workItem from="1604140889380" duration="1198000" />
+      <workItem from="1604186866693" duration="4904000" />
     </task>
     <servers />
   </component>
@@ -970,14 +986,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1604137393222">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1604189297833">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1603367950776" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604137393222" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604189297833" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1603153911358" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1604113451064" />

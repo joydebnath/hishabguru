@@ -12,6 +12,7 @@ const actions = {
                         type: 'is-success is-light',
                         duration: 5000
                     });
+                    this.$store.commit('invoices/remove', {invoice: this.$props.invoice})
                     this.handleDeleteClose()
                     this.$router.push('/@/invoices');
                 })

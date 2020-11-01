@@ -45,6 +45,9 @@ const store = {
         // addFilter: (state, {filters}) => {
         //     state.filters = {...state.filters, ...filters}
         // },
+        remove(state, {quotation}) {
+            state.quotations = [..._.filter(state.quotations, value => value.id !== quotation.id)]
+        }
     },
     actions: {
         loadData({commit, getters}, {page}) {

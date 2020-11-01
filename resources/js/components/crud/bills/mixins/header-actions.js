@@ -12,6 +12,7 @@ const actions = {
                         type: 'is-success is-light',
                         duration: 5000
                     });
+                    this.$store.commit('bills/remove', {bill: this.$props.bill})
                     this.handleDeleteClose()
                     this.$router.push('/@/bills');
                 })

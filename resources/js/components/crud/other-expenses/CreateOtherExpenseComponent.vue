@@ -133,7 +133,7 @@ export default {
                 duration: 5000
             })
             if (this.total < this.per_page) {
-                this.$store.dispatch('expenses/loadData', {page: 1})
+                this.$store.dispatch('other_expenses/loadData', {page: 1})
             }
             this.loading = false;
             this.expense = {};

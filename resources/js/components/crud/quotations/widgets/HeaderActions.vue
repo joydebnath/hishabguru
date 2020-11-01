@@ -150,6 +150,7 @@ export default {
                         type: 'is-success is-light',
                         duration: 5000
                     });
+                    this.$store.commit('quotations/remove', {quotation: this.$props.quotation})
                     this.handleDeleteClose()
                     this.$router.push('/@/quotations');
                 })

@@ -7,7 +7,7 @@
             :type="has_expense_number ? 'is-danger' :null"
             :message="has_expense_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase text-sm" v-model="expense.expense_number" readonly/>
+            <b-input custom-class="uppercase text-sm" v-model="expense.expense_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
             <b-input custom-class="text-sm" v-model="expense.reference_number"/>

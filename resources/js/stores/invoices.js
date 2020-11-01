@@ -42,6 +42,9 @@ const store = {
         setFilters: (state, {filters}) => {
             state.filters = {...filters}
         },
+        remove(state, {invoice}) {
+            state.invoices = [..._.filter(state.invoices, value => value.id !== invoice.id)]
+        }
     },
     actions: {
         loadData({commit, getters}, {page}) {
