@@ -120,28 +120,15 @@ export default {
             console.log(field_name, order)
         },
         status_type(value) {
-            let type = '';
-            switch (value) {
-                case 'open':
-                    type = 'is-link'
-                    break;
-                case 'accepted':
-                    type = 'is-success'
-                    break;
-                case 'draft':
-                    type = 'is-light'
-                    break;
-                case 'expired':
-                    type = 'is-danger is-light'
-                    break;
-                case 'declined':
-                    type = 'is-danger'
-                    break;
-                case 'awaiting-approval':
-                    type = 'is-warning'
-                    break;
+            const STATUS_MAP = {
+                'open': 'is-link',
+                'accepted': 'is-success',
+                'expired': 'is-danger is-light',
+                'declined': 'is-danger',
+                'draft': 'is-light',
+                'awaiting-approval': 'is-warning',
             }
-            return type
+            return STATUS_MAP[value];
         }
     },
     computed: {

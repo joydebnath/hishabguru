@@ -55,10 +55,12 @@
                 {{ props.row.issue_date }}
             </b-table-column>
 
-            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
+            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle text-sm"
+                            header-class="text-sm">
                 {{ props.row.due_date }}
             </b-table-column>
-            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
+            <b-table-column field="status" sortable label="Status" centered v-slot="props"
+                            cell-class="align-middle text-sm" header-class="text-sm">
                 <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
                     {{ props.row.status }}
                 </b-tag>
@@ -103,7 +105,7 @@ export default {
         EmptyTable
     },
     mounted() {
-        if(this.data.length === 0) {
+        if (this.data.length === 0) {
             this.$store.dispatch('invoices/loadData', {page: 1})
         }
     },
@@ -115,28 +117,15 @@ export default {
             console.log(field_name, order)
         },
         status_type(value) {
-            let type = '';
-            switch (value) {
-                case 'awaiting-payment':
-                    type = 'is-link'
-                    break
-                case 'paid':
-                    type = 'is-success'
-                    break;
-                case 'partially-paid':
-                    type = 'is-success is-light'
-                    break;
-                case 'due':
-                    type = 'is-danger'
-                    break;
-                case 'draft':
-                    type = 'is-light'
-                    break
-                case 'awaiting-approval':
-                    type = 'is-warning'
-                    break
+            const STATUS_MAP = {
+                'awaiting-payment': 'is-link',
+                'paid': 'is-success',
+                'due': 'is-danger',
+                'draft': 'is-light',
+                'awaiting-approval': 'is-warning',
+                'partially-paid': 'is-success is-light'
             }
-            return type
+            return STATUS_MAP[value];
         }
     },
     computed: {

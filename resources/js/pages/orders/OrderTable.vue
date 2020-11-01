@@ -55,13 +55,18 @@
                 {{ props.row.create_date }}
             </b-table-column>
 
-            <b-table-column field="delivery_date" sortable label="Delivery" v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
+            <b-table-column field="delivery_date" sortable label="Delivery" v-slot="props"
+                            cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.delivery_date }}
             </b-table-column>
-            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
-                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
+            <b-table-column field="status" sortable label="Status" centered v-slot="props"
+                            cell-class="align-middle text-sm" header-class="text-sm">
+                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
+                    {{ props.row.status }}
+                </b-tag>
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
+            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
+                            cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_amount }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
@@ -70,7 +75,7 @@
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                   slot="trigger"/>
                         <router-link :to="'/@/orders/' + props.row.id">
-                            <b-dropdown-item >
+                            <b-dropdown-item>
                                 View
                             </b-dropdown-item>
                         </router-link>
@@ -100,7 +105,7 @@ export default {
         EmptyTable
     },
     mounted() {
-        if(this.data.length === 0) {
+        if (this.data.length === 0) {
             this.$store.dispatch('orders/loadData', {page: 1})
         }
     },
@@ -111,32 +116,17 @@ export default {
         onSort(field_name, order) {
             console.log(field_name, order)
         },
-        status_type(value){
-            let type = '';
-            switch (value) {
-                case 'ordered':
-                    type = 'is-link'
-                    break;
-                case 'fulfilled':
-                    type = 'is-success'
-                    break;
-                case 'shipped':
-                    type = 'is-info'
-                    break;
-                case 'draft':
-                    type= 'is-light'
-                    break
-                case 'cancelled':
-                    type= 'is-danger'
-                    break
-                case 'returned':
-                    type= 'is-danger is-light'
-                    break
-                case 'awaiting-approval':
-                    type = 'is-warning'
-                    break
+        status_type(value) {
+            const STATUS_MAP = {
+                'ordered': 'is-link',
+                'fulfilled': 'is-success',
+                'shipped': 'is-info',
+                'cancelled': 'is-danger',
+                'returned': 'is-danger is-light',
+                'draft': 'is-light',
+                'awaiting-approval': 'is-warning'
             }
-            return type
+            return STATUS_MAP[value];
         }
     },
     computed: {

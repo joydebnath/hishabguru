@@ -112,19 +112,12 @@ export default {
             console.log(field_name, order)
         },
         status_type(value){
-            let type = '';
-            switch (value) {
-                case 'purchased':
-                    type = 'is-success'
-                    break;
-                case 'draft':
-                    type= 'is-light'
-                    break
-                case 'save-for-approval':
-                    type = 'is-warning'
-                    break
+            const STATUS_MAP = {
+                'purchased': 'is-success',
+                'draft': 'is-light',
+                'awaiting-approval': 'is-warning',
             }
-            return type
+            return STATUS_MAP[value];
         }
     },
     computed: {

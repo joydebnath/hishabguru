@@ -55,13 +55,18 @@
                 {{ props.row.issue_date }}
             </b-table-column>
 
-            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
+            <b-table-column field="due_date" sortable label="Due" v-slot="props" cell-class="align-middle text-sm"
+                            header-class="text-sm">
                 {{ props.row.due_date }}
             </b-table-column>
-            <b-table-column field="status" sortable label="Status" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
-                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">{{ props.row.status }}</b-tag>
+            <b-table-column field="status" sortable label="Status" centered v-slot="props"
+                            cell-class="align-middle text-sm" header-class="text-sm">
+                <b-tag class="tracking-wider font-semibold text-uppercase" :type="status_type(props.row.status)">
+                    {{ props.row.status }}
+                </b-tag>
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props" cell-class="align-middle text-sm" header-class="text-sm">
+            <b-table-column field="total_amount" sortable label="Amount" centered v-slot="props"
+                            cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_amount }}
             </b-table-column>
             <b-table-column v-slot="props" cell-class="align-middle">
@@ -70,7 +75,7 @@
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                   slot="trigger"/>
                         <router-link :to="'/@/bills/' + props.row.id">
-                            <b-dropdown-item >
+                            <b-dropdown-item>
                                 View
                             </b-dropdown-item>
                         </router-link>
@@ -100,7 +105,7 @@ export default {
         EmptyTable
     },
     mounted() {
-        if(this.data.length === 0) {
+        if (this.data.length === 0) {
             this.$store.dispatch('bills/loadData', {page: 1})
         }
     },
@@ -111,26 +116,15 @@ export default {
         onSort(field_name, order) {
             console.log(field_name, order)
         },
-        status_type(value){
-            let type = '';
-            switch (value) {
-                case 'awaiting-payment':
-                    type = 'is-link'
-                    break
-                case 'paid':
-                    type = 'is-success'
-                    break;
-                case 'due':
-                    type = 'is-danger'
-                    break;
-                case 'draft':
-                    type= 'is-light'
-                    break
-                case 'awaiting-approval':
-                    type = 'is-warning'
-                    break
+        status_type(value) {
+            const STATUS_MAP = {
+                'awaiting-payment': 'is-link',
+                'paid': 'is-success',
+                'due': 'is-danger',
+                'draft': 'is-light',
+                'awaiting-approval': 'is-warning'
             }
-            return type
+            return STATUS_MAP[value];
         }
     },
     computed: {
