@@ -21,7 +21,7 @@
             :type="has_purchase_order_number ? 'is-danger' :null"
             :message="has_purchase_order_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase text-sm" v-model="purchase_order.purchase_order_number" readonly/>
+            <b-input custom-class="uppercase text-sm" v-model="purchase_order.purchase_order_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
             <b-input custom-class="text-sm" v-model="purchase_order.reference_number"/>

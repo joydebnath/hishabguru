@@ -16,7 +16,7 @@
             :type="has_order_number ? 'is-danger' :null"
             :message="has_order_number ? 'This field is required' : null"
         >
-            <b-input custom-class="text-sm" v-model="order.order_number" readonly/>
+            <b-input custom-class="text-sm" v-model="order.order_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
             <b-input v-model="order.reference_number"/>

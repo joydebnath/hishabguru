@@ -21,7 +21,7 @@
             :type="has_bill_number ? 'is-danger' :null"
             :message="has_bill_number ? 'This field is required' : null"
         >
-            <b-input custom-class="uppercase text-sm" v-model="bill.bill_number" readonly/>
+            <b-input custom-class="uppercase text-sm" v-model="bill.bill_number"/>
         </b-field>
         <b-field label="Reference Number" custom-class="text-sm">
             <b-input custom-class="text-sm" v-model="bill.reference_number"/>
