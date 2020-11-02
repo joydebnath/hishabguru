@@ -1,16 +1,11 @@
 <template>
     <div>
-        <b-tag
-            v-if="name"
-            class="p-1 w-32"
-            type="is-dark"
-            attached
-            size="is-medium"
-            closable
-            @close="handleRemoveCategory"
-        >
-            {{ name }}
-        </b-tag>
+        <div class="tags has-addons p-1 w-full"  v-if="name">
+            <div class="tag is-dark is-medium w-4/5">
+                <p class="truncate mb-0 text-left">{{ name }}</p>
+            </div>
+            <button class="tag is-medium is-delete" @click="handleRemoveCategory"></button>
+        </div>
 
         <b-autocomplete
             v-else

@@ -138,25 +138,15 @@ export default {
         },
         onConfirmDelete() {
             axios
-                .delete('/products/' + product.id)
+                .delete('/products/' + this.tobe_deleted_product.id)
                 .then(({data}) => {
-                    this.$store.dispatch('products/loadData', {
-                        page: this.current_page
-                    })
-                    this.$buefy.notification.open({
-                        message: data.message,
-                        type: 'is-success is-light',
-                        duration: 5000
-                    });
+                    this.$store.commit('products/remove', {product: this.tobe_deleted_product})
+                    this.onSuccess(data.message)
                     this.handleDeleteClose();
                 })
                 .catch(err => {
                     if (err.response) {
-                        this.$buefy.notification.open({
-                            message: err.response.data.message,
-                            type: 'is-danger is-light',
-                            duration: 5000
-                        });
+                        this.onError(err.response.data.message)
                         this.handleDeleteClose();
                     }
                 })
@@ -185,19 +175,11 @@ export default {
                     this.$store.commit('products/update', {
                         product: {...this.tobe_updated_product, status: NEW_STATUS}
                     })
-                    this.$buefy.notification.open({
-                        message: data.message,
-                        type: 'is-success is-light',
-                        duration: 5000
-                    });
+                    this.onSuccess(data.message)
                     this.handleUpdateStatusClose()
                 })
                 .catch(err => {
-                    this.$buefy.notification.open({
-                        message: 'Whoops! Something went wrong.',
-                        type: 'is-danger is-light',
-                        duration: 5000
-                    });
+                    this.onError()
                 })
         },
         noCategoryWarning() {
@@ -211,6 +193,20 @@ export default {
                     this.$router.push('/@/product-categories');
                 }
             })
+        },
+        onSuccess(message) {
+            this.$buefy.notification.open({
+                message: message,
+                type: 'is-success is-light',
+                duration: 5000
+            });
+        },
+        onError(message = 'Whoops! Something went wrong.') {
+            this.$buefy.notification.open({
+                message: message,
+                type: 'is-danger is-light',
+                duration: 5000
+            });
         }
     },
     computed: {

@@ -53,6 +53,9 @@ const products = {
                 state.products[index] = product;
                 state.products = [...state.products]
             }
+        },
+        remove: (state, {product}) => {
+            state.products = [..._.filter(state.products, value => value.id != product.id)]
         }
     },
     actions: {

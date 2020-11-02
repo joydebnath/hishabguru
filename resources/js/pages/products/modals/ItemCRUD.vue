@@ -1,7 +1,7 @@
 <template>
     <b-modal
         v-model="$props.show"
-        :on-cancel="() => $emit('on-close')"
+        :on-cancel="handleClose"
         :can-cancel="['x','escape']"
         has-modal-card
         trap-focus
@@ -12,7 +12,7 @@
         <div class="modal-card" style="width: 630px">
             <header class="modal-card-head flex flex-row justify-between">
                 <p class="text-lg text-gray-700" v-text="title"></p>
-                <button type="button" class="delete" @click="$emit('on-close')"></button>
+                <button type="button" class="delete" @click="handleClose"></button>
             </header>
             <section class="modal-card-body">
                 <b-field label="Item Name">
@@ -22,7 +22,7 @@
                     <b-field label="Item Code">
                         <b-input v-model="computed_item.code"></b-input>
                     </b-field>
-                    <b-field label="Category">
+                    <b-field label="Category" class="w-1/2">
                         <ProductCategory
                             :name="computed_category.name"
                             @on-add="handleAddCategory"
@@ -34,7 +34,7 @@
                     <b-field label="Buying Unit Cost">
                         <b-input v-model="computed_item.buying_cost"></b-input>
                     </b-field>
-                    <b-field label="Quantity">
+                    <b-field label="Quantity" class="w-1/2">
                         <b-input v-model="computed_item.quantity"></b-input>
                     </b-field>
                 </b-field>
@@ -42,7 +42,7 @@
                     <b-field label="Selling Unit Price">
                         <b-input v-model="computed_item.selling_price"></b-input>
                     </b-field>
-                    <b-field label="Tax rate %">
+                    <b-field label="Tax rate %" class="w-1/2">
                         <b-input v-model="computed_item.tax"></b-input>
                     </b-field>
                 </b-field>
@@ -104,10 +104,26 @@ export default {
             this.create()
         },
         handleRemoveCategory() {
-            this.$emit('on-update', {...this.computed_item, category: {}})
+            this.$emit('on-update', {
+                ...this.computed_item,
+                category: {},
+                is_sellable: this.is_sellable,
+                is_purchasable: this.is_purchasable,
+            })
         },
         handleAddCategory(category) {
-            this.$emit('on-update', {...this.computed_item, category: category})
+            this.$emit('on-update', {
+                ...this.computed_item,
+                category: category,
+                is_sellable: this.is_sellable,
+                is_purchasable: this.is_purchasable,
+            })
+        },
+        handleClose() {
+            this.product = {};
+            this.is_sellable = 1;
+            this.is_purchasable = 1;
+            this.$emit('on-close');
         },
         update() {
             this.loading_event(true);
@@ -154,7 +170,7 @@ export default {
             this.loading_event(false);
             this.$emit('on-close')
             this.$buefy.notification.open({
-                message: 'Product ',
+                message: message,
                 type: 'is-success is-light',
                 duration: 5000
             })
@@ -182,7 +198,7 @@ export default {
                 : "Add new Product";
         },
         computed_item() {
-            if (this.$props.item) {
+            if (!_.isEmpty(this.$props.item)) {
                 this.product = {...this.$props.item}
                 this.is_sellable = this.$props.item.is_sellable;
                 this.is_purchasable = this.$props.item.is_purchasable;
