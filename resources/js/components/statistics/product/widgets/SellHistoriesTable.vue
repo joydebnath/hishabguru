@@ -25,6 +25,21 @@
 <script>
 export default {
     name: "StockHistoriesTable",
+    props: {
+        product_id: String
+    },
+    mounted() {
+        if (this.$props.product_id) {
+            axios
+                .get(`/product-statistics/${this.$props.product_id}/sales-records`)
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+
+                })
+        }
+    },
     data() {
         return {
             date: null,

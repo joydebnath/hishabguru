@@ -14,6 +14,21 @@
 <script>
 export default {
     name: "PaymentsDueTable",
+    props: {
+        client_id: String
+    },
+    mounted() {
+        if (this.$props.client_id) {
+            axios
+                .get(`/client-statistics/${this.$props.client_id}/due-invoices`)
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+
+                })
+        }
+    },
     data() {
         return {
             date: null,

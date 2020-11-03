@@ -16,10 +16,25 @@ export default {
     components: {
         VueApexCharts
     },
+    props:{
+        client_id: String
+    },
+    mounted() {
+        if (this.$props.client_id) {
+            axios
+                .get(`/client-statistics/${this.$props.client_id}/last-twelvemonth`)
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+
+                })
+        }
+    },
     data() {
         return {
             series: [{
-                name: 'Website Blog',
+                name: 'Number of purchases made',
                 type: 'column',
                 data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
             }],

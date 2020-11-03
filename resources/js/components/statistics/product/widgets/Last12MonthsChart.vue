@@ -16,6 +16,21 @@ export default {
     components: {
         VueApexCharts
     },
+    props: {
+        product_id: String
+    },
+    mounted() {
+        if (this.$props.product_id) {
+            axios
+                .get(`/product-statistics/${this.$props.product_id}/last-twelvemonth`)
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+
+                })
+        }
+    },
     data() {
         return {
             series: [{

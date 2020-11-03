@@ -25,6 +25,21 @@
 <script>
 export default {
     name: "PurchaseHistories",
+    props: {
+        client_id: String
+    },
+    mounted() {
+        if (this.$props.client_id) {
+            axios
+                .get(`/client-statistics/${this.$props.client_id}/paid-invoices`)
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+
+                })
+        }
+    },
     data() {
         return {
             date: null,
@@ -97,10 +112,10 @@ export default {
     },
     methods: {
         handleFilterHistories() {
-            if(this.date){
+            if (this.date) {
                 const M = new Date(this.date).getMonth() + 1;
                 const Y = new Date(this.date).getFullYear();
-                console.log(M,Y)
+                console.log(M, Y)
             }
         }
     }

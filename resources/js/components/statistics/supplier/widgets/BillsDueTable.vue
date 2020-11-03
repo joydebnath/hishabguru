@@ -14,6 +14,21 @@
 <script>
 export default {
     name: "BillsDueTable",
+    props: {
+        supplier_id: String
+    },
+    mounted() {
+        if (this.$props.supplier_id) {
+            axios
+                .get(`/supplier-statistics/${this.$props.supplier_id}/due-invoices`)
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+
+                })
+        }
+    },
     data() {
         return {
             date: null,
