@@ -38,7 +38,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/lookup/products', 'Lookup\ProductLookupController@index');
     Route::get('/lookup/product-categories', 'Lookup\ProductLookupController@categories');
     Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
+    Route::get('/generate-number/{type}', 'Tenancy\ReferenceNumberGenerateController@generate');
 
+    Route::get('/client-statistics/{id}/last-twelvemonth', 'Statistics\ClientStatsController@getLastTwelvemonthCounts');
+    Route::get('/client-statistics/{id}/due-invoices', 'Statistics\ClientStatsController@getDueInvoices');
+    Route::get('/client-statistics/{id}/paid-invoices', 'Statistics\ClientStatsController@getPaidInvoices');
+    Route::get('/supplier-statistics/{id}/last-twelvemonth', 'Statistics\SupplierStatsController@getLastTwelvemonthCounts');
+    Route::get('/supplier-statistics/{id}/due-invoices', 'Statistics\SupplierStatsController@getDueInvoices');
+    Route::get('/supplier-statistics/{id}/paid-invoices', 'Statistics\SupplierStatsController@getPaidInvoices');
+    Route::get('/product-statistics/{id}/last-twelvemonth', 'Statistics\ProductStatsController@getLastTwelvemonthCounts');
+    Route::get('/product-statistics/{id}/sales-records', 'Statistics\ProductStatsController@getSalesRecords');
 
     Route::post('/current-tenant', 'User\TenancyController@store');
     Route::post('/upload/image', 'File\ImageUploadController@store');

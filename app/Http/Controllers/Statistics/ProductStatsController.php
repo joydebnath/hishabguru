@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class ProductStatsController extends Controller
 {
-    //
+    public function getLastTwelvemonthCounts($productId)
+    {
+        return [];
+    }
+
+    public function getSalesRecords($productId)
+    {
+        return [];
+    }
 }

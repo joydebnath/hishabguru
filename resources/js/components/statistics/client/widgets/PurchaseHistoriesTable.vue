@@ -1,6 +1,6 @@
 <template>
     <div class="box mt-6 p-4">
-        <label class="heading text-lg">Purchase Histories</label>
+        <label class="heading text-lg">Purchase Histories - Paid</label>
         <div class="flex flex-row-reverse mb-2">
             <b-field custom-class="trans_his">
                 <b-datepicker
