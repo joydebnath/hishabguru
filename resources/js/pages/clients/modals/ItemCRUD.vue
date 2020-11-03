@@ -61,7 +61,7 @@
                         :type="computed_errors.city ? 'is-danger' :null"
                         :message="computed_errors.city ? 'This field is required' : null"
                     >
-                        <b-input custom-class="pr-0" placeholder="City" v-model="computed_item.city" required></b-input>
+                        <b-input custom-class="pr-0" placeholder="City" v-model="computed_item.city"></b-input>
                     </b-field>
                     <b-field
                         :type="computed_errors.postcode ? 'is-danger' :null"
@@ -69,7 +69,7 @@
                     >
                         <b-input
                             custom-class="pr-0"
-                            placeholder="Postal"
+                            placeholder="Postal Code"
                             v-model="computed_item.postcode"
                         />
                     </b-field>

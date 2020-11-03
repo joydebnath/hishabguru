@@ -16,68 +16,119 @@
                 <button type="button" class="delete" @click="handleCloseModal"/>
             </header>
             <section class="modal-card-body">
-                <b-field label="Company Name">
-                    <b-input v-model="computed_item.name"></b-input>
+                <b-field
+                    label="Company Name"
+                    :type="computed_errors.name ? 'is-danger' :null"
+                    :message="computed_errors.name ? 'This field is required' : null"
+                >
+                    <b-input custom-class="pr-0" v-model="computed_item.name"></b-input>
                 </b-field>
                 <b-field grouped>
-                    <b-field label="Mobile">
-                        <b-input v-model="computed_item.mobile"></b-input>
+                    <b-field
+                        label="Mobile"
+                        :type="computed_errors.mobile ? 'is-danger' :null"
+                        :message="computed_errors.mobile ? 'This field is required' : null"
+                    >
+                        <b-input custom-class="pr-0" v-model="computed_item.mobile"></b-input>
                     </b-field>
                     <b-field label="Phone">
                         <b-input v-model="computed_item.phone"></b-input>
                     </b-field>
                 </b-field>
-                <b-field label="Emaill address">
+                <b-field label="Email address">
                     <b-input v-model="computed_item.email"></b-input>
                 </b-field>
                 <p class="font-semibold mt-4 mb-3 ">
                     <span class="mr-2">Contact address <b-tag>Headquarter</b-tag></span>
                 </p>
-                <b-field>
-                    <b-input v-model="computed_item.address_line_1" placeholder="Address line 1"></b-input>
+                <b-field
+                    :type="computed_errors.address_line_1 ? 'is-danger' :null"
+                    :message="computed_errors.address_line_1 ? 'This field is required' : null"
+                >
+                    <b-input
+                        custom-class="pr-0"
+                        v-model="computed_item.address_line_1"
+                        placeholder="Address line 1"
+                    />
                 </b-field>
 
                 <b-field>
                     <b-input v-model="computed_item.address_line_2" placeholder="Address line 2"></b-input>
                 </b-field>
                 <b-field grouped>
-                    <b-field>
-                        <b-input v-model="computed_item.city" placeholder="City/Town"></b-input>
+                    <b-field
+                        :type="computed_errors.city ? 'is-danger' :null"
+                        :message="computed_errors.city ? 'This field is required' : null"
+                    >
+                        <b-input custom-class="pr-0" v-model="computed_item.city" placeholder="City"/>
                     </b-field>
-                    <b-field>
-                        <b-input v-model="computed_item.postcode" placeholder="Postal/Zip Code"></b-input>
+                    <b-field
+                        :type="computed_errors.postcode ? 'is-danger' :null"
+                        :message="computed_errors.postcode ? 'This field is required' : null"
+                    >
+                        <b-input custom-class="pr-0" v-model="computed_item.postcode" placeholder="Postal Code"/>
                     </b-field>
                 </b-field>
                 <b-field grouped>
-                    <b-field>
-                        <b-input v-model="computed_item.state" placeholder="Division"></b-input>
+                    <b-field
+                        :type="computed_errors.state ? 'is-danger' :null"
+                        :message="computed_errors.state ? 'This field is required' : null"
+                    >
+                        <b-input
+                            custom-class="pr-0"
+                            v-model="computed_item.state"
+                            placeholder="State/Division"
+                        />
                     </b-field>
-                    <b-field>
-                        <b-input v-model="computed_item.country"
-                                 placeholder="Country"
-                                 value="Bangladesh"
-                        ></b-input>
+                    <b-field
+                        :type="computed_errors.country ? 'is-danger' :null"
+                        :message="computed_errors.country ? 'This field is required' : null"
+                    >
+                        <b-input
+                            custom-class="pr-0"
+                            v-model="computed_item.country"
+                            placeholder="Country"
+                        />
                     </b-field>
                 </b-field>
                 <p class="font-semibold mt-4 mb-3">
                     <b-checkbox v-model="computed_primary_contact_checkbox">Primary contact person</b-checkbox>
                 </p>
                 <template v-if="enable_primary_contact">
-                    <b-field>
-                        <b-input v-model="computed_item.primary_contact_person_name" placeholder="Full Name"></b-input>
+                    <b-field
+                        :type="computed_errors.primary_contact_person_name ? 'is-danger' :null"
+                        :message="computed_errors.primary_contact_person_name ? 'This field is required' : null"
+                    >
+                        <b-input
+                            custom-class="pr-0"
+                            v-model="computed_item.primary_contact_person_name"
+                            placeholder="Full Name"
+                        />
                     </b-field>
                     <b-input v-model="computed_item.primary_contact_person_id" hidden></b-input>
                     <b-field>
-                        <b-input v-model="computed_item.primary_contact_person_email"
-                                 placeholder="Emaill address"></b-input>
+                        <b-input
+                            v-model="computed_item.primary_contact_person_email"
+                            placeholder="Email address"
+                        />
                     </b-field>
                     <b-field grouped>
-                        <b-field>
-                            <b-input v-model="computed_item.primary_contact_person_mobile"
-                                     placeholder="Mobile"></b-input>
+                        <b-field
+                            :type="computed_errors.primary_contact_person_mobile ? 'is-danger' :null"
+                            :message="computed_errors.primary_contact_person_mobile ? 'This field is required' : null"
+                        >
+                            <b-input
+                                custom-class="pr-0"
+                                v-model="computed_item.primary_contact_person_mobile"
+                                placeholder="Mobile"
+                            />
                         </b-field>
                         <b-field>
-                            <b-input v-model="computed_item.primary_contact_person_phone" placeholder="Phone"></b-input>
+                            <b-input
+                                custom-class="pr-0"
+                                v-model="computed_item.primary_contact_person_phone"
+                                placeholder="Phone"
+                            />
                         </b-field>
                     </b-field>
                 </template>
@@ -116,14 +167,15 @@ export default {
                 city: '',
                 postcode: '',
                 state: '',
-                country: 'Bangladesh',
+                country: '',
                 note: '',
                 primary_contact_person_name: '',
                 primary_contact_person_mobile: '',
                 primary_contact_person_phone: '',
                 primary_contact_person_email: '',
                 primary_contact_person_id: '',
-            }
+            },
+            errors: {}
         }
     },
     methods: {
@@ -134,12 +186,26 @@ export default {
             this.$emit('on-close');
             this.enable_primary_contact = false;
         },
-        handleSave() {
-            if (this.$props.action_type == "edit") {
-                this.update();
-                return 0;
+        validate() {
+            let error_bag = {}
+
+            for (let value in this.computed_item) {
+                if (this.computed_required_field[value] && _.isEmpty(this.computed_item[value])) {
+                    error_bag[value] = true
+                }
             }
-            this.create()
+
+            this.errors = error_bag
+        },
+        handleSave() {
+            this.validate()
+            if (_.isEmpty(this.errors)) {
+                if (this.$props.action_type == "edit") {
+                    this.update();
+                    return 0;
+                }
+                this.create()
+            }
         },
         getRequestParams() {
             return {
@@ -157,20 +223,12 @@ export default {
                     this.$store.commit('suppliers/update', {supplier: data.data})
                     this.supplier = data.data
                     this.$emit('on-close')
-                    this.$buefy.notification.open({
-                        message: 'Supplier has been updated',
-                        type: 'is-success is-light',
-                        duration: 5000
-                    })
+                    this.onSuccess('Supplier has been updated')
                 })
                 .catch(err => {
                     console.log(err)
                     this.loading_event(false);
-                    this.$buefy.notification.open({
-                        message: 'Supplier update failed',
-                        type: 'is-danger is-light',
-                        duration: 5000
-                    })
+                    this.onError('Supplier update failed')
                 })
         },
         create() {
@@ -181,30 +239,36 @@ export default {
                     this.loading_event(false);
                     this.supplier = {};
                     this.$emit('on-close');
-                    this.$buefy.notification.open({
-                        message: 'Supplier is created',
-                        type: 'is-success is-light',
-                        duration: 5000
-                    })
+                    this.onSuccess('Supplier is created')
                     if (this.total < this.per_page) {
                         this.$store.dispatch('suppliers/loadData', {page: 1})
                     }
                 })
                 .catch(err => {
                     this.loading_event(false);
-                    this.$buefy.notification.open({
-                        message: 'Whoops! Something went wrong...',
-                        type: 'is-danger is-light',
-                        duration: 5000
-                    })
+                    this.onError()
                 })
+        },
+        onSuccess(message) {
+            this.$buefy.notification.open({
+                message: message,
+                type: 'is-success is-light',
+                duration: 5000
+            })
+        },
+        onError(message = 'Whoops! Something went wrong...') {
+            this.$buefy.notification.open({
+                message: message,
+                type: 'is-danger is-light',
+                duration: 5000
+            })
         }
     },
     computed: {
         ...mapGetters({
             total: 'suppliers/getTotal',
             per_page: 'getPerPage',
-            current_tenant_id: 'tenancy/getCurrentTenant'
+            tenant_id: 'tenancy/getCurrentTenant'
         }),
         title() {
             return this.$props.action_type == "edit"
@@ -212,10 +276,34 @@ export default {
                 : "Add new Supplier";
         },
         computed_item() {
-            if (this.$props.item) {
+            if (!_.isEmpty(this.$props.item)) {
                 this.supplier = this.$props.item;
             }
-            return {...this.supplier, tenant_id: this.current_tenant_id}
+            return {...this.supplier, tenant_id: this.tenant_id}
+        },
+        computed_errors() {
+            return this.errors
+        },
+        computed_required_field() {
+            let fields = {
+                name: true,
+                mobile: true,
+                address_line_1: true,
+                city: true,
+                postcode: true,
+                state: true,
+                country: true,
+            }
+
+            if (this.enable_primary_contact) {
+                fields = {
+                    ...fields,
+                    primary_contact_person_name: true,
+                    primary_contact_person_mobile: true
+                }
+            }
+
+            return fields
         },
         computed_primary_contact_checkbox: {
             get() {

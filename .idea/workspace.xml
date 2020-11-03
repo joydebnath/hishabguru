@@ -16,6 +16,7 @@
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/modals/ItemCRUD.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/suppliers/modals/ItemCRUD.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/suppliers/modals/ItemCRUD.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -828,7 +829,7 @@
       <workItem from="1604272428945" duration="3811000" />
       <workItem from="1604300531844" duration="1007000" />
       <workItem from="1604368655789" duration="67000" />
-      <workItem from="1604392215715" duration="3201000" />
+      <workItem from="1604392215715" duration="4783000" />
     </task>
     <servers />
   </component>
