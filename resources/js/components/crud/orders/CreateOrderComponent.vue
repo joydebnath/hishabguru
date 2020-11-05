@@ -61,6 +61,16 @@ export default {
             return this.order
         }
     },
+    mounted() {
+        axios
+            .get('/generate-number/orders')
+            .then(({data}) => {
+                this.order = {...this.order, order_number: data.data.number}
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     methods: {
         handleDraft() {
             let order = {};

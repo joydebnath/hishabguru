@@ -13,45 +13,20 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Str;
 
 class ReferenceNumberGenerateController extends Controller
 {
     public function generate($type)
     {
         try {
-            $currentMonth = Carbon::today()->month;
-            $currentYear = Carbon::today()->year;
+            $currentYearMonth = Carbon::today()->format('yn');
+            $newNumber = $this->getPrefix($type) . '-' . $currentYearMonth . strtoupper(Str::random(4));
 
-            $count = $this->getModel($type)
-                ->where('tenant_id', request()->tenant_id)
-                ->whereBetween('created_at', [
-                    Carbon::today()->startOfMonth()->startOfDay(),
-                    Carbon::today()->endOfMonth()->EndOfDay()
-                ])
-                ->count();
-            $newNumber = $this->getPrefix($type) . '-' . $currentYear . $currentMonth . ($count + 1);
             return response(['data' => ['number' => $newNumber]], 200);
         } catch (Exception $exception) {
             return response(['error' => $exception->getMessage()], 500);
         }
-    }
-
-    private function getModel($type): Model
-    {
-        if ($type === 'quotations') {
-            return new Quotation;
-        } elseif ($type === 'orders') {
-            return new Order;
-        } elseif ($type === 'purchases') {
-            return new Purchase;
-        } elseif ($type === 'invoices') {
-            return new Invoice;
-        } elseif ($type === 'bills') {
-            return new Bill;
-        } elseif ($type === 'other-expenses') {
-            return new OtherExpense;
-        }
-        throw new Exception('Unsupported model name');
     }
 
     private function getPrefix($type): string

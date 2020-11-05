@@ -53,6 +53,16 @@ export default {
             loading: false
         }
     },
+    mounted() {
+        axios
+            .get('/generate-number/invoices')
+            .then(({data}) => {
+                this.invoice = {...this.invoice, invoice_number: data.data.number}
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',

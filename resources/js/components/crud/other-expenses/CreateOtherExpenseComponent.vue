@@ -60,6 +60,16 @@ export default {
             loading: false
         }
     },
+    mounted() {
+        axios
+            .get('/generate-number/other-expenses')
+            .then(({data}) => {
+                this.expense = {...this.expense, expense_number: data.data.number}
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',

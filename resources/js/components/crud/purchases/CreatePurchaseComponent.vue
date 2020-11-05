@@ -53,6 +53,16 @@ export default {
             loading: false
         }
     },
+    mounted() {
+        axios
+            .get('/generate-number/purchases')
+            .then(({data}) => {
+                this.order = {...this.order, purchase_order_number: data.data.number}
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',

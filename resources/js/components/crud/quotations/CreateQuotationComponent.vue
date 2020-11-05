@@ -51,6 +51,16 @@ export default {
             loading: false
         }
     },
+    mounted() {
+        axios
+            .get('/generate-number/quotations')
+            .then(({data}) => {
+                this.quotation = {...this.quotation, quotation_number: data.data.number}
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
     computed: {
         ...mapGetters({
             tenant_id: 'tenancy/getCurrentTenant',
