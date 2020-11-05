@@ -20,6 +20,7 @@ class ProductSell extends JsonResource
             'issue_date' => Carbon::parse($this->issue_date)->format('d/m/y'),
             'type' => 'Invoice',
             'number' => $this->invoice_number,
+            'status' => ucfirst($this->status),
             'quantity' => isset($this->pivot) ? $this->pivot->quantity : null,
             'total' => isset($this->pivot) ? number_format($this->pivot->total, 2) : null,
             'discount' => isset($this->pivot) ? $this->pivot->discount : null,

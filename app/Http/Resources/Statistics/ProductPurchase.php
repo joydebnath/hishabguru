@@ -20,6 +20,7 @@ class ProductPurchase extends JsonResource
             'issue_date' => Carbon::parse($this->issue_date)->format('d/m/y'),
             'type' => 'Bill',
             'number' => $this->bill_number,
+            'status' => ucfirst($this->status),
             'quantity' => isset($this->pivot) ? $this->pivot->quantity : null,
             'total' => isset($this->pivot) ? number_format($this->pivot->total, 2) : null,
             'buying_unit_cost' => isset($this->pivot) ? $this->pivot->buying_unit_cost : null,

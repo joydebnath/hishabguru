@@ -18,13 +18,21 @@
                 />
             </b-field>
         </div>
-        <b-table :data="histories" :columns="columns" class="text-sm"/>
+        <b-table :data="computed_histories" :columns="columns" class="text-sm">
+            <template slot="footer">
+                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+            </template>
+        </b-table>
     </div>
 </template>
 
 <script>
+import EmptyTable from "@/components/global/table/EmptyTable";
+
 export default {
     name: "SellHistoriesTable",
+    components: {EmptyTable},
+
     props: {
         product_id: String
     },
@@ -36,44 +44,11 @@ export default {
     data() {
         return {
             date: new Date(),
-            histories: [
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-001',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-002',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-003',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-004',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-            ],
+            histories: [],
             columns: [
                 {
-                    field: 'date',
-                    label: 'Date',
+                    field: 'issue_date',
+                    label: 'Issued Date',
                 },
                 {
                     field: 'type',
@@ -86,13 +61,23 @@ export default {
                     centered: true
                 },
                 {
+                    field: 'status',
+                    label: 'Status',
+                    centered: true
+                },
+                {
                     field: 'quantity',
                     label: 'Quantity',
                     centered: true
                 },
                 {
-                    field: 'unit_price',
-                    label: 'Unit Price',
+                    field: 'discount',
+                    label: 'Discount %',
+                    centered: true
+                },
+                {
+                    field: 'tax_rate',
+                    label: 'Tax %',
                     centered: true
                 },
                 {
@@ -101,6 +86,11 @@ export default {
                     centered: true
                 },
             ]
+        }
+    },
+    computed: {
+        computed_histories() {
+            return this.histories
         }
     },
     methods: {
@@ -119,10 +109,10 @@ export default {
                     params: this.getDate()
                 })
                 .then(({data}) => {
-
+                    this.histories = data.data
                 })
                 .catch(err => {
-
+                    console.log(err)
                 })
         }
     }

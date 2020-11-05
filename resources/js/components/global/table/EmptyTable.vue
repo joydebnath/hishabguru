@@ -1,13 +1,13 @@
 <template>
-    <div class="w-32 m-auto">
+    <div class="w-48 m-auto">
         <svg
-            id="f20e0c25-d928-42cc-98d1-13cc230663ea"
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             width="120.16"
             height="90.81"
             viewBox="0 0 820.16 780.81"
+            class="m-auto"
         >
             <defs>
                 <linearGradient

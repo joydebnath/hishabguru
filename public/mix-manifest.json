@@ -50,5 +50,6 @@
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js",
     "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
-    "/vendors~js/client-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/profile-settings~js/supplier-stats.js"
+    "/vendors~js/client-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/profile-settings~js/supplier-stats.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e6efee35.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e6efee35.js"
 }
