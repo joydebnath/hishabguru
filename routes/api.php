@@ -47,7 +47,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/supplier-statistics/{id}/due-invoices', 'Statistics\SupplierStatsController@getDueInvoices');
     Route::get('/supplier-statistics/{id}/paid-invoices', 'Statistics\SupplierStatsController@getPaidInvoices');
     Route::get('/product-statistics/{id}/last-twelvemonth', 'Statistics\ProductStatsController@getLastTwelvemonthCounts');
-    Route::get('/product-statistics/{id}/sales-records', 'Statistics\ProductStatsController@getSalesRecords');
+    Route::get('/product-statistics/{id}/sell-records', 'Statistics\ProductStatsController@getSellRecords');
+    Route::get('/product-statistics/{id}/purchase-records', 'Statistics\ProductStatsController@getPurchaseRecords');
 
     Route::post('/current-tenant', 'User\TenancyController@store');
     Route::post('/upload/image', 'File\ImageUploadController@store');

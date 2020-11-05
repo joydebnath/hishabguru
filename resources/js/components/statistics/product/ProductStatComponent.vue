@@ -5,6 +5,7 @@
             <ProductCurrentState :product="product"/>
             <Last12MonthsChart :product_id="product_id"/>
             <SellHistoriesTable :product_id="product_id"/>
+            <PurchaseHistoriesTable :product_id="product_id"/>
         </template>
     </section>
 </template>
@@ -14,13 +15,15 @@
 import Last12MonthsChart from "./widgets/Last12MonthsChart";
 import ProductCurrentState from "./widgets/ProductCurrentState";
 import SellHistoriesTable from "./widgets/SellHistoriesTable";
+import PurchaseHistoriesTable from "./widgets/PurchaseHistoriesTable";
 
 export default {
     name: "ProductStatComponent",
     components: {
         SellHistoriesTable,
         ProductCurrentState,
-        Last12MonthsChart
+        Last12MonthsChart,
+        PurchaseHistoriesTable
     },
     mounted() {
         this.product_id = this.$route.params.id;

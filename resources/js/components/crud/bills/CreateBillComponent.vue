@@ -62,6 +62,11 @@ export default {
             .catch(err => {
                 console.log(err)
             })
+
+        // axios({
+        //     method: 'get',
+        //     url: 'https://number-generator.hishabguru.workers.dev/bills',
+        // })
     },
     computed: {
         ...mapGetters({

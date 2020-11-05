@@ -3,8 +3,8 @@
         class="bg-white shadow pt-2 px-2 sm:rounded-lg"
         type="area"
         height="225"
-        :options="chartOptions"
-        :series="series"
+        :options="computed_chart_options"
+        :series="computed_series"
     />
 </template>
 
@@ -24,19 +24,33 @@ export default {
             axios
                 .get(`/product-statistics/${this.$props.product_id}/last-twelvemonth`)
                 .then(({data}) => {
-
+                    const {months, sell_counts} = data;
+                    this.series = [{
+                        name: 'Total Sold',
+                        type: 'column',
+                        data: sell_counts.reverse()
+                    }];
+                    this.chartOptions = {...this.chartOptions, labels: months.reverse()}
                 })
                 .catch(err => {
-
+                    console.log(err)
                 })
         }
+    },
+    computed:{
+        computed_series(){
+            return this.series
+        },
+        computed_chart_options(){
+            return this.chartOptions
+        },
     },
     data() {
         return {
             series: [{
-                name: 'Website Blog',
+                name: 'Total Sold',
                 type: 'column',
-                data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+                data: []
             }],
             chartOptions: {
                 chart: {
@@ -56,7 +70,7 @@ export default {
                     enabled: true,
                     enabledOnSeries: [1]
                 },
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: [],
                 xaxis: {
                     type: 'year'
                 },
@@ -67,7 +81,7 @@ export default {
                 }]
             }
         }
-    }
+    },
 }
 </script>
 

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
@@ -23,9 +22,15 @@ class Product extends Model
             ->withPivot('sort_order')->withTimestamps();
     }
 
-    public function inventories()
+    public function invoices()
     {
-        return $this->belongsToMany(InventorySite::class, 'inventory_products_stock', 'product_id', 'inventory_site_id')
-            ->withPivot('total_stock', 'reserved_stock', 'remaining_stock')->withTimestamps();
+        return $this->belongsToMany(Invoice::class, 'invoice_products', 'product_id', 'invoice_id')
+            ->withPivot('quantity', 'total', 'discount', 'tax_rate');
+    }
+
+    public function bills()
+    {
+        return $this->belongsToMany(Bill::class, 'bill_items', 'product_id', 'bill_id')
+            ->withPivot('quantity', 'total', 'buying_unit_cost', 'tax_rate');
     }
 }

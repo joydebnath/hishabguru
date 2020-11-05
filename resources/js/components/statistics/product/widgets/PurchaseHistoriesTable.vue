@@ -1,6 +1,6 @@
 <template>
     <div class="box mt-6 p-4">
-        <label class="heading text-lg">Transaction Histories - Sells</label>
+        <label class="heading text-lg">Transaction Histories - Purchases</label>
         <div class="flex flex-row-reverse mb-2">
             <b-field custom-class="trans_his">
                 <b-datepicker
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    name: "SellHistoriesTable",
+    name: "PurchaseHistoriesTable",
     props: {
         product_id: String
     },
@@ -115,7 +115,7 @@ export default {
         },
         getRecords() {
             axios
-                .get(`/product-statistics/${this.$props.product_id}/sell-records`, {
+                .get(`/product-statistics/${this.$props.product_id}/purchase-records`, {
                     params: this.getDate()
                 })
                 .then(({data}) => {
