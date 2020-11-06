@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status\PaymentStatus;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -47,8 +48,13 @@ class Bill extends Model
         });
     }
 
-    public function payable() : MorphMany
+    public function payable(): MorphMany
     {
         return $this->morphMany(PaymentHistory::class, 'payable');
+    }
+
+    public function scopeNotDrafts($query)
+    {
+        $query->where('status', PaymentStatus::PAID)->orWhere('status', PaymentStatus::DUE);
     }
 }

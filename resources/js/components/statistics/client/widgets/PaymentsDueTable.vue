@@ -4,12 +4,12 @@
         <div class="flex flex-row-reverse mb-2">
             <div class="flex flex-col text-right">
                 <p class="subtitle is-6 mb-5">They Owe You</p>
-                <p class="title is-5 mb-0 text-red-600">{{ total_due }} BDT</p>
+                <p class="title is-5 mb-0">{{ total_due }} BDT</p>
             </div>
         </div>
-        <b-table :data="histories" :columns="columns" :loading="loading" class="text-sm">
+        <b-table :data="histories" :columns="columns" :loading="loading" class="text-sm mb-4">
             <template slot="footer">
-                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+                <EmptyTable v-if="!computed_histories.length" message="No Records"/>
             </template>
         </b-table>
     </div>

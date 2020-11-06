@@ -18,9 +18,9 @@
                 />
             </b-field>
         </div>
-        <b-table :data="computed_histories" :columns="columns" class="text-sm">
+        <b-table :data="computed_histories" :columns="columns" :loading="loading" class="text-sm mb-4">
             <template slot="footer">
-                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+                <EmptyTable v-if="!computed_histories.length" message="No Purchase Records"/>
             </template>
         </b-table>
     </div>
@@ -44,10 +44,11 @@ export default {
         return {
             date: new Date(),
             histories: [],
+            loading: false,
             columns: [
                 {
-                    field: 'issue_date',
-                    label: 'Issued Date',
+                    field: 'date',
+                    label: 'Date',
                 },
                 {
                     field: 'type',
@@ -60,27 +61,22 @@ export default {
                     centered: true
                 },
                 {
-                    field: 'status',
-                    label: 'Status',
+                    field: 'due_date',
+                    label: 'Due Date',
                     centered: true
                 },
                 {
-                    field: 'quantity',
-                    label: 'Quantity',
+                    field: 'sub_total',
+                    label: 'Sub Total',
                     centered: true
                 },
                 {
-                    field: 'buying_unit_cost',
-                    label: 'Unit Cost',
+                    field: 'total_tax',
+                    label: 'Total Tax',
                     centered: true
                 },
                 {
-                    field: 'tax_rate',
-                    label: 'Tax %',
-                    centered: true
-                },
-                {
-                    field: 'total',
+                    field: 'total_amount',
                     label: 'Total',
                     centered: true
                 },
@@ -103,15 +99,18 @@ export default {
             }
         },
         getRecords() {
+            this.loading = true
             axios
-                .get(`/supplier-statistics/${this.$props.supplier_id}/paid-invoices`, {
+                .get(`/supplier-statistics/${this.$props.supplier_id}/paid-bills`, {
                     params: this.getDate()
                 })
                 .then(({data}) => {
                     this.histories = data.data
+                    this.loading = false
                 })
                 .catch(err => {
                     console.log(err)
+                    this.loading = false
                 })
         }
     }

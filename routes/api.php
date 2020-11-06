@@ -44,8 +44,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/client-statistics/{id}/due-invoices', 'Statistics\ClientStatsController@getDueInvoices');
     Route::get('/client-statistics/{id}/paid-invoices', 'Statistics\ClientStatsController@getPaidInvoices');
     Route::get('/supplier-statistics/{id}/last-twelvemonth', 'Statistics\SupplierStatsController@getLastTwelvemonthCounts');
-    Route::get('/supplier-statistics/{id}/due-invoices', 'Statistics\SupplierStatsController@getDueInvoices');
-    Route::get('/supplier-statistics/{id}/paid-invoices', 'Statistics\SupplierStatsController@getPaidInvoices');
+    Route::get('/supplier-statistics/{id}/due-bills', 'Statistics\SupplierStatsController@getDueBills');
+    Route::get('/supplier-statistics/{id}/paid-bills', 'Statistics\SupplierStatsController@getPaidBills');
     Route::get('/product-statistics/{id}/last-twelvemonth', 'Statistics\ProductStatsController@getLastTwelvemonthCounts');
     Route::get('/product-statistics/{id}/sell-records', 'Statistics\ProductStatsController@getSellRecords');
     Route::get('/product-statistics/{id}/purchase-records', 'Statistics\ProductStatsController@getPurchaseRecords');

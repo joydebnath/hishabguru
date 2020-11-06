@@ -18,9 +18,9 @@
                 />
             </b-field>
         </div>
-        <b-table :data="computed_histories" :columns="columns" :loading="loading" class="text-sm">
+        <b-table :data="computed_histories" :columns="columns" :loading="loading" class="text-sm mb-4">
             <template slot="footer">
-                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+                <EmptyTable v-if="!computed_histories.length" message="No Purchase Records"/>
             </template>
         </b-table>
     </div>
