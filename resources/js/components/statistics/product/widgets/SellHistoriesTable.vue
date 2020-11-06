@@ -32,7 +32,6 @@ import EmptyTable from "@/components/global/table/EmptyTable";
 export default {
     name: "SellHistoriesTable",
     components: {EmptyTable},
-
     props: {
         product_id: String
     },

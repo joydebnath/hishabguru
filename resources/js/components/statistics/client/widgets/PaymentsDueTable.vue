@@ -4,68 +4,35 @@
         <div class="flex flex-row-reverse mb-2">
             <div class="flex flex-col text-right">
                 <p class="subtitle is-6 mb-5">They Owe You</p>
-                <p class="title is-5 mb-0">1300 BDT</p>
+                <p class="title is-5 mb-0 text-red-600">{{ total_due }} BDT</p>
             </div>
         </div>
-        <b-table :data="histories" :columns="columns" class="text-sm"/>
+        <b-table :data="histories" :columns="columns" :loading="loading" class="text-sm">
+            <template slot="footer">
+                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+            </template>
+        </b-table>
     </div>
 </template>
 
 <script>
+import EmptyTable from "@/components/global/table/EmptyTable";
+
 export default {
     name: "PaymentsDueTable",
+    components: {EmptyTable},
     props: {
         client_id: String
     },
     mounted() {
         if (this.$props.client_id) {
-            axios
-                .get(`/client-statistics/${this.$props.client_id}/due-invoices`)
-                .then(({data}) => {
-
-                })
-                .catch(err => {
-
-                })
+            this.getRecords()
         }
     },
     data() {
         return {
-            date: null,
-            histories: [
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-001',
-                    'due_date': '21/10/2016',
-                    'due_amount': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-002',
-                    'due_date': '21/10/2016',
-                    'due_amount': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-003',
-                    'due_date': '21/10/2016',
-                    'due_amount': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-004',
-                    'due_date': '21/10/2016',
-                    'due_amount': '1900',
-                    'total': '5700',
-                },
-            ],
+            histories: [],
+            loading:false,
             columns: [
                 {
                     field: 'date',
@@ -87,25 +54,44 @@ export default {
                     centered: true
                 },
                 {
-                    field: 'due_amount',
+                    field: 'total_due',
                     label: 'Due Amount',
                     centered: true
                 },
                 {
-                    field: 'total',
+                    field: 'total_tax',
+                    label: 'Tax',
+                    centered: true
+                },
+                {
+                    field: 'total_amount',
                     label: 'Total',
                     centered: true
                 },
             ]
         }
     },
+    computed: {
+        computed_histories() {
+            return this.histories
+        },
+        total_due() {
+            return _.sumBy(this.histories, 'total_due')
+        }
+    },
     methods: {
-        handleFilterHistories() {
-            if (this.date) {
-                const M = new Date(this.date).getMonth() + 1;
-                const Y = new Date(this.date).getFullYear();
-                console.log(M, Y)
-            }
+        getRecords() {
+            this.loading = true;
+            axios
+                .get(`/client-statistics/${this.$props.client_id}/due-invoices`)
+                .then(({data}) => {
+                    this.histories = data.data
+                    this.loading = false;
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.loading = false;
+                })
         }
     }
 }

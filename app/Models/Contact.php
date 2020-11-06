@@ -56,4 +56,14 @@ class Contact extends Model
     {
         return $this->belongsToMany(Contact::class, 'contact_contacts', 'child_contact_id', 'parent_contact_id')->withTimestamps();
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="box mt-6 p-4">
-        <label class="heading text-lg">Purchase Histories</label>
+        <label class="heading text-lg">Purchase Histories - Paid</label>
         <div class="flex flex-row-reverse mb-2">
             <b-field custom-class="trans_his">
                 <b-datepicker
@@ -18,69 +18,36 @@
                 />
             </b-field>
         </div>
-        <b-table :data="histories" :columns="columns" class="text-sm"/>
+        <b-table :data="computed_histories" :columns="columns" class="text-sm">
+            <template slot="footer">
+                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+            </template>
+        </b-table>
     </div>
 </template>
 
 <script>
+import EmptyTable from "@/components/global/table/EmptyTable";
+
 export default {
     name: "PurchaseHistoriesTable",
+    components: {EmptyTable},
     props: {
         supplier_id: String
     },
     mounted() {
         if (this.$props.supplier_id) {
-            axios
-                .get(`/supplier-statistics/${this.$props.supplier_id}/paid-invoices`)
-                .then(({data}) => {
-
-                })
-                .catch(err => {
-
-                })
+            this.getRecords()
         }
     },
     data() {
         return {
-            date: null,
-            histories: [
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Bill',
-                    'number': 'BIL-001',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Bill',
-                    'number': 'BIL-002',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Bill',
-                    'number': 'BIL-003',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Bill',
-                    'number': 'BIL-004',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-            ],
+            date: new Date(),
+            histories: [],
             columns: [
                 {
-                    field: 'date',
-                    label: 'Date',
+                    field: 'issue_date',
+                    label: 'Issued Date',
                 },
                 {
                     field: 'type',
@@ -93,13 +60,23 @@ export default {
                     centered: true
                 },
                 {
+                    field: 'status',
+                    label: 'Status',
+                    centered: true
+                },
+                {
                     field: 'quantity',
                     label: 'Quantity',
                     centered: true
                 },
                 {
-                    field: 'unit_price',
-                    label: 'Unit Price',
+                    field: 'buying_unit_cost',
+                    label: 'Unit Cost',
+                    centered: true
+                },
+                {
+                    field: 'tax_rate',
+                    label: 'Tax %',
                     centered: true
                 },
                 {
@@ -110,13 +87,32 @@ export default {
             ]
         }
     },
+    computed: {
+        computed_histories() {
+            return this.histories
+        }
+    },
     methods: {
         handleFilterHistories() {
-            if (this.date) {
-                const M = new Date(this.date).getMonth() + 1;
-                const Y = new Date(this.date).getFullYear();
-                console.log(M, Y)
+            this.getRecords()
+        },
+        getDate() {
+            return {
+                month: new Date(this.date).getMonth() + 1,
+                year: new Date(this.date).getFullYear()
             }
+        },
+        getRecords() {
+            axios
+                .get(`/supplier-statistics/${this.$props.supplier_id}/paid-invoices`, {
+                    params: this.getDate()
+                })
+                .then(({data}) => {
+                    this.histories = data.data
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }
 }

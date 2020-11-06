@@ -3,8 +3,8 @@
         class="bg-white shadow pt-2 px-2 sm:rounded-lg"
         type="area"
         height="225"
-        :options="chartOptions"
-        :series="series"
+        :options="computed_chart_options"
+        :series="computed_series"
     />
 </template>
 
@@ -16,7 +16,7 @@ export default {
     components: {
         VueApexCharts
     },
-    props:{
+    props: {
         client_id: String
     },
     mounted() {
@@ -24,10 +24,16 @@ export default {
             axios
                 .get(`/client-statistics/${this.$props.client_id}/last-twelvemonth`)
                 .then(({data}) => {
-
+                    const {months, invoice_amounts} = data;
+                    this.series = [{
+                        name: 'Total Spent',
+                        type: 'column',
+                        data: invoice_amounts.reverse()
+                    }];
+                    this.chartOptions = {...this.chartOptions, labels: months.reverse()}
                 })
                 .catch(err => {
-
+                    console.log(err)
                 })
         }
     },
@@ -36,7 +42,7 @@ export default {
             series: [{
                 name: 'Number of purchases made',
                 type: 'column',
-                data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+                data: []
             }],
             chartOptions: {
                 chart: {
@@ -56,18 +62,26 @@ export default {
                     enabled: true,
                     enabledOnSeries: [1]
                 },
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: [],
                 xaxis: {
                     type: 'year'
                 },
                 yaxis: [{
                     title: {
-                        text: 'Sales numbers',
+                        text: 'Money Spent',
                     },
                 }]
             }
         }
-    }
+    },
+    computed: {
+        computed_series() {
+            return this.series
+        },
+        computed_chart_options() {
+            return this.chartOptions
+        },
+    },
 }
 </script>
 

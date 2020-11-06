@@ -18,65 +18,33 @@
                 />
             </b-field>
         </div>
-        <b-table :data="histories" :columns="columns" class="text-sm"/>
+        <b-table :data="computed_histories" :columns="columns" :loading="loading" class="text-sm">
+            <template slot="footer">
+                <EmptyTable v-if="!computed_histories.length" message="No Sell Records"/>
+            </template>
+        </b-table>
     </div>
 </template>
 
 <script>
+import EmptyTable from "@/components/global/table/EmptyTable";
+
 export default {
     name: "PurchaseHistories",
+    components: {EmptyTable},
     props: {
         client_id: String
     },
     mounted() {
         if (this.$props.client_id) {
-            axios
-                .get(`/client-statistics/${this.$props.client_id}/paid-invoices`)
-                .then(({data}) => {
-
-                })
-                .catch(err => {
-
-                })
+            this.getRecords()
         }
     },
     data() {
         return {
-            date: null,
-            histories: [
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-001',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-002',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-003',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-                {
-                    'date': '2016-10-15 13:43:27',
-                    'type': 'Invoice',
-                    'number': 'INV-004',
-                    'quantity': '3',
-                    'unit_price': '1900',
-                    'total': '5700',
-                },
-            ],
+            date: new Date(),
+            histories: [],
+            loading:false,
             columns: [
                 {
                     field: 'date',
@@ -93,30 +61,57 @@ export default {
                     centered: true
                 },
                 {
-                    field: 'quantity',
-                    label: 'Quantity',
+                    field: 'due_date',
+                    label: 'Due Date',
                     centered: true
                 },
                 {
-                    field: 'unit_price',
-                    label: 'Unit Price',
+                    field: 'sub_total',
+                    label: 'Sub Total',
                     centered: true
                 },
                 {
-                    field: 'total',
+                    field: 'total_tax',
+                    label: 'Total Tax',
+                    centered: true
+                },
+                {
+                    field: 'total_amount',
                     label: 'Total',
                     centered: true
                 },
             ]
         }
     },
+    computed: {
+        computed_histories() {
+            return this.histories
+        }
+    },
     methods: {
         handleFilterHistories() {
-            if (this.date) {
-                const M = new Date(this.date).getMonth() + 1;
-                const Y = new Date(this.date).getFullYear();
-                console.log(M, Y)
+            this.getRecords()
+        },
+        getDate() {
+            return {
+                month: new Date(this.date).getMonth() + 1,
+                year: new Date(this.date).getFullYear()
             }
+        },
+        getRecords() {
+            this.loading = true
+            axios
+                .get(`/client-statistics/${this.$props.client_id}/paid-invoices`, {
+                    params: this.getDate()
+                })
+                .then(({data}) => {
+                    this.histories = data.data
+                    this.loading = false
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.loading = false
+                })
         }
     }
 }

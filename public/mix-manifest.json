@@ -7,7 +7,7 @@
     "/js/bill.js": "/js/bill.js",
     "/js/bills.js": "/js/bills.js",
     "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js": "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js",
-    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~83829058.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~83829058.js",
+    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e6efee35.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e6efee35.js",
     "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-other-expense~js/create-purch~d9d52d94.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-other-expense~js/create-purch~d9d52d94.js",
     "/js/bill~js/create-bill.js": "/js/bill~js/create-bill.js",
     "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js": "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js",
@@ -50,6 +50,6 @@
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js",
     "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
-    "/vendors~js/client-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/profile-settings~js/supplier-stats.js",
-    "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e6efee35.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~e6efee35.js"
+    "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~3f490f6a.js": "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~3f490f6a.js",
+    "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~16e55698.js": "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~16e55698.js"
 }
