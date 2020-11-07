@@ -18,10 +18,30 @@
 <script>
 
 import {VueFrappe} from 'vue2-frappe'
+import VueApexCharts from "vue-apexcharts";
 
 export default {
     name: "MonthCashFlow",
     components: {VueFrappe},
+    props:{
+        tenant_id: String | Number
+    },
+    mounted() {
+        if(this.$props.tenant_id){
+            axios
+                .get('/dashboard-statistics/monthly-cash-flow',{
+                    params:{
+                        tenant_id: this.$props.tenant_id
+                    }
+                })
+                .then(({data})=>{
+
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+        }
+    },
     data() {
         return {
             labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

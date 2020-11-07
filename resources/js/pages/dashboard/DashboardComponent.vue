@@ -3,28 +3,29 @@
         <MonthStatistics/>
         <div class="grid grid-cols-4 gap-4">
             <div class="col-span-2">
-                <MonthCashFlow class="mb-4"/>
-                <OrderDueToday class="mb-4"/>
-                <CustomerDuePayments class="mb-4"/>
-                <DueBills class="mb-4"/>
+                <MonthCashFlow :tenant_id="tenant_id" class="mb-4"/>
+                <OrderDueToday :tenant_id="tenant_id" class="mb-4"/>
+                <CustomerDuePayments :tenant_id="tenant_id" class="mb-4"/>
+                <DueBills :tenant_id="tenant_id" class="mb-4"/>
             </div>
             <div class="col-span-2">
-                <Last30DaysSales class="mb-4"/>
-                <Last30DaysExpenses class="mb-4"/>
-                <Last30DaysProfits class="mb-4"/>
-                <SalesByCategories/>
+                <Last30DaysSells :tenant_id="tenant_id" class="mb-4"/>
+                <Last30DaysExpenses :tenant_id="tenant_id" class="mb-4"/>
+                <Last30DaysProfits :tenant_id="tenant_id" class="mb-4"/>
+                <SellsByCategories :tenant_id="tenant_id" class="mb-4"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 import MonthStatistics from "./widgets/MonthStatistics";
 import MonthCashFlow from "./widgets/MonthCashFlow";
-import Last30DaysSales from "./widgets/Last30DaysSales";
+import Last30DaysSells from "./widgets/Last30DaysSells";
 import Last30DaysExpenses from "./widgets/Last30DaysExpenses";
 import Last30DaysProfits from "./widgets/Last30DaysProfit";
-import SalesByCategories from "./widgets/SalesByCategories";
+import SellsByCategories from "./widgets/SellsByCategories";
 import OrderDueToday from "./widgets/OrderDueToday";
 import CustomerDuePayments from "./widgets/CustomerDuePayments";
 import DueBills from "./widgets/DueBills";
@@ -35,17 +36,18 @@ export default {
         DueBills,
         CustomerDuePayments,
         OrderDueToday,
-        SalesByCategories,
+        SellsByCategories,
         Last30DaysProfits,
         Last30DaysExpenses,
-        Last30DaysSales,
+        Last30DaysSells,
         MonthCashFlow,
         MonthStatistics,
     },
-    data() {
-        return {}
+    computed: {
+        ...mapGetters({
+            tenant_id: 'tenancy/getCurrentTenant'
+        })
     }
-
 }
 
 </script>

@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Statistics\BillDueCollection;
-use App\Http\Resources\Statistics\InvoiceDueCollection;
 use App\Services\Home\DashboardRecordsService;
 use App\Services\Statistics\DashboardService;
-use Carbon\Carbon;
+use App\Traits\Home\DashboardChartsTrait;
+use App\Traits\Home\DashboardRecordsTrait;
 use Illuminate\Http\Request;
-use Exception;
 
 class DashboardController extends Controller
 {
+    use DashboardChartsTrait, DashboardRecordsTrait;
+
     protected $statsService, $recordsService;
 
     public function __construct(DashboardService $statsService, DashboardRecordsService $recordsService)
@@ -28,13 +28,16 @@ class DashboardController extends Controller
             case 'current-month-statistics':
                 $result = $this->getCurrentMonthStats($request);
                 break;
+            case 'monthly-cash-flow':
+                $result = $this->getLastSixMonthsCashFlow($request);
+                break;
             case 'order-due-today':
                 $result = $this->getOrdersDueToday($request);
                 break;
-            case 'top-dues':
+            case 'top-due-invoices':
                 $result = $this->getTopDueInvoices($request);
                 break;
-            case 'top-bills':
+            case 'top-due-bills':
                 $result = $this->getTopDueBills($request);
                 break;
             case 'last-30days-sells':
@@ -53,77 +56,5 @@ class DashboardController extends Controller
                 $result = response(['error' => 'Unsupported Statistic Type Provided'], 404);
         }
         return $result;
-    }
-
-    public function getCurrentMonthStats(Request $request)
-    {
-        try {
-            return $this->statsService->getOverviewStatsByMonth(Carbon::today()->startOfMonth(), $request->tenant_id);
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getOrdersDueToday(Request $request)
-    {
-        try {
-            return $this->recordsService->getOrdersDueByDate(Carbon::today(), $request->tenant_id);
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getTopDueInvoices(Request $request)
-    {
-        try {
-            return new InvoiceDueCollection($this->recordsService->getTopTenDueInvoices($request->tenant_id));
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getTopDueBills(Request $request)
-    {
-        try {
-            return new BillDueCollection($this->recordsService->getTopTenDueBills($request->tenant_id));
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getLastThirtyDaysSells(Request $request)
-    {
-        try {
-            return new BillDueCollection($this->statsService->getLast30DaysTotalSellsAmount($request->tenant_id));
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getLastThirtyDaysExpenses(Request $request)
-    {
-        try {
-            return new BillDueCollection($this->statsService->getLast30DaysTotalExpensesAmount($request->tenant_id));
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getLastThirtyDaysProfits(Request $request)
-    {
-        try {
-            return new BillDueCollection($this->statsService->getLast30DaysTotalProfitsAmount($request->tenant_id));
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
-    }
-
-    public function getLastThirtyDaysTopCategories(Request $request)
-    {
-        try {
-            return new BillDueCollection($this->statsService->getLast30DaysTopFiveProductCategories($request->tenant_id));
-        } catch (Exception $exception) {
-            return response(['error' => $exception->getMessage()], 500);
-        }
     }
 }

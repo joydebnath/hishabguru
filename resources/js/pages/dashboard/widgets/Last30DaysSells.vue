@@ -7,7 +7,26 @@ import VueApexCharts from 'vue-apexcharts'
 
 export default {
     name: "Last30DaysSales",
+    props:{
+      tenant_id: String | Number
+    },
     components: {VueApexCharts},
+    mounted() {
+        if(this.$props.tenant_id){
+            axios
+            .get('/dashboard-statistics/last-30days-sells',{
+                params:{
+                    tenant_id: this.$props.tenant_id
+                }
+            })
+            .then(({data})=>{
+
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+    },
     data() {
         return {
             series: [{

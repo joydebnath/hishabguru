@@ -14,7 +14,26 @@
 
 <script>
 export default {
-    name: "OrderDueToday"
+    name: "OrderDueToday",
+    props: {
+        tenant_id: String | Number
+    },
+    mounted() {
+        if (this.$props.tenant_id) {
+            axios
+                .get('/dashboard-statistics/order-due-today', {
+                    params: {
+                        tenant_id: this.$props.tenant_id
+                    }
+                })
+                .then(({data}) => {
+
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    },
 }
 </script>
 

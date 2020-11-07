@@ -14,9 +14,6 @@ class Invoice extends Model
     use Filterable;
 
     protected $guarded = ['id'];
-    protected $casts = [
-        'issued_on' => 'date'
-    ];
 
     public function products(): BelongsToMany
     {

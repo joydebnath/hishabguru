@@ -2,12 +2,13 @@
 
 namespace App\Services\Statistics;
 
+use App\Enums\Statistics\TimeSeriesStatsType;
 use App\Enums\Status\PaymentStatus;
 use App\Models\Bill;
 use App\Models\Invoice;
 use App\Models\OtherExpense;
+use App\Models\TimeSeriesStatistic;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class DashboardService
 {
@@ -69,48 +70,47 @@ class DashboardService
 
     public function getLast30DaysTotalSellsAmount($tenantId)
     {
-        $start = Carbon::today()->subDays(29)->startOfDay();
-        $end = Carbon::today()->endOfDay();
+        $start = Carbon::yesterday()->subDays(29)->startOfDay();
+        $end = Carbon::yesterday()->endOfDay();
 
-        return Invoice::where('tenant_id', $tenantId)
-            ->isNotDraft()
-            ->whereBetween('issue_date', [$start, $end])
-            ->addSelect(DB::raw('issue_date as issued_on'))
+        return TimeSeriesStatistic::where([
+            ['tenant_id', '=', $tenantId],
+            ['statistic_type', '=', TimeSeriesStatsType::SELLS],
+        ])
+            ->whereBetween('date', [$start, $end])
             ->get();
     }
 
     public function getLast30DaysTotalExpensesAmount($tenantId)
     {
-        $start = Carbon::today()->subDays(29)->startOfDay();
-        $end = Carbon::today()->endOfDay();
+        $start = Carbon::yesterday()->subDays(29)->startOfDay();
+        $end = Carbon::yesterday()->endOfDay();
 
-        $totalBillAmount = Bill::where('tenant_id', $tenantId)
-            ->isNotDraft()
-            ->whereBetween('issue_date', [$start, $end])
-            ->addSelect(DB::raw('issue_date as issued_on'))
+        return TimeSeriesStatistic::where([
+            ['tenant_id', '=', $tenantId],
+            ['statistic_type', '=', TimeSeriesStatsType::EXPENSES],
+        ])
+            ->whereBetween('date', [$start, $end])
             ->get();
-
-        $totalOtherExpensesAmount = OtherExpense::where('tenant_id', $tenantId)
-            ->isNotDraft()
-            ->whereBetween('issue_date', [$start, $end])
-            ->addSelect(DB::raw('issue_date as issued_on'))
-            ->get();
-        return 0;
     }
 
     public function getLast30DaysTotalProfitsAmount($tenantId)
     {
-        $start = Carbon::today()->subDays(29)->startOfDay();
-        $end = Carbon::today()->endOfDay();
+        $start = Carbon::yesterday()->subDays(29)->startOfDay();
+        $end = Carbon::yesterday()->endOfDay();
 
-        //(product price * quantity) - product sub_total
-        return 0;
+        return TimeSeriesStatistic::where([
+            ['tenant_id', '=', $tenantId],
+            ['statistic_type', '=', TimeSeriesStatsType::PROFITS],
+        ])
+            ->whereBetween('date', [$start, $end])
+            ->get();
     }
 
     public function getLast30DaysTopFiveProductCategories($tenantId)
     {
-        $start = Carbon::today()->subDays(29)->startOfDay();
-        $end = Carbon::today()->endOfDay();
+        $start = Carbon::yesterday()->subDays(29)->startOfDay();
+        $end = Carbon::yesterday()->endOfDay();
 
         //invoice products, group by products, get category
         return 0;

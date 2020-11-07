@@ -40,13 +40,35 @@
 </template>
 
 <script>
+import VueApexCharts from "vue-apexcharts";
+
 export default {
     name: "MonthStatistics",
+    props:{
+        tenant_id: String | Number
+    },
+    components: {VueApexCharts},
+    mounted() {
+        if(this.$props.tenant_id){
+            axios
+                .get('/dashboard-statistics/current-month-statistics',{
+                    params:{
+                        tenant_id: this.$props.tenant_id
+                    }
+                })
+                .then(({data})=>{
+
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+        }
+    },
     computed: {
         current_month_name() {
             return new Date().toLocaleString('default', {month: 'long'});
         }
-    }
+    },
 }
 </script>
 

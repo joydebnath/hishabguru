@@ -3,17 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/invoices', 'Invoice\InvoicesController');
     Route::resource('/products', 'Product\ProductsController');
@@ -39,16 +28,13 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/lookup/product-categories', 'Lookup\ProductLookupController@categories');
     Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
     Route::get('/generate-number/{type}', 'Tenancy\ReferenceNumberGenerateController@generate');
-
     Route::get('/client-statistics/{id}/{type}', 'Statistics\ClientStatsController@show');
     Route::get('/supplier-statistics/{id}/{type}', 'Statistics\SupplierStatsController@show');
     Route::get('/product-statistics/{id}/{type}', 'Statistics\ProductStatsController@show');
     Route::get('/dashboard-statistics/{type}', 'Home\DashboardController@show');
 
-
     Route::post('/current-tenant', 'User\TenancyController@store');
     Route::post('/upload/image', 'File\ImageUploadController@store');
-
     Route::post('/copy-to', 'Transform\CopyToController@store');
 
     Route::patch('/change-password', 'User\UserController@update');
