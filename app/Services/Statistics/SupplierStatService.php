@@ -30,7 +30,7 @@ class SupplierStatService
     {
         return Bill::where('contact_id', $supplierId)
             ->whereBetween('issue_date', $dateRange)
-            ->notDrafts()
+            ->isNotDraft()
             ->sum('total_amount');
     }
 

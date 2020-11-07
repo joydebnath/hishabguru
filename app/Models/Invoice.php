@@ -14,6 +14,9 @@ class Invoice extends Model
     use Filterable;
 
     protected $guarded = ['id'];
+    protected $casts = [
+        'issued_on' => 'date'
+    ];
 
     public function products(): BelongsToMany
     {
@@ -53,7 +56,7 @@ class Invoice extends Model
         return $this->morphMany(PaymentHistory::class, 'payable');
     }
 
-    public function scopeNotDrafts($query)
+    public function scopeIsNotDraft($query)
     {
         $query->where('status', PaymentStatus::PAID)->orWhere('status', PaymentStatus::DUE);
     }

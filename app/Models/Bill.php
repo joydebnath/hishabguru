@@ -53,7 +53,7 @@ class Bill extends Model
         return $this->morphMany(PaymentHistory::class, 'payable');
     }
 
-    public function scopeNotDrafts($query)
+    public function scopeIsNotDraft($query)
     {
         $query->where('status', PaymentStatus::PAID)->orWhere('status', PaymentStatus::DUE);
     }

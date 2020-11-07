@@ -18,6 +18,25 @@ class SupplierStatsController extends Controller
         $this->service = $service;
     }
 
+    public function show(Request $request, $supplierId, $type)
+    {
+        $result = null;
+        switch ($type) {
+            case 'last-twelvemonth':
+                $result = $this->getLastTwelvemonthCounts($supplierId);
+                break;
+            case 'due-bills':
+                $result = $this->getDueBills($supplierId);
+                break;
+            case 'paid-bills':
+                $result = $this->getPaidBills($request, $supplierId);
+                break;
+            default:
+                $result = response(['error' => 'Unsupported Statistic Type Provided'], 404);
+        }
+        return $result;
+    }
+
     public function getLastTwelvemonthCounts($supplierId)
     {
         try {

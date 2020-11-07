@@ -30,7 +30,7 @@ class ClientStatService
     {
         return Invoice::where('contact_id', $clientId)
             ->whereBetween('issue_date', $dateRange)
-            ->notDrafts()
+            ->isNotDraft()
             ->sum('total_amount');
     }
 

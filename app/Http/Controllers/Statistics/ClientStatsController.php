@@ -19,6 +19,25 @@ class ClientStatsController extends Controller
         $this->service = $service;
     }
 
+    public function show(Request $request, $clientId, $type)
+    {
+        $result = null;
+        switch ($type) {
+            case 'last-twelvemonth':
+                $result = $this->getLastTwelvemonthCounts($clientId);
+                break;
+            case 'due-invoices':
+                $result = $this->getDueInvoices($clientId);
+                break;
+            case 'paid-invoices':
+                $result = $this->getPaidInvoices($request, $clientId);
+                break;
+            default:
+                $result = response(['error' => 'Unsupported Statistic Type Provided'], 404);
+        }
+        return $result;
+    }
+
     public function getLastTwelvemonthCounts($clientId)
     {
         try {

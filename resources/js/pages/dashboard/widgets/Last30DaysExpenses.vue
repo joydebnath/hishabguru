@@ -39,7 +39,7 @@ export default {
                 },
                 yaxis: {
                     title: {
-                        text: "Expense Count"
+                        text: "Expense Amount"
                     },
                 },
                 tooltip: {

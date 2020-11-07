@@ -19,6 +19,25 @@ class ProductStatsController extends Controller
         $this->service = $service;
     }
 
+    public function show(Request $request, $productId, $type)
+    {
+        $result = null;
+        switch ($type){
+            case 'last-twelvemonth':
+                $result = $this->getLastTwelvemonthCounts($productId);
+                break;
+            case 'sell-records':
+                $result = $this->getSellRecords($request, $productId);
+                break;
+            case 'purchase-records':
+                $result = $this->getPurchaseRecords($request, $productId);
+                break;
+            default:
+                $result = response(['error' => 'Unsupported Statistic Type Provided'], 404);
+        }
+        return $result;
+    }
+
     public function getLastTwelvemonthCounts($productId)
     {
         try {

@@ -11,12 +11,12 @@ export default {
     data() {
         return {
             series: [{
-                name: 'Number of sales',
+                name: 'Number of sells',
                 data: [31, 40, 28, 51, 42, 109, 100]
             }],
             chartOptions: {
                 title: {
-                    text: "Last 30 Days - Total Sales",
+                    text: "Last 30 Days - Total Sells",
                     align: "left"
                 },
                 chart: {
@@ -39,7 +39,7 @@ export default {
                 },
                 yaxis: {
                     title: {
-                        text: "Sales Count"
+                        text: "Sells Amount"
                     },
                 },
                 tooltip: {
