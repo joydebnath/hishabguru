@@ -217,6 +217,7 @@ export default {
                     expiry_date: this.quotation.expiry_date ? this.quotation.expiry_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
+                    total_profit: this.profit,
                     total_tax: this.tax,
                     sub_total: this.sub_total,
                 },

@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedDecimal('total_amount')->nullable();
             $table->unsignedDecimal('sub_total')->nullable();
             $table->unsignedDecimal('total_tax')->nullable();
+            $table->decimal('total_profit')->nullable();
 
             $table->unsignedBigInteger('tenant_id')->index();
             $table->unsignedBigInteger('contact_id')->index()->nullable()->comment('order is created for a contact');

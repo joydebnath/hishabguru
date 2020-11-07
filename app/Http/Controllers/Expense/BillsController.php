@@ -89,9 +89,7 @@ class BillsController extends Controller
     public function destroy(Bill $bill)
     {
         try {
-            CopyReference::where('copy_to_id', $bill->id)->where('copy_to_type', 'bills')->delete();
-            $bill->payable()->delete();
-            $bill->delete();
+            $bill->delete(); // This triggers BillObserver
             return response(['message' => 'Bill is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);

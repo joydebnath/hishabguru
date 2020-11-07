@@ -29,6 +29,7 @@ class CreateQuotationsTable extends Migration
             $table->unsignedDecimal('total_amount')->nullable();
             $table->unsignedDecimal('sub_total')->nullable();
             $table->unsignedDecimal('total_tax')->nullable();
+            $table->decimal('total_profit')->nullable();
             $table->unsignedDecimal('minimum_payment_amount')->nullable();
 
             $table->timestamps();
@@ -47,6 +48,6 @@ class CreateQuotationsTable extends Migration
      */
     public function down()
     {
-//        Schema::dropIfExists('quotations');
+        Schema::dropIfExists('quotations');
     }
 }

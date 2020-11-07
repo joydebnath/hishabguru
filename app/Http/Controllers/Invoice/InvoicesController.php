@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Business\InvoiceRequest;
 use App\Http\Resources\Business\InvoiceCollection;
 use App\Http\Resources\Business\InvoiceFullResource;
-use App\Models\CopyReference;
 use App\Models\Invoice;
 use App\Http\Resources\Business\Invoice as InvoiceResource;
 use Exception;
@@ -86,9 +85,7 @@ class InvoicesController extends Controller
     public function destroy(Invoice $invoice)
     {
         try {
-            CopyReference::where('copy_to_id', $invoice->id)->where('copy_to_type', 'invoices')->delete();
-            $invoice->payable()->delete();
-            $invoice->delete();
+            $invoice->delete(); // This triggers InvoiceObserver
             return response(['message' => 'Invoice is deleted']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
@@ -102,17 +99,17 @@ class InvoicesController extends Controller
         return $fillable;
     }
 
-    private function updateTotalDue($expense, $paymentHistories): void
+    private function updateTotalDue($invoice, $paymentHistories): void
     {
         $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
         $updatable = [
-            'total_due' => abs($expense->total_amount - $totalPaid)
+            'total_due' => abs($invoice->total_amount - $totalPaid)
         ];
 
-        if ($expense->status === PaymentStatus::DUE) {
-            $updatable['status'] = $totalPaid >= $expense->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE;
+        if ($invoice->status === PaymentStatus::DUE) {
+            $updatable['status'] = $totalPaid >= $invoice->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE;
         }
 
-        $expense->update($updatable);
+        $invoice->update($updatable);
     }
 }

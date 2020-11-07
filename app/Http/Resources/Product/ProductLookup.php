@@ -33,6 +33,6 @@ class ProductLookup extends JsonResource
 
     private function getProfitPercentage()
     {
-        return ((doubleval($this->selling_unit_price) - doubleval($this->buying_unit_cost)) / doubleval($this->buying_unit_cost)) * 100;
+        return round(((doubleval($this->selling_unit_price) - doubleval($this->buying_unit_cost)) / doubleval($this->buying_unit_cost)) * 100, 2);
     }
 }

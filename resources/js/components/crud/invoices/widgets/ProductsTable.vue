@@ -223,6 +223,7 @@ export default {
                     due_date: this.invoice.due_date ? this.invoice.due_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
+                    total_profit: this.profit,
                     total_tax: this.tax,
                     sub_total: this.sub_total,
                 },
@@ -252,6 +253,7 @@ export default {
                 this.data[INDEX] = {
                     ...this.data[INDEX],
                     quantity: value,
+                    profit: this.calculateProductProfit(value, this.data[INDEX].selling_unit_price, this.data[INDEX].buying_unit_cost, this.data[INDEX].discount),
                     total_selling_cost: this.calculateProductTotalPrice(value, this.data[INDEX].selling_unit_price)
                 }
                 this.data = [...this.data]
@@ -263,6 +265,7 @@ export default {
                 this.data[INDEX] = {
                     ...this.data[INDEX],
                     selling_unit_price: value,
+                    profit: this.calculateProductProfit(this.data[INDEX].quantity, this.data[INDEX].selling_unit_price, this.data[INDEX].buying_unit_cost, value),
                     total_selling_cost: this.calculateProductTotalPrice(this.data[INDEXINDEX].quantity, value)
                 }
                 this.data = [...this.data]
@@ -281,6 +284,7 @@ export default {
                 this.data[INDEX] = {
                     ...this.data[INDEX],
                     discount: value,
+                    profit: this.calculateProductProfit(this.data[INDEX].quantity, this.data[INDEX].selling_unit_price, this.data[INDEX].buying_unit_cost, value),
                     total_selling_cost: this.calculateProductTotalPrice(this.data[INDEX].quantity, this.data[INDEX].selling_unit_price, value)
                 }
                 this.data = [...this.data]
@@ -305,6 +309,11 @@ export default {
                 total = total - (total * (discount / 100));
             }
             return _.round(total, 2);
+        },
+        calculateProductProfit(quantity, selling_unit_price, buying_unit_cost, discount) {
+            const TOTAL_SELLING_PRINCE = this.calculateProductTotalPrice(quantity, selling_unit_price, discount);
+            const TOTAL_BUYING_COST = _.round(quantity * buying_unit_cost, 2);
+            return _.round(((TOTAL_SELLING_PRINCE - TOTAL_BUYING_COST) / TOTAL_BUYING_COST) * 100, 2);
         },
         deleteSelectedProducts(product) {
             this.data = [..._.filter(this.data, value => value.id !== product.id)]

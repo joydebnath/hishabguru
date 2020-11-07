@@ -42,6 +42,7 @@ class OrderRequest extends FormRequest
             'approved_by' => 'nullable|numeric',
             'total_amount' => 'nullable|numeric|required_unless:status,draft',
             'total_tax' => 'nullable|numeric|required_unless:status,draft',
+            'total_profit' => 'nullable|numeric|required_unless:status,draft',
             'sub_total' => 'nullable|numeric|required_unless:status,draft',
         ];
     }
@@ -52,6 +53,7 @@ class OrderRequest extends FormRequest
         $this->merge([
             'created_by' => Auth::id(),
             'total_amount' => isset($this->total_amount) ? doubleval($this->total_amount) : null,
+            'total_profit' => isset($this->total_profit) ? doubleval($this->total_profit) : null,
             'total_tax' => isset($this->total_tax) ? doubleval($this->total_tax) : null,
             'sub_total' => isset($this->sub_total) ? doubleval($this->sub_total) : null,
             'create_date' => $this->create_date ? Carbon::createFromFormat('d/m/Y', $this->create_date) : null,

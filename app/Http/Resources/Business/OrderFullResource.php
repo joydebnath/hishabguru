@@ -39,6 +39,7 @@ class OrderFullResource extends JsonResource
                 'name' => $product->name,
                 'code' => $product->code,
                 'selling_unit_price' => doubleval($product->selling_unit_price),
+                'buying_unit_cost' => doubleval($product->buying_unit_cost),
                 'profit' => self::getProfitPercentage(
                     doubleval($pivot->get('total', 0)),
                     doubleval($product->buying_unit_cost),

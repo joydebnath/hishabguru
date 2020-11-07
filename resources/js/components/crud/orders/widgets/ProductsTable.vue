@@ -153,6 +153,10 @@
                                     <td class="border-t-0 border-b text-sm font-normal text-right">{{ tax }}</td>
                                 </tr>
                                 <tr>
+                                    <td class="border-t-0 border-b text-sm font-normal">Total Profit</td>
+                                    <td class="border-t-0 border-b text-sm font-normal text-right">{{ profit }}</td>
+                                </tr>
+                                <tr>
                                     <td class="border-t-0 text-base">Total</td>
                                     <td class="border-t-0 text-base text-right">{{ total }}</td>
                                 </tr>
@@ -210,6 +214,7 @@ export default {
                     delivery_date: this.order.delivery_date ? this.order.delivery_date.toLocaleDateString() : null,
                     products: this.products,
                     total_amount: this.total,
+                    total_profit: this.profit,
                     total_tax: this.tax,
                     sub_total: this.sub_total,
                 },
@@ -234,25 +239,25 @@ export default {
             this.data = [...this.data];
         },
         handleEditQuantity(value, product_id) {
-            const bills = _.findIndex(this.data, value => value.id == product_id)
-            if (bills !== -1) {
-                this.data[bills] = {
-                    ...this.data[bills],
+            const INDEX = _.findIndex(this.data, value => value.id == product_id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {
+                    ...this.data[INDEX],
                     quantity: value,
-                    profit: this.calculateProductProfit(value, this.data[bills].selling_unit_price, this.data[bills].buying_unit_cost, this.data[bills].discount),
-                    total_selling_cost: this.calculateProductTotalPrice(value, this.data[bills].selling_unit_price, this.data[bills].discount)
+                    profit: this.calculateProductProfit(value, this.data[INDEX].selling_unit_price, this.data[INDEX].buying_unit_cost, this.data[INDEX].discount),
+                    total_selling_cost: this.calculateProductTotalPrice(value, this.data[INDEX].selling_unit_price, this.data[INDEX].discount)
                 }
                 this.data = [...this.data]
             }
         },
         handleEditDiscount(value, product_id) {
-            const bills = _.findIndex(this.data, value => value.id == product_id)
-            if (bills !== -1) {
-                this.data[bills] = {
-                    ...this.data[bills],
+            const INDEX = _.findIndex(this.data, value => value.id == product_id)
+            if (INDEX !== -1) {
+                this.data[INDEX] = {
+                    ...this.data[INDEX],
                     discount: value,
-                    profit: this.calculateProductProfit(this.data[bills].quantity, this.data[bills].selling_unit_price, this.data[bills].buying_unit_cost, value),
-                    total_selling_cost: this.calculateProductTotalPrice(this.data[bills].quantity, this.data[bills].selling_unit_price, value)
+                    profit: this.calculateProductProfit(this.data[INDEX].quantity, this.data[INDEX].selling_unit_price, this.data[INDEX].buying_unit_cost, value),
+                    total_selling_cost: this.calculateProductTotalPrice(this.data[INDEX].quantity, this.data[INDEX].selling_unit_price, value)
                 }
                 this.data = [...this.data]
             }
@@ -312,6 +317,17 @@ export default {
                 }
                 return 0.0;
             });
+        },
+        profit(){
+            const total_price = _.round(_.sumBy(this.products, (value) => {
+                return (value.selling_unit_price * value.quantity);
+            }), 2);
+
+            const total_cost = _.round(_.sumBy(this.products, (value) => {
+                return (value.buying_unit_cost * value.quantity);
+            }), 2);
+
+            return total_price - total_cost - this.total_discount
         },
         total() {
             return parseFloat(_.round(this.sub_total + this.tax, 2));

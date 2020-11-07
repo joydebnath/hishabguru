@@ -5,6 +5,7 @@ namespace App\Services\Copy;
 use App\Models\Invoice;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class CopyOrderService implements ICopyService
 {
@@ -19,7 +20,7 @@ class CopyOrderService implements ICopyService
     public function copyToInvoice(Model $order, $userId)
     {
         $storable = [
-            'invoice_number' => $this->generateInvoiceNumber($order->tenant_id),
+            'invoice_number' => $this->generateInvoiceNumber(),
             'reference_number' => $order->order_number,
             'status' => 'draft',
             'issue_date' => Carbon::today(),
@@ -27,6 +28,7 @@ class CopyOrderService implements ICopyService
             'total_due' => $order->total_amount,
             'sub_total' => $order->sub_total,
             'total_tax' => $order->total_tax,
+            'total_profit' => $order->total_profit,
             'tenant_id' => $order->tenant_id,
             'contact_id' => $order->contact_id,
             'created_by' => $userId,
@@ -47,9 +49,9 @@ class CopyOrderService implements ICopyService
         return $invoice;
     }
 
-    private function generateInvoiceNumber($tenantId)
+    private function generateInvoiceNumber()
     {
-//        $invoice = Invoice::where('tenant_id',$tenantId)->last();
-        return 'INV-' . Carbon::now()->timestamp;
+        $currentYearMonth = Carbon::today()->format('yn');
+        return 'INV-' . $currentYearMonth . strtoupper(Str::random(4));
     }
 }

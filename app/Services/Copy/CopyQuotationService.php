@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\OrderDeliveryDetails;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use UnexpectedValueException;
 
 class CopyQuotationService implements ICopyService
@@ -29,11 +30,12 @@ class CopyQuotationService implements ICopyService
     private function copyToOrder(Model $quotation, $userId)
     {
         $storable = [
-            'order_number' => $this->generateOrderNumber($quotation->tenant_id),
+            'order_number' => $this->generateOrderNumber(),
             'reference_number' => $quotation->quotation_number,
             'status' => 'draft',
             'create_date' => Carbon::today(),
             'total_amount' => $quotation->total_amount,
+            'total_profit' => $quotation->total_profit,
             'sub_total' => $quotation->sub_total,
             'total_tax' => $quotation->total_tax,
             'tenant_id' => $quotation->tenant_id,
@@ -63,7 +65,7 @@ class CopyQuotationService implements ICopyService
     private function copyToInvoice(Model $quotation, $userId)
     {
         $storable = [
-            'invoice_number' => $this->generateInvoiceNumber($quotation->tenant_id),
+            'invoice_number' => $this->generateInvoiceNumber(),
             'reference_number' => $quotation->quotation_number,
             'status' => 'draft',
             'issue_date' => Carbon::today(),
@@ -71,6 +73,7 @@ class CopyQuotationService implements ICopyService
             'total_due' => $quotation->total_amount,
             'sub_total' => $quotation->sub_total,
             'total_tax' => $quotation->total_tax,
+            'total_profit' => $quotation->total_profit,
             'tenant_id' => $quotation->tenant_id,
             'contact_id' => $quotation->contact_id,
             'created_by' => $userId,
@@ -118,15 +121,15 @@ class CopyQuotationService implements ICopyService
         return $deliveryDetails;
     }
 
-    private function generateOrderNumber($tenantId)
+    private function generateOrderNumber()
     {
-//        $order = Order::where('tenant_id',$tenantId)->last();
-        return 'ORD-' . Carbon::now()->timestamp;
+        $currentYearMonth = Carbon::today()->format('yn');
+        return 'ORD-' . $currentYearMonth . strtoupper(Str::random(4));
     }
 
-    private function generateInvoiceNumber($tenantId)
+    private function generateInvoiceNumber()
     {
-//        $invoice = Invoice::where('tenant_id',$tenantId)->last();
-        return 'INV-' . Carbon::now()->timestamp;
+        $currentYearMonth = Carbon::today()->format('yn');
+        return 'INV-' . $currentYearMonth . strtoupper(Str::random(4));
     }
 }
