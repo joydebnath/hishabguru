@@ -27,6 +27,9 @@ const tenancy = {
                 .get('/tenants/' + getters.getCurrentTenant)
                 .then(({data}) => {
                     commit('setCurrentInventories', {inventories: data.data.addresses})
+                    commit('setCurrentTenantData', {
+                        current_tenant: {...getters.getCurrentTenantData, ...data.data}
+                    })
                 })
                 .catch(err => {
                     console.error(err)

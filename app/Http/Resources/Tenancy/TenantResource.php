@@ -16,6 +16,10 @@ class TenantResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
+            'business_type' => $this->business_type,
+            'default_country' => $this->country_of_operation,
+            'default_currency' => $this->currency_of_operation,
             'addresses' => new AddressCollection($this->addresses) ,
         ];
     }

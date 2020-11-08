@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-6xl m-auto w-1/2 py-6">
-        <MonthStatistics/>
+        <MonthStatistics :tenant_id="tenant_id"/>
         <div class="grid grid-cols-4 gap-4">
             <div class="col-span-2">
                 <MonthCashFlow :tenant_id="tenant_id" class="mb-4"/>

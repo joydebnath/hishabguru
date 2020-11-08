@@ -3,11 +3,11 @@
         class="bg-white pt-4 shadow frappe sm:rounded-lg"
         type="axis-mixed"
         id="one"
-        :labels="labels"
+        :labels="computed_labels"
         :title="title"
         :height="300"
         :colors="colors"
-        :dataSets="chartData"
+        :dataSets="computed_chart_data"
         :tooltip-options="tooltipOptions"
         :axis-options="axisOptions"
         :bar-options="barOptions"
@@ -16,48 +16,58 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
 import {VueFrappe} from 'vue2-frappe'
-import VueApexCharts from "vue-apexcharts";
 
 export default {
     name: "MonthCashFlow",
     components: {VueFrappe},
-    props:{
+    props: {
         tenant_id: String | Number
     },
     mounted() {
-        if(this.$props.tenant_id){
+        if (this.$props.tenant_id) {
             axios
-                .get('/dashboard-statistics/monthly-cash-flow',{
-                    params:{
+                .get('/dashboard-statistics/monthly-cash-flow', {
+                    params: {
                         tenant_id: this.$props.tenant_id
                     }
                 })
-                .then(({data})=>{
-
+                .then(({data}) => {
+                    const {cash_in_amount, cash_out_amount, months} = data
+                    this.labels = months.reverse()
+                    this.chartData = [{
+                        name: "Cash In", chartType: 'bar',
+                        values: cash_in_amount.reverse()
+                    },
+                        {
+                            name: "Cash Out", chartType: 'bar',
+                            values: cash_out_amount.reverse()
+                        },
+                    ];
+                    console.log(this.tenant_data)
                 })
-                .catch(err=>{
+                .catch(err => {
                     console.log(err)
                 })
         }
     },
     data() {
         return {
-            labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: [],
             colors: ['#41b7fc', '#e2e8f0'],
             chartData: [{
                 name: "Cash In", chartType: 'bar',
-                values: [2500, 4000, 3000, 3500, 800, 5200]
+                values: [0, 0, 0, 0, 0, 0]
             },
                 {
                     name: "Cash Out", chartType: 'bar',
-                    values: [2500, 5000, 1000, 1500, 1800, 3200]
+                    values: [0, 0, 0, 0, 0, 0]
                 },
             ],
             tooltipOptions: {
                 formatTooltipX: d => (d + "Cash Flow"),
-                formatTooltipY: d => thousands_separators(d) + " BDT"
+                formatTooltipY: d => thousands_separators(d) + ' ' + this.currency
             },
             axisOptions: {
                 xAxisMode: "tick",
@@ -69,9 +79,21 @@ export default {
             },
         }
     },
-    computed:{
-        title(){
+    computed: {
+        ...mapGetters({
+            'tenant_data': 'tenancy/getCurrentTenantData'
+        }),
+        title() {
             return 'Monthly Cash Flow'
+        },
+        computed_labels() {
+            return this.labels
+        },
+        computed_chart_data() {
+            return this.chartData
+        },
+        currency() {
+            return this.tenant_data.default_currency ?? 'N/A'
         }
     }
 }
