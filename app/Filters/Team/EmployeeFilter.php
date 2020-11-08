@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Filters\Team;
+
 use App\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Builder;
 
-class EmployeeFilter extends QueryFilter {
+class EmployeeFilter extends QueryFilter
+{
     public function tenant_id(int $id)
     {
         $this->builder->where('tenant_id', $id);
@@ -21,6 +23,13 @@ class EmployeeFilter extends QueryFilter {
                 ->orWhereHas('addresses', function ($query) use ($search) {
                     $query->where('address_line_1', 'like', '%' . $search . '%');
                 });
+        });
+    }
+
+    public function statuses(array $statuses)
+    {
+        $this->builder->whereHas('currentlyWorking', function ($query) use ($statuses) {
+            $query->whereIn('value', $statuses);
         });
     }
 }

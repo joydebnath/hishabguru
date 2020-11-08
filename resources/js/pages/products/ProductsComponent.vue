@@ -91,14 +91,14 @@ export default {
     },
     methods: {
         ...mapMutations({
-            setFilters: 'products/setFilters'
+            appendFilter: 'products/appendFilter'
         }),
         handleToggleModal() {
             this.show_modal = !this.show_modal;
             this.product = [];
         },
         handleSearch(value) {
-            this.setFilters({
+            this.appendFilter({
                 filters: {search: value}
             })
             this.$store.dispatch('products/loadData', {page: 1})

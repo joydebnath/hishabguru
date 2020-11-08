@@ -70,14 +70,14 @@ export default {
     },
     methods: {
         ...mapMutations({
-            setFilters: 'clients/setFilters'
+            appendFilter: 'clients/appendFilter'
         }),
         handleToggleModal() {
             this.show_modal = !this.show_modal;
             this.client = {};
         },
         handleSearch(value) {
-            this.setFilters({
+            this.appendFilter({
                 filters: {search: value}
             })
             this.$store.dispatch('clients/loadData', {page: 1})

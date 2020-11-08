@@ -71,7 +71,7 @@ export default {
     },
     methods: {
         ...mapMutations({
-            setFilters: 'suppliers/setFilters'
+            appendFilter: 'suppliers/appendFilter'
         }),
         handleToggleModal() {
             this.show_modal = !this.show_modal;
@@ -81,7 +81,7 @@ export default {
             this.loading = !this.loading;
         },
         handleSearch(value) {
-            this.setFilters({
+            this.appendFilter({
                 filters: {search: value}
             })
             this.$store.dispatch('suppliers/loadData', {page: 1})
