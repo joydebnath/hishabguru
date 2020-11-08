@@ -35,6 +35,9 @@ const store = {
             state.current_page = current_page
         },
         setFilters: (state, {filters}) => {
+            state.filters = {...filters}
+        },
+        appendFilter: (state, {filters}) => {
             state.filters = {...state.filters, ...filters}
         },
         update: (state, {client}) => {
@@ -63,7 +66,7 @@ const store = {
                     commit('setLoading', {loading: false})
                 })
         },
-        delete({commit, getters, dispatch}){
+        delete({commit, getters, dispatch}) {
             commit('setLoading', {loading: true})
             dispatch('loadData', {page: getters.getCurrentPage})
         }

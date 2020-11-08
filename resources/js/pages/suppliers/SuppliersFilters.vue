@@ -1,10 +1,45 @@
 <template>
     <FilterComponent @apply="handleApplyFilter" @clear="handleClearFilter">
-        <template >
-            <p>
-                <b-skeleton active/>
-                <b-skeleton height="80px"/>
-            </p>
+        <template>
+            <span class="heading font-semibold">
+                Status
+            </span>
+            <div class="grid grid-cols-2 gaps-4">
+                <b-checkbox
+                    v-for="option in status_options"
+                    :key="option.value"
+                    :native-value="option.value"
+                    class="text-sm"
+                    v-model="filters.statuses"
+                >
+                    {{ option.label }}
+                </b-checkbox>
+            </div>
+            <span class="dropdown-divider"></span>
+        </template>
+        <template>
+            <span class="heading font-semibold">
+                Bill Due
+            </span>
+            <div class="grid grid-cols-2 gap-4">
+                <b-field label="From" custom-class="text-xs text-gray-600">
+                    <b-numberinput
+                        size="is-small"
+                        type="is-dark"
+                        controls-position="compact"
+                        v-model="filters.due_amount.from"
+                    />
+                </b-field>
+                <b-field label="To" custom-class="text-xs text-gray-600">
+                    <b-numberinput
+                        size="is-small"
+                        type="is-dark"
+                        controls-position="compact"
+                        v-model="filters.due_amount.to"
+                    />
+                </b-field>
+            </div>
+            <span class="dropdown-divider"></span>
         </template>
     </FilterComponent>
 </template>
@@ -17,16 +52,38 @@ export default {
     },
     data(){
         return {
-            checkboxGroup: []
+            filters: {
+                statuses: [],
+                due_amount: {
+                    from: null,
+                    to: null,
+                },
+            },
+            status_options: [
+                {label: 'Active', value: 'active'},
+                {label: 'Inactive', value: 'inactive'},
+            ],
         }
     },
     methods:{
-        handleApplyFilter(){
-
+        handleApplyFilter() {
+            this.$store.commit('suppliers/setFilters', {filters: {...this.filters}})
+            this.$store.dispatch('suppliers/loadData', {page: 1})
         },
-        handleClearFilter(){
-
-        }
+        handleClearFilter() {
+            this.resetFilters();
+            this.$store.commit('suppliers/setFilters', {filters: {}})
+            this.$store.dispatch('suppliers/loadData', {page: 1})
+        },
+        resetFilters() {
+            this.filters = {
+                statuses: [],
+                due_amount: {
+                    from: null,
+                    to: null,
+                },
+            }
+        },
     }
 };
 </script>

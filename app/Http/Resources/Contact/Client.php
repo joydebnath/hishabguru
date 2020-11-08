@@ -19,6 +19,7 @@ class Client extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'is_active' => $this->is_active,
             'mobile' => $this->mobiles->first() ? $this->mobiles->first()->value : null,
             'email' => $this->emails->first() ? $this->emails->first()->value : null,
             'they_owe_you' => $dueAmount,

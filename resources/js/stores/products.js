@@ -47,6 +47,9 @@ const products = {
         setFilters: (state, {filters}) => {
             state.filters = {...filters}
         },
+        appendFilter: (state, {filters}) => {
+            state.filters = {...state.filters, ...filters}
+        },
         update: (state, {product}) => {
             const index = _.findIndex(state.products, value => value.id == product.id)
             if (index !== -1) {

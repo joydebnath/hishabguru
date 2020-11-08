@@ -25,4 +25,30 @@ class SupplierFilter extends QueryFilter
                 });
         });
     }
+
+    public function statuses(array $statuses)
+    {
+        $isActiveStatuses = array_map(function ($value) {
+            return $value === 'active';
+        }, $statuses);
+
+        $this->builder->whereIn('is_active', $isActiveStatuses);
+    }
+
+    public function due_amount(string $amountRange)
+    {
+        $amounts = json_decode($amountRange, true);
+        $conditions = [];
+        if ($amounts['from']) {
+            array_push($conditions, ['open_balance', '>=', $amounts['from']]);
+        }
+        if ($amounts['to']) {
+            array_push($conditions, ['open_balance', '<=', $amounts['to']]);
+        }
+        if (!empty($conditions)) {
+            $this->builder->whereHas('creditors',function ($query) use ($conditions){
+                $query->where($conditions);
+            });
+        }
+    }
 }

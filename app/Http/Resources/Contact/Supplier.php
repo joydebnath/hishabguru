@@ -19,6 +19,7 @@ class Supplier extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'is_active' => $this->is_active,
             'mobile' => $this->mobiles->first() ? $this->mobiles->first()->value : '',
             'email' => $this->emails->first() ? $this->emails->first()->value : '',
             'you_owe_them' => $dueAmount,

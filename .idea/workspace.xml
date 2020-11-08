@@ -15,25 +15,15 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Payment/CreditHistoryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Payment/CreditRecordType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Expense/BillsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Expense/BillsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Expense/OtherExpenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Expense/OtherExpenseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Invoice/InvoicesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Invoice/InvoicesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentHistoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentHistoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Contact/ClientFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Contact/ClientFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Contact/SupplierFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Contact/SupplierFilter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/Client.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/Supplier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/BillObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/BillObserver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/InvoiceObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/InvoiceObserver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/OtherExpenseObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/OtherExpenseObserver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_17_090016_create_contact_credit_histories_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/PaymentHistories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/bills/widgets/PaymentHistories.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/PaymentHistories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/invoices/widgets/PaymentHistories.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/crud/other-expenses/widgets/PaymentHistories.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/suppliers/SuppliersTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/suppliers/SuppliersTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsFilters.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/suppliers/SuppliersFilters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/suppliers/SuppliersFilters.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/clients.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/clients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/suppliers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/suppliers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -857,7 +847,7 @@
       <workItem from="1604654565863" duration="11088000" />
       <workItem from="1604699300512" duration="31049000" />
       <workItem from="1604759707850" duration="3843000" />
-      <workItem from="1604790285303" duration="5260000" />
+      <workItem from="1604790285303" duration="8596000" />
     </task>
     <servers />
   </component>
@@ -1003,14 +993,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1604794583788">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1604798259415">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1604368707854" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604794583788" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604798259415" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1604751893048" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1604113451064" />
