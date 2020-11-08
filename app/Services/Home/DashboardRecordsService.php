@@ -19,7 +19,9 @@ class DashboardRecordsService
             ->whereBetween('delivery_date', [
                 $date->startOfDay(),
                 $date->endOfDay()
-            ])->get();
+            ])
+            ->with('contact')
+            ->get();
     }
 
     public function getTopTenDueInvoices($tenantId)
@@ -30,6 +32,7 @@ class DashboardRecordsService
         ])
             ->orderBy('total_due', 'desc')
             ->limit(10)
+            ->with('contact')
             ->get();
     }
 
@@ -40,6 +43,7 @@ class DashboardRecordsService
             ['status', '=', PaymentStatus::DUE]
         ])
             ->orderBy('total_due', 'desc')
+            ->with('contact')
             ->limit(10)
             ->get();
     }
