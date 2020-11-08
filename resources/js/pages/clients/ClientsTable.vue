@@ -46,8 +46,10 @@
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Owe You" v-slot="props" header-class="text-sm" cell-class="text-sm">
-                {{ props.row.they_owe_you }}
+            <b-table-column label="Due Amount" v-slot="props" header-class="text-sm" cell-class="text-sm">
+                <span :class="[props.row.they_owe_you > 0 ? 'text-red-600 font-semibold' : 'text-greed-600 font-semibold']">
+                    {{ props.row.they_owe_you_formatted }}
+                </span>
             </b-table-column>
             <b-table-column v-slot="props" >
                 <div class="flex justify-end">

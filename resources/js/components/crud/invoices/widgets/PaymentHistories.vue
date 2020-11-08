@@ -64,6 +64,7 @@ export default {
                 .then(({data}) => {
                     this.$emit('on-delete', this.selected);
                     this.$emit('on-loading', false);
+                    this.handleDeleteClose()
                 })
                 .catch(err => {
                     this.$emit('on-loading', false);

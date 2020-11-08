@@ -29,7 +29,7 @@ class SuppliersController extends Controller
             return new SupplierCollection(
                 Contact::filter($filters)
                     ->where('type', ContactType::SUPPLIER)
-                    ->with('emails', 'mobiles', 'addresses')
+                    ->with('emails', 'mobiles', 'addresses', 'creditors')
                     ->paginate()
             );
         } catch (Exception $exception) {

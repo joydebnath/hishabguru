@@ -2,7 +2,7 @@
 
 namespace App\Enums\Payment;
 
-final class CreditHistoryType
+final class CreditRecordType
 {
     const CREDITOR = 'creditor';
     const DEBTOR = 'debtor';

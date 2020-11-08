@@ -83,7 +83,6 @@ class OtherExpenseController extends Controller
     public function destroy(OtherExpense $otherExpense)
     {
         try {
-            $otherExpense->payable()->delete();
             $otherExpense->delete();
 
             return response(['message' => 'Other Expense is deleted']);

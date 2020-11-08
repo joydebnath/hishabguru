@@ -3,8 +3,10 @@
 namespace App\Observers;
 
 use App\Enums\Business\InvoiceStatus;
+use App\Enums\Payment\CreditRecordType;
 use App\Enums\Statistics\TimeSeriesStatsType;
 use App\Models\Bill;
+use App\Models\ContactCreditRecord;
 use App\Models\CopyReference;
 use App\Models\OtherExpense;
 use App\Models\TimeSeriesStatistic;

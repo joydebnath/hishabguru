@@ -3,7 +3,9 @@
 namespace App\Observers;
 
 use App\Enums\Business\InvoiceStatus;
+use App\Enums\Payment\CreditRecordType;
 use App\Enums\Statistics\TimeSeriesStatsType;
+use App\Models\ContactCreditRecord;
 use App\Models\CopyReference;
 use App\Models\Invoice;
 use App\Models\TimeSeriesStatistic;
@@ -21,6 +23,7 @@ class InvoiceObserver
     {
         $this->updateOrCreateSellsTimeSeriesStats($invoice);
         $this->updateOrCreateProfitTimeSeriesStats($invoice);
+        $this->updateContactCreditRecord($invoice);
     }
 
     /**

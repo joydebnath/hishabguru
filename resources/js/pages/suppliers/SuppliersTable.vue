@@ -5,21 +5,12 @@
             :paginated="true"
             :per-page="per_page"
             :loading="loading"
-            paginated
-            backend-pagination
-            :total="total"
-            @page-change="onPageChange"
-
             :current-page="current_page"
+            :total="total"
+            paginated
             pagination-position="bottom"
-            default-sort-direction="asc"
-            sort-icon="arrow-up"
-            sort-icon-size="is-small"
-            :checked-rows.sync="checkedRows"
-            checkable
-            default-sort="code"
-            backend-sorting
-            @sort="onSort"
+            backend-pagination
+            @page-change="onPageChange"
         >
             <b-table-column
                 field="name"
@@ -54,8 +45,10 @@
             >
                 {{ props.row.email }}
             </b-table-column>
-            <b-table-column label="You Owe" v-slot="props" header-class="text-sm" cell-class="text-sm">
-                {{ props.row.you_owe_them }}
+            <b-table-column label="Due Amount" v-slot="props" header-class="text-sm" cell-class="text-sm">
+                <span :class="[props.row.you_owe_them > 0 ? 'text-red-600 font-semibold' : 'text-green-600 font-semibold']">
+                    {{ props.row.you_owe_them_formatted }}
+                </span>
             </b-table-column>
             <b-table-column v-slot="props" header-class="text-sm">
                 <div class="flex justify-end">

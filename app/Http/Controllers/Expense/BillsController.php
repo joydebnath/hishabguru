@@ -10,11 +10,18 @@ use App\Http\Resources\Expense\BillCollection;
 use App\Http\Resources\Expense\BillFullResource;
 use App\Models\Bill;
 use App\Http\Resources\Expense\Bill as BillResource;
-use App\Models\CopyReference;
+use App\Services\Payment\CreditRecordService;
 use Exception;
 
 class BillsController extends Controller
 {
+    protected $creditRecordService;
+
+    public function __construct(CreditRecordService $creditRecordService)
+    {
+        $this->creditRecordService = $creditRecordService;
+    }
+
     public function index(BillFilter $filters)
     {
         try {
@@ -103,13 +110,15 @@ class BillsController extends Controller
         return $fillable;
     }
 
-    private function updateTotalDue($expense, $paymentHistories): void
+    private function updateTotalDue(Bill $bill, $paymentHistories): void
     {
         $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
 
-        $expense->update([
-            'total_due' => abs($expense->total_amount - $totalPaid),
-            'status' => $totalPaid >= $expense->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
+        $bill->update([
+            'total_due' => abs($bill->total_amount - $totalPaid),
+            'status' => $totalPaid >= $bill->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
         ]);
+
+        $this->creditRecordService->updateSupplierCreditRecord($bill);
     }
 }

@@ -77,6 +77,7 @@ export default {
                 .then(({data}) => {
                     this.$emit('on-delete', this.selected);
                     this.loading = false;
+                    this.handleDeleteClose()
                 })
                 .catch(err => {
                     this.loading = false;

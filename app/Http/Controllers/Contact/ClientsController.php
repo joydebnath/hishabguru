@@ -29,7 +29,7 @@ class ClientsController extends Controller
             return new ClientCollection(
                 Contact::filter($filters)
                     ->where('type', ContactType::CLIENT)
-                    ->with('emails', 'mobiles', 'addresses')
+                    ->with('emails', 'mobiles', 'addresses','debtors')
                     ->paginate()
             );
         } catch (Exception $exception) {

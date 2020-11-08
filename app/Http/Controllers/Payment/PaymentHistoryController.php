@@ -7,12 +7,23 @@ use App\Filters\Payment\PaymentHistoryFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentHistoryRequest;
 use App\Http\Resources\Payment\PaymentHistoryCollection;
+use App\Models\Bill;
+use App\Models\Invoice;
+use App\Models\OtherExpense;
 use App\Models\PaymentHistory;
 use App\Http\Resources\Payment\PaymentHistoryResource;
+use App\Services\Payment\CreditRecordService;
 use Exception;
 
 class PaymentHistoryController extends Controller
 {
+    protected $creditRecordService;
+
+    public function __construct(CreditRecordService $creditRecordService)
+    {
+        $this->creditRecordService = $creditRecordService;
+    }
+
     public function index(PaymentHistoryFilter $filters)
     {
         try {
@@ -70,5 +81,20 @@ class PaymentHistoryController extends Controller
             'total_due' => abs($payable->total_amount - $totalPaid),
             'status' => $totalPaid >= $payable->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
         ]);
+
+        $this->updateContactCreditRecord($payable);
+    }
+
+    private function updateContactCreditRecord($payable): bool
+    {
+        $className = get_class($payable);
+        if ($className === Invoice::class) {
+            $this->creditRecordService->updateClientCreditRecord($payable);
+            return true;
+        } elseif ($className === Bill::class) {
+            $this->creditRecordService->updateSupplierCreditRecord($payable);
+            return true;
+        }
+        return false;
     }
 }

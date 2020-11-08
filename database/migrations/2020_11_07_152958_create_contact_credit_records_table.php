@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactCreditHistoriesTable extends Migration
+class CreateContactCreditRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateContactCreditHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_credit_histories', function (Blueprint $table) {
+        Schema::create('contact_credit_records', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contact_id')->index();
-            $table->decimal('total_amount');
+            $table->decimal('open_balance');
             $table->enum('type', ['creditor', 'debtor']);
             $table->timestamps();
 
-            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
+            $table->foreignId('contact_id')->index()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateContactCreditHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_credit_histories');
+        Schema::dropIfExists('contact_credit_records');
     }
 }

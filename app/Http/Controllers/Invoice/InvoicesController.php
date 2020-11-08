@@ -10,10 +10,18 @@ use App\Http\Resources\Business\InvoiceCollection;
 use App\Http\Resources\Business\InvoiceFullResource;
 use App\Models\Invoice;
 use App\Http\Resources\Business\Invoice as InvoiceResource;
+use App\Services\Payment\CreditRecordService;
 use Exception;
 
 class InvoicesController extends Controller
 {
+    protected $creditRecordService;
+
+    public function __construct(CreditRecordService $creditRecordService)
+    {
+        $this->creditRecordService = $creditRecordService;
+    }
+
     public function index(InvoiceFilter $filters)
     {
         try {
@@ -99,7 +107,7 @@ class InvoicesController extends Controller
         return $fillable;
     }
 
-    private function updateTotalDue($invoice, $paymentHistories): void
+    private function updateTotalDue(Invoice $invoice, $paymentHistories): void
     {
         $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
         $updatable = [
@@ -111,5 +119,7 @@ class InvoicesController extends Controller
         }
 
         $invoice->update($updatable);
+
+        $this->creditRecordService->updateClientCreditRecord($invoice);
     }
 }
