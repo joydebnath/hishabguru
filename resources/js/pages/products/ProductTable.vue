@@ -10,6 +10,11 @@
         pagination-position="bottom"
         backend-pagination
         @page-change="onPageChange"
+        default-sort-direction="asc"
+        sort-icon="arrow-up"
+        sort-icon-size="is-small"
+        backend-sorting
+        @sort="onSort"
     >
         <b-table-column
             field="code"
@@ -33,7 +38,7 @@
             {{ props.row.name }}
         </b-table-column>
         <b-table-column
-            field="buying_cost"
+            field="buying_unit_cost"
             label="Buying Cost"
             sortable
             centered
@@ -46,7 +51,7 @@
             </span>
         </b-table-column>
         <b-table-column
-            field="selling_price"
+            field="selling_unit_price"
             label="Selling Price"
             sortable
             centered
@@ -57,7 +62,14 @@
             <span>{{ props.row.sell }}</span>
         </b-table-column>
 
-        <b-table-column label="Quantity" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
+        <b-table-column
+            field="quantity"
+            label="Quantity"
+            sortable centered
+            v-slot="props"
+            header-class="text-sm"
+            cell-class="text-sm"
+        >
             <span>{{ props.row.quantity }}</span>
         </b-table-column>
         <b-table-column label="Category" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
@@ -72,7 +84,7 @@
                     <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg" slot="trigger"/>
                     <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
                     <router-link :to="'/@/stats/product/' + props.row.id">
-                        <b-dropdown-item >
+                        <b-dropdown-item>
                             View
                         </b-dropdown-item>
                     </router-link>
@@ -115,7 +127,15 @@ export default {
             this.$store.dispatch('products/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
+            this.$store.commit('products/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$store.dispatch('products/loadData', {page: 1})
         }
     },
     computed: {

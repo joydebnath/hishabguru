@@ -11,12 +11,12 @@
 
         :current-page="current_page"
         pagination-position="bottom"
+
+        :checked-rows.sync="checkedRows"
+        checkable
         default-sort-direction="asc"
         sort-icon="arrow-up"
         sort-icon-size="is-small"
-        :checked-rows.sync="checkedRows"
-        checkable
-        default-sort="code"
         backend-sorting
         @sort="onSort"
     >

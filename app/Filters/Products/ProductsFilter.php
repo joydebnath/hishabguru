@@ -85,4 +85,10 @@ class ProductsFilter extends QueryFilter
             $this->builder->where($conditions);
         }
     }
+
+    public function sort(string $sortFields)
+    {
+        $sort = json_decode($sortFields, true);
+        $this->builder->orderBy($sort['by'],$sort['order']);
+    }
 }

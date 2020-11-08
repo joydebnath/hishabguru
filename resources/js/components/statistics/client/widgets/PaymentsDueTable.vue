@@ -4,7 +4,7 @@
         <div class="flex flex-row-reverse mb-2">
             <div class="flex flex-col text-right">
                 <p class="subtitle is-6 mb-5">They Owe You</p>
-                <p class="title is-5 mb-0">{{ total_due }} BDT</p>
+                <p class="title is-5 mb-0">{{ total_due }} {{ currency }}</p>
             </div>
         </div>
         <b-table :data="histories" :loading="loading" class="text-sm mb-4">
@@ -38,6 +38,7 @@
 
 <script>
 import EmptyTable from "@/components/global/table/EmptyTable";
+import {mapGetters} from "vuex";
 
 export default {
     name: "PaymentsDueTable",
@@ -57,11 +58,17 @@ export default {
         }
     },
     computed: {
+        ...mapGetters({
+            tenant_data: 'tenancy/getCurrentTenantData'
+        }),
         computed_histories() {
             return this.histories
         },
         total_due() {
             return _.sumBy(this.histories, 'total_due')
+        },
+        currency() {
+            return this.tenant_data.default_currency ?? ''
         }
     },
     methods: {

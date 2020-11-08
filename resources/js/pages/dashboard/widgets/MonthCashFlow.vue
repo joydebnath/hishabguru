@@ -93,7 +93,7 @@ export default {
             return this.chartData
         },
         currency() {
-            return this.tenant_data.default_currency ?? 'N/A'
+            return this.tenant_data.default_currency ?? ''
         }
     }
 }
