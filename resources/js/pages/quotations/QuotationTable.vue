@@ -11,6 +11,12 @@
             pagination-position="bottom"
             backend-pagination
             @page-change="onPageChange"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
                 field="quotation_number"
@@ -117,7 +123,15 @@ export default {
             this.$store.dispatch('quotations/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
+            this.$store.commit('quotations/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$store.dispatch('quotations/loadData', {page: 1})
         },
         status_type(value) {
             const STATUS_MAP = {

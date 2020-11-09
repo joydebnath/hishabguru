@@ -29,7 +29,8 @@ class SuppliersController extends Controller
             return new SupplierCollection(
                 Contact::filter($filters)
                     ->where('type', ContactType::SUPPLIER)
-                    ->with('emails', 'mobiles', 'addresses', 'creditors')
+                    ->with('emails', 'mobiles', 'addresses')
+                    ->totalDueBillAmount()
                     ->paginate()
             );
         } catch (Exception $exception) {

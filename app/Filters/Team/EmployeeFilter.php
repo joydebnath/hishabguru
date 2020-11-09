@@ -32,4 +32,10 @@ class EmployeeFilter extends QueryFilter
             $query->whereIn('value', $statuses);
         });
     }
+
+    public function sort(string $sortFields)
+    {
+        $sort = json_decode($sortFields, true);
+        $this->builder->orderBy($sort['by'], $sort['order']);
+    }
 }

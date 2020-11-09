@@ -78,6 +78,9 @@
         <b-table-column label="Status" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
             <span class="text-capitalize">{{ props.row.status }}</span>
         </b-table-column>
+        <b-table-column label="Created" sortable field="created_at" centered v-slot="props" header-class="text-sm" cell-class="text-sm">
+            <span class="text-capitalize">{{ props.row.created_at }}</span>
+        </b-table-column>
         <b-table-column v-slot="props">
             <div class="flex justify-end">
                 <b-dropdown aria-role="list">

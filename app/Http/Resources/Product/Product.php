@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Product;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Product extends JsonResource
@@ -31,7 +32,8 @@ class Product extends JsonResource
                 'name' => $this->product_category->name,
             ],
             'tax' => $this->tax_rate,
-            'description' => $this->description
+            'description' => $this->description,
+            'created_at' => Carbon::parse($this->created_at)->format('d/m/y')
         ];
     }
 }

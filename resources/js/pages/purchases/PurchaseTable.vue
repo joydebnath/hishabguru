@@ -11,9 +11,15 @@
             pagination-position="bottom"
             backend-pagination
             @page-change="onPageChange"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
-                field="order_number"
+                field="purchase_order_number"
                 label="Number"
                 sortable
                 v-slot="props"
@@ -109,7 +115,15 @@ export default {
             this.$store.dispatch('purchases/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
+            this.$store.commit('purchases/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$store.dispatch('purchases/loadData', {page: 1})
         },
         status_type(value){
             const STATUS_MAP = {

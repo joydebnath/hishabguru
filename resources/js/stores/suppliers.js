@@ -6,6 +6,7 @@ const store = {
         suppliers: [],
         loading: false,
         current_page: 1,
+        filters: {}
     },
     getters: {
         getSuppliers: state => state.suppliers,

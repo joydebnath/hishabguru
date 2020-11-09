@@ -20,8 +20,8 @@ class Quotation extends JsonResource
             'quotation_number' => $this->quotation_number,
             'reference_number' => $this->reference_number,
             'customer_name' => isset($this->contact) ? $this->contact->name : null,
-            'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/Y') : null,
-            'expiry_date' => $this->expiry_date ? Carbon::parse($this->expiry_date)->format('d/m/Y') : null,
+            'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/y') : null,
+            'expiry_date' => $this->expiry_date ? Carbon::parse($this->expiry_date)->format('d/m/y') : null,
             'status' => $this->status,
             'total_amount' => number_format($this->total_amount,2)
         ];

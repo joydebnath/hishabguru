@@ -84,4 +84,24 @@ class Contact extends Model
     {
         return $this->creditRecords()->where('type', CreditRecordType::DEBTOR);
     }
+
+    public function scopeTotalDueInvoiceAmount($query)
+    {
+        return $query->addSelect([
+            'due_amount' => ContactCreditRecord::select('open_balance')
+                ->whereColumn('contact_id', 'contacts.id')
+                ->where('type', CreditRecordType::DEBTOR)
+                ->limit(1)
+        ]);
+    }
+
+    public function scopeTotalDueBillAmount($query)
+    {
+        return $query->addSelect([
+            'due_amount' => ContactCreditRecord::select('open_balance')
+                ->whereColumn('contact_id', 'contacts.id')
+                ->where('type', CreditRecordType::CREDITOR)
+                ->limit(1)
+        ]);
+    }
 }

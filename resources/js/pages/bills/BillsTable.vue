@@ -11,9 +11,15 @@
             pagination-position="bottom"
             backend-pagination
             @page-change="onPageChange"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
-                field="order_number"
+                field="bill_number"
                 label="Number"
                 sortable
                 v-slot="props"
@@ -45,7 +51,7 @@
             </b-table-column>
 
             <b-table-column
-                field="create_date"
+                field="issue_date"
                 label="Issued"
                 sortable
                 v-slot="props"
@@ -114,7 +120,15 @@ export default {
             this.$store.dispatch('bills/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
+            this.$store.commit('bills/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$store.dispatch('bills/loadData', {page: 1})
         },
         status_type(value) {
             const STATUS_MAP = {

@@ -29,7 +29,8 @@ class ClientsController extends Controller
             return new ClientCollection(
                 Contact::filter($filters)
                     ->where('type', ContactType::CLIENT)
-                    ->with('emails', 'mobiles', 'addresses','debtors')
+                    ->with('emails', 'mobiles', 'addresses')
+                    ->totalDueInvoiceAmount()
                     ->paginate()
             );
         } catch (Exception $exception) {

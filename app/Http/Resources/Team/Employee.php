@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Team;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Employee extends JsonResource
@@ -18,6 +19,7 @@ class Employee extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'created_at' => Carbon::parse($this->created_at)->format('d/m/y'),
             'mobile' => collect($this->mobiles)->isNotEmpty() ? $this->mobiles->first()->value : null,
             'email' => collect($this->emails)->isNotEmpty() ? $this->emails->first()->value : null,
             'job_title' => collect($this->jobTitle)->isNotEmpty() ? collect($this->jobTitle)->first()->value : null,

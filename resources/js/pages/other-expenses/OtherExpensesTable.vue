@@ -11,6 +11,12 @@
             pagination-position="bottom"
             backend-pagination
             @page-change="onPageChange"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
                 field="expense_number"
@@ -56,7 +62,7 @@
                             cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_amount }}
             </b-table-column>
-            <b-table-column field="total_amount" sortable label="Remaining" centered v-slot="props"
+            <b-table-column field="total_due" sortable label="Remaining" centered v-slot="props"
                             cell-class="align-middle text-sm" header-class="text-sm">
                 {{ props.row.total_due }}
             </b-table-column>
@@ -109,7 +115,15 @@ export default {
             this.$store.dispatch('other_expenses/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
+            this.$store.commit('other_expenses/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$store.dispatch('other_expenses/loadData', {page: 1})
         },
         status_type(value) {
             const STATUS_MAP = {

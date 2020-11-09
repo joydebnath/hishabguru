@@ -15,12 +15,43 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Filters/Products/ProductsFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Products/ProductsFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/marketplace/MarketplaceTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/marketplace/MarketplaceTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/statistics/client/widgets/PaymentsDueTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/statistics/client/widgets/PaymentsDueTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/statistics/supplier/widgets/BillsDueTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/statistics/supplier/widgets/BillsDueTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Business/InvoiceFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Business/InvoiceFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Business/OrderFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Business/OrderFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Business/QuotationFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Business/QuotationFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Contact/ClientFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Contact/ClientFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Contact/SupplierFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Contact/SupplierFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Expense/BillFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Expense/BillFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Expense/OtherExpenseFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Expense/OtherExpenseFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Expense/PurchaseFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Expense/PurchaseFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Team/EmployeeFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Team/EmployeeFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/ClientsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Contact/SuppliersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Business/Quotation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Business/Quotation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/Client.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact/Supplier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Product/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Product/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Product/ProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Product/ProductCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Team/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Team/Employee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/bills/BillsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/clients/ClientsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/employees/EmployeesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/orders/OrderTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/other-expenses/OtherExpensesTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/ProductTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/purchases/PurchaseTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/suppliers/SuppliersTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/suppliers/SuppliersTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/bills.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/bills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/employees.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/employees.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/invoices.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/invoices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/other-expenses.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/other-expenses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/purchases.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/purchases.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/quotations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/quotations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/stores/suppliers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/stores/suppliers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -846,7 +877,9 @@
       <workItem from="1604759707850" duration="3843000" />
       <workItem from="1604790285303" duration="10024000" />
       <workItem from="1604812335731" duration="8636000" />
-      <workItem from="1604837333284" duration="2089000" />
+      <workItem from="1604837333284" duration="2855000" />
+      <workItem from="1604873852326" duration="189000" />
+      <workItem from="1604924219957" duration="4801000" />
     </task>
     <servers />
   </component>
@@ -889,13 +922,13 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603586287007" />
-    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604818001976">
+    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604926964894">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="1082" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.1080.1920.1080/1229.0.1920.1080@1229.0.1920.1080" timestamp="1602841989761" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1601027813801" />
     <state x="2603" y="291" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600167207332" />
-    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604818001976" />
+    <state x="2603" y="291" width="838" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604926964894" />
     <state x="4523" y="291" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601360824932" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1604751663820" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1604112618127" />
@@ -971,10 +1004,10 @@
       <screen x="72" y="27" width="3768" height="1053" />
     </state>
     <state x="2723" y="454" width="303" height="178" key="VCS.ChangelistChooser/72.27.3768.1053@72.27.3768.1053" timestamp="1603252129526" />
-    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603955375860">
+    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1604927633288">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603955375860" />
+    <state x="2490" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604927633288" />
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602310833946">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -992,14 +1025,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1604839362602">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1604928984886">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1604368707854" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604839362602" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604928984886" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1604751893048" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1604113451064" />

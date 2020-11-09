@@ -11,11 +11,16 @@
             pagination-position="bottom"
             backend-pagination
             @page-change="onPageChange"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
                 field="name"
                 label="Name"
-                sortable
                 v-slot="props"
                 header-class="text-sm"
                 cell-class="text-sm"
@@ -27,7 +32,6 @@
             <b-table-column
                 field="mobile"
                 label="Mobile"
-                sortable
                 v-slot="props"
                 header-class="text-sm"
                 cell-class="text-sm"
@@ -38,7 +42,6 @@
             <b-table-column
                 field="email"
                 label="Email"
-                sortable
                 v-slot="props"
                 header-class="text-sm"
                 cell-class="text-sm"
@@ -46,11 +49,16 @@
                 {{ props.row.email }}
             </b-table-column>
 
-            <b-table-column label="Due Amount" v-slot="props" header-class="text-sm" cell-class="text-sm">
+            <b-table-column label="Due Amount" field="due_amount" sortable v-slot="props" header-class="text-sm" cell-class="text-sm">
                 <span :class="[props.row.they_owe_you > 0 ? 'text-red-600 font-semibold' : 'text-greed-600 font-semibold']">
                     {{ props.row.they_owe_you_formatted }}
                 </span>
             </b-table-column>
+
+            <b-table-column label="Created" sortable field="created_at" v-slot="props" header-class="text-sm" cell-class="text-sm">
+                {{ props.row.created_at }}
+            </b-table-column>
+
             <b-table-column v-slot="props" >
                 <div class="flex justify-end">
                     <b-dropdown aria-role="list">
@@ -101,8 +109,16 @@ export default {
             this.$store.dispatch('clients/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
-        }
+            this.$store.commit('clients/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$store.dispatch('clients/loadData', {page: 1})
+        },
     },
     computed: {
         ...mapGetters({

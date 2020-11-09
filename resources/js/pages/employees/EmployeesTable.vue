@@ -11,11 +11,16 @@
             pagination-position="bottom"
             backend-pagination
             @page-change="onPageChange"
+
+            default-sort-direction="asc"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            backend-sorting
+            @sort="onSort"
         >
             <b-table-column
                 field="name"
                 label="Name"
-                sortable
                 v-slot="props"
                 header-class="text-sm"
                 cell-class="text-sm"
@@ -29,7 +34,6 @@
             <b-table-column
                 field="mobile"
                 label="Mobile"
-                sortable
                 v-slot="props"
                 header-class="text-sm"
                 cell-class="text-sm"
@@ -40,7 +44,6 @@
             <b-table-column
                 field="email"
                 label="Email"
-                sortable
                 v-slot="props"
                 header-class="text-sm"
                 cell-class="text-sm"
@@ -51,6 +54,11 @@
             <b-table-column label="Is Active" v-slot="props" header-class="text-sm" cell-class="text-sm">
                 {{ props.row.currently_working }}
             </b-table-column>
+
+            <b-table-column label="Created" sortable field="created_at" v-slot="props" header-class="text-sm" cell-class="text-sm">
+                {{ props.row.created_at }}
+            </b-table-column>
+
             <b-table-column v-slot="props">
                 <div class="flex justify-end">
                     <b-dropdown aria-role="list">
@@ -98,8 +106,18 @@ export default {
             this.$store.dispatch('employees/loadData', {page: page_no})
         },
         onSort(field_name, order) {
-            console.log(field_name, order)
-        }
+            this.$store.commit('employees/appendFilter', {
+                filters: {
+                    sort: {
+                        by: field_name,
+                        order: order
+                    },
+                }
+            })
+            this.$nextTick(() => {
+                this.$store.dispatch('employees/loadData', {page: 1})
+            })
+        },
     },
     computed: {
         ...mapGetters({

@@ -51,4 +51,10 @@ class SupplierFilter extends QueryFilter
             });
         }
     }
+
+    public function sort(string $sortFields)
+    {
+        $sort = json_decode($sortFields, true);
+        $this->builder->orderBy($sort['by'], $sort['order']);
+    }
 }

@@ -42,9 +42,9 @@ const store = {
         setFilters: (state, {filters}) => {
             state.filters = {...filters}
         },
-        // addFilter: (state, {filters}) => {
-        //     state.filters = {...state.filters, ...filters}
-        // },
+        appendFilter: (state, {filters}) => {
+            state.filters = {...state.filters, ...filters}
+        },
         remove(state, {quotation}) {
             state.quotations = [..._.filter(state.quotations, value => value.id !== quotation.id)]
         }
