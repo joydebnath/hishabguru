@@ -1,9 +1,12 @@
 <template>
     <div class="bg-white shadow sm:rounded-lg">
         <div class="px-4 py-3 border-b border-gray-200">
-            <h4 class="text-base leading-6 font-medium text-gray-900">
-                Top Due Bills
-            </h4>
+            <div class="flex flex-row justify-content-between">
+                <h4 class="text-base leading-6 font-medium text-gray-900">
+                    Top Due Bills
+                </h4>
+                <div class="font-medium text-red-600" v-if="total !== '0.00'">{{total}}</div>
+            </div>
         </div>
         <div class="bg-white p-0 overflow-auto is-relative" style="height: 300px;max-height: 300px">
             <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
@@ -21,16 +24,7 @@
             <div class="w-full h-full m-auto flex flex-row align-items-center justify-content-between"
                  v-if="records.length === 0">
                 <div class="text-center d-inline-block w-full">
-                    <svg class="w-5 h-5 d-inline-flex -mt-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M3 12L9 18L21 6"
-                            stroke="#000"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round">
-                        </path>
-                    </svg>
+                    <CheckIcon custom_class="w-5 h-5 d-inline-flex -mt-1"/>
                     <span class="text-sm text-uppercase tracking-wider ml-1">No Due Bills</span>
                 </div>
             </div>
@@ -41,16 +35,18 @@
 
 <script>
 import RecordRow from "./RecordRow";
+import CheckIcon from "@/components/icons/CheckIcon";
 export default {
     name: "DueBills",
-    components: {RecordRow},
+    components: {CheckIcon, RecordRow},
     props:{
         tenant_id: String | Number
     },
     data() {
         return {
             records: [],
-            loading: false
+            loading: false,
+            total: '0.00'
         }
     },
     mounted() {
@@ -64,6 +60,7 @@ export default {
                 })
                 .then(({data})=>{
                     this.records = data.data
+                    this.total = data.total_due
                     this.loading = false
                 })
                 .catch(err=>{

@@ -25,9 +25,7 @@ trait DashboardRecordsTrait
     public function getTopDueInvoices(Request $request)
     {
         try {
-            return new InvoiceDueCollection(
-                $this->recordsService->getTopTenDueInvoices($request->tenant_id)
-            );
+            return $this->recordsService->getTopTenDueInvoices($request->tenant_id);
         } catch (Exception $exception) {
             return response(['error' => $exception->getMessage()], 500);
         }
@@ -36,9 +34,7 @@ trait DashboardRecordsTrait
     public function getTopDueBills(Request $request)
     {
         try {
-            return new BillDueCollection(
-                $this->recordsService->getTopTenDueBills($request->tenant_id)
-            );
+            return $this->recordsService->getTopTenDueBills($request->tenant_id);
         } catch (Exception $exception) {
             return response(['error' => $exception->getMessage()], 500);
         }
