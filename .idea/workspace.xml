@@ -15,17 +15,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Home/DashboardRecordsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Home/DashboardRecordsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Invoice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Statistics/DashboardService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Statistics/DashboardService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/CustomerDuePayments.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/CustomerDuePayments.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/DueBills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/DueBills.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysExpenses.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysExpenses.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysProfit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysProfit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysSells.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysSells.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/OrderDueToday.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/OrderDueToday.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/SellsByCategories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/SellsByCategories.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -857,7 +848,7 @@
       <workItem from="1604962095418" duration="962000" />
       <workItem from="1604992038215" duration="2078000" />
       <workItem from="1605010687137" duration="6430000" />
-      <workItem from="1605037050552" duration="5549000" />
+      <workItem from="1605037050552" duration="6417000" />
     </task>
     <servers />
   </component>
@@ -1003,8 +994,8 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1605015910354">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1605042959690">
+      <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1604368707854" />
@@ -1013,7 +1004,7 @@
     <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605015910354" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1604751893048" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1604113451064" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1605042959690" />
     <state x="2308" y="191" width="1371" height="678" key="search.everywhere.popup/72.27.3768.1053@72.27.3768.1053" timestamp="1604277266659" />
     <state x="2269" y="325" width="971" height="555" key="search.everywhere.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1604537205457" />
   </component>

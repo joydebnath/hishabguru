@@ -58,7 +58,7 @@ class Invoice extends Model
         $query->where('status', PaymentStatus::PAID)->orWhere('status', PaymentStatus::DUE);
     }
 
-    public function scopeWithProductId($query)
+    public function scopeWithProductCategoryId($query)
     {
         return $query->addSelect([
             'product_id' => function ($query) {
@@ -66,15 +66,11 @@ class Invoice extends Model
                     ->from('invoice_products')
                     ->whereColumn('invoice_id', 'invoices.id')
                     ->select('product_id');
-            }
-        ]);
-    }
-
-    public function scopeWithProductCategoryId($query)
-    {
-        return $query->addSelect([
+            },
             'product_category_id' => Product::select('product_category_id')
-                ->whereColumn('product_id', 'products.id')
+                ->whereColumn('product_id', 'products.id'),
+            'product_category_name' => ProductCategory::select('name')
+                ->whereColumn('product_category_id', 'product_categories.id')
         ]);
     }
 }

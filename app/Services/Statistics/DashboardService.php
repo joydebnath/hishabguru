@@ -128,7 +128,6 @@ class DashboardService
         return Invoice::where('tenant_id', $tenantId)
             ->isNotDraft()
             ->whereBetween('issue_date', [$start, $end])
-            ->withProductId()
             ->withProductCategoryId()
             ->get(['product_category_id']);
     }
