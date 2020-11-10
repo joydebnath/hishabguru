@@ -51,7 +51,6 @@ class DashboardRecordsService
     {
         return [
             'data' => new BillDueCollection(
-
                 Bill::where([
                     ['tenant_id', '=', $tenantId],
                     ['status', '=', PaymentStatus::DUE]

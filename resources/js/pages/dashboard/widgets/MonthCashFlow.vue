@@ -1,18 +1,20 @@
 <template>
-    <vue-frappe
-        class="bg-white pt-4 shadow frappe sm:rounded-lg"
-        type="axis-mixed"
-        id="one"
-        :labels="computed_labels"
-        :title="title"
-        :height="300"
-        :colors="colors"
-        :dataSets="computed_chart_data"
-        :tooltip-options="tooltipOptions"
-        :axis-options="axisOptions"
-        :bar-options="barOptions"
-    >
-    </vue-frappe>
+    <section class="bg-white pt-4 shadow frappe sm:rounded-lg is-relative">
+        <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
+        <vue-frappe
+            type="axis-mixed"
+            id="one"
+            :labels="computed_labels"
+            :title="title"
+            :height="300"
+            :colors="colors"
+            :dataSets="computed_chart_data"
+            :tooltip-options="tooltipOptions"
+            :axis-options="axisOptions"
+            :bar-options="barOptions"
+        >
+        </vue-frappe>
+    </section>
 </template>
 
 <script>
@@ -26,7 +28,8 @@ export default {
         tenant_id: String | Number
     },
     mounted() {
-        if (this.$props.tenant_id) {
+        if (this.$props.tenant_id && this.labels.length === 0) {
+            this.loading = true
             axios
                 .get('/dashboard-statistics/monthly-cash-flow', {
                     params: {
@@ -45,16 +48,18 @@ export default {
                             values: cash_out_amount.reverse()
                         },
                     ];
-                    console.log(this.tenant_data)
+                    this.loading = false
                 })
                 .catch(err => {
                     console.log(err)
+                    this.loading = false
                 })
         }
     },
     data() {
         return {
             labels: [],
+            loading: false,
             colors: ['#41b7fc', '#e2e8f0'],
             chartData: [{
                 name: "Cash In", chartType: 'bar',

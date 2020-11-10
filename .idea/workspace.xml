@@ -14,15 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Helpers/Helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Home/DashboardRecordsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Home/DashboardRecordsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Statistics/DashboardService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Statistics/DashboardService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Statistics/MonthlyOverviewService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Statistics/MonthlyOverviewService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/CustomerDuePayments.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/CustomerDuePayments.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/DueBills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/DueBills.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysExpenses.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysExpenses.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysProfit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysProfit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysSells.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/Last30DaysSells.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthCashFlow.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/MonthStatistics.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/OrderDueToday.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/OrderDueToday.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/SellsByCategories.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/dashboard/widgets/SellsByCategories.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -853,7 +856,8 @@
       <workItem from="1604924219957" duration="5236000" />
       <workItem from="1604962095418" duration="962000" />
       <workItem from="1604992038215" duration="2078000" />
-      <workItem from="1605010687137" duration="6013000" />
+      <workItem from="1605010687137" duration="6430000" />
+      <workItem from="1605037050552" duration="5549000" />
     </task>
     <servers />
   </component>

@@ -73,12 +73,16 @@ class DashboardService
         $start = Carbon::yesterday()->subDays(29)->startOfDay();
         $end = Carbon::yesterday()->endOfDay();
 
-        return TimeSeriesStatistic::where([
+        $series = TimeSeriesStatistic::where([
             ['tenant_id', '=', $tenantId],
             ['statistic_type', '=', TimeSeriesStatsType::SELLS],
         ])
             ->whereBetween('date', [$start, $end])
+            ->select('date', 'value')
+            ->orderBy('date')
             ->get();
+
+        return $this->generateTimeSeries($start, 30, $series);
     }
 
     public function getLast30DaysTotalExpensesAmount($tenantId)
@@ -86,12 +90,16 @@ class DashboardService
         $start = Carbon::yesterday()->subDays(29)->startOfDay();
         $end = Carbon::yesterday()->endOfDay();
 
-        return TimeSeriesStatistic::where([
+        $series = TimeSeriesStatistic::where([
             ['tenant_id', '=', $tenantId],
             ['statistic_type', '=', TimeSeriesStatsType::EXPENSES],
         ])
             ->whereBetween('date', [$start, $end])
+            ->select('date', 'value')
+            ->orderBy('date')
             ->get();
+
+        return $this->generateTimeSeries($start, 30, $series);
     }
 
     public function getLast30DaysTotalProfitsAmount($tenantId)
@@ -99,12 +107,16 @@ class DashboardService
         $start = Carbon::yesterday()->subDays(29)->startOfDay();
         $end = Carbon::yesterday()->endOfDay();
 
-        return TimeSeriesStatistic::where([
+        $series = TimeSeriesStatistic::where([
             ['tenant_id', '=', $tenantId],
             ['statistic_type', '=', TimeSeriesStatsType::PROFITS],
         ])
             ->whereBetween('date', [$start, $end])
+            ->select('date', 'value')
+            ->orderBy('date')
             ->get();
+
+        return $this->generateTimeSeries($start, 30, $series);
     }
 
     public function getLast30DaysTopFiveProductCategories($tenantId)
@@ -115,9 +127,30 @@ class DashboardService
         //invoice products, group by products, get category
         return Invoice::where('tenant_id', $tenantId)
             ->isNotDraft()
-            ->whereBetween('issue_date', [$start,$end])
+            ->whereBetween('issue_date', [$start, $end])
             ->withProductId()
             ->withProductCategoryId()
             ->get(['product_category_id']);
+    }
+
+    private function generateTimeSeries(Carbon $startDate, $days, $filledSeries)
+    {
+        $timeSeries = [];
+        for ($i = 0; $i < $days; $i++) {
+            $date = $startDate->addDays(1)->format('Y-m-d');
+            $timeSeries[$date] = '0';
+        }
+        return $this->combineTimeSeries($filledSeries, $timeSeries);
+    }
+
+    private function combineTimeSeries($filledSeries, $emptySeries)
+    {
+        foreach ($filledSeries as $series) {
+            $emptySeries[Carbon::parse($series['date'])->format('Y-m-d')] = $series['value'];
+        }
+        return [
+            'timeline' => array_keys($emptySeries),
+            'data' => array_values($emptySeries),
+        ];
     }
 }

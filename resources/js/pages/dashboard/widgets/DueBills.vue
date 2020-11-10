@@ -5,7 +5,7 @@
                 <h4 class="text-base leading-6 font-medium text-gray-900">
                     Top Due Bills
                 </h4>
-                <div class="font-medium text-red-600" v-if="total !== '0.00'">{{total}}</div>
+                <div class="font-medium text-red-600" v-if="total !== '0.00'">{{total}} {{currency}}</div>
             </div>
         </div>
         <div class="bg-white p-0 overflow-auto is-relative" style="height: 300px;max-height: 300px">
@@ -36,6 +36,7 @@
 <script>
 import RecordRow from "./RecordRow";
 import CheckIcon from "@/components/icons/CheckIcon";
+import {mapGetters} from "vuex";
 export default {
     name: "DueBills",
     components: {CheckIcon, RecordRow},
@@ -49,8 +50,16 @@ export default {
             total: '0.00'
         }
     },
+    computed: {
+        ...mapGetters({
+            'tenant_data': 'tenancy/getCurrentTenantData'
+        }),
+        currency() {
+            return this.tenant_data.default_currency ?? ''
+        }
+    },
     mounted() {
-        if(this.$props.tenant_id){
+        if(this.$props.tenant_id && this.records.length === 0){
             this.loading = true
             axios
                 .get('/dashboard-statistics/top-due-bills',{

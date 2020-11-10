@@ -1,5 +1,18 @@
 <template>
-    <VueApexCharts class="bg-white shadow py-2 px-2 sm:rounded-lg" type="polarArea" height="325" :options="chartOptions" :series="series"/>
+    <section class="bg-white shadow px-2 sm:rounded-lg">
+        <b-loading :is-full-page="false" v-model="loading" :can-cancel="false"/>
+        <div class="px-4 py-3 border-b border-gray-200">
+            <div class="flex flex justify-content-between">
+                <h4 class="text-sm leading-6 font-medium text-gray-900">
+                    Last 30 Days - Most Sold Product Categories
+                </h4>
+                <span class="text-sm text-orange-500 leading-6" v-if="total">
+                    {{ total }} {{ currency }}
+                </span>
+            </div>
+        </div>
+        <VueApexCharts class="pb-2" type="polarArea" height="280" :options="chartOptions" :series="series"/>
+    </section>
 </template>
 
 <script>
@@ -29,18 +42,15 @@ export default {
     },
     data() {
         return {
+            loading:false,
             series: [42, 47, 52, 58, 65],
             chartOptions: {
                 chart: {
-                    width: 320,
+                    width: 280,
                     type: 'polarArea',
                     toolbar: {
                         show: false
                     }
-                },
-                title: {
-                    text: "Last 30 Days - Most Sold Product Categories",
-                    align: "left"
                 },
                 labels: ['Rose A', 'Rose B', 'Rose C', 'Rose D', 'Rose E'],
                 fill: {

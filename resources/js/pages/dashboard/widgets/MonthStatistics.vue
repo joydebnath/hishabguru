@@ -54,7 +54,7 @@ export default {
     },
     components: {VueApexCharts},
     mounted() {
-        if (this.$props.tenant_id) {
+        if (this.$props.tenant_id && _.isEmpty(this.records)) {
             this.loading = true
             axios
                 .get('/dashboard-statistics/current-month-statistics', {

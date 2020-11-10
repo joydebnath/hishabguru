@@ -50,7 +50,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$props.tenant_id) {
+        if (this.$props.tenant_id && this.records.length === 0) {
             this.loading = true
             axios
                 .get('/dashboard-statistics/order-due-today', {
