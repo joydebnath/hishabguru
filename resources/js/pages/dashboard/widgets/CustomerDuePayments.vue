@@ -18,7 +18,7 @@
                 :top_right="record.total_amount_formatted"
                 :bottom_right="record.due_date"
                 :url="`/@/invoices/${record.id}`"
-                top_right_color="text-gray-800 font-semibold"
+                top_right_color="text-orange-500 font-semibold"
                 bottom_right_color="text-gray-700"
             />
             <div class="w-full h-full m-auto flex flex-row align-items-center justify-content-between"

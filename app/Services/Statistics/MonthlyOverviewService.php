@@ -3,6 +3,7 @@
 namespace App\Services\Statistics;
 
 use App\Enums\Status\PaymentStatus;
+use App\Helpers\Helper;
 use App\Models\Bill;
 use App\Models\Invoice;
 use App\Models\OtherExpense;
@@ -13,18 +14,17 @@ class MonthlyOverviewService
     public function getOverviewStatsByMonth($startDate, $tenantId): array
     {
         return [
-            'incomes' => $this->getIncomesByMonth($startDate, $tenantId),
-            'expenses' => $this->getExpensesByMonth($startDate, $tenantId),
-            'due_bills' => $this->getTotalDueBillsByMonth($startDate, $tenantId),
-            'due_invoices' => $this->getTotalDueInvoicesByMonth($startDate, $tenantId),
+            'incomes' => Helper::formatNumber($this->getIncomesByMonth($startDate, $tenantId)),
+            'expenses' => Helper::formatNumber($this->getExpensesByMonth($startDate, $tenantId)),
+            'due_bills' => Helper::formatNumber($this->getTotalDueBillsByMonth($startDate, $tenantId)),
+            'due_invoices' => Helper::formatNumber($this->getTotalDueInvoicesByMonth($startDate, $tenantId)),
         ];
     }
 
     private function getIncomesByMonth(Carbon $month, $tenantId): float
     {
-        $start = $month->startOfDay();
-        $end = $month->endOfMonth()->endOfDay();
-
+        $start = Carbon::parse($month)->startOfDay();
+        $end = Carbon::parse($start)->endOfMonth()->endOfDay();
         return Invoice::where('tenant_id', $tenantId)
             ->whereBetween('issue_date', [$start, $end])
             ->isNotDraft()
@@ -33,26 +33,26 @@ class MonthlyOverviewService
 
     private function getExpensesByMonth($month, $tenantId): float
     {
-        $start = $month->startOfDay();
-        $end = $month->endOfMonth()->endOfDay();
+        $start = Carbon::parse($month)->startOfDay();
+        $end = Carbon::parse($start)->endOfMonth()->endOfDay();
 
-        $totalBillsAmount = Bill::where('tenant_id', $tenantId)
+        $totalExpensesAmount = Bill::where('tenant_id', $tenantId)
             ->whereBetween('issue_date', [$start, $end])
             ->isNotDraft()
             ->sum('total_amount');
 
-        $totalOtherExpensesAmount = OtherExpense::where('tenant_id', $tenantId)
+        $totalExpensesAmount += OtherExpense::where('tenant_id', $tenantId)
             ->whereBetween('issue_date', [$start, $end])
             ->isNotDraft()
             ->sum('total_amount');
 
-        return $totalBillsAmount + $totalOtherExpensesAmount;
+        return $totalExpensesAmount;
     }
 
     private function getTotalDueInvoicesByMonth($month, $tenantId): float
     {
-        $start = $month->startOfDay();
-        $end = $month->endOfMonth()->endOfDay();
+        $start = Carbon::parse($month)->startOfDay();
+        $end = Carbon::parse($start)->endOfMonth()->endOfDay();
 
         return Invoice::where([
             ['tenant_id', '=', $tenantId],
@@ -64,8 +64,8 @@ class MonthlyOverviewService
 
     private function getTotalDueBillsByMonth($month, $tenantId): float
     {
-        $start = $month->startOfDay();
-        $end = $month->endOfMonth()->endOfDay();
+        $start = Carbon::parse($month)->startOfDay();
+        $end = Carbon::parse($start)->endOfMonth()->endOfDay();
 
         return Bill::where([
             ['tenant_id', '=', $tenantId],

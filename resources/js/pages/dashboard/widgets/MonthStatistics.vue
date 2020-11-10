@@ -8,7 +8,7 @@
             <div>
                 <p class="heading text-green-700">Incomes</p>
                 <p class="title flex flex-row justify-content-center">
-                    <template>{{ current_month_stats.expenses }}</template>
+                    <template>{{ current_month_stats.incomes }}</template>
                     <b-skeleton v-if="loading" width="60px" height="10" :animated="true"/>
                 </p>
             </div>

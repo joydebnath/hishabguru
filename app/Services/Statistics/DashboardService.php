@@ -51,21 +51,21 @@ class DashboardService
 
     private function getExpensesSum($tenantId, $dateRange)
     {
-        $totalBillAmount = Bill::where([
+        $totalExpensesAmount = Bill::where([
             ['tenant_id', '=', $tenantId],
             ['status', '=', PaymentStatus::PAID],
         ])
             ->whereBetween('issue_date', $dateRange)
             ->sum('total_amount');
 
-        $totalOtherExpensesAmount = OtherExpense::where([
+        $totalExpensesAmount += OtherExpense::where([
             ['tenant_id', '=', $tenantId],
             ['status', '=', PaymentStatus::PAID],
         ])
             ->whereBetween('issue_date', $dateRange)
             ->sum('total_amount');
 
-        return $totalBillAmount + $totalOtherExpensesAmount;
+        return $totalExpensesAmount;
     }
 
     public function getLast30DaysTotalSellsAmount($tenantId)
@@ -113,6 +113,11 @@ class DashboardService
         $end = Carbon::yesterday()->endOfDay();
 
         //invoice products, group by products, get category
-        return 0;
+        return Invoice::where('tenant_id', $tenantId)
+            ->isNotDraft()
+            ->whereBetween('issue_date', [$start,$end])
+            ->withProductId()
+            ->withProductCategoryId()
+            ->get(['product_category_id']);
     }
 }
