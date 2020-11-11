@@ -9,6 +9,7 @@ use App\Models\Invoice;
 use App\Models\OtherExpense;
 use App\Models\TimeSeriesStatistic;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardService
 {
@@ -124,12 +125,17 @@ class DashboardService
         $start = Carbon::yesterday()->subDays(29)->startOfDay();
         $end = Carbon::yesterday()->endOfDay();
 
-        //invoice products, group by products, get category
-        return Invoice::where('tenant_id', $tenantId)
+        $invoices = Invoice::select('id')
+            ->where('tenant_id', $tenantId)
             ->isNotDraft()
             ->whereBetween('issue_date', [$start, $end])
             ->withProductCategoryId()
-            ->get(['product_category_id']);
+            ->get()
+            ->groupBy('product_category_name');
+
+        return collect($invoices)->map(function ($group, $index) {
+            return ['name' => $index, 'count' => collect($group)->count()];
+        })->values()->sortByDesc('count')->values()->take(5);
     }
 
     private function generateTimeSeries(Carbon $startDate, $days, $filledSeries)

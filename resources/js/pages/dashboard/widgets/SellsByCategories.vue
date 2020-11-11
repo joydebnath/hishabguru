@@ -6,12 +6,15 @@
                 <h4 class="text-sm leading-6 font-medium text-gray-900">
                     Last 30 Days - Most Sold Product Categories
                 </h4>
-                <span class="text-sm text-orange-500 leading-6" v-if="total">
-                    {{ total }} {{ currency }}
-                </span>
             </div>
         </div>
-        <VueApexCharts class="pb-2" type="polarArea" height="280" :options="chartOptions" :series="series"/>
+        <VueApexCharts
+            class="pb-2 categories_polar_area"
+            type="polarArea"
+            height="280"
+            :options="computed_chart_options"
+            :series="computed_series"
+        />
     </section>
 </template>
 
@@ -21,29 +24,36 @@ import VueApexCharts from 'vue-apexcharts'
 export default {
     name: "SellsByCategories",
     components: {VueApexCharts},
-    props:{
+    props: {
         tenant_id: String | Number
     },
     mounted() {
-        if(this.$props.tenant_id){
+        if (this.$props.tenant_id) {
+            this.loading = true
             axios
-                .get('/dashboard-statistics/last-30days-categories',{
-                    params:{
+                .get('/dashboard-statistics/last-30days-categories', {
+                    params: {
                         tenant_id: this.$props.tenant_id
                     }
                 })
-                .then(({data})=>{
-
+                .then(({data}) => {
+                    this.loading = false
+                    this.series = _.map(data, 'count');
+                    this.chartOptions = {
+                        ...this.chartOptions,
+                        labels: _.map(data, 'name')
+                    };
                 })
-                .catch(err=>{
+                .catch(err => {
+                    this.loading = false
                     console.log(err)
                 })
         }
     },
     data() {
         return {
-            loading:false,
-            series: [42, 47, 52, 58, 65],
+            loading: false,
+            series: [],
             chartOptions: {
                 chart: {
                     width: 280,
@@ -52,7 +62,7 @@ export default {
                         show: false
                     }
                 },
-                labels: ['Rose A', 'Rose B', 'Rose C', 'Rose D', 'Rose E'],
+                labels: [],
                 fill: {
                     opacity: 1
                 },
@@ -82,10 +92,20 @@ export default {
                 }
             }
         }
+    },
+    computed: {
+        computed_series() {
+            return this.series
+        },
+        computed_chart_options() {
+            return this.chartOptions
+        }
     }
 }
 </script>
 
-<style scoped>
-
+<style>
+.categories_polar_area .apexcharts-canvas {
+    margin: auto;
+}
 </style>
