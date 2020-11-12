@@ -28,6 +28,13 @@
             </b-dropdown-item>
         </router-link>
         <hr class="dropdown-divider ">
+        <small class="dropdown-header uppercase tracking-wider">Business Data</small>
+        <router-link to="/@/import-data">
+            <b-dropdown-item class="py-2" aria-role="listitem">
+                Import Data
+            </b-dropdown-item>
+        </router-link>
+        <hr class="dropdown-divider ">
         <router-link to="/@/profile">
             <b-dropdown-item class="py-2" aria-role="listitem">
                 Profile

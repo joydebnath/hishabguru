@@ -14,10 +14,11 @@ import SuppliersRoutes from './supplier'
 import InventoriesRoutes from './inventories'
 
 const DashboardComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/dashboard/DashboardComponent");
-const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
-const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
+// const MarketplaceComponent = () => import(/* webpackChunkName: "js/marketplace" */  "../components/marketplace/MarketplaceComponent");
+// const PromoCodesComponent = () => import(/* webpackChunkName: "js/promo-codes" */  "../components/promo-codes/PromocodesComponent");
 const BusinessSettingComponent = () => import(/* webpackChunkName: "js/business-settings" */  "../pages/business-settings/BusinessSettingComponent");
 const ProfileSettingsComponent = () => import(/* webpackChunkName: "js/profile-settings" */  "../pages/profile-settings/ProfileSettingsComponent");
+const ImportComponent = () => import(/* webpackChunkName: "js/import-data" */  "../pages/import-data/ImportComponent");
 // const ExampleComponent = () => import(/* webpackChunkName: "js/examples" */  "../components/ExampleComponent");
 
 const router = new VueRouter({
@@ -33,18 +34,18 @@ const router = new VueRouter({
         ...QuotationRoutes,
         ...OrderRoutes,
         ...PurchaseRoutes,
-        {
-            path: '/@/marketplace',
-            name: 'marketplace',
-            meta: {type: 'business'},
-            component: MarketplaceComponent,
-        },
-        {
-            path: '/@/promo-codes',
-            name: 'promo codes',
-            meta: {type: 'business'},
-            component: PromoCodesComponent,
-        },
+        // {
+        //     path: '/@/marketplace',
+        //     name: 'marketplace',
+        //     meta: {type: 'business'},
+        //     component: MarketplaceComponent,
+        // },
+        // {
+        //     path: '/@/promo-codes',
+        //     name: 'promo codes',
+        //     meta: {type: 'business'},
+        //     component: PromoCodesComponent,
+        // },
         ...InvoiceRoutes,
         ...BillsRoutes,
         ...OtherExpenseRoutes,
@@ -62,6 +63,12 @@ const router = new VueRouter({
             name: 'profile settings',
             meta: {type: 'profile'},
             component: ProfileSettingsComponent,
+        },
+        {
+            path: '/@/import-data',
+            name: 'Import Data',
+            meta: {type: 'import'},
+            component: ImportComponent,
         },
     ],
 });
