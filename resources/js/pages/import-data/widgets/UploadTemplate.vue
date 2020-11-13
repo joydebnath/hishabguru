@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import Para from 'papaparse'
+
 export default {
     name: "UploadTemplate",
     data() {
@@ -66,16 +68,26 @@ export default {
         }
     },
     methods: {
-        handleUpload(data) {
-            console.log(data)
+        handleUpload(file) {
+            Para.parse(file, {
+                header: true,
+                complete: function (results, file) {
+                    console.log("Parsing complete:", results);
+                },
+                step: function (results, parser) {
+                    let {data,errors} = results
+                    if(!errors.length){
+                        console.log("Row data:", data);
+                    }
+                },
+                error: function (error, file) {
+                    console.log("ERROR:", error);
+                }
+            })
         },
-        deleteDropFile(index) {
+        deleteDropFile() {
             this.file = null
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

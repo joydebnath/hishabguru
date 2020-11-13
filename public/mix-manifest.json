@@ -6,8 +6,8 @@
     "/js/setup-inventory.js": "/js/setup-inventory.js",
     "/js/bill.js": "/js/bill.js",
     "/js/bills.js": "/js/bills.js",
-    "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js": "/js/bills~js/clients~js/employees~js/invoices~js/marketplace~js/orders~js/other-expenses~js/products~~d4c6d36d.js",
-    "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~16e55698.js": "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~16e55698.js",
+    "/js/bills~js/clients~js/employees~js/invoices~js/orders~js/other-expenses~js/products~js/purchases~js~0d16a8a1.js": "/js/bills~js/clients~js/employees~js/invoices~js/orders~js/other-expenses~js/products~js/purchases~js~0d16a8a1.js",
+    "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~504038b8.js": "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~504038b8.js",
     "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-other-expense~js/create-purch~d9d52d94.js": "/js/bill~js/bills~js/clients~js/create-bill~js/create-invoice~js/create-other-expense~js/create-purch~d9d52d94.js",
     "/js/bill~js/create-bill.js": "/js/bill~js/create-bill.js",
     "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js": "/js/bill~js/create-bill~js/create-invoice~js/create-order~js/create-other-expense~js/create-purchase~~68bd8691.js",
@@ -30,9 +30,9 @@
     "/js/create-quotation.js": "/js/create-quotation.js",
     "/js/create-quotation~js/quotation.js": "/js/create-quotation~js/quotation.js",
     "/js/employees.js": "/js/employees.js",
+    "/js/import-data.js": "/js/import-data.js",
     "/js/invoice.js": "/js/invoice.js",
     "/js/invoices.js": "/js/invoices.js",
-    "/js/marketplace.js": "/js/marketplace.js",
     "/js/order.js": "/js/order.js",
     "/js/orders.js": "/js/orders.js",
     "/js/other-expense.js": "/js/other-expense.js",
@@ -41,7 +41,6 @@
     "/js/product-stats.js": "/js/product-stats.js",
     "/js/products.js": "/js/products.js",
     "/js/profile-settings.js": "/js/profile-settings.js",
-    "/js/promo-codes.js": "/js/promo-codes.js",
     "/js/purchase.js": "/js/purchase.js",
     "/js/purchases.js": "/js/purchases.js",
     "/js/quotation.js": "/js/quotation.js",
@@ -50,7 +49,5 @@
     "/js/suppliers.js": "/js/suppliers.js",
     "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js": "/vendors~js/client-stats~js/product-stats~js/profile-settings~js/supplier-stats.js",
     "/vendors~js/profile-settings.js": "/vendors~js/profile-settings.js",
-    "/js/bills~js/clients~js/employees~js/invoices~js/orders~js/other-expenses~js/products~js/purchases~js~0d16a8a1.js": "/js/bills~js/clients~js/employees~js/invoices~js/orders~js/other-expenses~js/products~js/purchases~js~0d16a8a1.js",
-    "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~504038b8.js": "/js/bill~js/bills~js/client-stats~js/clients~js/create-bill~js/create-invoice~js/create-order~js/crea~504038b8.js",
-    "/js/import-data.js": "/js/import-data.js"
+    "/vendors~js/import-data.js": "/vendors~js/import-data.js"
 }

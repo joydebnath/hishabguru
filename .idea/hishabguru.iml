@@ -12,7 +12,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/async-aws/core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/async-aws/lambda" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/aws/aws-sdk-php" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/baopham/dynamodb" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-dompdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bref/bref" />
