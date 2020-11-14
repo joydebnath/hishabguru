@@ -1,7 +1,7 @@
 <template>
     <section class="max-w-6xl m-auto w-full py-2">
         <b-loading :is-full-page="true" v-model="loading" :can-cancel="false">
-            <b-progress :value="upload_progress" class="w-48" type="is-success" size="is-small"/>
+            <b-progress class="w-48" type="is-success" size="is-small"/>
         </b-loading>
 
         <div class="box pt-6">
@@ -26,7 +26,7 @@
                     <UploadTemplate :type="type" @on-complete="handleCSVParsed"/>
                 </b-step-item>
                 <b-step-item step="4" label="Confirmation" :clickable="false">
-                    <Confirmation :type="type" :records="computed_records"/>
+                    <Confirmation :type="type" :records="computed_records" @on-delete="handleDelete"/>
                 </b-step-item>
                 <template
                     slot="navigation"
@@ -81,16 +81,14 @@ export default {
             type: '',
             records: [],
             loading: false,
-            progress: 0
+            progress: 0,
+            chunkSize: 1
         }
     },
     computed: {
         computed_records() {
             return this.records
         },
-        upload_progress() {
-            return this.progress
-        }
     },
     methods: {
         handleTypeSelected(type) {
@@ -99,31 +97,44 @@ export default {
         handleCSVParsed(records) {
             this.records = records
         },
+        handleDelete(new_records) {
+            this.records = new_records
+        },
+        handleComplete() {
+            let requests = [];
+
+            this.loading = true
+
+            _.forEach(
+                _.chunk(this.records, this.chunkSize), records => {
+                    requests.push(this.dispatchImportRequest(records))
+                }
+            )
+
+            axios
+                .all(requests)
+                .then((responses) => {
+                    console.log(responses)
+                    this.loading = false
+                    this.goto()
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.loading = false
+                })
+        },
+        dispatchImportRequest(records) {
+            return axios
+                .post('/import-data', {
+                    type: this.type,
+                    records: records
+                })
+        },
         goto() {
             const temp = this.type;
             this.type = ''
             this.$router.push('/@/' + temp);
         },
-        handleComplete() {
-            this.loading = true
-            _.forEach(
-                _.chunk(this.records, 25), records => {
-                    axios
-                        .post('/import-data', {
-                            type: this.type,
-                            records: records
-                        })
-                        .then(({data}) => {
-                            if (this.progress === 100) {
-                                this.loading = false
-                            }
-                        })
-                        .catch(err => {
-                            this.loading = false
-                        })
-                }
-            )
-        }
     }
 }
 </script>

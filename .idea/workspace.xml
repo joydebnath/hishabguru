@@ -17,11 +17,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/ImportComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/ImportComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ClientsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/DownloadTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/DownloadTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/Confirmation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/Confirmation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ProductsTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/SuppliersTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/SuppliersTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/UploadTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/UploadTemplate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -862,7 +860,7 @@
       <workItem from="1605236749484" duration="631000" />
       <workItem from="1605249882678" duration="2520000" />
       <workItem from="1605268968239" duration="3160000" />
-      <workItem from="1605308193243" duration="7524000" />
+      <workItem from="1605308193243" duration="10470000" />
     </task>
     <servers />
   </component>

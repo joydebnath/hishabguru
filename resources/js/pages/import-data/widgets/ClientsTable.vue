@@ -1,11 +1,19 @@
 <template>
     <section class="-mt-2">
         <div style="min-height: 38px">
-            <b-button class="mb-2" size="is-small" outlined type="is-danger" v-if="checkedRows.length">Delete</b-button>
+            <b-button
+                class="mb-2"
+                size="is-small"
+                outlined type="is-danger"
+                v-if="checkedRows.length"
+                @click="handleDelete"
+            >
+                Delete
+            </b-button>
         </div>
         <b-table
             checkable
-            custom-class="text-sm"
+            class="import-data-table"
             :data="data"
             :columns="columns"
             :checked-rows.sync="checkedRows"
@@ -71,6 +79,18 @@ export default {
                 },
             ],
             checkedRows: [],
+        }
+    },
+    methods: {
+        handleDelete() {
+            const end_result = _.filter(this.$props.data, value => {
+                return _.findIndex(
+                    this.checkedRows,
+                    row => (row.uid === value.uid)
+                ) === -1
+            });
+            this.checkedRows = [];
+            this.$emit('on-delete', end_result);
         }
     }
 }

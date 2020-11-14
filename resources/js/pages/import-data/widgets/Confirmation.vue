@@ -1,6 +1,6 @@
 <template>
     <section class="pt-4 step-box">
-        <component :is="table_component" :data="$props.records"></component>
+        <component :is="table_component" :data="$props.records" @on-delete="handleDelete"></component>
     </section>
 </template>
 
@@ -28,10 +28,18 @@ export default {
 
             return MAP[this.$props.type]
         }
+    },
+    methods: {
+        handleDelete(new_records) {
+            this.$emit('on-delete', new_records)
+        }
     }
 }
 </script>
 
-<style scoped>
-
+<style>
+.import-data-table table th,
+.import-data-table table td{
+    font-size: 14px !important;
+}
 </style>
