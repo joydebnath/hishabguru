@@ -16,53 +16,53 @@ class ContactService
         $this->addressService = $addressService;
     }
 
-    public function create($storeable, $contactType): Contact
+    public function create($storable, $contactType): Contact
     {
         $contact = $this->store([
-            'name' => $storeable['name'],
-            'note' => isset($storeable['note']) ? $storeable['note'] : null,
-            'tenant_id' => $storeable['tenant_id'],
+            'name' => $storable['name'],
+            'note' => isset($storable['note']) ? $storable['note'] : null,
+            'tenant_id' => $storable['tenant_id'],
             'type' => $contactType,
         ]);
 
-        if(isset($storeable['addressable_type']) && $storeable['addressable_type']){
-            $this->addressService->create($contact->id, Addressable::CONTACT, $storeable);
+        if(isset($storable['addressable_type']) && $storable['addressable_type']){
+            $this->addressService->create($contact->id, Addressable::CONTACT, $storable);
         }
 
-        $this->contactDetailsService->create($contact->id, $storeable);
+        $this->contactDetailsService->create($contact->id, $storable);
 
-        if ($contactType === ContactType::SUPPLIER && self::hasPrimaryContact($storeable)) {
-            $this->storePrimaryContactPerson($contact, $storeable);
+        if ($contactType === ContactType::SUPPLIER && self::hasPrimaryContact($storable)) {
+            $this->storePrimaryContactPerson($contact, $storable);
         }
 
         return $contact;
     }
 
-    public function store($storeable): Contact
+    public function store($storable): Contact
     {
         return Contact::create([
-            'name' => $storeable['name'],
-            'note' => $storeable['note'],
-            'tenant_id' => $storeable['tenant_id'],
-            'type' => $storeable['type'],
+            'name' => $storable['name'],
+            'note' => $storable['note'],
+            'tenant_id' => $storable['tenant_id'],
+            'type' => $storable['type'],
         ]);
     }
 
-    private function storePrimaryContactPerson($contact, $storeable): Contact
+    private function storePrimaryContactPerson($contact, $storable): Contact
     {
         $primaryContact = $this->store([
-            'name' => isset($storeable['primary_contact_person_name']) ? $storeable['primary_contact_person_name'] : 'Default Contact Person',
+            'name' => isset($storable['primary_contact_person_name']) ? $storable['primary_contact_person_name'] : 'Default Contact Person',
             'note' => 'Primary contact person.',
-            'tenant_id' => $storeable['tenant_id'],
+            'tenant_id' => $storable['tenant_id'],
             'type' => ContactType::SUPPLIER_PRIMARY_PERSON,
         ]);
 
         $contact->child_contacts()->attach($primaryContact->id);
 
         $this->contactDetailsService->create($primaryContact->id, [
-            'mobile' => isset($storeable['primary_contact_person_mobile']) ? $storeable['primary_contact_person_mobile'] : null,
-            'phone' => isset($storeable['primary_contact_person_phone']) ? $storeable['primary_contact_person_phone'] : null,
-            'email' => isset($storeable['primary_contact_person_email']) ? $storeable['primary_contact_person_email'] : null,
+            'mobile' => isset($storable['primary_contact_person_mobile']) ? $storable['primary_contact_person_mobile'] : null,
+            'phone' => isset($storable['primary_contact_person_phone']) ? $storable['primary_contact_person_phone'] : null,
+            'email' => isset($storable['primary_contact_person_email']) ? $storable['primary_contact_person_email'] : null,
         ]);
 
         return $primaryContact;
