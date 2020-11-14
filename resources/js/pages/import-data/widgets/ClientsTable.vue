@@ -12,7 +12,7 @@
             :narrowed="true"
             :sticky-header="true"
         >
-            <template slot="bottom-left">
+            <template slot="bottom-left" v-if="checkedRows.length">
                 <b>Total checked</b>: {{ checkedRows.length }}
             </template>
         </b-table>

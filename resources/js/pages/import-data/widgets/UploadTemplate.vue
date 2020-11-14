@@ -67,25 +67,38 @@ export default {
         return {
             file: null,
             records: [],
-            loading: false
+            loading: false,
+            uid: 1
         }
     },
     methods: {
         handleUpload(file) {
             this.records = [];
             this.loading = true
+            this.uid = 1
             Para.parse(file, {
                 header: true,
                 worker: true,
                 skipEmptyLines: true,
                 complete: (results, file) => {
+                    if (!this.records.length) {
+                        this.$buefy.snackbar.open({
+                            message: 'The uploaded file has no records',
+                            type: 'is-warning',
+                            position: 'is-top',
+                            actionText: 'Ok',
+                            duration: 5000
+                        })
+                        this.deleteDropFile()
+                    }
                     this.$emit('on-complete', this.records)
                     this.loading = false
                 },
                 step: (results, parser) => {
                     let {data, errors} = results
                     if (!errors.length) {
-                        this.records.push(data)
+                        this.records.push({...data, uid: this.uid})
+                        this.uid += 1;
                     }
                 },
                 error: (error, file) => {

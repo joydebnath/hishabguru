@@ -10,7 +10,7 @@
                 needs to import your <span class="font-semibold text-gray-700">{{ type }}</span> data.
             </p>
             <p class="mt-6 flex flex-row justify-content-center">
-                <a href="">
+                <a :href="download_url">
                     <span class="px-2 py-2 flex flex-row border align-items-center text-sm">
                         <svg class="w-5 h-5 mr-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
@@ -46,10 +46,15 @@ export default {
     data() {
         return {
             download_url_map: {
-                products: '',
-                clients: '',
-                suppliers: '',
+                products: '#',
+                clients: '#',
+                suppliers: '#',
             }
+        }
+    },
+    computed: {
+        download_url() {
+            return this.download_url_map[this.$props.type]
         }
     }
 }

@@ -14,16 +14,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/icons/FullScreenLoading.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ClientsTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ProductsTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/SuppliersTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/ImportComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/ImportComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/Confirmation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/Confirmation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ClientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ClientsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/DownloadTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/DownloadTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/ProductsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/SuppliersTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/SuppliersTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/UploadTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/import-data/widgets/UploadTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -864,7 +862,7 @@
       <workItem from="1605236749484" duration="631000" />
       <workItem from="1605249882678" duration="2520000" />
       <workItem from="1605268968239" duration="3160000" />
-      <workItem from="1605308193243" duration="2348000" />
+      <workItem from="1605308193243" duration="7524000" />
     </task>
     <servers />
   </component>
@@ -1010,14 +1008,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1605308952286">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1605325580337">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1604368707854" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605308952286" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605325580337" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1604751893048" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1605042959690" />

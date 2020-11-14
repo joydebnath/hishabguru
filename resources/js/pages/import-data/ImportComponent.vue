@@ -1,5 +1,9 @@
 <template>
     <section class="max-w-6xl m-auto w-full py-2">
+        <b-loading :is-full-page="true" v-model="loading" :can-cancel="false">
+            <b-progress :value="upload_progress" class="w-48" type="is-success" size="is-small"/>
+        </b-loading>
+
         <div class="box pt-6">
             <b-steps
                 type="is-info"
@@ -51,7 +55,7 @@
                             v-if="next.disabled"
                             type="is-primary"
                             size="is-small"
-                            @click.prevent="next.action"
+                            @click.prevent="handleComplete"
                             :disabled="!records.length"
                             v-text="'Create'"
                         />
@@ -76,11 +80,16 @@ export default {
             activeStep: 0,
             type: '',
             records: [],
+            loading: false,
+            progress: 0
         }
     },
     computed: {
         computed_records() {
             return this.records
+        },
+        upload_progress() {
+            return this.progress
         }
     },
     methods: {
@@ -89,6 +98,31 @@ export default {
         },
         handleCSVParsed(records) {
             this.records = records
+        },
+        goto() {
+            const temp = this.type;
+            this.type = ''
+            this.$router.push('/@/' + temp);
+        },
+        handleComplete() {
+            this.loading = true
+            _.forEach(
+                _.chunk(this.records, 25), records => {
+                    axios
+                        .post('/import-data', {
+                            type: this.type,
+                            records: records
+                        })
+                        .then(({data}) => {
+                            if (this.progress === 100) {
+                                this.loading = false
+                            }
+                        })
+                        .catch(err => {
+                            this.loading = false
+                        })
+                }
+            )
         }
     }
 }
