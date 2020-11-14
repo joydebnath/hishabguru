@@ -16,10 +16,10 @@ class StoreSupplier implements Importable
 
     protected $contactDetailsService, $addressService;
 
-    public function __construct(ContactDetailsService $contactDetailsService, AddressService $addressService)
+    public function __construct()
     {
-        $this->contactDetailsService = $contactDetailsService;
-        $this->addressService = $addressService;
+        $this->contactDetailsService = new ContactDetailsService;
+        $this->addressService = new AddressService;
     }
 
     public function import($records)
@@ -89,7 +89,7 @@ class StoreSupplier implements Importable
             'postcode' => $record['Postcode'],
             'state' => $record['State/Division'],
             'country' => $record['Country'],
-            'address_type' => AddressType::HOME
+            'address_type' => AddressType::HQ
         ];
     }
 

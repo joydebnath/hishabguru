@@ -15,10 +15,10 @@ class StoreClient implements Importable
 {
     protected $contactDetailsService, $addressService;
 
-    public function __construct(ContactDetailsService $contactDetailsService, AddressService $addressService)
+    public function __construct()
     {
-        $this->contactDetailsService = $contactDetailsService;
-        $this->addressService = $addressService;
+        $this->contactDetailsService = new ContactDetailsService;
+        $this->addressService = new AddressService;
     }
 
     public function import($records)

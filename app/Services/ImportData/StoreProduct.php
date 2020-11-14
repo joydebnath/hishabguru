@@ -19,13 +19,13 @@ class StoreProduct implements Importable
     private function parseData($record)
     {
         return [
-            'name' => trim($record['Full Name']),
+            'name' => trim($record['Name']),
             'code' => trim($record['Code']),
             'product_category_id' => $this->findProductCategoryId($record['Category Name'], $record['tenant_id']),
-            'buying_unit_cost' => trim($record['Buying Cost']),
-            'selling_unit_price' => trim($record['Selling Price']),
+            'buying_unit_cost' => $this->getDoubleValue($record['Buying Cost']),
+            'selling_unit_price' => $this->getDoubleValue($record['Selling Price']),
             'quantity' => trim($record['Quantity']),
-            'tax_rate' => trim($record['Tax Rate']),
+            'tax_rate' => $this->getDoubleValue($record['Tax Rate']),
             'is_sellable' => $this->isSellable($record['Do you sell it? (Y/N)']),
             'is_purchasable' => $this->isPurchasable($record['Do you buy it? (Y/N)']),
             'description' => trim($record['Description']),
@@ -33,10 +33,17 @@ class StoreProduct implements Importable
         ];
     }
 
+    private function getDoubleValue($value)
+    {
+        $value = trim($value);
+        return $value ? doubleval($value) : 0;
+    }
+
     private function isSellable($value)
     {
+        $value = trim($value);
         if ($value) {
-            $toLower = strtolower(trim($value));
+            $toLower = strtolower($value);
             $possibleAnswers = ['y', 'yes', 't', 'true'];
             return in_array($toLower, $possibleAnswers);
         }
@@ -45,8 +52,9 @@ class StoreProduct implements Importable
 
     private function isPurchasable($value)
     {
+        $value = trim($value);
         if ($value) {
-            $toLower = strtolower(trim($value));
+            $toLower = strtolower($value);
             $possibleAnswers = ['y', 'yes', 't', 'true'];
             return in_array($toLower, $possibleAnswers);
         }

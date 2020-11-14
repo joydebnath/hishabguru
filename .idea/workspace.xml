@@ -15,7 +15,6 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Contact/ContactService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Contact/ContactService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/ImportData/StoreClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ImportData/StoreClient.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/ImportData/StoreProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ImportData/StoreProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/ImportData/StoreSupplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ImportData/StoreSupplier.php" afterDir="false" />
@@ -859,7 +858,7 @@
       <workItem from="1605236749484" duration="631000" />
       <workItem from="1605249882678" duration="2520000" />
       <workItem from="1605268968239" duration="3160000" />
-      <workItem from="1605308193243" duration="20154000" />
+      <workItem from="1605308193243" duration="22431000" />
     </task>
     <servers />
   </component>
