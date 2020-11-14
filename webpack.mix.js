@@ -27,7 +27,6 @@ if(mix.config.production){
             new CompressionPlugin({
                 filename: '[path].gz[query]',
                 algorithm: 'gzip', // all browsers support this algo
-                // algorithm: 'brotliCompress', // best compression but not supported my old browsers and also need node v11 or above
                 test: /\.js$|\.css$/,
                 threshold: 10240,
                 minRatio: 0.8,
@@ -39,6 +38,8 @@ if(mix.config.production){
 mix
     .js('resources/js/index.js', 'public/js')
     .js('resources/js/setup-inventory.js', 'public/js')
+    .js('resources/js/public-quotation.js', 'public/js')
+    .js('resources/js/public-invoice.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/buefy.scss', 'public/css')
     .postCss('resources/css/tailwind.css', 'public/css', [

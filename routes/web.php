@@ -19,6 +19,8 @@ Route::get('/', 'GuestPageController@index');
 Route::get('/almost-there', 'GuestPageController@welcome');
 Route::get('/is-void-account', 'GuestPageController@hasNoTenacy');
 Route::get('/print', 'PrintDoc\PrintController@publicAccess');
+Route::get('/invoice/{id}', 'PublicDoc\InvoiceController@show');
+Route::get('/quotation/{id}', 'PublicDoc\QuotationController@show');
 Route::get('/test', 'TestController@index');
 
 Route::group(['middleware' => ['auth','verified']], function () {

@@ -3,6 +3,8 @@
     "/css/app.css": "/css/app.css",
     "/css/buefy.css": "/css/buefy.css",
     "/css/tailwind.css": "/css/tailwind.css",
+    "/js/public-invoice.js": "/js/public-invoice.js",
+    "/js/public-quotation.js": "/js/public-quotation.js",
     "/js/setup-inventory.js": "/js/setup-inventory.js",
     "/js/bill.js": "/js/bill.js",
     "/js/bills.js": "/js/bills.js",

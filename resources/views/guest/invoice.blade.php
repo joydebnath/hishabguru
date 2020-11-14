@@ -33,5 +33,5 @@
 </div>
 
 </body>
-<script src="{{ mix('js/public-quotation.js') }}"></script>
+<script src="{{ mix('js/public-invoice.js') }}"></script>
 </html>
