@@ -60,22 +60,38 @@
 
 <script>
 import Para from 'papaparse'
+import {mapGetters} from 'vuex'
 
 export default {
     name: "UploadTemplate",
+    props: {
+        type: String
+    },
     data() {
         return {
             file: null,
             records: [],
             loading: false,
-            uid: 1
         }
+    },
+    computed: {
+        ...mapGetters({
+            tenant_id: 'tenancy/getCurrentTenant'
+        })
     },
     methods: {
         handleUpload(file) {
             this.records = [];
+
+            if (!this.validateFileName(file)) {
+                return false
+            }
+
+            this.parseCSVFile(file)
+        },
+        parseCSVFile(file) {
             this.loading = true
-            this.uid = 1
+            let uid = 1
             Para.parse(file, {
                 header: true,
                 worker: true,
@@ -97,24 +113,35 @@ export default {
                 step: (results, parser) => {
                     let {data, errors} = results
                     if (!errors.length) {
-                        this.records.push({...data, uid: this.uid})
-                        this.uid += 1;
+                        this.records.push({...data, uid: uid, tenant_id: this.tenant_id})
+                        uid += 1;
                     }
                 },
                 error: (error, file) => {
                     console.log("ERROR:", error);
                     this.loading = false
-                    this.$buefy.snackbar.open({
-                        duration: 5000,
-                        message: 'Whoops! Unable to parse the file.',
-                        type: 'is-danger',
-                        position: 'is-top-right',
-                    })
+                    this.onError('Whoops! Unable to parse the file.')
                 }
             })
         },
         deleteDropFile() {
             this.file = null
+        },
+        validateFileName(file) {
+            if (file.name.indexOf(this.$props.type) === -1) {
+                this.onError('File name does not match with selected type: ' + this.type)
+                this.deleteDropFile();
+                return false;
+            }
+            return true;
+        },
+        onError(message) {
+            this.$buefy.snackbar.open({
+                duration: 5000,
+                message: message,
+                type: 'is-danger',
+                position: 'is-top-right',
+            })
         }
     }
 }

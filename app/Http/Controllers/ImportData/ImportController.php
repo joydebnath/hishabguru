@@ -17,9 +17,10 @@ class ImportController extends Controller
 
     public function store(Request $request)
     {
-        return [
-            $request->type,
-            $request->records
-        ];
+        try {
+            return $this->service::getImportFactory($request->type)->import($request->records);
+        } catch (\Exception $exception) {
+            return response(['error' => $exception->getMessage()], 500);
+        }
     }
 }
