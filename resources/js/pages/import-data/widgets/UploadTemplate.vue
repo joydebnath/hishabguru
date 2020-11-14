@@ -1,5 +1,6 @@
 <template>
     <section class="pt-4 step-box">
+        <b-loading :is-full-page="true" v-model="loading" :can-cancel="false"/>
         <div class="content has-text-centered mx-12">
             <p class="tracking-wider text-base leading-6 font-medium text-gray-900">
                 Upload the updated template file
@@ -64,24 +65,38 @@ export default {
     name: "UploadTemplate",
     data() {
         return {
-            file: null
+            file: null,
+            records: [],
+            loading: false
         }
     },
     methods: {
         handleUpload(file) {
+            this.records = [];
+            this.loading = true
             Para.parse(file, {
                 header: true,
-                complete: function (results, file) {
-                    console.log("Parsing complete:", results);
+                worker: true,
+                skipEmptyLines: true,
+                complete: (results, file) => {
+                    this.$emit('on-complete', this.records)
+                    this.loading = false
                 },
-                step: function (results, parser) {
-                    let {data,errors} = results
-                    if(!errors.length){
-                        console.log("Row data:", data);
+                step: (results, parser) => {
+                    let {data, errors} = results
+                    if (!errors.length) {
+                        this.records.push(data)
                     }
                 },
-                error: function (error, file) {
+                error: (error, file) => {
                     console.log("ERROR:", error);
+                    this.loading = false
+                    this.$buefy.snackbar.open({
+                        duration: 5000,
+                        message: 'Whoops! Unable to parse the file.',
+                        type: 'is-danger',
+                        position: 'is-top-right',
+                    })
                 }
             })
         },

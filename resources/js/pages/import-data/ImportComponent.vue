@@ -19,10 +19,10 @@
                     <DownloadTemplate :type="type"/>
                 </b-step-item>
                 <b-step-item step="3" label="Upload Template" :clickable="false">
-                    <UploadTemplate :type="type"/>
+                    <UploadTemplate :type="type" @on-complete="handleCSVParsed"/>
                 </b-step-item>
                 <b-step-item step="4" label="Confirmation" :clickable="false">
-                    <Confirmation/>
+                    <Confirmation :type="type" :records="computed_records"/>
                 </b-step-item>
                 <template
                     slot="navigation"
@@ -52,6 +52,7 @@
                             type="is-primary"
                             size="is-small"
                             @click.prevent="next.action"
+                            :disabled="!records.length"
                             v-text="'Create'"
                         />
                     </div>
@@ -73,12 +74,21 @@ export default {
     data() {
         return {
             activeStep: 0,
-            type: ''
+            type: '',
+            records: [],
         }
     },
-    methods:{
-        handleTypeSelected(type){
+    computed: {
+        computed_records() {
+            return this.records
+        }
+    },
+    methods: {
+        handleTypeSelected(type) {
             this.type = type
+        },
+        handleCSVParsed(records) {
+            this.records = records
         }
     }
 }

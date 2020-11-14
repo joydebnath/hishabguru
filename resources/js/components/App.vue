@@ -1,6 +1,8 @@
 <template>
     <section>
-        <b-loading :is-full-page="true" v-model="loadingUser" :can-cancel="false"></b-loading>
+        <b-loading :is-full-page="true" v-model="loadingUser" :can-cancel="false">
+            <FullScreenLoading />
+        </b-loading>
         <template v-if="!loadingUser">
             <TopNavBar/>
             <TopMenuBar :active="active_page_type"/>
@@ -21,9 +23,11 @@ import {mapGetters, mapMutations} from 'vuex';
 
 import TopNavBar from "./global/navbar/TopNavBar";
 import TopMenuBar from "./global/navbar/TopMenuBar";
+import FullScreenLoading from "./icons/FullScreenLoading";
 
 export default {
     components: {
+        FullScreenLoading,
         TopMenuBar,
         TopNavBar
     },
@@ -60,7 +64,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
