@@ -20,8 +20,8 @@ class Invoice extends JsonResource
             'invoice_number' => $this->invoice_number,
             'reference_number' => $this->reference_number,
             'customer_name' => isset($this->contact) ? $this->contact->name : null,
-            'issue_date' => $this->issue_date ? Carbon::parse($this->issue_date)->format('d/m/Y') : null,
-            'due_date' => $this->due_date ? Carbon::parse($this->due_date)->format('d/m/Y') : null,
+            'issue_date' => $this->issue_date ? Carbon::parse($this->issue_date)->format('d/m/y') : null,
+            'due_date' => $this->due_date ? Carbon::parse($this->due_date)->format('d/m/y') : null,
             'status' => $this->status,
             'total_amount' => number_format($this->total_amount, 2)
         ];

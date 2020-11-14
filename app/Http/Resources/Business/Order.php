@@ -20,8 +20,8 @@ class Order extends JsonResource
             'order_number' => $this->order_number,
             'reference_number' => $this->reference_number,
             'customer_name' => isset($this->contact) ? $this->contact->name : null,
-            'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/Y') : null,
-            'delivery_date' => $this->delivery_date ? Carbon::parse($this->delivery_date)->format('d/m/Y') : null,
+            'create_date' => $this->create_date ? Carbon::parse($this->create_date)->format('d/m/y') : null,
+            'delivery_date' => $this->delivery_date ? Carbon::parse($this->delivery_date)->format('d/m/y') : null,
             'status' => $this->status,
             'total_amount' => number_format($this->total_amount,2)
         ];
