@@ -9,6 +9,6 @@ class QuotationController extends Controller
 {
     public function show($quotationId)
     {
-
+        return view('guest.quotation');
     }
 }

@@ -1,25 +1,25 @@
 <template>
     <div class="flex flex-row-reverse">
         <div>
-            <b-dropdown aria-role="list">
-                <button class="button is-light is-small" slot="trigger" slot-scope="{ active }">
-                    <span>Actions</span>
-                    <svg v-if="active" class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 16L12 8L20 16" stroke="#000" stroke-width="1.5" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                    </svg>
-                    <svg v-else class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 8L12 16L20 8" stroke="#000" stroke-width="1.5" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                    </svg>
-                </button>
+<!--            <b-dropdown aria-role="list">-->
+<!--                <button class="button is-light is-small" slot="trigger" slot-scope="{ active }">-->
+<!--                    <span>Actions</span>-->
+<!--                    <svg v-if="active" class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+<!--                         xmlns="http://www.w3.org/2000/svg">-->
+<!--                        <path d="M4 16L12 8L20 16" stroke="#000" stroke-width="1.5" stroke-linecap="round"-->
+<!--                              stroke-linejoin="round"></path>-->
+<!--                    </svg>-->
+<!--                    <svg v-else class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+<!--                         xmlns="http://www.w3.org/2000/svg">-->
+<!--                        <path d="M4 8L12 16L20 8" stroke="#000" stroke-width="1.5" stroke-linecap="round"-->
+<!--                              stroke-linejoin="round"></path>-->
+<!--                    </svg>-->
+<!--                </button>-->
 
-                <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-                <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-                <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
-            </b-dropdown>
+<!--                <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>-->
+<!--                <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>-->
+<!--                <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>-->
+<!--            </b-dropdown>-->
             <button class="button is-light is-small">
                 <svg class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      xmlns="http://www.w3.org/2000/svg">

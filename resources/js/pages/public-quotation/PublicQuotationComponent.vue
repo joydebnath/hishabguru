@@ -14,14 +14,14 @@
                 <div class="col-span-5 pt-5">
                     <div class="flex flex-row justify-content-between align-items-center px-2 ">
                         <h1 class="text-xl font-medium tracking-wider leading-tight text-gray-700 uppercase">
-                            Invoice# INV-200178456
+                            Quotation# QU-200178456
                         </h1>
-                        <span class="tag is-dark tracking-wider upper leading-6 font-medium">PAID</span>
+                        <span class="tag is-dark tracking-wider upper leading-6 font-medium">OPEN</span>
                     </div>
                     <div class="box mt-4">
                         <SupplierBox/>
                         <ClientBox/>
-                        <InvoiceItems/>
+                        <QuotationItems/>
                     </div>
                 </div>
                 <div class="col-span-2 pt-10 mt-5">
@@ -54,11 +54,11 @@
 import HeaderActions from "./HeaderActions";
 import SupplierBox from "./SupplierBox";
 import ClientBox from "./ClientBox";
-import InvoiceItems from "./InvoiceItems";
+import QuotationItems from "./QuotationItems";
 
 export default {
-    name: "PublicInvoiceComponent",
-    components: {InvoiceItems, ClientBox, SupplierBox, HeaderActions},
+    name: "PublicQuotationComponent",
+    components: {QuotationItems, ClientBox, SupplierBox, HeaderActions},
     props: {
         logo: String
     },

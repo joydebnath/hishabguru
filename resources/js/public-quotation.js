@@ -2,9 +2,9 @@ require('./bootstrap');
 
 import Vue from 'vue'
 
-import SetupInventory from './pages/setup/SetupInventory'
+import PublicQuotationComponent from './pages/public-quotation/PublicQuotationComponent'
 
 const app = new Vue({
     el: '#app',
-    components: {app: SetupInventory},
+    components: {app: PublicQuotationComponent},
 });
