@@ -29,7 +29,15 @@
 </head>
 <body>
 <div id="app">
-    <app logo="{{asset('/images/logo.png')}}"/>
+    <app
+        logo="{{asset('/images/logo.png')}}"
+        currency="{{$currency}}"
+        from_="{{$from}}"
+        for_="{{$for}}"
+        invoice="{{$invoice}}"
+        products_="{{$products}}"
+        issued_by_="{{$issued_by}}"
+    />
 </div>
 
 </body>

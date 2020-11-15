@@ -32,9 +32,15 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-delete="handleDelete"/>
+                <Table @on-delete="handleDelete" @on-share="handleShare"/>
             </keep-alive>
         </div>
+        <CopyUrlBox
+            title="Share Invoice Url"
+            :show="share_url!== ''"
+            :url="share_url"
+            @on-close="handleShareClose"
+        />
         <DeleteBox
             :show="delete_popup"
             :handler="onConfirmDelete"
@@ -45,15 +51,17 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import SearchBox from '@/components/global/SearchBox';
 import Table from "./InvoicesTable";
 import Filters from "./InvoicesFilters";
+import {remove} from '@/repos/invoices'
+import SearchBox from '@/components/global/SearchBox';
 import RefreshIcon from "@/components/icons/RefreshIcon";
 import DeleteBox from "@/components/global/popups/DeleteBox";
-import {remove} from '@/repos/invoices'
+import CopyUrlBox from "@/components/global/popups/CopyUrlBox";
 
 export default {
     components: {
+        CopyUrlBox,
         DeleteBox,
         RefreshIcon,
         Filters,
@@ -63,7 +71,8 @@ export default {
     data() {
         return {
             delete_popup: false,
-            tobe_deleted_invoice: {}
+            tobe_deleted_invoice: {},
+            share_url: ''
         };
     },
     methods: {
@@ -85,6 +94,17 @@ export default {
         handleDeleteClose(){
             this.delete_popup = false;
             this.tobe_deleted_invoice = {};
+        },
+        handleShare(invoice) {
+            const data = {
+                type: 'invoice',
+                _id: invoice.id
+            }
+            let route = this.$router.resolve({path: '/invoice/'+ btoa(JSON.stringify(data))});
+            this.share_url = window.location.hostname + route.href;
+        },
+        handleShareClose() {
+            this.share_url = ''
         },
         onConfirmDelete(){
             this.$store.commit('invoices/setLoading', {loading: true})

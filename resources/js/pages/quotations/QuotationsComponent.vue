@@ -99,10 +99,10 @@ export default {
         handleShare(quotation) {
             const data = {
                 type: 'quotation',
-                id: quotation.id
+                _id: quotation.id
             }
-
-            this.share_url = 'www.hishabguru.com/share?q=' + btoa(JSON.stringify(data));
+            let route = this.$router.resolve({path: '/quotation/'+ btoa(JSON.stringify(data))});
+            this.share_url = window.location.hostname + route.href;
         },
         handleShareClose() {
             this.share_url = ''

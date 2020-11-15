@@ -24,27 +24,27 @@
             </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
+            <tr v-for="(product, index) in $props.products" :key="index">
                 <td class="px-6 py-4 whitespace-no-wrap text-sm text-gray-900">
                     <div class="flex flex-col">
-                        A really long name with is normal
+                        {{ product.name }}
                     </div>
-                    <span class="text-gray-700 text-sm">#12456</span>
+                    <span class="text-gray-700 text-sm">#{{ product.code }}</span>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm text-gray-900">
-                    5
+                    {{ product.quantity }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm text-gray-900">
-                    11,500
+                    {{ product.price }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm text-gray-900">
-                    15%
+                    {{ product.tax_rate }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm text-gray-900">
-
+                    {{ product.discount }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm text-gray-900">
-                    15,000
+                    {{ product.total }}
                 </td>
             </tr>
             </tbody>
@@ -55,7 +55,10 @@
 
 <script>
 export default {
-    name: "QuotationItems"
+    name: "QuotationItems",
+    props: {
+        products: Array | Object
+    }
 }
 </script>
 

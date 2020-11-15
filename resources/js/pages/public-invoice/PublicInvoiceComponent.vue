@@ -30,8 +30,8 @@
                         <div class="grid grid-cols-3 border-t pt-2 mt-2">
                             <div class="col-span-1">
                                 <div class="pb-2">
-<!--                                    <img src="http://hg.test/images/logo.png" alt="logo" class="d-inline"-->
-<!--                                         style="width: 110px"/>-->
+                                    <!--                                    <img src="http://hg.test/images/logo.png" alt="logo" class="d-inline"-->
+                                    <!--                                         style="width: 110px"/>-->
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -60,7 +60,11 @@ export default {
     name: "PublicInvoiceComponent",
     components: {InvoiceItems, ClientBox, SupplierBox, HeaderActions},
     props: {
-        logo: String
+        logo: String,
+        tenant: Object | Array,
+        client: Object | Array,
+        invoice: Object | Array,
+        items: Object | Array,
     },
 }
 </script>

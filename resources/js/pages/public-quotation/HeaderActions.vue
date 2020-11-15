@@ -1,14 +1,20 @@
 <template>
     <div class="flex flex-row justify-content-between -mx-2">
         <div>
-            <button class="button is-info tracking-wider uppercase font-medium is-small">
+            <button class="button is-info tracking-wider uppercase font-medium is-small"
+                    @click="handleAccept"
+                    v-if="show_accept_action"
+            >
                 Accept
             </button>
-            <button class="button is-danger tracking-wider uppercase font-medium is-outlined is-small">
+            <button class="button is-danger tracking-wider uppercase font-medium is-outlined is-small"
+                    @click="handleDecline"
+                    v-if="show_decline_action"
+            >
                 Decline
             </button>
         </div>
-        <button class="button is-light is-small">
+        <button class="button is-light is-small" @click="handlePrint">
             <svg class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -28,7 +34,31 @@
 
 <script>
 export default {
-    name: "HeaderActions"
+    name: "HeaderActions",
+    props: {
+        quotation: Array | Object,
+    },
+    computed: {
+        show_accept_action() {
+            const STATUSES = ['open', 'accepted','declined']
+            return _.indexOf(STATUSES, this.$props.quotation.status) !== -1
+        },
+        show_decline_action() {
+            const STATUSES = ['open']
+            return _.indexOf(STATUSES, this.$props.quotation.status) !== -1
+        },
+    },
+    methods: {
+        handleAccept() {
+
+        },
+        handleDecline() {
+
+        },
+        handlePrint() {
+
+        }
+    }
 }
 </script>
 
