@@ -26,7 +26,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/lookup/suppliers', 'Lookup\SupplierLookupController@index');
     Route::get('/lookup/products', 'Lookup\ProductLookupController@index');
     Route::get('/lookup/product-categories', 'Lookup\ProductLookupController@categories');
-    Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
     Route::get('/generate-number/{type}', 'Tenancy\ReferenceNumberGenerateController@generate');
     Route::get('/client-statistics/{id}/{type}', 'Statistics\ClientStatsController@show');
     Route::get('/supplier-statistics/{id}/{type}', 'Statistics\SupplierStatsController@show');
@@ -42,4 +41,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::patch('/status/{type}/{id}', 'Status\UpdateStatusController@update');
 });
 
+Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
 
+Route::post('/quotation/{id}', 'PublicDoc\QuotationController@update');
+Route::post('/invoice/{id}', 'PublicDoc\InvoiceController@update');

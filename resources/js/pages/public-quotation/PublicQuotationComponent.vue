@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-span-2 pt-10 mt-5">
                     <div class="box">
-                        <HeaderActions :quotation="quotation" class="-mt-2"/>
+                        <HeaderActions :quotation="quotation" @on-update="handleUpdate" class="-mt-2"/>
                         <div class="grid grid-cols-3 border-t pt-2 mt-2">
                             <div class="col-span-1">
                                 <div class="pb-2">
@@ -85,6 +85,11 @@ export default {
         this.quotation = JSON.parse(this.$props.quotation_)
         this.products = JSON.parse(this.$props.products_)
         this.issued_by = JSON.parse(this.$props.issued_by_)
+    },
+    methods: {
+        handleUpdate(data) {
+            this.quotation = {...this.quotation, ...data}
+        }
     }
 }
 </script>

@@ -1,25 +1,25 @@
 <template>
     <div class="flex flex-row-reverse">
         <div>
-<!--            <b-dropdown aria-role="list">-->
-<!--                <button class="button is-light is-small" slot="trigger" slot-scope="{ active }">-->
-<!--                    <span>Actions</span>-->
-<!--                    <svg v-if="active" class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
-<!--                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                        <path d="M4 16L12 8L20 16" stroke="#000" stroke-width="1.5" stroke-linecap="round"-->
-<!--                              stroke-linejoin="round"></path>-->
-<!--                    </svg>-->
-<!--                    <svg v-else class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
-<!--                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                        <path d="M4 8L12 16L20 8" stroke="#000" stroke-width="1.5" stroke-linecap="round"-->
-<!--                              stroke-linejoin="round"></path>-->
-<!--                    </svg>-->
-<!--                </button>-->
+            <!--            <b-dropdown aria-role="list">-->
+            <!--                <button class="button is-light is-small" slot="trigger" slot-scope="{ active }">-->
+            <!--                    <span>Actions</span>-->
+            <!--                    <svg v-if="active" class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+            <!--                         xmlns="http://www.w3.org/2000/svg">-->
+            <!--                        <path d="M4 16L12 8L20 16" stroke="#000" stroke-width="1.5" stroke-linecap="round"-->
+            <!--                              stroke-linejoin="round"></path>-->
+            <!--                    </svg>-->
+            <!--                    <svg v-else class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+            <!--                         xmlns="http://www.w3.org/2000/svg">-->
+            <!--                        <path d="M4 8L12 16L20 8" stroke="#000" stroke-width="1.5" stroke-linecap="round"-->
+            <!--                              stroke-linejoin="round"></path>-->
+            <!--                    </svg>-->
+            <!--                </button>-->
 
-<!--                <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>-->
-<!--                <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>-->
-<!--                <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>-->
-<!--            </b-dropdown>-->
+            <!--                <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>-->
+            <!--                <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>-->
+            <!--                <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>-->
+            <!--            </b-dropdown>-->
             <button class="button is-light is-small">
                 <svg class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
@@ -41,10 +41,86 @@
 
 <script>
 export default {
-    name: "HeaderActions"
+    name: "HeaderActions",
+    props: {
+        invoice: Array | Object,
+    },
+    data() {
+        return {
+            loading: false,
+            downloading: false,
+        }
+    },
+    computed: {
+        show_accept_action() {
+            const STATUSES = ['open', 'declined']
+            return _.indexOf(STATUSES, this.$props.invoice.status) !== -1
+        },
+        show_decline_action() {
+            const STATUSES = ['open']
+            return _.indexOf(STATUSES, this.$props.invoice.status) !== -1
+        },
+    },
+    methods: {
+        handlePrint() {
+            this.downloading = true
+            axios
+                .request({
+                    url: '/print/invoice/' + this.$props.invoice._id,
+                    method: 'GET',
+                    responseType: 'blob',
+                })
+                .then(({data}) => {
+                    this.downloading = false
+                    const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.setAttribute('download', 'invoice' + this.$props.invoice.invoice_number + '.pdf');
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                })
+                .catch(err => {
+                    this.downloading = false
+                    this.$buefy.snackbar.open({
+                        duration: 5000,
+                        message: 'Whoops! Download Failed. Please try again.',
+                        type: 'is-danger',
+                        position: 'is-top-right',
+                        actionText: 'Ok',
+                    })
+                });
+        },
+        updateStatus(status) {
+            const verb = status === 'declined' ? 'decline' : 'accept'
+            this.$buefy.dialog.confirm({
+                message: 'Are you sure, you want to ' + verb + ' the invoice?',
+                type: status === 'declined' ? 'is-danger' : 'is-success',
+                onConfirm: () => {
+                    this.loading = true
+                    axios
+                        .post('/invoice/' + this.$props.quotation._id, {
+                            status: status
+                        })
+                        .then(({data}) => {
+                            this.$emit('on-update', {status: status})
+                            this.loading = false
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            this.loading = false
+                        })
+                }
+            })
+
+        }
+    }
 }
 </script>
 
-<style scoped>
-
+<style>
+.modal-card-body .is-titleless,
+.modal-card-foot {
+    padding: 10px 15px;
+}
 </style>

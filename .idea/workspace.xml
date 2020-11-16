@@ -16,19 +16,11 @@
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PublicDoc/QuotationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PublicDoc/QuotationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/invoices/InvoicesTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/public-invoice/InvoiceItems.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-invoice/InvoiceItems.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/public-invoice/PublicInvoiceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-invoice/PublicInvoiceComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/public-quotation/ClientBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-quotation/ClientBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/public-invoice/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-invoice/HeaderActions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/public-quotation/HeaderActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-quotation/HeaderActions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/pages/public-quotation/PublicQuotationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-quotation/PublicQuotationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/public-quotation/QuotationItems.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-quotation/QuotationItems.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/public-quotation/SupplierBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/public-quotation/SupplierBox.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/quotations/QuotationsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/guest/invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guest/invoice.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/guest/quotation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guest/quotation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/public-quotation.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/public-quotation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -573,7 +565,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -871,7 +863,10 @@
       <workItem from="1605268968239" duration="3160000" />
       <workItem from="1605308193243" duration="22825000" />
       <workItem from="1605358900172" duration="6910000" />
-      <workItem from="1605397840168" duration="14476000" />
+      <workItem from="1605397840168" duration="14595000" />
+      <workItem from="1605478133283" duration="631000" />
+      <workItem from="1605478884056" duration="612000" />
+      <workItem from="1605511105091" duration="3832000" />
     </task>
     <servers />
   </component>
@@ -1004,10 +999,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2661" y="455" width="437" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602310833946" />
-    <state width="600" height="428" key="javadoc.popup" timestamp="1604966199142">
+    <state width="600" height="428" key="javadoc.popup" timestamp="1605531553480">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="600" height="428" key="javadoc.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604966199142" />
+    <state width="600" height="428" key="javadoc.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605531553480" />
     <state x="2544" y="224" width="699" height="695" key="run.anything.popup" timestamp="1605360864833">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -1017,14 +1012,14 @@
     <state x="4464" y="224" width="699" height="695" key="run.anything.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1600331442308" />
     <state x="673" y="245" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1599910741580" />
     <state x="1921" y="245" width="2071" height="678" key="run.anything.popup/72.27.5688.1053@72.27.5688.1053" timestamp="1601304767760" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1605424723624">
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup" timestamp="1605531442285">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="610" y="259" width="699" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@0.27.1920.1053" timestamp="1599388011533" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080/3840.0.1920.1080@1920.0.1920.1080" timestamp="1604368707854" />
     <state x="2530" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600955257537" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600949352422" />
-    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605424723624" />
+    <state x="2530" y="238" width="699" height="516" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605531442285" />
     <state x="4450" y="238" width="699" height="696" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@3840.0.1920.1080" timestamp="1601365686681" />
     <state x="659" y="259" width="673" height="679" key="search.everywhere.popup/72.27.1848.1053/3840.0.1920.1080/1920.0.1920.1080@72.27.1848.1053" timestamp="1604751893048" />
     <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1605042959690" />

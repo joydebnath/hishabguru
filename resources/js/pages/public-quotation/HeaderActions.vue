@@ -2,14 +2,16 @@
     <div class="flex flex-row justify-content-between -mx-2">
         <div>
             <button class="button is-info tracking-wider uppercase font-medium is-small"
-                    @click="handleAccept"
+                    @click="() => updateStatus('accepted')"
                     v-if="show_accept_action"
+                    :disabled="loading"
             >
                 Accept
             </button>
             <button class="button is-danger tracking-wider uppercase font-medium is-outlined is-small"
-                    @click="handleDecline"
+                    @click="() => updateStatus('declined')"
                     v-if="show_decline_action"
+                    :disabled="loading"
             >
                 Decline
             </button>
@@ -38,9 +40,15 @@ export default {
     props: {
         quotation: Array | Object,
     },
+    data() {
+        return {
+            loading: false,
+            downloading: false,
+        }
+    },
     computed: {
         show_accept_action() {
-            const STATUSES = ['open', 'accepted','declined']
+            const STATUSES = ['open', 'declined']
             return _.indexOf(STATUSES, this.$props.quotation.status) !== -1
         },
         show_decline_action() {
@@ -49,16 +57,64 @@ export default {
         },
     },
     methods: {
-        handleAccept() {
-
-        },
-        handleDecline() {
-
-        },
         handlePrint() {
-
+            this.downloading = true
+            axios
+                .request({
+                    url: '/print/quotation/' + this.$props.quotation._id,
+                    method: 'GET',
+                    responseType: 'blob',
+                })
+                .then(({data}) => {
+                    this.downloading = false
+                    const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.setAttribute('download', 'quotation' + this.$props.quotation.quotation_number + '.pdf');
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                })
+                .catch(err => {
+                    this.downloading = false
+                    this.$buefy.snackbar.open({
+                        duration: 5000,
+                        message: 'Whoops! Download Failed. Please try again.',
+                        type: 'is-danger',
+                        position: 'is-top-right',
+                        actionText: 'Ok',
+                    })
+                });
+        },
+        updateStatus(status) {
+            const verb = status === 'declined' ? 'decline' : 'accept'
+            this.$buefy.dialog.confirm({
+                message: 'Are you sure, you want to ' + verb + ' the quotation?',
+                type: status === 'declined' ? 'is-danger' : 'is-success',
+                onConfirm: () => {
+                    this.loading = true
+                    axios
+                        .post('/quotation/' + this.$props.quotation._id, {
+                            status: status
+                        })
+                        .then(({data}) => {
+                            this.$emit('on-update', {status: status})
+                            this.loading = false
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            this.loading = false
+                        })
+                }
+            })
         }
     }
 }
 </script>
 
+<style>
+.modal-card-body .is-titleless,
+.modal-card-foot {
+    padding: 10px 15px;
+}
+</style>

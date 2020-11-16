@@ -41,6 +41,16 @@ class QuotationController extends Controller
 
     public function update(Request $request, $quotationId)
     {
+        try {
+            Quotation::find($quotationId)->update(
+                [
+                    'status' => $request->status
+                ]
+            );
 
+            return response(['message' => 'status updated '.$quotationId], 201);
+        } catch (\Exception $exception) {
+            return response(['error' => $exception->getMessage()], 500);
+        }
     }
 }
