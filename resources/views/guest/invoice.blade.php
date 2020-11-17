@@ -34,7 +34,7 @@
         currency="{{$currency}}"
         from_="{{$from}}"
         for_="{{$for}}"
-        invoice="{{$invoice}}"
+        invoice_="{{$invoice}}"
         products_="{{$products}}"
         issued_by_="{{$issued_by}}"
     />

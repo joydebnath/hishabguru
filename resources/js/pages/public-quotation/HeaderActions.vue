@@ -16,7 +16,7 @@
                 Decline
             </button>
         </div>
-        <button class="button is-light is-small" @click="handlePrint">
+        <button class="button is-light is-small" @click="handlePrint" :disabled="downloading">
             <svg class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <path

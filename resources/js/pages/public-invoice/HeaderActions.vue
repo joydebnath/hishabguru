@@ -20,7 +20,7 @@
             <!--                <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>-->
             <!--                <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>-->
             <!--            </b-dropdown>-->
-            <button class="button is-light is-small">
+            <button class="button is-light is-small" @click="handlePrint" :disabled="downloading">
                 <svg class="h-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -50,16 +50,6 @@ export default {
             loading: false,
             downloading: false,
         }
-    },
-    computed: {
-        show_accept_action() {
-            const STATUSES = ['open', 'declined']
-            return _.indexOf(STATUSES, this.$props.invoice.status) !== -1
-        },
-        show_decline_action() {
-            const STATUSES = ['open']
-            return _.indexOf(STATUSES, this.$props.invoice.status) !== -1
-        },
     },
     methods: {
         handlePrint() {
@@ -91,29 +81,6 @@ export default {
                     })
                 });
         },
-        updateStatus(status) {
-            const verb = status === 'declined' ? 'decline' : 'accept'
-            this.$buefy.dialog.confirm({
-                message: 'Are you sure, you want to ' + verb + ' the invoice?',
-                type: status === 'declined' ? 'is-danger' : 'is-success',
-                onConfirm: () => {
-                    this.loading = true
-                    axios
-                        .post('/invoice/' + this.$props.quotation._id, {
-                            status: status
-                        })
-                        .then(({data}) => {
-                            this.$emit('on-update', {status: status})
-                            this.loading = false
-                        })
-                        .catch(err => {
-                            console.log(err)
-                            this.loading = false
-                        })
-                }
-            })
-
-        }
     }
 }
 </script>
