@@ -10,16 +10,17 @@ use App\Http\Resources\Expense\BillCollection;
 use App\Http\Resources\Expense\BillFullResource;
 use App\Models\Bill;
 use App\Http\Resources\Expense\Bill as BillResource;
+use App\Services\Expense\BillService;
 use App\Services\Payment\CreditRecordService;
 use Exception;
 
 class BillsController extends Controller
 {
-    protected $creditRecordService;
+    protected $service, $creditRecordService;
 
-    public function __construct(CreditRecordService $creditRecordService)
+    public function __construct(BillService $service)
     {
-        $this->creditRecordService = $creditRecordService;
+        $this->service = $service;
     }
 
     public function index(BillFilter $filters)
@@ -36,21 +37,7 @@ class BillsController extends Controller
     public function store(BillRequest $request)
     {
         try {
-            $storable = $this->getFillable($request);
-            if ($request->status !== 'draft') {
-                $storable['total_due'] = $request->total_amount;
-            }
-            $bill = Bill::create($storable);
-
-            foreach ($request->products as $product) {
-                $bill->products()->attach($product['id'], [
-                    'quantity' => intval($product['quantity']),
-                    'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'description' => $product['description'] ? $product['description'] : null,
-                    'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total_buying_cost']),
-                ]);
-            }
+            $bill = $this->service->create($request);
 
             return new BillResource($bill->load('contact'));
         } catch (Exception $exception) {
@@ -71,21 +58,7 @@ class BillsController extends Controller
     public function update(BillRequest $request, Bill $bill)
     {
         try {
-            $storable = $this->getFillable($request);
-            $bill->update($storable);
-
-            $syncable = [];
-            foreach ($request->products as $product) {
-                $syncable[$product['id']] = [
-                    'quantity' => intval($product['quantity']),
-                    'buying_unit_cost' => doubleval($product['buying_unit_cost']),
-                    'description' => $product['description'] ? $product['description'] : null,
-                    'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total_buying_cost']),
-                ];
-            }
-            $bill->products()->sync($syncable);
-            $this->updateTotalDue($bill, $bill->payable);
+            $this->service->update($request, $bill);
 
             return new BillResource($bill->load('contact'));
         } catch (Exception $exception) {
@@ -101,24 +74,5 @@ class BillsController extends Controller
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
-    }
-
-    private function getFillable(BillRequest $request): array
-    {
-        $fillable = $request->validated();
-        unset($fillable['products']);
-        return $fillable;
-    }
-
-    private function updateTotalDue(Bill $bill, $paymentHistories): void
-    {
-        $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
-
-        $bill->update([
-            'total_due' => abs($bill->total_amount - $totalPaid),
-            'status' => $totalPaid >= $bill->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE
-        ]);
-
-        $this->creditRecordService->updateSupplierCreditRecord($bill);
     }
 }

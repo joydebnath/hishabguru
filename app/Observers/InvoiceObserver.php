@@ -23,7 +23,6 @@ class InvoiceObserver
     {
         $this->updateOrCreateSellsTimeSeriesStats($invoice);
         $this->updateOrCreateProfitTimeSeriesStats($invoice);
-        $this->updateContactCreditRecord($invoice);
     }
 
     /**

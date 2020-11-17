@@ -10,16 +10,17 @@ use App\Http\Resources\Business\InvoiceCollection;
 use App\Http\Resources\Business\InvoiceFullResource;
 use App\Models\Invoice;
 use App\Http\Resources\Business\Invoice as InvoiceResource;
+use App\Services\Business\InvoiceService;
 use App\Services\Payment\CreditRecordService;
 use Exception;
 
 class InvoicesController extends Controller
 {
-    protected $creditRecordService;
+    protected $service;
 
-    public function __construct(CreditRecordService $creditRecordService)
+    public function __construct(InvoiceService $service)
     {
-        $this->creditRecordService = $creditRecordService;
+        $this->service = $service;
     }
 
     public function index(InvoiceFilter $filters)
@@ -36,21 +37,7 @@ class InvoicesController extends Controller
     public function store(InvoiceRequest $request)
     {
         try {
-            $storable = $this->getFillable($request);
-            if ($request->status !== 'draft') {
-                $storable['total_due'] = $request->total_amount;
-            }
-            $invoice = Invoice::create($storable);
-
-            foreach ($request->products as $product) {
-                $invoice->products()->attach($product['id'], [
-                    'quantity' => intval($product['quantity']),
-                    'discount' => doubleval($product['discount']),
-                    'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total_selling_cost']),
-                ]);
-            }
-
+            $invoice = $this->service->create($request);
             return new InvoiceResource($invoice->load('contact'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
@@ -69,21 +56,7 @@ class InvoicesController extends Controller
     public function update(InvoiceRequest $request, Invoice $invoice)
     {
         try {
-            $storable = $this->getFillable($request);
-            $invoice->update($storable);
-
-            $syncable = [];
-            foreach ($request->products as $product) {
-                $syncable[$product['id']] = [
-                    'quantity' => intval($product['quantity']),
-                    'discount' => doubleval($product['discount']),
-                    'tax_rate' => doubleval($product['tax_rate']),
-                    'total' => doubleval($product['total_selling_cost']),
-                ];
-            }
-            $invoice->products()->sync($syncable);
-            $this->updateTotalDue($invoice, $invoice->payable);
-
+            $this->service->update($request, $invoice);
             return new InvoiceResource($invoice->load('contact'));
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
@@ -98,28 +71,5 @@ class InvoicesController extends Controller
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
         }
-    }
-
-    private function getFillable(InvoiceRequest $request): array
-    {
-        $fillable = $request->validated();
-        unset($fillable['products']);
-        return $fillable;
-    }
-
-    private function updateTotalDue(Invoice $invoice, $paymentHistories): void
-    {
-        $totalPaid = $paymentHistories ? collect($paymentHistories)->sum('amount') : 0;
-        $updatable = [
-            'total_due' => abs($invoice->total_amount - $totalPaid)
-        ];
-
-        if ($invoice->status === PaymentStatus::DUE) {
-            $updatable['status'] = $totalPaid >= $invoice->total_amount ? PaymentStatus::PAID : PaymentStatus::DUE;
-        }
-
-        $invoice->update($updatable);
-
-        $this->creditRecordService->updateClientCreditRecord($invoice);
     }
 }
