@@ -2,12 +2,14 @@
 
 namespace App\Services\Business;
 
+use App\Enums\Business\InvoiceStatus;
 use App\Enums\Status\PaymentStatus;
 use App\Http\Requests\Business\InvoiceRequest;
 use App\Models\Invoice;
 use App\Services\Payment\CreditRecordService;
 
-class InvoiceService {
+class InvoiceService
+{
     public function create(InvoiceRequest $request)
     {
         $storable = $this->getFillable($request);
@@ -29,7 +31,7 @@ class InvoiceService {
         return $invoice;
     }
 
-    public function update(InvoiceRequest $request,Invoice $invoice)
+    public function update(InvoiceRequest $request, Invoice $invoice)
     {
         $storable = $this->getFillable($request);
         $invoice->update($storable);
@@ -71,9 +73,14 @@ class InvoiceService {
         (new CreditRecordService)->updateClientCreditRecord($invoice);
     }
 
-    private function updateProductQuantity()
+    private function updateProductQuantity(Invoice $invoice, $newStatus)
     {
         //if old status is draft and new status is due or paid
         //update the quantities of all products
+        if ($invoice->status === 'draft' && (in_array($newStatus, [InvoiceStatus::PAID, InvoiceStatus::DUE]))) {
+            foreach ($invoice->products as $product){
+
+            }
+        }
     }
 }

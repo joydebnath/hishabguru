@@ -13,10 +13,10 @@ class CreateTenantSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tenant_subscriptions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+//        Schema::create('tenant_subscriptions', function (Blueprint $table) {
+//            $table->id();
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -26,6 +26,6 @@ class CreateTenantSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tenant_subscriptions');
+//        Schema::dropIfExists('tenant_subscriptions');
     }
 }
