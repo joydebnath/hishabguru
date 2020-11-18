@@ -28,6 +28,8 @@ class InvoiceService
             ]);
         }
 
+        $this->updateProductQuantity($invoice);
+
         return $invoice;
     }
 
@@ -73,13 +75,16 @@ class InvoiceService
         (new CreditRecordService)->updateClientCreditRecord($invoice);
     }
 
-    private function updateProductQuantity(Invoice $invoice, $newStatus)
+    private function updateProductQuantity(Invoice $invoice)
     {
-        //if old status is draft and new status is due or paid
-        //update the quantities of all products
-        if ($invoice->status === 'draft' && (in_array($newStatus, [InvoiceStatus::PAID, InvoiceStatus::DUE]))) {
-            foreach ($invoice->products as $product){
-
+        if ((in_array($invoice->status, [InvoiceStatus::PAID, InvoiceStatus::DUE]))) {
+            $products = $invoice->products;
+            foreach ($products as $product) {
+                if ($product->quantity > 0) {
+                    $product->update([
+                        'quantity' => $product->quantity - $product->pivot->quantity
+                    ]);
+                }
             }
         }
     }

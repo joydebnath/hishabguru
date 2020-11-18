@@ -50,8 +50,7 @@ class OrderBuilder implements PDFBuilder
 
         if ($this->order->tenant->imageable) {
             $source = $this->order->tenant->imageable->source;
-            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
-//            $this->pdfBuilder->logo($source);
+            $this->pdfBuilder->logo($source);
         }
     }
 

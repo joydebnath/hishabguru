@@ -89,6 +89,7 @@ export default {
             formData.append("image", this.image);
             formData.append("imageable_type", 'tenants');
             formData.append("imageable_id", this.tenant_id);
+            this.$emit('on-loading',true)
             axios
                 .post('/upload/image', formData, {
                     headers: {
@@ -96,10 +97,12 @@ export default {
                     }
                 })
                 .then(({data}) => {
+                    this.$emit('on-loading',false)
                     this.image = null
                     this.image_data = data.logo
                 })
                 .catch(err => {
+                    this.$emit('on-loading',false)
                     console.log(err)
                 })
         },

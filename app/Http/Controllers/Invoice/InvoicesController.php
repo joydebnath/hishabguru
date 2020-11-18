@@ -72,4 +72,10 @@ class InvoicesController extends Controller
             return response(['message' => $exception->getMessage()], 500);
         }
     }
+
+    public function destroyProduct($invoiceId, $productId)
+    {
+        $invoice = Invoice::find($invoiceId)->products()->wherePivot('product_id', $productId)->first();
+        return $invoice;
+    }
 }

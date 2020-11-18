@@ -58,8 +58,7 @@ class PurchaseBuilder implements PDFBuilder
 
         if ($this->purchase->tenant->imageable) {
             $source = $this->purchase->tenant->imageable->source;
-            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
-//            $this->pdfBuilder->logo($source);
+            $this->pdfBuilder->logo($source);
         }
     }
 

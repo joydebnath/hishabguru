@@ -49,8 +49,7 @@ class BillBuilder implements PDFBuilder
 
         if ($this->bill->tenant->imageable) {
             $source = $this->bill->tenant->imageable->source;
-            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
-//            $this->pdfBuilder->logo($source);
+            $this->pdfBuilder->logo($source);
         }
     }
 

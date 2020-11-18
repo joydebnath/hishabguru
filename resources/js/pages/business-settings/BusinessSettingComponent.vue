@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-6xl m-auto w-full">
         <b-loading :is-full-page="true" v-model="loading" :can-cancel="false"></b-loading>
-        <BusinessLogo :logo="logo" :loading="loading" @on-update="handleUpdateLogo"/>
+        <BusinessLogo :logo="logo" :loading="loading" @on-update="handleUpdateLogo" @on-loading="handleLoading"/>
         <BusinessDetails :fields="business_details" @on-update="handleBusinessDetails"/>
         <ContactDetails :fields="contact_details" @on-update="handleContactDetails"/>
         <OperationDetails :fields="operation_details" @on-update="handleOperationDetails"/>
@@ -63,6 +63,9 @@ export default {
         },
         handleOperationDetails(data) {
             this.operation_details = data;
+        },
+        handleLoading(value) {
+            this.loading = value
         }
     }
 }

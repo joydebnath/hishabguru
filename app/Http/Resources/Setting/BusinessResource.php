@@ -17,7 +17,7 @@ class BusinessResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'logo' => $this->imageable ? '/'.collect($this->imageable)->get('source') : '',
+            'logo' => $this->imageable ? collect($this->imageable)->get('source') : '',
             'business_details' => [
                 'name' => $this->name,
                 'business_type' => $this->business_type,

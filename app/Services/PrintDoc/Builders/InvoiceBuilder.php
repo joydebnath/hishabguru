@@ -50,8 +50,7 @@ class InvoiceBuilder implements PDFBuilder
 
         if ($this->invoice->tenant->imageable) {
             $source = $this->invoice->tenant->imageable->source;
-            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
-//            $this->pdfBuilder->logo($source);
+            $this->pdfBuilder->logo($source);
         }
     }
 

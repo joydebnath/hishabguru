@@ -11,7 +11,7 @@ class ImageUploadService
     {
         $name = !is_null($filename) ? $filename : Str::random(25);
 
-        $file = $uploadedFile->storeAs($folder, $name, $disk);
+        $file = $uploadedFile->storePubliclyAs($folder, $name, $disk);
 
         return $file;
     }

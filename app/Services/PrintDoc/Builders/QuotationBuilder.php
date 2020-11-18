@@ -49,8 +49,7 @@ class QuotationBuilder implements PDFBuilder
 
         if ($this->quotation->tenant->imageable) {
             $source = $this->quotation->tenant->imageable->source;
-            $this->pdfBuilder->logo(storage_path('app/public/' . $source));
-//            $this->pdfBuilder->logo($source);
+            $this->pdfBuilder->logo($source);
         }
     }
 

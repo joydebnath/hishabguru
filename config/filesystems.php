@@ -54,25 +54,15 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
-        's3_file' => [
+        's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'token' => env('AWS_SESSION_TOKEN'),
-            'region' => env('AWS_US_E_OHIO_REGION','us-east-2'),
+            'region' => env('AWS_DEFAULT_REGION','ap-south-1'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
-        ],
-        's3_picture' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'token' => env('AWS_SESSION_TOKEN'),
-            'region' => env('AWS_ASIA_MUMBAI_REGION','ap-south-1'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+            'bucket_url' => env('AWS_BUCKET_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
     ],

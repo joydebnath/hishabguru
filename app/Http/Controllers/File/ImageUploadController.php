@@ -27,7 +27,7 @@ class ImageUploadController extends Controller
 
         $image = $request->file('image');
         $name = time() . 'business_' . $request->imageable_id . '_logo.' . $image->getClientOriginalExtension();
-        $path = $this->uploadService->uploadOne($image, '/uploads/images', 'public', $name);
+        $path = $this->uploadService->uploadOne($image, '/', 's3', $name);
 
         $imageable = Image::firstWhere(function ($query) use ($request) {
             $query
@@ -36,15 +36,16 @@ class ImageUploadController extends Controller
         });
 
         if (collect($imageable)->isNotEmpty()) {
-            Storage::disk('public')->delete($imageable->source);
-            $imageable->update(['source' => $path]);
+            Storage::disk('s3')->delete(basename($imageable->source));
+            $imageable->update(['source' => Storage::disk('s3')->url($path)]);
         } else {
             $imageable = Image::create([
                 'imageable_type' => $request->imageable_type,
                 'imageable_id' => $request->imageable_id,
-                'source' => $path
+                'source' => Storage::disk('s3')->url($path)
             ]);
-        };
-        return response(['logo' => '/' . collect($imageable->fresh())->get('source', '')]);
+        }
+
+        return response(['logo' => collect($imageable->fresh())->get('source', '')]);
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Services\Expense;
 
+use App\Enums\Business\InvoiceStatus;
 use App\Enums\Status\PaymentStatus;
 use App\Http\Requests\Expense\BillRequest;
 use App\Models\Bill;
 use App\Services\Payment\CreditRecordService;
 
-class BillService {
+class BillService
+{
     public function create(BillRequest $request)
     {
         $storable = $this->getFillable($request);
@@ -25,6 +27,8 @@ class BillService {
                 'total' => doubleval($product['total_buying_cost']),
             ]);
         }
+
+        $this->updateProductQuantity($bill);
 
         return $bill;
     }
@@ -68,9 +72,17 @@ class BillService {
         (new CreditRecordService)->updateSupplierCreditRecord($bill);
     }
 
-    private function updateProductQuantity()
+    private function updateProductQuantity(Bill $bill)
     {
-        //if old status is draft and new status is due or paid
-        //update the quantities of all products
+        if ((in_array($bill->status, [InvoiceStatus::PAID, InvoiceStatus::DUE]))) {
+            $products = $bill->products;
+            foreach ($products as $product) {
+                if ($product->quantity > 0) {
+                    $product->update([
+                        'quantity' => $product->quantity - $product->pivot->quantity
+                    ]);
+                }
+            }
+        }
     }
 }
