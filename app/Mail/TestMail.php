@@ -28,6 +28,7 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $url = '#';
+        return $this->markdown('emails.test',compact('url'));
     }
 }
