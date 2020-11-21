@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HishabGuru</title>
     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
 </head>
 <body class="antialiased">
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
     @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block" style="font-family: 'Raleway', sans-serif">
             <a href="{{ url('/') }}" class="text-sm text-gray-700">Home</a>
         </div>
     @endif
