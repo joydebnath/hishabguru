@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'GuestPageController@index');
+Route::get('/pricing', 'GuestPageController@index');
 Route::get('/almost-there', 'GuestPageController@welcome');
 Route::get('/is-void-account', 'GuestPageController@hasNoTenacy');
 Route::get('/print', 'PrintDoc\PrintController@publicAccess');

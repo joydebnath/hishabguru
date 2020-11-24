@@ -8,68 +8,32 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link rel="preload" href="{{asset('/images/logo.png')}}" as="image" media="(min-width: 100px)">
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-        </style>
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/@/dashboard') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Log In</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <img src="{{asset('images/logo.png')}}" style="width: 300px" alt="HishabGuru">
-            </div>
-        </div>
-    </body>
+<body>
+<div id="app">
+    <app
+        logo="{{asset('/images/logo.png')}}"
+        welcome_banner="{{asset('/images/welcome.png')}}"
+        svg_1="{{asset('/svg/1.svg')}}"
+        svg_2="{{asset('/svg/2.svg')}}"
+        svg_3="{{asset('/svg/3.svg')}}"
+        svg_4="{{asset('/svg/4.svg')}}"
+        svg_5="{{asset('/svg/5.svg')}}"
+        svg_6="{{asset('/svg/6.svg')}}"
+        svg_7="{{asset('/svg/7.svg')}}"
+    />
+</div>
+@auth
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+@endauth
+</body>
+<script src="{{ mix('js/welcome.js') }}"></script>
 </html>

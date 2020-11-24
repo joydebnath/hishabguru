@@ -37,6 +37,7 @@ if(mix.config.production){
 
 mix
     .js('resources/js/index.js', 'public/js')
+    .js('resources/js/welcome.js', 'public/js')
     .js('resources/js/setup-inventory.js', 'public/js')
     .js('resources/js/public-quotation.js', 'public/js')
     .js('resources/js/public-invoice.js', 'public/js')
