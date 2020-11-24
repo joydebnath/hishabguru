@@ -46,9 +46,9 @@ export default {
     data() {
         return {
             download_url_map: {
-                products: '#',
-                clients: '#',
-                suppliers: '#',
+                products: 'https://hg01.fra1.cdn.digitaloceanspaces.com/products.csv',
+                clients: 'https://hg01.fra1.cdn.digitaloceanspaces.com/clients.csv',
+                suppliers: 'https://hg01.fra1.digitaloceanspaces.com/suppliers.csv',
             }
         }
     },

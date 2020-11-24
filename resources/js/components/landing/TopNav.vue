@@ -27,6 +27,13 @@
                     Sign in
                 </button>
             </a>
+            <a href="https://shipright.community/hishabguru">
+                <button
+                    class="px-3 py-2 text-blue-500 tracking-wider rounded font-semibold mx-1  hover:bg-blue-500 focus:outline-none hover:text-white text-xs"
+                >
+                    Feature Request
+                </button>
+            </a>
             <router-link to="/pricing">
                 <button
                     class="px-3 py-2 border-blue-300 text-blue-500 text-sm tracking-wider mx-1 rounded font-semibold hover:bg-blue-500 focus:outline-none hover:text-white text-xs"
@@ -117,7 +124,17 @@
                 <!--                    </a>-->
                 <!--                </router-link>-->
                 <a
-                    href="https://app.hishabguru.com/login"
+                    href="https://shipright.community/hishabguru"
+                    class="p-2 flex items-start hover:bg-gray-50 mb-2"
+                >
+                    <div class="ml-4">
+                        <p class="text-base font-medium border-blue-300 text-blue-500 px-2">
+                            Feature Request
+                        </p>
+                    </div>
+                </a>
+                <a
+                    href="/login"
                     class="p-2 flex items-start hover:bg-gray-50 mb-2"
                 >
                     <div class="ml-4">
@@ -127,7 +144,7 @@
                     </div>
                 </a>
                 <a
-                    href="https://app.hishabguru.com/register"
+                    href="/register"
                     class="p-2 flex items-start hover:bg-gray-50 border-t"
                 >
                     <div class="ml-4 mt-1 flex flex-row justify-center w-full">

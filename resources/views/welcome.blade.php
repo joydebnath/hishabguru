@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'HishabGuru') }}</title>
-
+        <title>{{ config('app.name', 'HishabGuru') }} - Inventory & Account Manager for SME Bangladesh</title>
+        <meta name="description" content="HishabGuru helps online businesses to manage their inventory and accounts. We support your e-commerce business, so that you can focus on your business">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">

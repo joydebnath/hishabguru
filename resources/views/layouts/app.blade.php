@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>{{ config('app.name', 'HishabGuru') }} - Inventory & Account Manager for SME Bangladesh</title>
+    <meta name="description" content="HishabGuru helps online businesses to manage their inventory and accounts. We support your e-commerce business, so that you can focus on your business">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
