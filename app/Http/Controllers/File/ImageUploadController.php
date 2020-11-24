@@ -35,17 +35,24 @@ class ImageUploadController extends Controller
                 ->where('imageable_id', $request->imageable_id);
         });
 
+        $fullPath = $this->getImageFullPath($path);
+
         if (collect($imageable)->isNotEmpty()) {
             Storage::disk('s3')->delete(basename($imageable->source));
-            $imageable->update(['source' => Storage::disk('s3')->url($path)]);
+            $imageable->update(['source' => $fullPath]);
         } else {
-            $imageable = Image::create([
+            Image::create([
                 'imageable_type' => $request->imageable_type,
                 'imageable_id' => $request->imageable_id,
-                'source' => Storage::disk('s3')->url($path)
+                'source' => $fullPath
             ]);
         }
 
-        return response(['logo' => collect($imageable->fresh())->get('source', '')]);
+        return response(['logo' => $fullPath]);
+    }
+
+    private function getImageFullPath($path)
+    {
+        return 'https://' . config('filesystems.disks.s3.bucket') . '.' . config('filesystems.disks.s3.region') . '.' . Storage::disk('s3')->url($path);
     }
 }

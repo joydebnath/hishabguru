@@ -64,7 +64,6 @@ class InvoiceBuilder implements PDFBuilder
         if ($this->invoice->note) {
             $this->pdfBuilder->addMessage($this->invoice->note);
         }
-//        $this->pdfBuilder->addDeliveryDetails($deliveryDetails);
     }
 
     public function generatePDF()

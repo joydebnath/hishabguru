@@ -14,6 +14,6 @@ class TestController extends Controller
 {
     public function index()
     {
-        Mail::to(User::find(1))->send(new TestMail());
+//        Mail::to(User::find(1))->send(new TestMail());
     }
 }
