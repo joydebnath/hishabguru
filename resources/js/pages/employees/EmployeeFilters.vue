@@ -17,6 +17,23 @@
             </div>
             <span class="dropdown-divider"></span>
         </template>
+        <template>
+            <span class="heading font-semibold">
+                User System Role
+            </span>
+            <div class="grid grid-cols-2 gaps-4">
+                <b-checkbox
+                    v-for="option in roles_options"
+                    :key="option.value"
+                    :native-value="option.value"
+                    class="text-sm"
+                    v-model="filters.roles"
+                >
+                    {{ option.label }}
+                </b-checkbox>
+            </div>
+            <span class="dropdown-divider"></span>
+        </template>
     </FilterComponent>
 </template>
 
@@ -30,10 +47,16 @@ export default {
         return {
             filters: {
                 statuses: [],
+                roles: [],
             },
             status_options: [
                 {label: 'Yes', value: 'yes'},
                 {label: 'No', value: 'no'},
+            ],
+            roles_options: [
+                {label: 'Admin', value: 'admin'},
+                {label: 'Lead Sales Person', value: 'lead-sales'},
+                {label: 'Sales Person', value: 'sales'},
             ],
         }
     },
@@ -50,6 +73,7 @@ export default {
         resetFilters() {
             this.filters = {
                 statuses: [],
+                roles: []
             }
         },
     }

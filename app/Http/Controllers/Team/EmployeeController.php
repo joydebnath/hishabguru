@@ -6,6 +6,7 @@ use App\Enums\Address\AddressType;
 use App\Enums\Contact\ContactType;
 use App\Filters\Team\EmployeeFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Team\AssignRoleRequest;
 use App\Http\Requests\Team\EmployeeRequest;
 use App\Http\Resources\Team\Employee;
 use App\Http\Resources\Team\EmployeeCollection;
@@ -74,13 +75,22 @@ class EmployeeController extends Controller
         }
     }
 
-    public function destroy($contact)
+    public function destroy($contactId)
     {
         try {
-            Contact::find($contact)->delete();
+            Contact::find($contactId)->delete();
             return response(['message' => 'Employee is deleted!']);
         } catch (Exception $exception) {
             return response(['message' => $exception->getMessage()], 500);
+        }
+    }
+
+    public function assignRole(AssignRoleRequest $request, $contactId)
+    {
+        try {
+            Contact::find($contactId);
+        } catch (Exception $exception) {
+
         }
     }
 }

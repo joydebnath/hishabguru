@@ -37,7 +37,7 @@
             <h1
                 class="text-2xl robo font-semibold text-gray-700 tracking-wide text-center"
             >
-                What <span class="text-blue-500">We</span> can do for you?
+                What can <span class="text-blue-500">We</span> do for you?
             </h1>
             <RightServiceBox
                 image="/svg/2.svg"

@@ -22,7 +22,7 @@
             </b-field>
             <div class="border-b my-4"></div>
             <keep-alive>
-                <Table @on-edit="handleEdit" @on-delete="handleDelete"/>
+                <Table @on-edit="handleEdit" @on-delete="handleDelete" @on-assign="handleToggleAssignRole"/>
             </keep-alive>
         </div>
         <ItemCRUD
@@ -38,6 +38,11 @@
             :handler="onConfirmDelete"
             @on-close="handleDeleteClose"
         />
+        <AssignRole
+            :show="show_assign_modal"
+            :item="selected_employee"
+            @on-close="handleToggleAssignRole"
+        />
     </div>
 </template>
 <script>
@@ -48,9 +53,11 @@ import Filters from "./EmployeeFilters";
 import ItemCRUD from "./modals/ItemCRUD";
 import RefreshIcon from "@/components/icons/RefreshIcon";
 import DeleteBox from "@/components/global/popups/DeleteBox";
+import AssignRole from "./modals/AssignRole";
 
 export default {
     components: {
+        AssignRole,
         DeleteBox,
         RefreshIcon,
         Filters,
@@ -61,11 +68,13 @@ export default {
     data() {
         return {
             show_modal: false,
+            show_assign_modal: false,
             action_type: 'add',
             loading: false,
             employee: {},
             delete_popup: false,
-            tobe_deleted_employee: {}
+            tobe_deleted_employee: {},
+            selected_employee: {},
         };
     },
     methods: {
@@ -82,7 +91,7 @@ export default {
             })
             this.$store.dispatch('employees/loadData', {page: 1})
         },
-        handleRefresh(){
+        handleRefresh() {
             this.$store.dispatch('employees/loadData', {page: this.current_page})
         },
         handleAdd() {
@@ -138,6 +147,14 @@ export default {
         },
         handleToggleLoading(value) {
             this.loading = value
+        },
+        handleToggleAssignRole(value) {
+            if (value) {
+                this.selected_employee = value
+            } else {
+                this.selected_employee = {}
+            }
+            this.show_assign_modal = !this.show_assign_modal
         },
     },
     computed: {

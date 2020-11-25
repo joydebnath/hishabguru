@@ -39,7 +39,7 @@ class RolesSeeder extends Seeder
             'name' => 'Payroll Only',
             'slug' => 'payroll-only',
         ], [
-            'permissions' => json_encode(['payroll', 'timesheet', 'leave-management'])
+            'permissions' => json_encode([])
         ]);
     }
 }

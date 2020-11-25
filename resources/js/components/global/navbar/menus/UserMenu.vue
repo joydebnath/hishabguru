@@ -27,6 +27,11 @@
                 Settings
             </b-dropdown-item>
         </router-link>
+<!--        <router-link to="/@/subscriptions">-->
+<!--            <b-dropdown-item class="py-2" aria-role="listitem">-->
+<!--                Subscriptions-->
+<!--            </b-dropdown-item>-->
+<!--        </router-link>-->
         <hr class="dropdown-divider ">
         <small class="dropdown-header uppercase tracking-wider">Business Data</small>
         <router-link to="/@/import-data">

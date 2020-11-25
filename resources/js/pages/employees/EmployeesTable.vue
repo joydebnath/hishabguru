@@ -55,8 +55,8 @@
                 {{ props.row.currently_working }}
             </b-table-column>
 
-            <b-table-column label="Created" sortable field="created_at" v-slot="props" header-class="text-sm" cell-class="text-sm">
-                {{ props.row.created_at }}
+            <b-table-column label="Role" sortable field="created_at" v-slot="props" header-class="text-sm" cell-class="text-sm">
+                {{ props.row.system_role }}
             </b-table-column>
 
             <b-table-column v-slot="props">
@@ -65,6 +65,7 @@
                         <b-button class="px-2 rounded" size="is-small" icon-left="dots-vertical text-lg"
                                   slot="trigger"/>
                         <b-dropdown-item aria-role="listitem" @click="$emit('on-edit',props.row)">Edit</b-dropdown-item>
+                        <b-dropdown-item aria-role="listitem" @click="$emit('on-assign',props.row)">Assign Role</b-dropdown-item>
                         <hr class="dropdown-divider">
                         <b-dropdown-item aria-role="listitem" class="text-red-600"
                                          @click="$emit('on-delete', props.row)">Delete
