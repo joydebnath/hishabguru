@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::patch('/change-password', 'User\UserController@update');
     Route::patch('/status/{type}/{id}', 'Status\UpdateStatusController@update');
-    Route::patch('/employees/{id}/assign-role', 'Team\EmployeeController@assignRole');
+    Route::patch('/employees/{id}/assign-role', 'Team\AssignRoleController@update');
 });
 
 Route::get('/print/{type}/{id}', 'PrintDoc\PrintController@show');
