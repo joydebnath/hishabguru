@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\Address\Addressable;
 use App\Enums\Address\AddressType;
 use App\Enums\Contact\ContactDetailsType;
-use App\Enums\EmployeeDetailsType;
 use App\Enums\Payment\CreditRecordType;
 use App\Traits\Contact\Employable;
 use App\Traits\Filterable;
@@ -64,6 +63,11 @@ class Contact extends Model
     public function parent_contacts(): BelongsToMany
     {
         return $this->belongsToMany(Contact::class, 'contact_contacts', 'child_contact_id', 'parent_contact_id')->withTimestamps();
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'contact_users')->withTimestamps();
     }
 
     public function invoices(): HasMany

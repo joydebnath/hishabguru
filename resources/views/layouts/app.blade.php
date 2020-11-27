@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'HishabGuru') }} - Inventory & Account Manager for SME Bangladesh</title>
-    <meta name="description" content="HishabGuru helps online businesses to manage their inventory and accounts. We support your e-commerce business, so that you can focus on your business">
+    <meta name="description"
+          content="HishabGuru helps online businesses to manage their inventory and accounts. We support your e-commerce business, so that you can focus on your business">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -18,7 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/buefy.css') }}" rel="stylesheet">
@@ -60,14 +61,26 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a href="/login">
+                                    <button
+                                        class="px-3 py-2 text-blue-500 tracking-wider rounded font-semibold mx-1  hover:bg-blue-500 focus:outline-none hover:text-white text-xs"
+                                    >
+                                        Sign in
+                                    </button>
+                                </a>
                             </li>
                         @endif
+                        <li class="nav-item">
+                            <a href="/register">
+                                <button
+                                    class="px-3 py-2 border-blue-300 text-blue-500 tracking-wider rounded font-semibold mx-1 border hover:bg-blue-500 focus:outline-none hover:text-white text-xs"
+                                >
+                                    Sign up
+                                </button>
+                            </a>
+                        </li>
                     @endguest
                 </ul>
             </div>

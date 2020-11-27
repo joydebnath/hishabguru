@@ -117,7 +117,24 @@
                             </small>
                             @enderror
                         </div>
-
+                        @if(config('hishabguru.signup_require_promo_code'))
+                            <label for="confirm_password"
+                                   class="block text-sm font-medium text-gray-700 tracking-wide">{{ __('Promo Code') }}</label>
+                            <div class="mt-1 mb-4 relative rounded-md">
+                                <input
+                                    class="block w-full px-2 focus:outline-none focus:ring focus:border-blue-300 text-sm shadow-sm py-2 border border-gray-300 @error('password') border-red-600 @enderror rounded-sm"
+                                    type="text"
+                                    id="promo"
+                                    name="promo_code"
+                                    placeholder="Promo Code"
+                                >
+                                @error('promo_code')
+                                <small class="text-red-700">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                                @enderror
+                            </div>
+                        @endif
                         <div class="mt-2 relative flex flex-row items-center">
                             <button type="submit"
                                     class="border border-blue-400 py-2 text-white bg-blue-400 hover:bg-blue-500 hover:border-blue-500 focus:bg-blue-500 focus:border-blue-500  uppercase tracking-wide font-medium w-full text-sm shadow-sm rounded">

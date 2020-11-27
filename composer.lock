@@ -1410,16 +1410,16 @@
         },
         {
             "name": "laravel/passport",
-            "version": "v10.0.1",
+            "version": "v10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab"
+                "reference": "c2b93a7d8d93cf303bb1eefbfa5610f084f9bdd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab",
-                "reference": "4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/c2b93a7d8d93cf303bb1eefbfa5610f084f9bdd4",
+                "reference": "c2b93a7d8d93cf303bb1eefbfa5610f084f9bdd4",
                 "shasum": ""
             },
             "require": {
@@ -1434,9 +1434,10 @@
                 "illuminate/encryption": "^8.2",
                 "illuminate/http": "^8.2",
                 "illuminate/support": "^8.2",
-                "league/oauth2-server": "^8.1",
+                "lcobucci/jwt": "^3.4|^4.0",
+                "league/oauth2-server": "^8.2",
                 "nyholm/psr7": "^1.3",
-                "php": "^7.3",
+                "php": "^7.3|^8.0",
                 "phpseclib/phpseclib": "^2.0",
                 "symfony/psr-http-message-bridge": "^2.0"
             },
@@ -1482,7 +1483,7 @@
                 "issues": "https://github.com/laravel/passport/issues",
                 "source": "https://github.com/laravel/passport"
             },
-            "time": "2020-09-15T16:41:42+00:00"
+            "time": "2020-11-26T07:57:30+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1612,16 +1613,16 @@
         },
         {
             "name": "laraveldaily/laravel-invoices",
-            "version": "2.0.3",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelDaily/laravel-invoices.git",
-                "reference": "b3e33260a7d1ad78a7db34e1ae1f294af1b09858"
+                "reference": "f14d9e192994f19db181b3565c13cb84f10489d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelDaily/laravel-invoices/zipball/b3e33260a7d1ad78a7db34e1ae1f294af1b09858",
-                "reference": "b3e33260a7d1ad78a7db34e1ae1f294af1b09858",
+                "url": "https://api.github.com/repos/LaravelDaily/laravel-invoices/zipball/f14d9e192994f19db181b3565c13cb84f10489d4",
+                "reference": "f14d9e192994f19db181b3565c13cb84f10489d4",
                 "shasum": ""
             },
             "require": {
@@ -1671,9 +1672,9 @@
             ],
             "support": {
                 "issues": "https://github.com/LaravelDaily/laravel-invoices/issues",
-                "source": "https://github.com/LaravelDaily/laravel-invoices/tree/2.0.3"
+                "source": "https://github.com/LaravelDaily/laravel-invoices/tree/2.0.5"
             },
-            "time": "2020-09-25T07:08:14+00:00"
+            "time": "2020-11-26T16:08:42+00:00"
         },
         {
             "name": "lcobucci/clock",
@@ -2170,16 +2171,16 @@
         },
         {
             "name": "league/oauth2-server",
-            "version": "8.2.0",
+            "version": "8.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-server.git",
-                "reference": "8837ed92b9d9db054b2d513ddb1de08b1e77c517"
+                "reference": "284c2b5125ac71c6564e96d6e3c2d6eef3a1ae24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/8837ed92b9d9db054b2d513ddb1de08b1e77c517",
-                "reference": "8837ed92b9d9db054b2d513ddb1de08b1e77c517",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/284c2b5125ac71c6564e96d6e3c2d6eef3a1ae24",
+                "reference": "284c2b5125ac71c6564e96d6e3c2d6eef3a1ae24",
                 "shasum": ""
             },
             "require": {
@@ -2245,7 +2246,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/oauth2-server/issues",
-                "source": "https://github.com/thephpleague/oauth2-server/tree/8.2.0"
+                "source": "https://github.com/thephpleague/oauth2-server/tree/8.2.1"
             },
             "funding": [
                 {
@@ -2253,7 +2254,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-25T23:27:52+00:00"
+            "time": "2020-11-26T11:18:21+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7970,16 +7971,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.3",
+            "version": "9.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "6b20e2055f7c29b56cb3870b3de7cc463d7add41"
+                "reference": "0a7f0acf9269c190fd982b5c04423feae986b6e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6b20e2055f7c29b56cb3870b3de7cc463d7add41",
-                "reference": "6b20e2055f7c29b56cb3870b3de7cc463d7add41",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0a7f0acf9269c190fd982b5c04423feae986b6e0",
+                "reference": "0a7f0acf9269c190fd982b5c04423feae986b6e0",
                 "shasum": ""
             },
             "require": {
@@ -8035,7 +8036,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.3"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.4"
             },
             "funding": [
                 {
@@ -8043,7 +8044,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-30T10:46:41+00:00"
+            "time": "2020-11-27T06:15:15+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

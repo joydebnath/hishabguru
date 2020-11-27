@@ -15,5 +15,6 @@ class TestController extends Controller
     public function index()
     {
 //        Mail::to(User::find(1))->send(new TestMail());
+        return view('auth.register-checkpost');
     }
 }
