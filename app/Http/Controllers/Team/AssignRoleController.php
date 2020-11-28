@@ -23,6 +23,7 @@ class AssignRoleController extends Controller
     {
         try {
             $storable = $request->validated();
+            return response(['message' => 'Work in progress'], 500);
             $contact = Contact::find($contactId);
 
             $this->service->addOrUpdateEmail($contact, $storable['email']);

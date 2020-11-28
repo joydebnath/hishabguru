@@ -137,7 +137,7 @@ class RegisterController extends Controller
     private function registerPromoCode($code)
     {
         $promo = InternalPromoCode::where([
-            ['code', '=', $code],
+            ['code', '=', strtolower($code)],
             ['expiry_date', '<=', Carbon::today()->endOfDay()],
         ])->first();
 
