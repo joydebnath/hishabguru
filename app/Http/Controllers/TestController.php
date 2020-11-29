@@ -18,14 +18,6 @@ class TestController extends Controller
 {
     public function index()
     {
-        $tenant = Tenant::find(1);
-        $user = User::find(3);
-        $invitedBy = User::find(1);
-        $role = Role::find(2);
 
-//        return (new OldUserInvitedToNewTenancyMail($user, $tenant, $role, $invitedBy))->render();
-//        return (new NewUserInvitedToNewTenancyMail($user, $tenant, $role, 'ABC123', $invitedBy));
-//        Mail::to($user)->send(new NewUserInvitedToNewTenancyMail($user, $tenant, $role, 'ABC123', $invitedBy));
-        Mail::to($user)->send(new OldUserInvitedToNewTenancyMail($user, $tenant, $role, $invitedBy));
     }
 }

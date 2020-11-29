@@ -3,9 +3,9 @@
 
     Your order has been shipped!
 
-    @component('mail::button', ['url' => $url])
-        View Order
-    @endcomponent
+@component('mail::button', ['url' => $url])
+    View Order
+@endcomponent
 
     Thanks,
     {{ config('app.name') }}
