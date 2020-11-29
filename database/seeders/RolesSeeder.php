@@ -22,14 +22,14 @@ class RolesSeeder extends Seeder
         ]);
 
         Role::firstOrCreate([
-            'name' => 'Lead Sales',
+            'name' => 'Lead Sales Person',
             'slug' => 'lead-sales',
         ], [
             'permissions' => json_encode([])
         ]);
 
         Role::firstOrCreate([
-            'name' => 'Sales',
+            'name' => 'Sales Person',
             'slug' => 'sales',
         ], [
             'permissions' => json_encode([])

@@ -231,11 +231,11 @@
                         <circle cx="954.9" cy="428.23" r="1.84" fill="#fff"/>
                     </svg>
                     <div class="ml-4 m-auto">
-                        <p>
-                            Sorry! At HishabGuru, we strives to provide best user experience. Due to overwhelming
+                        <p class="text-lg text-gray-900 leading-6">
+                            At HishabGuru, we strives to provide best user experience. Due to overwhelming
                             registrations, we have decided to keep our signup restricted under referral promo code
                             to serve our present customers with uttermost importance. Please click the button bellow
-                            if you have valid <strong class="text-indigo-500">Promo Code</strong>. You can also send us email on
+                            if you have valid <strong class="text-indigo-500">Promo Code</strong>. You can also send us an email on
                             <span class="font-medium">support@hishabguru.com</span>
                         </p>
                         <div class="flex flex-row-reverse">

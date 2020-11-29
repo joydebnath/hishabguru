@@ -3,12 +3,16 @@
 namespace App\Services\User;
 
 use App\Enums\Contact\ContactDetailsType;
+use App\Mail\User\NewUserInvitedToNewTenancyMail;
+use App\Mail\User\OldUserInvitedToNewTenancyMail;
 use App\Models\Contact;
 use App\Models\ContactDetail;
 use App\Models\Role;
 use App\Models\Tenant;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class AssignRoleService
@@ -33,11 +37,11 @@ class AssignRoleService
 
     public function assignRole(Contact $employee, array $storable)
     {
-        $user = $this->getUser($employee, $storable['email']);
         $tenant = $employee->tenant;
-        $this->attachUserToTenant($user, $tenant, $storable['system_role']);
+        $user = $this->getUser($employee, $storable['email']);
+        $role = $this->attachUserToTenantWithRole($user, $tenant, $storable['system_role']);
         $this->updateUserCurrentTenancy($user, $tenant);
-        $this->inviteUser($user, $tenant);
+        $this->inviteUser($user, $tenant, $role);
     }
 
     private function getUser(Contact $employee, string $email): User
@@ -50,26 +54,21 @@ class AssignRoleService
 
         $this->password = Str::random(8);
 
-        return $this->createUser([
+        return User::create([
             'name' => $employee->name,
             'email' => $email,
-            'password' => $this->password
+            'password' => Hash::make($this->password),
         ]);
     }
 
-    private function createUser(array $data)
+    private function attachUserToTenantWithRole(User $user, Tenant $tenant, string $roleSlug): Role
     {
-        return User::firstOrCreate([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $role = Role::firstWhere('slug', $roleSlug);
+        $tenant->user_roles()->sync($user->id, [
+            'role_id' => $role->id,
+            'permissions' => $role->permissions
         ]);
-    }
-
-    private function attachUserToTenant(User $user, Tenant $tenant, string $role)
-    {
-        $role = Role::firstWhere('slug', $role);
-        $user->tenants()->attach($tenant->id, ['role_id' => $role->id]);
+        return $role;
     }
 
     private function updateUserCurrentTenancy($user, $tenant)
@@ -79,11 +78,15 @@ class AssignRoleService
         }
     }
 
-    private function inviteUser(User $user, Tenant $tenant)
+    private function inviteUser(User $user, Tenant $tenant, Role $role)
     {
+        $invitedBy = Auth::user();
+
         if ($this->userAlreadyExists) {
-            //dispatch you are invited by tenant - please accept
+            Mail::to($user)->send(new OldUserInvitedToNewTenancyMail($user, $tenant, $role, $invitedBy));
+            return true;
         }
-        //dispatch you are invited by tenant - please log in with temp password and change
+
+        Mail::to($user)->send(new NewUserInvitedToNewTenancyMail($user, $tenant, $role, $this->password, $invitedBy));
     }
 }

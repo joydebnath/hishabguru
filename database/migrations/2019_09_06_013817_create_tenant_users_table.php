@@ -19,6 +19,7 @@ class CreateTenantUsersTable extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('role_id')->index();
             $table->boolean('is_active')->nullable();
+            $table->text('permissions')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
