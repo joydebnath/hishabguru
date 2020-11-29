@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import ProductTile from "./ProductTile";
 
 export default {
@@ -33,6 +34,11 @@ export default {
             search_results: [],
             loading: false,
         }
+    },
+    computed: {
+        ...mapGetters({
+            tenant_id: 'tenancy/getCurrentTenant'
+        })
     },
     methods: {
         handleProductSelected(product) {
@@ -58,15 +64,11 @@ export default {
                     console.log('searchProducts => ', err)
                 })
         }, 800),
-        handleInput(value){
-            if(value){
+        handleInput(value) {
+            if (value) {
                 this.loading = true
             }
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>
