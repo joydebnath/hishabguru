@@ -15,8 +15,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64534feb-ebd7-426e-a8ba-a19348cf64ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/global/lookup/products/ProductLookupInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/global/lookup/products/ProductLookupInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/pages/products/widgets/ProductCategory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/pages/products/widgets/ProductCategory.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../meghomitra/.gitattributes" beforeDir="false" />
@@ -889,7 +888,9 @@
       <workItem from="1606522661152" duration="2928000" />
       <workItem from="1606534854916" duration="629000" />
       <workItem from="1606557162721" duration="810000" />
-      <workItem from="1606575864853" duration="15812000" />
+      <workItem from="1606575864853" duration="17135000" />
+      <workItem from="1606697636144" duration="603000" />
+      <workItem from="1606720737072" duration="287000" />
     </task>
     <servers />
   </component>

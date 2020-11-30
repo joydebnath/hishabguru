@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="tags has-addons p-1 w-full"  v-if="name">
+        <div class="tags has-addons p-1 w-full" v-if="name">
             <div class="tag is-dark is-medium w-4/5">
                 <p class="truncate mb-0 text-left">{{ name }}</p>
             </div>
@@ -47,9 +47,11 @@ export default {
             fetching_categories: false,
         }
     },
-    ...mapGetters({
-        tenant_id: 'tenancy/getCurrentTenant',
-    }),
+    computed: {
+        ...mapGetters({
+            tenant_id: 'tenancy/getCurrentTenant',
+        }),
+    },
     methods: {
         handleRemoveCategory() {
             this.$emit('on-remove')
