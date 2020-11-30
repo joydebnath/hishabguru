@@ -88,7 +88,6 @@ export default {
         },
         create() {
             this.loading_event(true);
-            console.log(this.computed_item)
             axios
                 .post('/product-categories', {
                     ...this.computed_item,
@@ -102,8 +101,13 @@ export default {
                         type: 'is-success is-light',
                         duration: 5000
                     })
+
                     if (this.total < this.per_page) {
                         this.$store.dispatch('product_categories/loadData', {page: 1})
+                    }
+
+                    if (this.categories_count === 0) {
+                        this.$store.commit('products/setProductCategoriesCount', {count: 1})
                     }
                 })
                 .catch(err => {
@@ -120,7 +124,8 @@ export default {
         ...mapGetters({
             total: 'product_categories/getTotal',
             per_page: 'getPerPage',
-            tenant_id: 'tenancy/getCurrentTenant'
+            tenant_id: 'tenancy/getCurrentTenant',
+            categories_count: 'products/getProductCategoriesCount',
         }),
         title() {
             return this.$props.action_type == "edit"

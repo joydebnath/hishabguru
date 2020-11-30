@@ -22,6 +22,7 @@ class AssignRoleController extends Controller
     public function update(AssignRoleRequest $request, $contactId)
     {
         try {
+            return $request;
             $storable = $request->validated();
             $contact = Contact::find($contactId);
 

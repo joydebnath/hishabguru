@@ -10,19 +10,16 @@
                         class="text-2xl md:text-4xl font-semibold text-gray-600 text-left"
                     >
                         A simple tool that helps you to
-                        <strong class="text-gray-900 uppercase">grow</strong> your Online
+                        <strong class="text-gray-900 uppercase">grow</strong> your
                         <strong class="text-gray-900">Business</strong>!
                     </h1>
-                    <p
-                        class="text-lg md:text-xl robo tracking-wider text-gray-700 pt-4 pb-2 text-left"
-                    >
-                        <span class="text-xl md:text-2xl text-blue-500 font-semibold">HishabGuru</span>
-                        is an inventory and account manager for small businesses. Let us
-                        deal with all the complexities, so that you can focus on your
-                        business.
+                    <p class="text-sm md:text-base robo tracking-wider text-gray-700 pt-4 pb-2 text-left">
+                        For Ecommerce Entrepreneurs of <span class="text-green-700 uppercase font-semibold">Bangladesh</span> who get a ton of orders everyday, <span class="text-xl md:text-lg text-blue-500">HishabGuru</span> is
+                        an <span class="text-gray-900">Account Management Software</span> that gives you visibility of your business's growth, so you can prepare for the <strong>NEXT</strong>. Unlike our competitors,
+                        be believe <span class="text-gray-800">accounting</span> should be <span class="text-gray-900">beautiful</span>.
                     </p>
                     <div class="flex flex-row-reverse pr-6">
-                        <a href="https://app.hishabguru.com/register">
+                        <a href="https://www.hishabguru.com/register">
                             <button
                                 class="px-2 py-1 md:px-3 md:py-2 text-base md:text-lg border border-gray-200 shadow-md font-medium tracking-wide bg-white text-blue-500  focus:outline-none rounded-lg my-4"
                             >

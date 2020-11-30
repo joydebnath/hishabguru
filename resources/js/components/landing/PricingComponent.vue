@@ -28,7 +28,7 @@
                             <Feature line="Unlimited Users with Roles"/>
                         </div>
                         <div class="col-span-2 md:col-span-1">
-                            <Feature line="Tracking Bills and Expenses"/>
+                            <Feature line="Track Bills and Expenses"/>
                         </div>
                         <div class="col-span-2 md:col-span-1">
                             <Feature line="Manage Orders"/>
@@ -37,7 +37,7 @@
                             <Feature line="Store Customer and Supplier details"/>
                         </div>
                         <div class="col-span-2 md:col-span-1">
-                            <Feature line="Business Operation Statistics"/>
+                            <Feature line="Business Operational Statistics"/>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                             <span class="text-sm font-semibold uppercase text-gray-700">Monthly</span>
                         </div>
                         <div>
-                            <a href="https://app.hishabguru.com/register">
+                            <a href="https://www.hishabguru.com/register">
                                 <button class="px-6 py-2 bg-gray-800 text-white font-medium rounded-md">
                                     Get Access
                                 </button>
